@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/search_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/instagram"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/search_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/search_screen_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/search_logo"
+            app:layout_constraintTop_toBottomOf="@id/search_logo" />
+
+        <TextView
+            android:id="@+id/search_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@string/search_sub_title"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/search_title"
+            app:layout_constraintTop_toBottomOf="@+id/search_title" />
+
+        <EditText
+            android:id="@+id/user_edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/search_edit_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_sub_title" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/book_mark_tab_btn_text"
+            app:layout_constraintEnd_toEndOf="@+id/user_edit_name"
+            app:layout_constraintStart_toStartOf="@id/user_edit_name"
+            app:layout_constraintTop_toBottomOf="@id/user_edit_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
