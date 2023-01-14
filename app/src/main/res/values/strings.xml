@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">CanyonGG</string>
+    <string name="hint_main_intro">자신의 소환사를 등록해보세요.\n나의 전적을 바로 볼 수 있습니다.</string>
+    <string name="main_btn_text">등록하기</string>
+    <string name="bookmark_label">즐겨찾기에 등록된 소환사</string>
+    <string name="book_mark_label_content">아직 즐겨찾기에 등록된 소환사가 없습니다.\n 소환사를 검색 후 즐겨찾기에 등록 해주세요.</string>
+    <string name="book_mark_tab_btn_text">검색하기</string>
+    <string name="book_mark_champ_label">즐겨찾기에 등록된 챔피언</string>
+    <string name="book_mark_champ_content">아직 즐겨찾기에 등록된 챔피언이 없습니다.\n 챔피언을 즐겨찾기에 등록해주세요.</string>
+    <string name="champ_btn_name">챔피언 보기</string>
+    <string name="rotation_champ_text">이번주 로테이션 챔피언</string>
+    <string name="bot_nav_home">홈</string>
+    <string name="bot_nav_search">소환사 검색</string>
+    <string name="bot_nav_setting">설정</string>
+    <string name="main_my_history_label">나의 전적</string>
 </resources>

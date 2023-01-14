@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UserView">
+        <attr name="mainUserThumbnail" format="reference" />
+        <attr name="mainUserLevel" format="string" />
+        <attr name="mainUserName" format="string" />
+        <attr name="mainUserTier" format="string" />
+        <attr name="mainUserReload" format="reference" />
+        <attr name="mainUserDelete" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="EmptyView">
+        <attr name="emptyTitle" format="string" />
+        <attr name="emptyContent" format="string" />
+        <attr name="buttonName" format="string" />
+    </declare-styleable>
+</resources>

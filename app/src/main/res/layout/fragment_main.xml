@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <io.github.seoj17.canyongg.EmptyView
+            android:id="@+id/tab1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            custom:buttonName="@string/main_btn_text"
+            custom:emptyContent="@string/hint_main_intro"
+            custom:emptyTitle="@string/main_my_history_label" />
+
+        <io.github.seoj17.canyongg.EmptyView
+            android:id="@+id/tab2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab1"
+            custom:buttonName="@string/book_mark_tab_btn_text"
+            custom:emptyContent="@string/book_mark_label_content"
+            custom:emptyTitle="@string/bookmark_label" />
+
+        <io.github.seoj17.canyongg.EmptyView
+            android:id="@+id/tab3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab2"
+            custom:buttonName="@string/champ_btn_name"
+            custom:emptyContent="@string/book_mark_champ_content"
+            custom:emptyTitle="@string/book_mark_champ_label" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rotation_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab3">
+
+            <TextView
+                android:id="@+id/rotation_tab_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/rotation_champ_text"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/rotation_tab"
+                app:layout_constraintTop_toTopOf="@+id/rotation_tab" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_rotation_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/rotation_tab"
+                app:layout_constraintStart_toStartOf="@+id/rotation_tab"
+                app:layout_constraintTop_toBottomOf="@+id/rotation_tab_label"
+                tools:listitem="@layout/rotation_list_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
