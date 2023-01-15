@@ -13,5 +13,10 @@
         <attr name="emptyTitle" format="string" />
         <attr name="emptyContent" format="string" />
         <attr name="buttonName" format="string" />
+        <attr name="tabState" format="enum">
+            <enum name="summonerTab" value="0" />
+            <enum name="bookMarkSummonerTab" value="1" />
+            <enum name="bookMarkChampTab" value="2" />
+        </attr>
     </declare-styleable>
 </resources>

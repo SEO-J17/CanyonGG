@@ -5,12 +5,14 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import io.github.seoj17.canyongg.databinding.TabCustomBinding
+import io.github.seoj17.canyongg.utils.OnButtonClickListener
 
 class EmptyView(
     context: Context,
     attributeSet: AttributeSet,
 ) : LinearLayout(context, attributeSet) {
     private val binding = TabCustomBinding.inflate(LayoutInflater.from(context), this, true)
+    private lateinit var clickListener: OnButtonClickListener
 
     init {
         with(binding) {
@@ -30,10 +32,19 @@ class EmptyView(
                         infoTitle.text = getString(R.styleable.EmptyView_emptyTitle)
                         infoContent.text = getString(R.styleable.EmptyView_emptyContent)
                         applyBtn.text = getString(R.styleable.EmptyView_buttonName)
+                        val tabState = getInteger(R.styleable.EmptyView_tabState, 0)
+
+                        applyBtn.setOnClickListener {
+                            clickListener.onButtonClick(tabState)
+                        }
                     } finally {
                         recycle()
                     }
                 }
         }
+    }
+
+    fun onApplyClickListener(onButtonClickListener: OnButtonClickListener) {
+        this.clickListener = onButtonClickListener
     }
 }

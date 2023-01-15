@@ -49,6 +49,7 @@
             app:layout_constraintTop_toBottomOf="@id/search_sub_title" />
 
         <Button
+            android:id="@+id/summoner_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"

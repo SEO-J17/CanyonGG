@@ -21,7 +21,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 custom:buttonName="@string/main_btn_text"
                 custom:emptyContent="@string/hint_main_intro"
-                custom:emptyTitle="@string/main_my_history_label" />
+                custom:emptyTitle="@string/main_my_history_label"
+                custom:tabState="summonerTab" />
 
             <io.github.seoj17.canyongg.EmptyView
                 android:id="@+id/tab2"
@@ -33,7 +34,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/tab1"
                 custom:buttonName="@string/book_mark_tab_btn_text"
                 custom:emptyContent="@string/book_mark_label_content"
-                custom:emptyTitle="@string/bookmark_label" />
+                custom:emptyTitle="@string/bookmark_label"
+                custom:tabState="bookMarkSummonerTab" />
 
             <io.github.seoj17.canyongg.EmptyView
                 android:id="@+id/tab3"
@@ -45,7 +47,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/tab2"
                 custom:buttonName="@string/champ_btn_name"
                 custom:emptyContent="@string/book_mark_champ_content"
-                custom:emptyTitle="@string/book_mark_champ_label" />
+                custom:emptyTitle="@string/book_mark_champ_label"
+                custom:tabState="bookMarkChampTab" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
