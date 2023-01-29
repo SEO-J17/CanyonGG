@@ -6,7 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.github.seoj17.canyongg.network.RiotApi
+import io.github.seoj17.canyongg.data.remote.RiotApi
+import io.github.seoj17.canyongg.data.remote.RiotMatchApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -68,7 +69,7 @@ object NetworkModule {
     @Provides
     @AuthToken
     fun provideAuthToken(): String {
-        return "RGAPI-a625c53e-3262-43b6-8b49-e3b1da55e324"
+        return "RGAPI-3416b7a4-c6cc-44a1-a080-0c590b025c40"
     }
 
     @Singleton
@@ -116,9 +117,7 @@ object NetworkModule {
         moshi: Moshi,
         @SummonerUrl url: String,
     ): Retrofit {
-        return Retrofit.Builder().baseUrl(url)
-            .addConverterFactory(MoshiConverterFactory.create(moshi)).client(okHttpClient)
-            .build()
+        return createRetrofit(okHttpClient, moshi, url)
     }
 
     @Singleton
@@ -129,20 +128,25 @@ object NetworkModule {
         moshi: Moshi,
         @MatchUrl url: String,
     ): Retrofit {
+        return createRetrofit(okHttpClient, moshi, url)
+    }
+
+    private fun createRetrofit(okHttpClient: OkHttpClient, moshi: Moshi, url: String): Retrofit {
         return Retrofit.Builder().baseUrl(url)
-            .addConverterFactory(MoshiConverterFactory.create(moshi)).client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
             .build()
     }
 
     @Singleton
     @Provides
-    fun provideSummoner(@SummonerRetrofit retrofit: Retrofit): RiotApi {
+    fun provideSummonerService(@SummonerRetrofit retrofit: Retrofit): RiotApi {
         return retrofit.create(RiotApi::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideMatch(@MatchRetrofit retrofit: Retrofit): RiotApi {
-        return retrofit.create(RiotApi::class.java)
+    fun provideMatchService(@MatchRetrofit retrofit: Retrofit): RiotMatchApi {
+        return retrofit.create(RiotMatchApi::class.java)
     }
 }

@@ -13,7 +13,8 @@
         <argument
             android:name="summoner_name"
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="true"
+            android:defaultValue='""' />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -21,6 +22,9 @@
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment" >
+            <argument
+                android:name="summoner_name" />
+        </action>
     </fragment>
 </navigation>

@@ -1,19 +1,12 @@
-package io.github.seoj17.canyongg.network
+package io.github.seoj17.canyongg.data.remote
 
-import io.github.seoj17.canyongg.network.response.Info
-import io.github.seoj17.canyongg.network.response.MatchInfoResponse
-import io.github.seoj17.canyongg.network.response.SummonerResponse
+import io.github.seoj17.canyongg.data.remote.response.MatchInfoResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface RiotApi {
-    @GET("/lol/summoner/v4/summoners/by-name/{summonerName}")
-    fun getSummoner(
-        @Path("summonerName") summonerName: String
-    ): Call<SummonerResponse>
-
+interface RiotMatchApi {
     @GET("/lol/match/v5/matches/by-puuid/{puuid}/ids")
     fun getMatchId(
         @Path("puuid") puuid: String,

@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.network.response
+package io.github.seoj17.canyongg.data.remote.response
 
 import com.squareup.moshi.Json
 

@@ -27,7 +27,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navigator = Navigation.findNavController(view)
-        val summonerName = "${binding.userEditName.text.trim()}"
+        val summonerName = "${binding.userEditName.text}"
 
         super.onViewCreated(view, savedInstanceState)
         binding.summonerSubmit.setOnClickListener {

@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.network.response
+package io.github.seoj17.canyongg.data.remote.response
 
 data class RiftHerald(
     val first: Boolean,
