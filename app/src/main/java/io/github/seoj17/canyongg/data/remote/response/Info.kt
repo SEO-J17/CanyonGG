@@ -11,7 +11,7 @@ data class Info(
     val gameType: String,
     val gameVersion: String,
     val mapId: Int,
-    val participants: List<Participant>,
+    val participants: List<ParticipantResponse>,
     val platformId: String,
     val queueId: Int,
     val teams: List<Team>,

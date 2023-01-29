@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.remote.response
 
-data class Participant(
+data class ParticipantResponse(
     val assists: Int,
     val baitPings: Int,
     val baronKills: Int,

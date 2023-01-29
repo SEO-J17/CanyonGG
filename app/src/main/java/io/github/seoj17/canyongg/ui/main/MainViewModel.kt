@@ -6,8 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.seoj17.canyongg.data.model.MainMyInfo
 import io.github.seoj17.canyongg.data.model.Summoner
-import io.github.seoj17.canyongg.data.remote.response.Participant
 import io.github.seoj17.canyongg.data.repository.InfoRepository
 import io.github.seoj17.canyongg.utils.Event
 import kotlinx.coroutines.async
@@ -61,7 +61,7 @@ class MainViewModel @Inject constructor(
 
     suspend fun fetchUserInfo() {
         viewModelScope.async {
-            _userInfo.value = repository.getSummonerInfo("ㅗ")
+            _userInfo.value = repository.getSummonerInfo("Hide on bush")
         }.await().also {
             fetchScoreData()
         }
@@ -82,7 +82,7 @@ class MainViewModel @Inject constructor(
             }.await()
 
             matchIdList.map { matchInfo ->
-                matchInfo.info.participants.find { participant ->
+                MainMyInfo(matchInfo.info.participants).find { participant ->
                     participant.puuid == user.puuid
                 }.also {
                     if (it != null) {
@@ -98,14 +98,14 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun calcScore(participant: Participant) {
-        val champ = participant.championName
-        val kill = participant.assists + participant.kills
-        val isWin = participant.win
+    private fun calcScore(myInfo: MainMyInfo) {
+        val champ = myInfo.championName
+        val kill = myInfo.assists + myInfo.kills
+        val isWin = myInfo.win
 
         champCntMap[champ] = champCntMap.getOrDefault(champ, 0) + 1
         champKillMap[champ] = champKillMap.getOrDefault(champ, 0) + kill
-        champDeathMap[champ] = champDeathMap.getOrDefault(champ, 0) + participant.deaths
+        champDeathMap[champ] = champDeathMap.getOrDefault(champ, 0) + myInfo.deaths
         if (isWin) {
             champWinCntMap[champ] = champWinCntMap.getOrDefault(champ, 0) + 1
         }
