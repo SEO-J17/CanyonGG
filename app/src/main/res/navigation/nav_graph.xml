@@ -33,5 +33,13 @@
     <fragment
         android:id="@+id/search_user"
         android:name="io.github.seoj17.canyongg.ui.search.SummonerSearchFragment"
-        android:label="SummonerSearchFragment" />
+        android:label="SummonerSearchFragment" >
+        <action
+            android:id="@+id/action_search_user_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="io.github.seoj17.canyongg.ui.search.SearchResultFragment"
+        android:label="SearchResultFragment" />
 </navigation>

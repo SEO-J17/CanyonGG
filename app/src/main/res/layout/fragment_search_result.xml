@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/user_thumbNail"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/instagram" />
+
+    <TextView
+        android:id="@+id/user_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
+        app:layout_constraintEnd_toEndOf="@id/user_thumbNail"
+        app:layout_constraintStart_toStartOf="@id/user_thumbNail"
+        tools:text="154" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/user_tier_label"
+        app:layout_constraintStart_toEndOf="@+id/user_thumbNail"
+        app:layout_constraintTop_toTopOf="@id/user_thumbNail"
+        tools:text="Hide on bush" />
+
+    <TextView
+        android:id="@+id/user_tier_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
+        app:layout_constraintStart_toEndOf="@id/user_thumbNail"
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        tools:text="MASTER 1" />
+
+    <ImageView
+        android:id="@+id/user_tier"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/user_thumbNail"
+        tools:src="@drawable/Emblem_Challenger" />
+
+    <TextView
+        android:id="@+id/latest_match_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/summary_game_label"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_thumbNail" />
+
+    <TextView
+        android:id="@+id/win_late_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/win_late_text"
+        app:layout_constraintEnd_toStartOf="@+id/kda_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/latest_match_label" />
+
+    <TextView
+        android:id="@+id/win_late"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/win_late_label"
+        app:layout_constraintStart_toStartOf="@+id/win_late_label"
+        app:layout_constraintTop_toBottomOf="@id/win_late_label"
+        tools:text="59%" />
+
+    <TextView
+        android:id="@+id/win_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/win_late"
+        app:layout_constraintStart_toStartOf="@+id/win_late"
+        app:layout_constraintTop_toBottomOf="@id/win_late"
+        tools:text="13승 7패" />
+
+    <TextView
+        android:id="@+id/kda_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/kda_text"
+        app:layout_constraintBottom_toBottomOf="@id/win_late_label"
+        app:layout_constraintEnd_toStartOf="@+id/highest_kill_label"
+        app:layout_constraintStart_toEndOf="@+id/win_late_label"
+        app:layout_constraintTop_toTopOf="@id/win_late_label" />
+
+    <TextView
+        android:id="@+id/kda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/kda_label"
+        app:layout_constraintStart_toStartOf="@+id/kda_label"
+        app:layout_constraintTop_toBottomOf="@id/kda_label"
+        tools:text="3.41 : 1" />
+
+    <TextView
+        android:id="@+id/highest_kill_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/highest_kill_text"
+        app:layout_constraintBottom_toBottomOf="@id/kda_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/kda_label"
+        app:layout_constraintTop_toTopOf="@id/kda_label" />
+
+    <TextView
+        android:id="@+id/highest_kill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/highest_kill_label"
+        app:layout_constraintStart_toStartOf="@+id/highest_kill_label"
+        app:layout_constraintTop_toBottomOf="@id/highest_kill_label"
+        tools:text="펜타 킬" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        tools:listitem="@layout/summoner_match_list_item"
+        app:layout_constraintTop_toBottomOf="@+id/win_info" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
