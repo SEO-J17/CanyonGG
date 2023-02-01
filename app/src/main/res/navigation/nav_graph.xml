@@ -2,9 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/home">
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/home"
         android:name="io.github.seoj17.canyongg.ui.main.MainFragment"
         android:label="MainFragment" >
         <action
@@ -15,6 +15,9 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue='""' />
+        <action
+            android:id="@+id/action_mainFragment_to_summonerSearchFragment"
+            app:destination="@id/search_user" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -22,9 +25,13 @@
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
-            app:destination="@id/mainFragment" >
+            app:destination="@id/home" >
             <argument
                 android:name="summoner_name" />
         </action>
     </fragment>
+    <fragment
+        android:id="@+id/search_user"
+        android:name="io.github.seoj17.canyongg.ui.search.SummonerSearchFragment"
+        android:label="SummonerSearchFragment" />
 </navigation>

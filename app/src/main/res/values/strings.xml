@@ -17,4 +17,6 @@
     <string name="search_sub_title">소환사를 등록하면 전적을 바로 볼 수 있습니다.</string>
     <string name="search_edit_hint">소환사 이름</string>
     <string name="round_kda">%.2f</string>
+    <string name="search_summoner_hint">소환사 이름을 입력해주세요</string>
+    <string name="search_latest_summoner">최근 검색한 소환사</string>
 </resources>
