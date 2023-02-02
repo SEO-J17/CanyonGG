@@ -14,374 +14,310 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
+        android:id="@+id/tab_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/user_tab"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+            <ImageView
+                android:id="@+id/main_user_thumbNail"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                bind:userIcon="@{vm.userInfo.profileIconId}"
+                tools:src="@drawable/temp_user" />
 
-                <LinearLayout
-                    android:id="@+id/score_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:descendantFocusability="blocksDescendants"
-                    android:orientation="vertical"
-                    android:visibility="@{vm.userInfo != null ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="@id/score_tab"
-                    app:layout_constraintStart_toStartOf="@id/score_tab"
-                    app:layout_constraintTop_toTopOf="@id/score_tab">
+            <TextView
+                android:id="@+id/main_user_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#8C8C8C"
+                android:padding="3dp"
+                android:text="@{String.valueOf(vm.userInfo.summonerLevel)}"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/main_user_thumbNail"
+                app:layout_constraintEnd_toEndOf="@+id/main_user_thumbNail"
+                app:layout_constraintStart_toStartOf="@+id/main_user_thumbNail"
+                tools:text="156" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/main_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@{vm.userInfo.name}"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/main_user_tier"
+                app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
+                app:layout_constraintTop_toTopOf="@id/main_user_thumbNail"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="닉네임" />
 
-                        <ImageView
-                            android:id="@+id/main_user_thumbNail"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            bind:userIcon="@{vm.userInfo.profileIconId}" />
+            <TextView
+                android:id="@+id/main_user_tier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@{vm.userTier}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/main_user_thumbNail"
+                app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
+                app:layout_constraintTop_toBottomOf="@+id/main_user_name"
+                tools:text="Master2" />
 
-                        <TextView
-                            android:id="@+id/main_user_level"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="#8C8C8C"
-                            android:padding="3dp"
-                            android:text="@{String.valueOf(vm.userInfo.summonerLevel)}"
-                            android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/main_user_thumbNail"
-                            app:layout_constraintEnd_toEndOf="@+id/main_user_thumbNail"
-                            app:layout_constraintStart_toStartOf="@+id/main_user_thumbNail"
-                            tools:text="156" />
+            <ImageView
+                android:id="@+id/main_user_refresh"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/reload"
+                app:layout_constraintBottom_toBottomOf="@id/main_user_tier"
+                app:layout_constraintStart_toEndOf="@id/main_user_name"
+                app:layout_constraintTop_toTopOf="@+id/main_user_name" />
 
-                        <TextView
-                            android:id="@+id/main_user_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:text="@{vm.userInfo.name}"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/main_user_tier"
-                            app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
-                            app:layout_constraintTop_toTopOf="@id/main_user_thumbNail"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            tools:text="닉네임" />
+            <ImageView
+                android:id="@+id/user_info_delete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/cross"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/main_user_tier"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:text="@{vm.userTier}"
-                            android:textSize="12sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/main_user_thumbNail"
-                            app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
-                            app:layout_constraintTop_toBottomOf="@+id/main_user_name"
-                            tools:text="Master2" />
-
-                        <ImageView
-                            android:id="@+id/main_user_refresh"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="15dp"
-                            android:src="@drawable/reload"
-                            app:layout_constraintBottom_toBottomOf="@id/main_user_tier"
-                            app:layout_constraintStart_toEndOf="@id/main_user_name"
-                            app:layout_constraintTop_toTopOf="@+id/main_user_name" />
-
-                        <ImageView
-                            android:id="@+id/user_info_delete"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/cross"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/user_data_tab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        tools:ignore="ExtraText">
-
-                        <TextView
-                            android:id="@+id/user_win"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{vm.userWinCnt.toString()+`승 `}"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/user_lose"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintHorizontal_chainStyle="packed"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="10승" />
-
-                        <TextView
-                            android:id="@+id/user_lose"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{vm.userLoseCnt.toString()+`패 `}"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/user_win_score"
-                            app:layout_constraintStart_toEndOf="@+id/user_win"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="10패" />
-
-                        <TextView
-                            android:id="@+id/user_win_score"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{`승률 ` + vm.userWinScore.toString() + `% `}"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/user_kda"
-                            app:layout_constraintHorizontal_chainStyle="packed"
-                            app:layout_constraintStart_toEndOf="@+id/user_lose"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="승률 60%" />
-
-                        <TextView
-                            android:id="@+id/user_kda"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="3dp"
-                            android:text="@{`KDA ` + @string/round_kda(vm.userKda).toString()+ `:1`}"
-                            android:textColor="#47C83E"
-                            android:textSize="15sp"
-                            android:textStyle="bold|italic"
-                            app:layout_constraintBottom_toBottomOf="@+id/user_win_score"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/user_win_score"
-                            app:layout_constraintTop_toTopOf="@+id/user_win_score"
-                            tools:text="KDA 3.45:1" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        tools:layout_editor_absoluteX="1dp">
-
-                        <ImageView
-                            android:id="@+id/champ_1"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            bind:champImg="@{vm.mostChampList}"
-                            bind:champIndex="@{0}"
-                            tools:layout_editor_absoluteX="16dp" />
-
-                        <TextView
-                            android:id="@+id/champ1_win_score"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/champ1_kda"
-                            app:layout_constraintStart_toEndOf="@+id/champ_1"
-                            app:layout_constraintTop_toTopOf="@+id/champ_1"
-                            bind:champIndex="@{0}"
-                            bind:champList="@{vm.mostChampList}"
-                            bind:champWinMap="@{vm.champWinScore}"
-                            tools:text="40%" />
-
-                        <TextView
-                            android:id="@+id/champ1_kda"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@+id/champ_1"
-                            app:layout_constraintStart_toEndOf="@+id/champ1_win_score"
-                            app:layout_constraintStart_toStartOf="@id/champ1_win_score"
-                            app:layout_constraintTop_toBottomOf="@+id/champ1_win_score"
-                            bind:champIndex="@{0}"
-                            bind:champKdaMap="@{vm.champKda}"
-                            bind:champList="@{vm.mostChampList}"
-                            tools:text="3.0:1" />
-
-                        <ImageView
-                            android:id="@+id/champ_2"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="64dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/champ1_kda"
-                            app:layout_constraintTop_toTopOf="parent"
-                            bind:champImg="@{vm.mostChampList}"
-                            bind:champIndex="@{1}" />
-
-                        <TextView
-                            android:id="@+id/champ2_win_score"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/champ2_kda"
-                            app:layout_constraintStart_toEndOf="@+id/champ_2"
-                            app:layout_constraintTop_toTopOf="@+id/champ_2"
-                            bind:champIndex="@{1}"
-                            bind:champList="@{vm.mostChampList}"
-                            bind:champWinMap="@{vm.champWinScore}"
-                            tools:text="40%" />
-
-                        <TextView
-                            android:id="@+id/champ2_kda"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@+id/champ_2"
-                            app:layout_constraintStart_toStartOf="@+id/champ2_win_score"
-                            app:layout_constraintTop_toBottomOf="@+id/champ2_win_score"
-                            bind:champIndex="@{1}"
-                            bind:champKdaMap="@{vm.champKda}"
-                            bind:champList="@{vm.mostChampList}"
-                            tools:text="3.0:1" />
-
-                        <ImageView
-                            android:id="@+id/champ_3"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="64dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/champ2_kda"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.45"
-                            bind:champImg="@{vm.mostChampList}"
-                            bind:champIndex="@{2}" />
-
-                        <TextView
-                            android:id="@+id/champ3_win_score"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/champ3_kda"
-                            app:layout_constraintStart_toEndOf="@+id/champ_3"
-                            app:layout_constraintTop_toTopOf="@+id/champ_3"
-                            app:layout_constraintVertical_bias="0.0"
-                            bind:champIndex="@{2}"
-                            bind:champList="@{vm.mostChampList}"
-                            bind:champWinMap="@{vm.champWinScore}"
-                            tools:text="40%" />
-
-                        <TextView
-                            android:id="@+id/champ3_kda"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@+id/champ_3"
-                            app:layout_constraintStart_toEndOf="@+id/champ_3"
-                            app:layout_constraintTop_toBottomOf="@+id/champ3_win_score"
-                            bind:champIndex="@{2}"
-                            bind:champKdaMap="@{vm.champKda}"
-                            bind:champList="@{vm.mostChampList}"
-                            tools:text="3.0:1" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-                <io.github.seoj17.canyongg.EmptyView
-                    android:id="@+id/tab1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{vm.userInfo == null ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    custom:buttonName="@string/main_btn_text"
-                    custom:emptyContent="@string/hint_main_intro"
-                    custom:emptyTitle="@string/main_my_history_label"
-                    custom:tabState="summonerTab" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <io.github.seoj17.canyongg.EmptyView
-                android:id="@+id/tab2"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/user_win"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{vm.userWinCnt.toString()+`승 `}"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/user_lose"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_tab"
-                custom:buttonName="@string/book_mark_tab_btn_text"
-                custom:emptyContent="@string/book_mark_label_content"
-                custom:emptyTitle="@string/bookmark_label"
-                custom:tabState="bookMarkSummonerTab" />
+                app:layout_constraintTop_toBottomOf="@id/main_user_thumbNail"
+                tools:text="10승" />
 
-            <io.github.seoj17.canyongg.EmptyView
-                android:id="@+id/tab3"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/user_lose"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tab2"
-                custom:buttonName="@string/champ_btn_name"
-                custom:emptyContent="@string/book_mark_champ_content"
-                custom:emptyTitle="@string/book_mark_champ_label"
-                custom:tabState="bookMarkChampTab" />
+                android:text="@{vm.userLoseCnt.toString()+`패 `}"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/user_win"
+                app:layout_constraintEnd_toStartOf="@+id/user_win_score"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/user_win"
+                app:layout_constraintTop_toTopOf="@id/user_win"
+                tools:text="10패" />
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/rotation_tab"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/user_win_score"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:padding="10dp"
+                android:text="@{`승률 ` + vm.userWinScore.toString() + `% `}"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/user_lose"
+                app:layout_constraintEnd_toStartOf="@+id/user_kda"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/user_lose"
+                app:layout_constraintTop_toTopOf="@id/user_lose"
+                tools:text="승률 60%" />
+
+            <TextView
+                android:id="@+id/user_kda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="@{`KDA ` + @string/round_kda(vm.userKda).toString()+ `:1`}"
+                android:textColor="#47C83E"
+                android:textSize="15sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@id/user_win_score"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/user_win_score"
+                app:layout_constraintTop_toTopOf="@id/user_win_score"
+                tools:text="KDA 3.45:1" />
+
+
+            <ImageView
+                android:id="@+id/champ_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tab3">
+                app:layout_constraintTop_toBottomOf="@id/user_win"
+                bind:champImg="@{vm.mostChampList}"
+                bind:champIndex="@{0}"
+                tools:src="@drawable/temp_user" />
 
-                <TextView
-                    android:id="@+id/rotation_tab_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/rotation_champ_text"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/rotation_tab"
-                    app:layout_constraintTop_toTopOf="@+id/rotation_tab" />
+            <TextView
+                android:id="@+id/champ1_win_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/champ1_kda"
+                app:layout_constraintStart_toEndOf="@+id/champ_1"
+                app:layout_constraintTop_toTopOf="@+id/champ_1"
+                bind:champIndex="@{0}"
+                bind:champList="@{vm.mostChampList}"
+                bind:champWinMap="@{vm.champWinScore}"
+                tools:text="40%" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/main_rotation_list_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="@+id/rotation_tab"
-                    app:layout_constraintStart_toStartOf="@+id/rotation_tab"
-                    app:layout_constraintTop_toBottomOf="@+id/rotation_tab_label"
-                    tools:listitem="@layout/rotation_list_item" />
+            <TextView
+                android:id="@+id/champ1_kda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/champ_1"
+                app:layout_constraintStart_toEndOf="@id/champ_1"
+                app:layout_constraintTop_toBottomOf="@+id/champ1_win_score"
+                bind:champIndex="@{0}"
+                bind:champKdaMap="@{vm.champKda}"
+                bind:champList="@{vm.mostChampList}"
+                tools:text="3.0:1" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/champ_2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:foregroundGravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/champ_1"
+                app:layout_constraintTop_toTopOf="@+id/champ_1"
+                bind:champImg="@{vm.mostChampList}"
+                bind:champIndex="@{1}"
+                tools:layout_editor_absoluteX="177dp"
+                tools:src="@drawable/temp_user" />
+
+            <TextView
+                android:id="@+id/champ2_win_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/champ2_kda"
+                app:layout_constraintStart_toEndOf="@+id/champ_2"
+                app:layout_constraintTop_toTopOf="@+id/champ_2"
+                bind:champIndex="@{1}"
+                bind:champList="@{vm.mostChampList}"
+                bind:champWinMap="@{vm.champWinScore}"
+                tools:text="40%" />
+
+            <TextView
+                android:id="@+id/champ2_kda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/champ_2"
+                app:layout_constraintStart_toEndOf="@id/champ_2"
+                app:layout_constraintTop_toBottomOf="@+id/champ2_win_score"
+                bind:champIndex="@{1}"
+                bind:champKdaMap="@{vm.champKda}"
+                bind:champList="@{vm.mostChampList}"
+                tools:text="3.0:1" />
+
+            <ImageView
+                android:id="@+id/champ_3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="@+id/champ_2"
+                app:layout_constraintTop_toTopOf="@+id/champ_2"
+                bind:champImg="@{vm.mostChampList}"
+                bind:champIndex="@{2}"
+                tools:layout_editor_absoluteX="333dp"
+                tools:src="@drawable/temp_user" />
+
+            <TextView
+                android:id="@+id/champ3_win_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/champ3_kda"
+                app:layout_constraintStart_toEndOf="@+id/champ_3"
+                app:layout_constraintTop_toTopOf="@+id/champ_3"
+                app:layout_constraintVertical_bias="0.0"
+                bind:champIndex="@{2}"
+                bind:champList="@{vm.mostChampList}"
+                bind:champWinMap="@{vm.champWinScore}"
+                tools:text="40%" />
+
+            <TextView
+                android:id="@+id/champ3_kda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/champ_3"
+                app:layout_constraintStart_toEndOf="@+id/champ_3"
+                app:layout_constraintTop_toBottomOf="@+id/champ3_win_score"
+                bind:champIndex="@{2}"
+                bind:champKdaMap="@{vm.champKda}"
+                bind:champList="@{vm.mostChampList}"
+                tools:text="3.0:1" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+
+        <io.github.seoj17.canyongg.widget.EmptyView
+            android:id="@+id/tab1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.userInfo == null ? View.VISIBLE : View.GONE}"
+            custom:buttonName="@string/main_btn_text"
+            custom:emptyContent="@string/hint_main_intro"
+            custom:emptyTitle="@string/main_my_history_label"
+            custom:tabState="summonerTab" />
+
+        <io.github.seoj17.canyongg.widget.EmptyView
+            android:id="@+id/tab2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            custom:buttonName="@string/book_mark_tab_btn_text"
+            custom:emptyContent="@string/book_mark_label_content"
+            custom:emptyTitle="@string/bookmark_label"
+            custom:tabState="bookMarkSummonerTab" />
+
+        <io.github.seoj17.canyongg.widget.EmptyView
+            android:id="@+id/tab3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            custom:buttonName="@string/champ_btn_name"
+            custom:emptyContent="@string/book_mark_champ_content"
+            custom:emptyTitle="@string/book_mark_champ_label"
+            custom:tabState="bookMarkChampTab" />
+
+        <TextView
+            android:id="@+id/rotation_tab_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/rotation_champ_text"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_rotation_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/rotation_list_item" />
+    </LinearLayout>
 </layout>

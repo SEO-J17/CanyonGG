@@ -1,9 +1,10 @@
-package io.github.seoj17.canyongg
+package io.github.seoj17.canyongg.widget
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.TabCustomBinding
 import io.github.seoj17.canyongg.utils.OnButtonClickListener
 
