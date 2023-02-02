@@ -23,4 +23,7 @@
     <string name="win_late_text">승률</string>
     <string name="highest_kill_text">최다킬</string>
     <string name="kda_text">KDA</string>
+    <string name="dialog_title">일치하는 이름의 소환사가 없습니다</string>
+    <string name="dialog_message">소환사 이름을 다시 확인해주세요.</string>
+    <string name="dialog_positive">확인</string>
 </resources>

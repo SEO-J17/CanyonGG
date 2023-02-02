@@ -4,48 +4,74 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import io.github.seoj17.canyongg.R
+import androidx.annotation.StringRes
+import androidx.databinding.BindingMethod
+import androidx.databinding.BindingMethods
 import io.github.seoj17.canyongg.databinding.TabCustomBinding
 import io.github.seoj17.canyongg.utils.OnButtonClickListener
 
-class EmptyView(
+@BindingMethods(
+    value = [
+        BindingMethod(
+            type = EmptyView::class,
+            attribute = "emptyTitle",
+            method = "setTitle"
+        ),
+        BindingMethod(
+            type = EmptyView::class,
+            attribute = "emptyContent",
+            method = "setContent"
+        ),
+        BindingMethod(
+            type = EmptyView::class,
+            attribute = "buttonName",
+            method = "setButtonName"
+        )
+    ]
+)
+
+class EmptyView @JvmOverloads constructor(
     context: Context,
-    attributeSet: AttributeSet,
-) : LinearLayout(context, attributeSet) {
+    attributeSet: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+) : LinearLayout(context, attributeSet, defStyleAttr) {
     private val binding = TabCustomBinding.inflate(LayoutInflater.from(context), this, true)
     private lateinit var clickListener: OnButtonClickListener
 
-    init {
-        with(binding) {
-            val infoTitle = infoTabTitle
-            val infoContent = infoTabContent
-            val applyBtn = mainSearch
-
-            context
-                .theme
-                .obtainStyledAttributes(
-                    attributeSet,
-                    R.styleable.EmptyView,
-                    0,
-                    0
-                ).apply {
-                    try {
-                        infoTitle.text = getString(R.styleable.EmptyView_emptyTitle)
-                        infoContent.text = getString(R.styleable.EmptyView_emptyContent)
-                        applyBtn.text = getString(R.styleable.EmptyView_buttonName)
-                        val tabState = getInteger(R.styleable.EmptyView_tabState, 0)
-
-                        applyBtn.setOnClickListener {
-                            clickListener.onButtonClick(tabState)
-                        }
-                    } finally {
-                        recycle()
-                    }
-                }
+    var title: CharSequence
+        get() = binding.infoTabTitle.text
+        set(value) {
+            binding.infoTabTitle.text = value
         }
+
+    fun setTitle(@StringRes id: Int) {
+        binding.infoTabTitle.setText(id)
     }
 
-    fun onApplyClickListener(onButtonClickListener: OnButtonClickListener) {
-        this.clickListener = onButtonClickListener
+    var content: CharSequence
+        get() = binding.infoTabContent.text
+        set(value) {
+            binding.infoTabContent.text = value
+        }
+
+    fun setContent(@StringRes id: Int) {
+        binding.infoTabContent.setText(id)
+    }
+
+    var button: String
+        get() = binding.mainSearch.text.toString()
+        set(value) {
+            binding.mainSearch.text = value
+        }
+
+    fun setButtonName(name: String) {
+        binding.mainSearch.text = name
+    }
+
+    fun setClickListener(clickListener: OnButtonClickListener) {
+        binding.mainSearch.setOnClickListener {
+            clickListener.onButtonClick()
+        }
+        this.clickListener = clickListener
     }
 }
