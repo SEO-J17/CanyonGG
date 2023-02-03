@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/champ"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/temp_user" />
+
+    <TextView
+        android:id="@+id/champ_win_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/champ_kda"
+        app:layout_constraintStart_toEndOf="@+id/champ"
+        app:layout_constraintTop_toTopOf="@+id/champ"
+        tools:text="40%" />
+
+    <TextView
+        android:id="@+id/champ_kda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/champ"
+        app:layout_constraintStart_toEndOf="@id/champ"
+        app:layout_constraintTop_toBottomOf="@+id/champ_win_score"
+        tools:text="3.0:1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

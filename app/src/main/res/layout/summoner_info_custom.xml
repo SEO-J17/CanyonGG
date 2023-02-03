@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/main_user_thumbNail"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/temp_user" />
+
+    <TextView
+        android:id="@+id/main_user_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#8C8C8C"
+        android:padding="3dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/main_user_thumbNail"
+        app:layout_constraintEnd_toEndOf="@+id/main_user_thumbNail"
+        app:layout_constraintStart_toStartOf="@+id/main_user_thumbNail"
+        tools:text="156" />
+
+    <TextView
+        android:id="@+id/main_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/main_user_tier"
+        app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
+        app:layout_constraintTop_toTopOf="@id/main_user_thumbNail"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="닉네임" />
+
+    <TextView
+        android:id="@+id/main_user_tier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_user_thumbNail"
+        app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
+        app:layout_constraintTop_toBottomOf="@+id/main_user_name"
+        tools:text="Master2" />
+
+    <ImageView
+        android:id="@+id/main_user_refresh"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="15dp"
+        android:src="@drawable/reload"
+        app:layout_constraintBottom_toBottomOf="@id/main_user_tier"
+        app:layout_constraintStart_toEndOf="@id/main_user_name"
+        app:layout_constraintTop_toTopOf="@+id/main_user_name" />
+
+    <ImageView
+        android:id="@+id/user_info_delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/cross"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_win"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/user_lose"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_user_thumbNail"
+        tools:text="10승" />
+
+    <TextView
+        android:id="@+id/user_lose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/user_win"
+        app:layout_constraintEnd_toStartOf="@+id/user_win_score"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/user_win"
+        app:layout_constraintTop_toTopOf="@id/user_win"
+        tools:text="10패" />
+
+    <TextView
+        android:id="@+id/user_win_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/user_lose"
+        app:layout_constraintEnd_toStartOf="@+id/user_kda"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/user_lose"
+        app:layout_constraintTop_toTopOf="@id/user_lose"
+        tools:text="승률 60%" />
+
+    <TextView
+        android:id="@+id/user_kda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:textColor="#47C83E"
+        android:textSize="15sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@id/user_win_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/user_win_score"
+        app:layout_constraintTop_toTopOf="@id/user_win_score"
+        tools:text="KDA 3.45:1" />
+</androidx.constraintlayout.widget.ConstraintLayout>
