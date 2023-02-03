@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/items_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/match_detail_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/match_summary" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/team_analysis_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/teamAnalysis" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/rank_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_rank" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/tab_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/items_tab" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

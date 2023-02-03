@@ -108,6 +108,9 @@ dependencies {
 
     // fragment
     implementation "androidx.fragment:fragment-ktx:1.5.5"
+
+    // viewPager2
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 }
 // Allow references to generated code
 kapt {

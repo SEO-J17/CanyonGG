@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/user_thumbNail"
-        tools:src="@drawable/Emblem_Challenger" />
+        tools:src="@drawable/emblem_platinum" />
 
     <TextView
         android:id="@+id/latest_match_label"

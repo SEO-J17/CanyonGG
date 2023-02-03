@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/win_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="승리"
+        tools:textColor="@color/design_default_color_primary" />
+
+    <TextView
+        android:id="@+id/team_kills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/win_result"
+        app:layout_constraintStart_toEndOf="@id/win_result"
+        app:layout_constraintTop_toTopOf="@id/win_result"
+        tools:text="33 / " />
+
+    <TextView
+        android:id="@+id/team_deaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/death_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/team_kills"
+        app:layout_constraintStart_toEndOf="@id/team_kills"
+        app:layout_constraintTop_toTopOf="@id/team_kills"
+        tools:text="12" />
+
+    <TextView
+        android:id="@+id/team_assists"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/team_deaths"
+        app:layout_constraintStart_toEndOf="@id/team_deaths"
+        app:layout_constraintTop_toTopOf="@id/team_deaths"
+        tools:text=" / 23" />
+
+    <TextView
+        android:id="@+id/match_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/team_assists"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/team_assists"
+        tools:text="14:02" />
+</androidx.constraintlayout.widget.ConstraintLayout>

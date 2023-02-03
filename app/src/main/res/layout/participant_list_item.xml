@@ -3,39 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/match_win"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="5dp"
-        android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/material_dynamic_neutral80"
-        tools:text="승리" />
-
-    <TextView
-        android:id="@+id/match_time"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/match_win"
-        app:layout_constraintEnd_toEndOf="@id/match_win"
-        app:layout_constraintTop_toTopOf="@+id/match_win"
-        tools:text="15 : 31" />
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/champion"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/match_win"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/emblem_platinum" />
+
+    <TextView
+        android:id="@+id/champ_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/champion"
+        app:layout_constraintEnd_toEndOf="@id/champion"
+        tools:text="16" />
 
     <ImageView
         android:id="@+id/spell_1"
@@ -87,11 +75,12 @@
         android:id="@+id/death"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/death_color"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/kill"
         app:layout_constraintStart_toEndOf="@id/kill"
         app:layout_constraintTop_toTopOf="@id/kill"
-        tools:text=" 12 /" />
+        tools:text=" 12 " />
 
     <TextView
         android:id="@+id/assist"
@@ -101,7 +90,7 @@
         app:layout_constraintBottom_toBottomOf="@id/death"
         app:layout_constraintStart_toEndOf="@id/death"
         app:layout_constraintTop_toTopOf="@id/death"
-        tools:text=" 17" />
+        tools:text="/ 17" />
 
     <TextView
         android:id="@+id/match_kda"
@@ -113,75 +102,87 @@
         tools:text="3.35 : 1" />
 
     <ImageView
-        android:id="@+id/item_1"
+        android:id="@+id/item_6"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintStart_toStartOf="@id/champion"
-        app:layout_constraintTop_toBottomOf="@id/champion"
-        tools:src="@drawable/emblem_challenger" />
-
-    <ImageView
-        android:id="@+id/item_2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/item_1"
-        app:layout_constraintStart_toEndOf="@id/item_1"
-        app:layout_constraintTop_toTopOf="@id/item_1"
-        tools:src="@drawable/emblem_challenger" />
-
-    <ImageView
-        android:id="@+id/item_3"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/item_2"
-        app:layout_constraintStart_toEndOf="@id/item_2"
-        app:layout_constraintTop_toTopOf="@id/item_2"
-        tools:src="@drawable/emblem_challenger" />
-
-    <ImageView
-        android:id="@+id/item_4"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/item_3"
-        app:layout_constraintStart_toEndOf="@id/item_3"
-        app:layout_constraintTop_toTopOf="@id/item_3"
+        app:layout_constraintBottom_toBottomOf="@id/assist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/assist"
         tools:src="@drawable/emblem_challenger" />
 
     <ImageView
         android:id="@+id/item_5"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/item_6"
+        app:layout_constraintEnd_toStartOf="@id/item_6"
+        app:layout_constraintTop_toTopOf="@id/item_6"
+        tools:src="@drawable/emblem_challenger" />
+
+    <ImageView
+        android:id="@+id/item_4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/item_5"
+        app:layout_constraintEnd_toStartOf="@id/item_5"
+        app:layout_constraintTop_toTopOf="@id/item_5"
+        tools:src="@drawable/emblem_challenger" />
+
+    <ImageView
+        android:id="@+id/item_3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="@id/item_4"
-        app:layout_constraintStart_toEndOf="@id/item_4"
+        app:layout_constraintEnd_toStartOf="@id/item_4"
         app:layout_constraintTop_toTopOf="@id/item_4"
         tools:src="@drawable/emblem_challenger" />
 
     <ImageView
-        android:id="@+id/item_6"
+        android:id="@+id/item_2"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/item_5"
-        app:layout_constraintStart_toEndOf="@id/item_5"
-        app:layout_constraintTop_toTopOf="@id/item_5"
+        app:layout_constraintBottom_toBottomOf="@id/item_3"
+        app:layout_constraintEnd_toStartOf="@id/item_3"
+        app:layout_constraintTop_toTopOf="@id/item_3"
+        tools:src="@drawable/emblem_challenger" />
+
+    <ImageView
+        android:id="@+id/item_1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/item_2"
+        app:layout_constraintEnd_toStartOf="@id/item_2"
+        app:layout_constraintTop_toTopOf="@id/item_2"
         tools:src="@drawable/emblem_challenger" />
 
     <TextView
-        android:id="@+id/match_type"
+        android:id="@+id/cs_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/match_date"
+        app:layout_constraintBottom_toBottomOf="@id/match_kda"
+        app:layout_constraintStart_toStartOf="@id/item_1"
+        app:layout_constraintTop_toTopOf="@id/match_kda"
+        tools:text="CS: 123" />
+
+    <ProgressBar
+        android:id="@+id/damage_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/cs_count"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/match_win"
-        tools:text="칼바람 나락" />
+        app:layout_constraintStart_toEndOf="@id/cs_count"
+        app:layout_constraintTop_toTopOf="@id/cs_count"
+        tools:progress="50" />
 
     <TextView
-        android:id="@+id/match_date"
+        android:id="@+id/damage_cnt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/match_type"
-        app:layout_constraintStart_toStartOf="@id/match_type"
-        app:layout_constraintTop_toBottomOf="@id/match_type"
-        tools:text="23.12.1" />
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@id/damage_bar"
+        app:layout_constraintStart_toStartOf="@id/damage_bar"
+        app:layout_constraintTop_toTopOf="@id/damage_bar"
+        tools:text="20,251" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
