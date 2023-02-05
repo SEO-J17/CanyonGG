@@ -71,17 +71,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/user_win"
+        android:id="@+id/user_matches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/user_lose"
+        app:layout_constraintEnd_toStartOf="@id/user_win"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_user_thumbNail"
+        tools:text="20전" />
+
+    <TextView
+        android:id="@+id/user_win"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/user_matches"
+        app:layout_constraintEnd_toStartOf="@+id/user_lose"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/user_matches"
+        app:layout_constraintTop_toTopOf="@id/user_matches"
         tools:text="10승" />
 
     <TextView

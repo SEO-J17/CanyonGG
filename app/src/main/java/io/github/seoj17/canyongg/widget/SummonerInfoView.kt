@@ -14,6 +14,11 @@ import java.lang.String.format
     value = [
         BindingMethod(
             type = SummonerInfoView::class,
+            attribute = "userMatches",
+            method = "setUserMatches"
+        ),
+        BindingMethod(
+            type = SummonerInfoView::class,
             attribute = "userThumbnail",
             method = "setUserThumbnail"
         ),
@@ -73,6 +78,10 @@ class SummonerInfoView @JvmOverloads constructor(
     private val binding =
         SummonerInfoCustomBinding.inflate(LayoutInflater.from(context), this, true)
 
+    fun setUserMatches(matches: Int) {
+        binding.userMatches.text = "${matches}전 "
+    }
+
     fun setUserThumbnail(imgId: Int?) {
         val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/"
         Glide.with(binding.mainUserThumbNail.context)
@@ -104,6 +113,6 @@ class SummonerInfoView @JvmOverloads constructor(
     }
 
     fun setUserKda(kda: Double) {
-        binding.userKda.text = "${format("%.2f", kda)} : 1"
+        binding.userKda.text = "KDA : ${format("%.2f", kda)} : 1"
     }
 }

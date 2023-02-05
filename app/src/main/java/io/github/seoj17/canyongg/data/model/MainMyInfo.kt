@@ -8,19 +8,25 @@ data class MainMyInfo(
     val deaths: Int,
     val kills: Int,
     val puuid: String,
-    val win: Boolean
+    val gameEndedInEarlySurrender: Boolean,
+    val win: Boolean,
 ) {
     companion object {
+        operator fun invoke(response: ParticipantResponse): MainMyInfo {
+            return MainMyInfo(
+                assists = response.assists,
+                championName = response.championName,
+                deaths = response.deaths,
+                kills = response.kills,
+                puuid = response.puuid,
+                gameEndedInEarlySurrender = response.gameEndedInEarlySurrender,
+                win = response.win,
+            )
+        }
+
         operator fun invoke(list: List<ParticipantResponse>): List<MainMyInfo> {
             return list.map { response ->
-                MainMyInfo(
-                    assists = response.assists,
-                    championName = response.championName,
-                    deaths = response.deaths,
-                    kills = response.kills,
-                    puuid = response.puuid,
-                    win = response.win,
-                )
+                invoke(response)
             }
         }
     }

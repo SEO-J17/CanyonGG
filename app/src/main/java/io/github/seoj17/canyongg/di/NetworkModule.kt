@@ -117,7 +117,12 @@ object NetworkModule {
         moshi: Moshi,
         @SummonerUrl url: String,
     ): Retrofit {
-        return createRetrofit(okHttpClient, moshi, url)
+        return Retrofit
+            .Builder()
+            .baseUrl(url)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+            .build()
     }
 
     @Singleton
@@ -128,11 +133,9 @@ object NetworkModule {
         moshi: Moshi,
         @MatchUrl url: String,
     ): Retrofit {
-        return createRetrofit(okHttpClient, moshi, url)
-    }
-
-    private fun createRetrofit(okHttpClient: OkHttpClient, moshi: Moshi, url: String): Retrofit {
-        return Retrofit.Builder().baseUrl(url)
+        return Retrofit
+            .Builder()
+            .baseUrl(url)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()

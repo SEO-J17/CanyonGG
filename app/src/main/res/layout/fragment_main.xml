@@ -29,14 +29,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{vm.userInfo != null ? View.VISIBLE : View.GONE}"
-                bind:userKda="@{vm.userKda}"
+                bind:userKda="@{vm.userRecord.kda}"
                 bind:userLevel="@{vm.userInfo.summonerLevel}"
-                bind:userLose="@{vm.userLoseCnt}"
+                bind:userLose="@{vm.userRecord.loseCount}"
+                bind:userMatches="@{vm.userRecord.wholeMatch}"
                 bind:userName="@{vm.userInfo.name}"
                 bind:userThumbnail="@{vm.userInfo.profileIconId}"
                 bind:userTier="@{vm.userTier}"
-                bind:userWin="@{vm.userWinCnt}"
-                bind:userWinRate="@{vm.userWinScore}" />
+                bind:userWin="@{vm.userRecord.winCount}"
+                bind:userWinRate="@{vm.userRecord.winRate}" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -51,27 +52,27 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="20dp"
-                    bind:champKda="@{vm.champKda.get(vm.mostChampList.get(0))}"
-                    bind:champThumbnail="@{vm.mostChampList.get(0)}"
-                    bind:champWinRate="@{vm.champWinScore.get(vm.mostChampList.get(0))}" />
+                    bind:champKda="@{vm.mostChampList.get(0).kda}"
+                    bind:champThumbnail="@{vm.mostChampList.get(0).name}"
+                    bind:champWinRate="@{vm.mostChampList.get(0).winRate}" />
 
                 <io.github.seoj17.canyongg.widget.MostChampView
                     android:id="@+id/most_champ_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    bind:champKda="@{vm.champKda.get(vm.mostChampList.get(1))}"
-                    bind:champThumbnail="@{vm.mostChampList.get(1)}"
-                    bind:champWinRate="@{vm.champWinScore.get(vm.mostChampList.get(1))}" />
+                    bind:champKda="@{vm.mostChampList.get(1).kda}"
+                    bind:champThumbnail="@{vm.mostChampList.get(1).name}"
+                    bind:champWinRate="@{vm.mostChampList.get(1).winRate}" />
 
                 <io.github.seoj17.canyongg.widget.MostChampView
                     android:id="@+id/most_champ_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    bind:champKda="@{vm.champKda.get(vm.mostChampList.get(2))}"
-                    bind:champThumbnail="@{vm.mostChampList.get(2)}"
-                    bind:champWinRate="@{vm.champWinScore.get(vm.mostChampList.get(2))}" />
+                    bind:champKda="@{vm.mostChampList.get(2).kda}"
+                    bind:champThumbnail="@{vm.mostChampList.get(2).name}"
+                    bind:champWinRate="@{vm.mostChampList.get(2).winRate}" />
             </LinearLayout>
 
             <io.github.seoj17.canyongg.widget.EmptyView

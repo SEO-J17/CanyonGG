@@ -8,16 +8,21 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.MainMyInfo
 import io.github.seoj17.canyongg.data.model.Summoner
-import io.github.seoj17.canyongg.data.repository.InfoRepository
+import io.github.seoj17.canyongg.domain.GetMyMatchUseCase
+import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
+import io.github.seoj17.canyongg.domain.GetUserTierUseCase
+import io.github.seoj17.canyongg.ui.model.ChampInfo
+import io.github.seoj17.canyongg.ui.model.UserRecord
 import io.github.seoj17.canyongg.utils.Event
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val repository: InfoRepository,
+    private val getUserInfoUseCase: GetUserInfoUseCase,
+    private val getUserTierUseCase: GetUserTierUseCase,
+    private val getMyMatchUseCase: GetMyMatchUseCase,
 ) : ViewModel() {
 
     private val userName =
@@ -29,139 +34,89 @@ class MainViewModel @Inject constructor(
     private val _userTier = MutableLiveData<String>("UNRANKED")
     val userTier: LiveData<String> = _userTier
 
-    private val _userKda = MutableLiveData<Double>(0.0)
-    val userKda: LiveData<Double> = _userKda
+    private val _userRecord = MutableLiveData<UserRecord>()
+    val userRecord: LiveData<UserRecord> = _userRecord
 
-    private val _userWinScore = MutableLiveData<Int>(0)
-    val userWinScore: LiveData<Int> = _userWinScore
-
-    private val _userWinCnt = MutableLiveData<Int>(0)
-    val userWinCnt: LiveData<Int> = _userWinCnt
-
-    private val _userLoseCnt = MutableLiveData<Int>(0)
-    val userLoseCnt: LiveData<Int> = _userLoseCnt
-
-    private val _champWinScore = MutableLiveData<MutableMap<String, Int>>()
-    val champWinScore: LiveData<MutableMap<String, Int>> = _champWinScore
-
-    private val _champKda = MutableLiveData<MutableMap<String, Double>>()
-    val champKda: LiveData<MutableMap<String, Double>> = _champKda
-
-    private val _mostChampList = MutableLiveData<MutableList<String>>()
-    val mostChampList: LiveData<MutableList<String>> = _mostChampList
+    private val _mostChampList = MutableLiveData<MutableList<ChampInfo>>()
+    val mostChampList: LiveData<MutableList<ChampInfo>> = _mostChampList
 
     private val _errorEvent = MutableLiveData<Event<Boolean>>()
     val errorEvent: LiveData<Event<Boolean>> = _errorEvent
 
-    private val champCntMap = mutableMapOf<String, Int>()
-    private val champKillMap = mutableMapOf<String, Int>()
-    private val champDeathMap = mutableMapOf<String, Int>()
-    private val champWinCntMap = mutableMapOf<String, Int>()
 
+    fun fetchUserInfo() {
+        viewModelScope.launch {
+            val summonerInfo = getUserInfoUseCase("Hide on bush")
+            summonerInfo?.let { summoner ->
+                _userInfo.value = summoner
 
-    suspend fun fetchUserInfo() {
-        viewModelScope.async {
-            _userInfo.value = repository.getSummonerInfo("Hide on bush")
-        }.await().also {
-            fetchScoreData()
+                getUserTierUseCase(summoner.id)?.let { userTier ->
+                    _userTier.value = "${userTier.tier} ${userTier.rank}"
+                }
+
+                val myMatches = getMyMatchUseCase(summoner.puuid)
+                if (myMatches.isNotEmpty()) {
+                    calcUserInfo(myMatches)
+                    calcMostChampion(myMatches)
+                }
+
+            } ?: run {
+                _errorEvent.value = Event(true)
+            }
         }
     }
 
-    private suspend fun fetchScoreData() {
-        _userInfo.value?.let { user ->
-            viewModelScope.launch {
-                repository.getTier(user.id).also {
-                    if (it != null) {
-                        _userTier.value = (it.tier + " " + it.rank)
-                    }
+    private fun calcUserInfo(myMatches: List<MainMyInfo>) {
+        val wholeMatch = myMatches.size
+        val realMatch = wholeMatch - myMatches.count { it.gameEndedInEarlySurrender }
+        val kills = myMatches.sumOf { it.kills } + myMatches.sumOf { it.assists }
+
+        val win = myMatches.count { it.win && !it.gameEndedInEarlySurrender }
+        val lose = realMatch - win
+        val winRate = (win * 100) / realMatch
+        val kda = kills / myMatches.sumOf { it.deaths }.toDouble()
+
+        _userRecord.value = UserRecord(wholeMatch, win, lose, winRate, kda)
+    }
+
+    private fun calcMostChampion(myMatches: List<MainMyInfo>) {
+        val champWinCntMap = mutableMapOf<String, Int>()
+        val champKillMap = mutableMapOf<String, Int>()
+        val champDeathMap = mutableMapOf<String, Int>()
+        //가장 많이 플레이 한 챔피언 3개
+        val mostChampsMap =
+            myMatches
+                .filter { !it.gameEndedInEarlySurrender }
+                .groupingBy { it.championName }
+                .eachCount()
+                .toList()
+                .sortedWith(
+                    // 챔피언 별로 몇번 플레이 했는지 내림차순 정렬, 플레이 수가 같으면 이름 정렬.
+                    compareBy({ -it.second }, { it.first })
+                )
+                .take(3)
+                .toMap()
+
+        myMatches.forEach { myInfo ->
+            val name = myInfo.championName
+            if (mostChampsMap.containsKey(name)) {
+                champDeathMap[name] = champDeathMap.getOrElse(name) { 0 } + myInfo.deaths
+                champKillMap[name] =
+                    champKillMap.getOrElse(name) { 0 } + myInfo.kills + myInfo.assists
+                if (myInfo.win) {
+                    champWinCntMap[name] = champWinCntMap.getOrElse(name) { 0 } + 1
                 }
             }
-
-            val matchIdList = viewModelScope.async {
-                repository.getMatchInfo(user.puuid, 0)
-            }.await()
-
-            matchIdList.map { matchInfo ->
-                MainMyInfo(matchInfo.info.participants).find { participant ->
-                    participant.puuid == user.puuid
-                }.also {
-                    if (it != null) {
-                        calcScore(it)
-                    }
-                }
-            }
-            calcWinScore()
-            calcMostChamp()
-            calcKda()
-        } ?:run {
-            _errorEvent.value = Event(true)
-        }
-    }
-
-    private fun calcScore(myInfo: MainMyInfo) {
-        val champ = myInfo.championName
-        val kill = myInfo.assists + myInfo.kills
-        val isWin = myInfo.win
-
-        champCntMap[champ] = champCntMap.getOrDefault(champ, 0) + 1
-        champKillMap[champ] = champKillMap.getOrDefault(champ, 0) + kill
-        champDeathMap[champ] = champDeathMap.getOrDefault(champ, 0) + myInfo.deaths
-        if (isWin) {
-            champWinCntMap[champ] = champWinCntMap.getOrDefault(champ, 0) + 1
-        }
-    }
-
-    // 승률 계산 함수
-    private fun calcWinScore() {
-        // 총 몇 번 이겼는지
-        val winCnt = champWinCntMap.values.sum()
-        val wholeMatches = champCntMap.values.sum()
-
-        _champWinScore.value = mutableMapOf()
-        champWinCntMap.forEach { (champ, value) ->
-            _champWinScore.value?.let { map ->
-                map[champ] =
-                    value * 100 / champCntMap.getOrDefault(champ, 0)
-            }
         }
 
-        _userWinCnt.value = winCnt
-        _userLoseCnt.value = wholeMatches - winCnt
-        _userWinScore.value = (winCnt * 100) / wholeMatches
-    }
-
-    private fun calcMostChamp() {
         _mostChampList.value = mutableListOf()
-        champCntMap
-            .toList()
-            // 플레이 한 경기 수로 정렬뒤 사전 순으로 정렬
-            .sortedWith(compareByDescending<Pair<String, Int>> { it.second }.thenBy { it.first })
-            .toMap()
-            .run {
-                var cnt = 0
-                forEach breaker@{
-                    if (cnt == 3) {
-                        return@breaker
-                    }
-                    _mostChampList.value?.add(it.key)
-                    cnt++
-                }
-            }
-    }
+        mostChampsMap.forEach { (champ, playCnt) ->
+            val kills = champKillMap.getOrElse(champ) { 0 }
+            val deaths = champDeathMap.getOrElse(champ) { 1 }
+            val kda = kills / deaths.toDouble()
+            val winRate = 100 / playCnt * champWinCntMap.getOrElse(champ) { 0 }
 
-    private fun calcKda() {
-        _userKda.value = champKillMap.values.sum() / champDeathMap.values.sum().toDouble()
-        _champKda.value = mutableMapOf()
-        _mostChampList.value?.forEach { champ ->
-            champKillMap[champ]?.div(
-                if (champDeathMap[champ] == 0) {
-                    1.0
-                } else {
-                    champDeathMap[champ]!!.toDouble()
-                }
-            )?.let { kda ->
-                _champKda.value?.put(champ, kda)
-            }
+            _mostChampList.value?.add(ChampInfo(champ, winRate, kda))
         }
     }
 }
