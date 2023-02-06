@@ -11,7 +11,6 @@ import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.domain.GetMyMatchUseCase
 import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetUserTierUseCase
-import io.github.seoj17.canyongg.ui.main.HomeFragmentArgs
 import io.github.seoj17.canyongg.ui.model.ChampInfo
 import io.github.seoj17.canyongg.ui.model.UserRecord
 import io.github.seoj17.canyongg.utils.Event

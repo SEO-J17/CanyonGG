@@ -8,7 +8,6 @@ import androidx.annotation.StringRes
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import io.github.seoj17.canyongg.databinding.ViewEmptyBinding
-import io.github.seoj17.canyongg.utils.OnButtonClickListener
 
 @BindingMethods(
     value = [
@@ -36,7 +35,6 @@ class EmptyView @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 ) : LinearLayout(context, attributeSet, defStyleAttr) {
     private val binding = ViewEmptyBinding.inflate(LayoutInflater.from(context), this, true)
-    private lateinit var clickListener: OnButtonClickListener
 
     var title: CharSequence
         get() = binding.infoTabTitle.text
@@ -68,10 +66,9 @@ class EmptyView @JvmOverloads constructor(
         binding.mainSearch.text = name
     }
 
-    fun setClickListener(clickListener: OnButtonClickListener) {
+    fun setClickListener(onClick: () -> Unit) {
         binding.mainSearch.setOnClickListener {
-            clickListener.onButtonClick()
+            onClick()
         }
-        this.clickListener = clickListener
     }
 }
