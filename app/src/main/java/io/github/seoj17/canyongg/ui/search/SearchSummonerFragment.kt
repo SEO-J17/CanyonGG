@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.seoj17.canyongg.databinding.FragmentSearchBinding
+import io.github.seoj17.canyongg.databinding.FragmentSearchSummonerBinding
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
-    private lateinit var binding: FragmentSearchBinding
+class SearchSummonerFragment : Fragment() {
+    private lateinit var binding: FragmentSearchSummonerBinding
     private lateinit var navigator: NavController
 
     override fun onCreateView(
@@ -21,21 +20,11 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
+        binding = FragmentSearchSummonerBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        navigator = Navigation.findNavController(view)
-        val summonerName = "${binding.userEditName.text}"
-
         super.onViewCreated(view, savedInstanceState)
-        binding.summonerSubmit.setOnClickListener {
-            navigator.navigate(
-                SearchFragmentDirections.actionSearchFragmentToMainFragment(
-                    summonerName
-                )
-            )
-        }
     }
 }

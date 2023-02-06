@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import androidx.annotation.StringRes
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
-import io.github.seoj17.canyongg.databinding.TabCustomBinding
+import io.github.seoj17.canyongg.databinding.ViewEmptyBinding
 import io.github.seoj17.canyongg.utils.OnButtonClickListener
 
 @BindingMethods(
@@ -35,7 +35,7 @@ class EmptyView @JvmOverloads constructor(
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0,
 ) : LinearLayout(context, attributeSet, defStyleAttr) {
-    private val binding = TabCustomBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding = ViewEmptyBinding.inflate(LayoutInflater.from(context), this, true)
     private lateinit var clickListener: OnButtonClickListener
 
     var title: CharSequence

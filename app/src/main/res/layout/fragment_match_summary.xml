@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/participant_list_item" />
+            tools:listitem="@layout/item_participant" />
 
         <io.github.seoj17.canyongg.widget.MatchResultTabView
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/participant_list_item" />
+            tools:listitem="@layout/item_participant" />
 
     </LinearLayout>
 </ScrollView>

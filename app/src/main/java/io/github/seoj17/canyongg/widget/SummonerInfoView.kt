@@ -7,7 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
-import io.github.seoj17.canyongg.databinding.SummonerInfoCustomBinding
+import io.github.seoj17.canyongg.databinding.ViewSummonerInfoBinding
 import java.lang.String.format
 
 @BindingMethods(
@@ -76,7 +76,7 @@ class SummonerInfoView @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attributeSet, defStyleAttr) {
     private val binding =
-        SummonerInfoCustomBinding.inflate(LayoutInflater.from(context), this, true)
+        ViewSummonerInfoBinding.inflate(LayoutInflater.from(context), this, true)
 
     fun setUserMatches(matches: Int) {
         binding.userMatches.text = "${matches}전 "

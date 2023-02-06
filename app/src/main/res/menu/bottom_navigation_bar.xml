@@ -6,7 +6,7 @@
         android:icon="@drawable/home"
         android:title="@string/bot_nav_home" />
     <item
-        android:id="@+id/search_user"
+        android:id="@+id/searchSummoner"
         android:enabled="true"
         android:icon="@drawable/magnifier"
         android:title="@string/bot_nav_search" />

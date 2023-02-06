@@ -7,7 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
-import io.github.seoj17.canyongg.databinding.MostChampCustomBinding
+import io.github.seoj17.canyongg.databinding.ViewMostChampBinding
 import okhttp3.internal.format
 
 @BindingMethods(
@@ -36,7 +36,7 @@ class MostChampView @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attributeSet, defStyleAttr) {
     private val binding =
-        MostChampCustomBinding.inflate(LayoutInflater.from(context), this, true)
+        ViewMostChampBinding.inflate(LayoutInflater.from(context), this, true)
 
     fun setChampThumbnail(champ: String?) {
         val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/"

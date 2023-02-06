@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
-import io.github.seoj17.canyongg.databinding.MatchResultTabCustomBinding
+import io.github.seoj17.canyongg.databinding.ViewMatchResultBinding
 
 @BindingMethods(
     value = [
@@ -44,6 +44,6 @@ class MatchResultTabView @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attributeSet, defStyleAttr) {
     private val binding =
-        MatchResultTabCustomBinding.inflate(LayoutInflater.from(context), this, true)
+        ViewMatchResultBinding.inflate(LayoutInflater.from(context), this, true)
 
 }

@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.ui.main
+package io.github.seoj17.canyongg.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,14 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.seoj17.canyongg.databinding.FragmentMainBinding
+import io.github.seoj17.canyongg.databinding.FragmentHomeBinding
 import io.github.seoj17.canyongg.ui.dialog.NotFoundUserDialogFragment
+import io.github.seoj17.canyongg.ui.main.HomeFragmentDirections
 import io.github.seoj17.canyongg.utils.observeEvent
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
-    private lateinit var binding: FragmentMainBinding
-    private val viewModel: MainViewModel by viewModels()
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var navigator: NavController
 
     override fun onCreateView(
@@ -25,7 +26,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentMainBinding.inflate(layoutInflater, container, false)
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -38,12 +39,12 @@ class MainFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
 
             tab1.setClickListener {
-                navigator.navigate(MainFragmentDirections.actionMainFragmentToSearchFragment())
+                navigator.navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
                 viewModel.fetchUserInfo()
             }
 
             tab2.setClickListener {
-                navigator.navigate(MainFragmentDirections.actionMainFragmentToSummonerSearchFragment())
+                navigator.navigate(HomeFragmentDirections.actionHomeToSearchSummoner())
             }
 
             viewModel.errorEvent.observeEvent(viewLifecycleOwner) {

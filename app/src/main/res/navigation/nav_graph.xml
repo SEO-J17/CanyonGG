@@ -5,41 +5,40 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/home"
-        android:name="io.github.seoj17.canyongg.ui.main.MainFragment"
-        android:label="MainFragment" >
+        android:name="io.github.seoj17.canyongg.ui.home.HomeFragment"
+        android:label="HomeFragment">
         <action
-            android:id="@+id/action_mainFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            android:id="@+id/action_home_to_registerSummoner"
+            app:destination="@id/registerSummoner" />
         <argument
-            android:name="summoner_name"
+            android:name="summonerName"
+            android:defaultValue='""'
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue='""' />
+            app:nullable="true" />
         <action
-            android:id="@+id/action_mainFragment_to_summonerSearchFragment"
-            app:destination="@id/search_user" />
+            android:id="@+id/action_home_to_SearchSummoner"
+            app:destination="@id/searchSummoner" />
     </fragment>
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="io.github.seoj17.canyongg.ui.search.SearchFragment"
-        android:label="SearchFragment" >
+        android:id="@+id/registerSummoner"
+        android:name="io.github.seoj17.canyongg.ui.search.RegisterSummnonerFragment"
+        android:label="RegisterSummonerFragment">
         <action
-            android:id="@+id/action_searchFragment_to_mainFragment"
-            app:destination="@id/home" >
-            <argument
-                android:name="summoner_name" />
+            android:id="@+id/action_registerSummoner_to_home"
+            app:destination="@id/home">
+            <argument android:name="summonerName" />
         </action>
     </fragment>
     <fragment
-        android:id="@+id/search_user"
-        android:name="io.github.seoj17.canyongg.ui.search.SummonerSearchFragment"
-        android:label="SummonerSearchFragment" >
+        android:id="@+id/searchSummoner"
+        android:name="io.github.seoj17.canyongg.ui.search.SearchSummonerFragment"
+        android:label="SearchSummonerFragment">
         <action
-            android:id="@+id/action_search_user_to_searchResultFragment"
-            app:destination="@id/searchResultFragment" />
+            android:id="@+id/action_SearchSummoner_to_searchResult"
+            app:destination="@id/searchResult" />
     </fragment>
     <fragment
-        android:id="@+id/searchResultFragment"
+        android:id="@+id/searchResult"
         android:name="io.github.seoj17.canyongg.ui.search.SearchResultFragment"
         android:label="SearchResultFragment" />
 </navigation>
