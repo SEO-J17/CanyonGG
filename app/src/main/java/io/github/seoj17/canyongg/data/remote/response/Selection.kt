@@ -1,5 +1,8 @@
 package io.github.seoj17.canyongg.data.remote.response
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Selection(
     val perk: Int,
     val var1: Int,

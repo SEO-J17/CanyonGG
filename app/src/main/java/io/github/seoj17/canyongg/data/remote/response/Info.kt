@@ -1,5 +1,8 @@
 package io.github.seoj17.canyongg.data.remote.response
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Info(
     val gameCreation: Long,
     val gameDuration: Int,
