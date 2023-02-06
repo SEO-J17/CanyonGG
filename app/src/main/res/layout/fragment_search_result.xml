@@ -135,11 +135,17 @@
         app:layout_constraintTop_toBottomOf="@id/highest_kill_label"
         tools:text="펜타 킬" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
+        android:id="@+id/list_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        tools:listitem="@layout/item_summoner_match"
-        app:layout_constraintTop_toBottomOf="@+id/win_info" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/win_info">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_summoner_match" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

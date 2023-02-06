@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.annotation.StringRes
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import io.github.seoj17.canyongg.databinding.ViewEmptyBinding
@@ -42,29 +41,17 @@ class EmptyView @JvmOverloads constructor(
             binding.infoTabTitle.text = value
         }
 
-    fun setTitle(@StringRes id: Int) {
-        binding.infoTabTitle.setText(id)
-    }
-
     var content: CharSequence
         get() = binding.infoTabContent.text
         set(value) {
             binding.infoTabContent.text = value
         }
 
-    fun setContent(@StringRes id: Int) {
-        binding.infoTabContent.setText(id)
-    }
-
-    var button: String
-        get() = binding.mainSearch.text.toString()
+    var buttonName: CharSequence
+        get() = binding.mainSearch.text
         set(value) {
             binding.mainSearch.text = value
         }
-
-    fun setButtonName(name: String) {
-        binding.mainSearch.text = name
-    }
 
     fun setClickListener(onClick: () -> Unit) {
         binding.mainSearch.setOnClickListener {

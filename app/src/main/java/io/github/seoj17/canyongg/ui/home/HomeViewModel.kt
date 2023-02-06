@@ -109,15 +109,16 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-        _mostChampList.value = mutableListOf()
+        val infoList = mutableListOf<ChampInfo>()
         mostChampsMap.forEach { (champ, playCnt) ->
             val kills = champKillMap.getOrElse(champ) { 0 }
             val deaths = champDeathMap.getOrElse(champ) { 1 }
             val kda = kills / deaths.toDouble()
             val winRate = 100 / playCnt * champWinCntMap.getOrElse(champ) { 0 }
 
-            _mostChampList.value?.add(ChampInfo(champ, winRate, kda))
+            infoList.add(ChampInfo(champ, winRate, kda))
         }
+        _mostChampList.value = infoList
     }
 }
 

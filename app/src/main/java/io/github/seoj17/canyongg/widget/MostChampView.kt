@@ -8,25 +8,16 @@ import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
 import io.github.seoj17.canyongg.databinding.ViewMostChampBinding
+import io.github.seoj17.canyongg.ui.model.ChampInfo
 import okhttp3.internal.format
 
 @BindingMethods(
     value = [
         BindingMethod(
             type = MostChampView::class,
-            attribute = "champThumbnail",
-            method = "setChampThumbnail"
+            attribute = "champInfo",
+            method = "setChampInfo"
         ),
-        BindingMethod(
-            type = MostChampView::class,
-            attribute = "champWinRate",
-            method = "setChampWinRate"
-        ),
-        BindingMethod(
-            type = MostChampView::class,
-            attribute = "champKda",
-            method = "setChampKda"
-        )
     ]
 )
 
@@ -38,7 +29,17 @@ class MostChampView @JvmOverloads constructor(
     private val binding =
         ViewMostChampBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun setChampThumbnail(champ: String?) {
+    var champInfo: ChampInfo? = null
+        set(value) {
+            value?.let {
+                setChampThumbnail(it.name)
+                setChampWinRate(it.winRate)
+                setChampKda(it.kda)
+            }
+            field = value
+        }
+
+    private fun setChampThumbnail(champ: String?) {
         val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/"
         champ?.let {
             Glide.with(binding.champ.context)
@@ -46,13 +47,13 @@ class MostChampView @JvmOverloads constructor(
         }
     }
 
-    fun setChampWinRate(winRate: Int?) {
+    private fun setChampWinRate(winRate: Int?) {
         winRate?.let {
             binding.champWinScore.text = "${winRate}%"
         }
     }
 
-    fun setChampKda(kda: Double?) {
+    private fun setChampKda(kda: Double?) {
         kda?.let {
             binding.champKda.text = "${format("%.2f", kda)} : 1"
         }
