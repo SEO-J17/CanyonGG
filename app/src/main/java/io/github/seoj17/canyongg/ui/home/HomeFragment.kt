@@ -10,8 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.databinding.FragmentHomeBinding
-import io.github.seoj17.canyongg.ui.dialog.NotFoundUserDialogFragment
-import io.github.seoj17.canyongg.utils.observeEvent
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -39,16 +37,13 @@ class HomeFragment : Fragment() {
 
             tab1.setClickListener {
                 navigator.navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
-                viewModel.fetchUserInfo()
             }
 
             tab2.setClickListener {
                 navigator.navigate(HomeFragmentDirections.actionHomeToSearchSummoner())
             }
 
-            viewModel.errorEvent.observeEvent(viewLifecycleOwner) {
-                NotFoundUserDialogFragment().show(childFragmentManager, null)
-            }
+            viewModel.fetchUserInfo()
         }
     }
 }

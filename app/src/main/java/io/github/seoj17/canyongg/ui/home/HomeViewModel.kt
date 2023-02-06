@@ -9,24 +9,21 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.MainMyInfo
 import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.domain.GetMyMatchUseCase
-import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetUserTierUseCase
 import io.github.seoj17.canyongg.ui.model.ChampInfo
 import io.github.seoj17.canyongg.ui.model.UserRecord
-import io.github.seoj17.canyongg.utils.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserTierUseCase: GetUserTierUseCase,
     private val getMyMatchUseCase: GetMyMatchUseCase,
 ) : ViewModel() {
 
-    private val userName =
-        HomeFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerName ?: ""
+    private val summoner =
+        HomeFragmentArgs.fromSavedStateHandle(savedStateHandle).summoner
 
     private val _userInfo = MutableLiveData<Summoner?>()
     val userInfo: LiveData<Summoner?> = _userInfo
@@ -40,16 +37,10 @@ class HomeViewModel @Inject constructor(
     private val _mostChampList = MutableLiveData<MutableList<ChampInfo>>()
     val mostChampList: LiveData<MutableList<ChampInfo>> = _mostChampList
 
-    private val _errorEvent = MutableLiveData<Event<Boolean>>()
-    val errorEvent: LiveData<Event<Boolean>> = _errorEvent
-
-
     fun fetchUserInfo() {
-        viewModelScope.launch {
-            val summonerInfo = getUserInfoUseCase("Hide on bush")
-            summonerInfo?.let { summoner ->
+        summoner?.let { summoner ->
+            viewModelScope.launch {
                 _userInfo.value = summoner
-
                 getUserTierUseCase(summoner.id)?.let { userTier ->
                     _userTier.value = "${userTier.tier} ${userTier.rank}"
                 }
@@ -59,9 +50,6 @@ class HomeViewModel @Inject constructor(
                     calcUserInfo(myMatches)
                     calcMostChampion(myMatches)
                 }
-
-            } ?: run {
-                _errorEvent.value = Event(true)
             }
         }
     }
@@ -114,7 +102,7 @@ class HomeViewModel @Inject constructor(
             val kills = champKillMap.getOrElse(champ) { 0 }
             val deaths = champDeathMap.getOrElse(champ) { 1 }
             val kda = kills / deaths.toDouble()
-            val winRate = 100 / playCnt * champWinCntMap.getOrElse(champ) { 0 }
+            val winRate = (champWinCntMap.getOrElse(champ) { 0 } * 100) / playCnt
 
             infoList.add(ChampInfo(champ, winRate, kda))
         }

@@ -1,7 +1,10 @@
 package io.github.seoj17.canyongg.data.model
 
+import android.os.Parcelable
 import io.github.seoj17.canyongg.data.remote.response.SummonerResponse
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Summoner(
     val id: String,
     val accountId: String,
@@ -10,7 +13,7 @@ data class Summoner(
     val profileIconId: Int,
     val revisionDate: Long,
     val summonerLevel: Int,
-) {
+) : Parcelable {
     companion object {
         operator fun invoke(response: SummonerResponse): Summoner {
             return Summoner(
