@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.databinding.FragmentSearchSummonerBinding
 
@@ -26,5 +27,11 @@ class SearchSummonerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navigator = Navigation.findNavController(view)
+        binding.temp.setOnClickListener {
+            navigator.navigate(
+                SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult()
+            )
+        }
     }
 }

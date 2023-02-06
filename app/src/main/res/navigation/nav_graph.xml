@@ -18,10 +18,13 @@
         <action
             android:id="@+id/action_home_to_SearchSummoner"
             app:destination="@id/searchSummoner" />
+        <action
+            android:id="@+id/action_home_to_settingFragment"
+            app:destination="@id/setting" />
     </fragment>
     <fragment
         android:id="@+id/registerSummoner"
-        android:name="io.github.seoj17.canyongg.ui.search.RegisterSummnonerFragment"
+        android:name="io.github.seoj17.canyongg.ui.search.RegisterSummonerFragment"
         android:label="RegisterSummonerFragment">
         <action
             android:id="@+id/action_registerSummoner_to_home"
@@ -40,5 +43,24 @@
     <fragment
         android:id="@+id/searchResult"
         android:name="io.github.seoj17.canyongg.ui.search.SearchResultFragment"
-        android:label="SearchResultFragment" />
+        android:label="SearchResultFragment" >
+        <action
+            android:id="@+id/action_searchResult_to_detailMatchFragment"
+            app:destination="@id/detailMatch" />
+        <action
+            android:id="@+id/action_searchResult_to_searchSummoner"
+            app:destination="@id/searchSummoner" />
+    </fragment>
+    <fragment
+        android:id="@+id/setting"
+        android:name="io.github.seoj17.canyongg.ui.setting.SettingFragment"
+        android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/detailMatch"
+        android:name="io.github.seoj17.canyongg.ui.detail.DetailMatchFragment"
+        android:label="DetailMatchFragment" >
+        <action
+            android:id="@+id/action_detailMatch_to_searchResult"
+            app:destination="@id/searchResult" />
+    </fragment>
 </navigation>

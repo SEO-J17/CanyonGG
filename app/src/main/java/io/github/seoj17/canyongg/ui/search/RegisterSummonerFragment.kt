@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.databinding.FragmentRegisterSummonerBinding
 
 @AndroidEntryPoint
-class RegisterSummnonerFragment : Fragment() {
+class RegisterSummonerFragment : Fragment() {
     private lateinit var binding: FragmentRegisterSummonerBinding
     private lateinit var navigator: NavController
 
@@ -32,7 +32,7 @@ class RegisterSummnonerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.summonerSubmit.setOnClickListener {
             navigator.navigate(
-                RegisterSummnonerFragmentDirections.actionRegisterSummonerToHome(
+                RegisterSummonerFragmentDirections.actionRegisterSummonerToHome(
                     summonerName
                 )
             )

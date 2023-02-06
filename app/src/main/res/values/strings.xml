@@ -27,6 +27,6 @@
     <string name="dialog_message">소환사 이름을 다시 확인해주세요.</string>
     <string name="dialog_positive">확인</string>
     <string name="match_summary">종합</string>
-    <string name="teamAnalysis">팀 분석</string>
+    <string name="team_analysis">팀 분석</string>
     <string name="my_rank">순위</string>
 </resources>
