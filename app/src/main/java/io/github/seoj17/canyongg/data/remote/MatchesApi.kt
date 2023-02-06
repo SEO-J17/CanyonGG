@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface RiotMatchApi {
+interface MatchesApi {
     @GET("/lol/match/v5/matches/by-puuid/{puuid}/ids")
     fun getMatchId(
         @Path("puuid") puuid: String,

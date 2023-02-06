@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.github.seoj17.canyongg.data.remote.RiotApi
-import io.github.seoj17.canyongg.data.remote.RiotMatchApi
+import io.github.seoj17.canyongg.data.remote.SummonerApi
+import io.github.seoj17.canyongg.data.remote.MatchesApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -75,7 +75,10 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideMoshi(): Moshi {
-        return Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        return Moshi
+            .Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
     }
 
     @Singleton
@@ -143,13 +146,13 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideSummonerService(@SummonerRetrofit retrofit: Retrofit): RiotApi {
-        return retrofit.create(RiotApi::class.java)
+    fun provideSummonerService(@SummonerRetrofit retrofit: Retrofit): SummonerApi {
+        return retrofit.create(SummonerApi::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideMatchService(@MatchRetrofit retrofit: Retrofit): RiotMatchApi {
-        return retrofit.create(RiotMatchApi::class.java)
+    fun provideMatchService(@MatchRetrofit retrofit: Retrofit): MatchesApi {
+        return retrofit.create(MatchesApi::class.java)
     }
 }
