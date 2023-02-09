@@ -29,4 +29,11 @@
     <string name="match_summary">종합</string>
     <string name="team_analysis">팀 분석</string>
     <string name="my_rank">순위</string>
+    <string name="empty_view_kda">%.2f : 1</string>
+    <string name="empty_view_win_rate">%d%%</string>
+    <string name="user_view_whole_match">%d전</string>
+    <string name="user_view_win_count">" %d승"</string>
+    <string name="user_view_lose_count">" %d패"</string>
+    <string name="user_view_win_rate">" 승률 %d%%"</string>
+    <string name="user_view_kda">" KDA %.2f : 1"</string>
 </resources>

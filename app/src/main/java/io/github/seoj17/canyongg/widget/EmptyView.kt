@@ -35,22 +35,22 @@ class EmptyView @JvmOverloads constructor(
 ) : LinearLayout(context, attributeSet, defStyleAttr) {
     private val binding = ViewEmptyBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var title: CharSequence
-        get() = binding.infoTabTitle.text
+    var title: CharSequence? = null
         set(value) {
             binding.infoTabTitle.text = value
+            field = value
         }
 
-    var content: CharSequence
-        get() = binding.infoTabContent.text
+    var content: CharSequence? = null
         set(value) {
             binding.infoTabContent.text = value
+            field = value
         }
 
-    var buttonName: CharSequence
-        get() = binding.mainSearch.text
+    var buttonName: CharSequence? = null
         set(value) {
             binding.mainSearch.text = value
+            field = value
         }
 
     fun setClickListener(onClick: () -> Unit) {

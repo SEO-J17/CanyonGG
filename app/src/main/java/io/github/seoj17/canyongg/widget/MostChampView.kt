@@ -7,9 +7,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
+import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.ViewMostChampBinding
 import io.github.seoj17.canyongg.ui.model.ChampInfo
-import okhttp3.internal.format
 
 @BindingMethods(
     value = [
@@ -32,30 +32,38 @@ class MostChampView @JvmOverloads constructor(
     var champInfo: ChampInfo? = null
         set(value) {
             value?.let {
-                setChampThumbnail(it.name)
-                setChampWinRate(it.winRate)
-                setChampKda(it.kda)
+                champName = it.name
+                champWinRate = it.winRate
+                champKda = it.kda
             }
             field = value
         }
 
-    private fun setChampThumbnail(champ: String?) {
+    var champName: CharSequence? = null
+        set(value) {
+            setChampThumbnail(value)
+            field = value
+        }
+
+    private fun setChampThumbnail(champ: CharSequence?) {
         val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/"
         champ?.let {
-            Glide.with(binding.champ.context)
-                .load("${imgUrl}${champ}.png").into(binding.champ)
+            Glide
+                .with(binding.champ.context)
+                .load("${imgUrl}${champ}.png")
+                .into(binding.champ)
         }
     }
 
-    private fun setChampWinRate(winRate: Int?) {
-        winRate?.let {
-            binding.champWinScore.text = "${winRate}%"
+    var champWinRate: Int = 0
+        set(value) {
+            binding.champWinScore.text = resources.getString(R.string.empty_view_win_rate, value)
+            field = value
         }
-    }
 
-    private fun setChampKda(kda: Double?) {
-        kda?.let {
-            binding.champKda.text = "${format("%.2f", kda)} : 1"
+    var champKda: Double = 0.0
+        set(value) {
+            binding.champKda.text = resources.getString(R.string.empty_view_kda, value)
+            field = value
         }
-    }
 }

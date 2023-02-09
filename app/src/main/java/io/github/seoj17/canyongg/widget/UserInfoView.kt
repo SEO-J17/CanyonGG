@@ -7,10 +7,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
+import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.databinding.ViewUserInfoBinding
 import io.github.seoj17.canyongg.ui.model.UserRecord
-import java.lang.String.format
 
 @BindingMethods(
     value = [
@@ -43,62 +43,85 @@ class UserInfoView @JvmOverloads constructor(
     var userInfo: Summoner? = null
         set(value) {
             value?.let {
-                setUserThumbnail(it.profileIconId)
-                setUserLevel(it.summonerLevel)
-                setUserName(it.name)
+                userProfileId = it.profileIconId
+                userLevel = it.summonerLevel
+                userName = it.name
             }
             field = value
         }
 
-    var userTier: CharSequence
-        get() = binding.mainUserTier.text
+    var userProfileId: Int? = null
+        set(value) {
+            setUserThumbnail(value)
+            field = value
+        }
+
+    private fun setUserThumbnail(imgId: Int?) {
+        val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/"
+        Glide
+            .with(binding.mainUserThumbNail.context)
+            .load("${imgUrl}${imgId}.png")
+            .into(binding.mainUserThumbNail)
+    }
+
+    var userLevel: Int = 0
+        set(value) {
+            binding.mainUserLevel.text = "$value"
+            field = value
+        }
+
+    var userName: CharSequence = ""
+        set(value) {
+            binding.mainUserName.text = value
+            field = value
+        }
+
+
+    var userTier: CharSequence = ""
         set(value) {
             binding.mainUserTier.text = value
+            field = value
         }
 
     var userRecord: UserRecord? = null
         set(value) {
             value?.let {
-                setUserMatches(it.wholeMatch)
-                setUserWin(it.winCount)
-                setUserLose(it.loseCount)
-                setUserWinRate(it.winRate)
-                setUserKda(it.kda)
+                userMatches = it.wholeMatch
+                userWin = it.winCount
+                userLose = it.loseCount
+                userWinRate = it.winRate
+                userKda = it.kda
             }
             field = value
         }
 
-    private fun setUserMatches(matches: Int) {
-        binding.userMatches.text = "${matches}전 "
-    }
+    var userMatches: Int = 0
+        set(value) {
+            binding.userMatches.text = resources.getString(R.string.user_view_whole_match, value)
+            field = value
+        }
 
-    private fun setUserThumbnail(imgId: Int?) {
-        val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/"
-        Glide.with(binding.mainUserThumbNail.context)
-            .load("${imgUrl}${imgId}.png").into(binding.mainUserThumbNail)
-    }
+    var userWin: Int = 0
+        set(value) {
+            binding.userWin.text = resources.getString(R.string.user_view_win_count, value)
+            field = value
+        }
 
-    private fun setUserLevel(level: Int?) {
-        binding.mainUserLevel.text = level.toString()
-    }
+    var userLose: Int = 0
+        set(value) {
+            binding.userLose.text = resources.getString(R.string.user_view_lose_count, value)
+            field = value
+        }
 
-    private fun setUserName(name: String?) {
-        binding.mainUserName.text = name
-    }
+    var userWinRate: Int = 0
+        set(value) {
+            binding.userWinScore.text = resources.getString(R.string.user_view_win_rate, value)
+            field = value
+        }
 
-    private fun setUserWin(win: Int) {
-        binding.userWin.text = "${win}승 "
-    }
-
-    private fun setUserLose(lose: Int) {
-        binding.userLose.text = "${lose}패 "
-    }
-
-    private fun setUserWinRate(winRate: Int) {
-        binding.userWinScore.text = "승률 ${winRate}% "
-    }
-
-    private fun setUserKda(kda: Double) {
-        binding.userKda.text = "KDA : ${format("%.2f", kda)} : 1"
-    }
+    var userKda: Double = 0.0
+        set(value) {
+            binding.userKda.text = resources.getString(R.string.user_view_kda, value)
+            field = value
+        }
 }
