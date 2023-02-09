@@ -18,4 +18,8 @@ class MyRankFragment : Fragment() {
         binding = FragmentMyRankBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
+    companion object {
+        fun newInstance() = MyRankFragment()
+    }
 }

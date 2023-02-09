@@ -18,4 +18,8 @@ class TeamAnalysisFragment : Fragment() {
         binding = FragmentTeamAnalysisBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
+    companion object {
+        fun newInstance() = TeamAnalysisFragment()
+    }
 }

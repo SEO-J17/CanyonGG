@@ -18,4 +18,8 @@ class MatchSummaryFragment : Fragment() {
         binding = FragmentMatchSummaryBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
+    companion object {
+        fun newInstance() = MatchSummaryFragment()
+    }
 }
