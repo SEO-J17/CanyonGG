@@ -42,8 +42,6 @@ class HomeFragment : Fragment() {
             tab2.setClickListener {
                 navigator.navigate(HomeFragmentDirections.actionHomeToSearchSummoner())
             }
-
-            viewModel.fetchUserInfo()
         }
     }
 }

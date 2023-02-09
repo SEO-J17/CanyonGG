@@ -28,7 +28,7 @@ class SearchResultFragment : Fragment() {
         navigator = Navigation.findNavController(view)
         binding.temp.setOnClickListener {
             navigator.navigate(
-                SearchResultFragmentDirections.actionSearchResultToDetailMatchFragment()
+                SearchResultFragmentDirections.actionSearchResultToDetailMatch()
             )
         }
     }

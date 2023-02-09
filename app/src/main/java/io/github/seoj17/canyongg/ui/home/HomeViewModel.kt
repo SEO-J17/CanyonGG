@@ -14,7 +14,6 @@ import io.github.seoj17.canyongg.ui.model.ChampInfo
 import io.github.seoj17.canyongg.ui.model.UserRecord
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
@@ -37,7 +36,7 @@ class HomeViewModel @Inject constructor(
     private val _mostChampList = MutableLiveData<List<ChampInfo>>()
     val mostChampList: LiveData<List<ChampInfo>> = _mostChampList
 
-    fun fetchUserInfo() {
+    init {
         summoner?.let { summoner ->
             viewModelScope.launch {
                 _userInfo.value = summoner
@@ -109,5 +108,6 @@ class HomeViewModel @Inject constructor(
         _mostChampList.value = infoList
     }
 }
+
 
 
