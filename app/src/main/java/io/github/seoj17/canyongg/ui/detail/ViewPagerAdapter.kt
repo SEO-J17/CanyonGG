@@ -6,13 +6,16 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class ViewPagerAdapter(
     fragment: Fragment
 ) : FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int = 3
+
+    private val tabs: List<Fragment> = listOf(
+        MatchSummaryFragment.newInstance(),
+        TeamAnalysisFragment.newInstance(),
+        MyRankFragment.newInstance()
+    )
+
+    override fun getItemCount(): Int = tabs.size
 
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> MatchSummaryFragment()
-            1 -> TeamAnalysisFragment()
-            else -> MyRankFragment()
-        }
+        return tabs[position]
     }
 }
