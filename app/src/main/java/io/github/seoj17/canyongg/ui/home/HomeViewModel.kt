@@ -34,8 +34,8 @@ class HomeViewModel @Inject constructor(
     private val _userRecord = MutableLiveData<UserRecord>()
     val userRecord: LiveData<UserRecord> = _userRecord
 
-    private val _mostChampList = MutableLiveData<MutableList<ChampInfo>>()
-    val mostChampList: LiveData<MutableList<ChampInfo>> = _mostChampList
+    private val _mostChampList = MutableLiveData<List<ChampInfo>>()
+    val mostChampList: LiveData<List<ChampInfo>> = _mostChampList
 
     fun fetchUserInfo() {
         summoner?.let { summoner ->
@@ -88,21 +88,21 @@ class HomeViewModel @Inject constructor(
         myMatches.forEach { myInfo ->
             val name = myInfo.championName
             if (mostChampsMap.containsKey(name)) {
-                champDeathMap[name] = champDeathMap.getOrElse(name) { 0 } + myInfo.deaths
+                champDeathMap[name] = champDeathMap.getOrDefault(name, 0) + myInfo.deaths
                 champKillMap[name] =
-                    champKillMap.getOrElse(name) { 0 } + myInfo.kills + myInfo.assists
+                    champKillMap.getOrDefault(name, 0) + myInfo.kills + myInfo.assists
                 if (myInfo.win) {
-                    champWinCntMap[name] = champWinCntMap.getOrElse(name) { 0 } + 1
+                    champWinCntMap[name] = champWinCntMap.getOrDefault(name, 0) + 1
                 }
             }
         }
 
         val infoList = mutableListOf<ChampInfo>()
         mostChampsMap.forEach { (champ, playCnt) ->
-            val kills = champKillMap.getOrElse(champ) { 0 }
-            val deaths = champDeathMap.getOrElse(champ) { 1 }
+            val kills = champKillMap.getOrDefault(champ, 0)
+            val deaths = champDeathMap.getOrDefault(champ, 1)
             val kda = kills / deaths.toDouble()
-            val winRate = (champWinCntMap.getOrElse(champ) { 0 } * 100) / playCnt
+            val winRate = (champWinCntMap.getOrDefault(champ, 0) * 100) / playCnt
 
             infoList.add(ChampInfo(champ, winRate, kda))
         }
