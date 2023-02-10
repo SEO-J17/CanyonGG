@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val id = destination.id
             binding.bottomNavBar.visibility =
-                if (id == R.id.searchResult || id == R.id.detailMatch) {
+                if (id == R.id.search_result || id == R.id.detail_match) {
                     View.GONE
                 } else {
                     View.VISIBLE

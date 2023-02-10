@@ -38,10 +38,11 @@ class SearchResultFragment : Fragment() {
 
             }
 
-        binding.temp.setOnClickListener {
-            navigator.navigate(
+            binding.temp.setOnClickListener {
+                navigator.navigate(
                 SearchResultFragmentDirections.actionSearchResultToDetailMatch()
-            )
+                )
+            }
         }
     }
 }
