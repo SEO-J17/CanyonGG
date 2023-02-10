@@ -1,8 +1,8 @@
 package io.github.seoj17.canyongg.data.model
 
-import io.github.seoj17.canyongg.data.remote.response.Info
-import io.github.seoj17.canyongg.data.remote.response.MatchInfoResponse
-import io.github.seoj17.canyongg.data.remote.response.Metadata
+import io.github.seoj17.canyongg.data.remote.response.match.Info
+import io.github.seoj17.canyongg.data.remote.response.match.MatchInfoResponse
+import io.github.seoj17.canyongg.data.remote.response.match.Metadata
 
 data class MatchInfo(
     val info: Info,

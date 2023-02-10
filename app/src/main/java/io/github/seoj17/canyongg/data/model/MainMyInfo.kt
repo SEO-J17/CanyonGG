@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.model
 
-import io.github.seoj17.canyongg.data.remote.response.ParticipantResponse
+import io.github.seoj17.canyongg.data.remote.response.match.ParticipantResponse
 
 data class MainMyInfo(
     val assists: Int,

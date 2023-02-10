@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.seoj17.canyongg.data.remote.SummonerApi
 import io.github.seoj17.canyongg.data.remote.MatchesApi
+import io.github.seoj17.canyongg.data.remote.DataCenterApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,6 +28,10 @@ annotation class MatchUrl
 
 @Retention(AnnotationRetention.BINARY)
 @Qualifier
+annotation class DataCenterUrl
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
 annotation class TimeOutPolicy
 
 @Retention(AnnotationRetention.BINARY)
@@ -40,6 +45,10 @@ annotation class SummonerRetrofit
 @Retention(AnnotationRetention.BINARY)
 @Qualifier
 annotation class MatchRetrofit
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class DataCenterRetrofit
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -67,9 +76,17 @@ object NetworkModule {
 
     @Singleton
     @Provides
+    @DataCenterUrl
+    fun provideDataCenterUrl(): String {
+        return "https://ddragon.leagueoflegends.com"
+    }
+
+
+    @Singleton
+    @Provides
     @AuthToken
     fun provideAuthToken(): String {
-        return "RGAPI-3416b7a4-c6cc-44a1-a080-0c590b025c40"
+        return "RGAPI-6fa47745-e818-4f6b-aa0a-e09a69785bea"
     }
 
     @Singleton
@@ -146,6 +163,22 @@ object NetworkModule {
 
     @Singleton
     @Provides
+    @DataCenterRetrofit
+    fun provideDataCenterRetrofit(
+        okHttpClient: OkHttpClient,
+        moshi: Moshi,
+        @DataCenterUrl url: String,
+    ): Retrofit {
+        return Retrofit
+            .Builder()
+            .baseUrl(url)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+            .build()
+    }
+
+    @Singleton
+    @Provides
     fun provideSummonerService(@SummonerRetrofit retrofit: Retrofit): SummonerApi {
         return retrofit.create(SummonerApi::class.java)
     }
@@ -154,5 +187,11 @@ object NetworkModule {
     @Provides
     fun provideMatchService(@MatchRetrofit retrofit: Retrofit): MatchesApi {
         return retrofit.create(MatchesApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDataCenterService(@DataCenterRetrofit retrofit: Retrofit): DataCenterApi {
+        return retrofit.create(DataCenterApi::class.java)
     }
 }

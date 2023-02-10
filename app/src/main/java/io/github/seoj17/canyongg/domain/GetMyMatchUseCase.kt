@@ -11,14 +11,17 @@ class GetMyMatchUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(puuid: String, start: Int = 0): List<MainMyInfo> {
         val myInfoList = mutableListOf<MainMyInfo>()
-        repository.getMatchInfo(puuid, start).forEach { matchInfo ->
-            val myMatch = matchInfo.info.participants.find {
-                it.puuid == puuid
+        repository
+            .getMatchInfo(puuid, start)
+            .forEach { matchInfo ->
+                matchInfo.info.participants
+                    .find {
+                        it.puuid == puuid
+                    }
+                    ?.let {
+                        myInfoList.add(MainMyInfo(it))
+                    }
             }
-            myMatch?.let {
-                myInfoList.add(MainMyInfo(it))
-            }
-        }
         return myInfoList
     }
 }

@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.model
 
-import io.github.seoj17.canyongg.data.remote.response.TierResponse
+import io.github.seoj17.canyongg.data.remote.response.summoner.TierResponse
 
 data class SummonerTier(
     val leagueId: String,

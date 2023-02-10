@@ -20,7 +20,7 @@
     <string name="search_summoner_hint">소환사 이름을 입력해주세요</string>
     <string name="search_latest_summoner">최근 검색한 소환사</string>
     <string name="summary_game_label">최근 20게임 요약</string>
-    <string name="win_late_text">승률</string>
+    <string name="win_rate_text">승률</string>
     <string name="highest_kill_text">최다킬</string>
     <string name="kda_text">KDA</string>
     <string name="dialog_title">일치하는 이름의 소환사가 없습니다</string>

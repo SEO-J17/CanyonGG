@@ -37,6 +37,17 @@
         app:layout_constraintVertical_bias="0.0"
         tools:src="@drawable/emblem_platinum" />
 
+    <TextView
+        android:id="@+id/champion_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/champion"
+        app:layout_constraintEnd_toEndOf="@id/champion"
+        tools:text="124" />
+
     <ImageView
         android:id="@+id/spell_1"
         android:layout_width="20dp"
@@ -163,6 +174,15 @@
         app:layout_constraintBottom_toBottomOf="@id/item_5"
         app:layout_constraintStart_toEndOf="@id/item_5"
         app:layout_constraintTop_toTopOf="@id/item_5"
+        tools:src="@drawable/emblem_challenger" />
+
+    <ImageView
+        android:id="@+id/item_7"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/item_6"
+        app:layout_constraintStart_toEndOf="@id/item_6"
+        app:layout_constraintTop_toTopOf="@id/item_6"
         tools:src="@drawable/emblem_challenger" />
 
     <TextView

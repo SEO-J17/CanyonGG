@@ -4,10 +4,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.seoj17.canyongg.data.repository.DataCenterRepository
 import io.github.seoj17.canyongg.data.repository.MatchesRepository
 import io.github.seoj17.canyongg.data.repository.MatchesRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerRepository
 import io.github.seoj17.canyongg.data.repository.SummonerRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.DataCenterRepositoryImpl
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -17,4 +19,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindMatchesRepository(matchesRepositoryImpl: MatchesRepositoryImpl): MatchesRepository
+
+    @Binds
+    abstract fun bindDataCenterRepository(dataCenterRepositoryImpl: DataCenterRepositoryImpl): DataCenterRepository
 }

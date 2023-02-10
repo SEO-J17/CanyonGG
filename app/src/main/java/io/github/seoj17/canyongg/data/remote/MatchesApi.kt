@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.remote
 
-import io.github.seoj17.canyongg.data.remote.response.MatchInfoResponse
+import io.github.seoj17.canyongg.data.remote.response.match.MatchInfoResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

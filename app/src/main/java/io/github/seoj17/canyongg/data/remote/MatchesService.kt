@@ -1,13 +1,13 @@
 package io.github.seoj17.canyongg.data.remote
 
-import io.github.seoj17.canyongg.data.remote.response.MatchInfoResponse
+import io.github.seoj17.canyongg.data.remote.response.match.MatchInfoResponse
 import retrofit2.await
 import javax.inject.Inject
 
 class MatchesService @Inject constructor(
     private val responseMatch: MatchesApi
 ) {
-    suspend fun getMatchId(puuid: String, start: Int = 0): List<String> {
+    suspend fun getMatchId(puuid: String, start: Int): List<String> {
         return runCatching {
             responseMatch.getMatchId(puuid, start).await()
         }.fold(

@@ -1,7 +1,7 @@
 package io.github.seoj17.canyongg.data.model
 
 import android.os.Parcelable
-import io.github.seoj17.canyongg.data.remote.response.SummonerResponse
+import io.github.seoj17.canyongg.data.remote.response.summoner.SummonerResponse
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

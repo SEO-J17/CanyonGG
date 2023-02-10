@@ -1,7 +1,7 @@
 package io.github.seoj17.canyongg.data.remote
 
-import io.github.seoj17.canyongg.data.remote.response.SummonerResponse
-import io.github.seoj17.canyongg.data.remote.response.TierResponse
+import io.github.seoj17.canyongg.data.remote.response.summoner.SummonerResponse
+import io.github.seoj17.canyongg.data.remote.response.summoner.TierResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
