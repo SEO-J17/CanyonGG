@@ -36,4 +36,5 @@
     <string name="user_view_lose_count">" %d패"</string>
     <string name="user_view_win_rate">" 승률 %d%%"</string>
     <string name="user_view_kda">" KDA %.2f : 1"</string>
+    <string name="delete_history"><u>전체 삭제</u></string>
 </resources>

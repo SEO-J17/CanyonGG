@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.adapter
+package io.github.seoj17.canyongg.ui.adapter
 
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
@@ -7,8 +7,11 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.seoj17.canyongg.domain.model.DomainMatches
+import io.github.seoj17.canyongg.domain.model.DomainRecentSummoner
+import io.github.seoj17.canyongg.ui.model.RecentSummoners
 import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
-import io.github.seoj17.canyongg.ui.search.RecordListAdapter
+import io.github.seoj17.canyongg.ui.record.RecordListAdapter
+import io.github.seoj17.canyongg.ui.search.SearchSummonerListAdapter
 import io.github.seoj17.canyongg.utils.coroutineScope
 import io.github.seoj17.canyongg.utils.rankEmblemResId
 import kotlinx.coroutines.Job
@@ -53,3 +56,8 @@ fun RecyclerView.setHistoryList(history: PagingData<DomainMatches>) {
     }
 }
 
+@BindingAdapter("bind:recentSummonerList")
+fun RecyclerView.setRecentSummonerList(recentSummoners: List<DomainRecentSummoner>?) {
+    val list = recentSummoners ?: emptyList()
+    (adapter as? SearchSummonerListAdapter)?.submitList(RecentSummoners(list))
+}

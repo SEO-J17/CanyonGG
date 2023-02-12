@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.ui.search
+package io.github.seoj17.canyongg.ui.record
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

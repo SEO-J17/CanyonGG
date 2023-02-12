@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.ui.model
 
-class UserRecord(
+data class UserRecord(
     val wholeMatch: Int = 0,
     val winCount: Int = 0,
     val loseCount: Int = 0,

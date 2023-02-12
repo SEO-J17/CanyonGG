@@ -9,20 +9,23 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.MainMyInfo
 import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.domain.GetMyMatchUseCase
+import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetUserTierUseCase
 import io.github.seoj17.canyongg.ui.model.ChampInfo
 import io.github.seoj17.canyongg.ui.model.UserRecord
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
+    private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserTierUseCase: GetUserTierUseCase,
     private val getMyMatchUseCase: GetMyMatchUseCase,
 ) : ViewModel() {
 
-    private val summoner =
-        HomeFragmentArgs.fromSavedStateHandle(savedStateHandle).summoner
+    private val summonerName =
+        HomeFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerName ?: ""
 
     private val _userInfo = MutableLiveData<Summoner?>()
     val userInfo: LiveData<Summoner?> = _userInfo
@@ -37,8 +40,8 @@ class HomeViewModel @Inject constructor(
     val mostChampList: LiveData<List<ChampInfo>> = _mostChampList
 
     init {
-        summoner?.let { summoner ->
-            viewModelScope.launch {
+        viewModelScope.launch {
+            getUserInfoUseCase(summonerName)?.let { summoner ->
                 _userInfo.value = summoner
                 getUserTierUseCase(summoner.id)?.let { userTier ->
                     _userTier.value = "${userTier.tier} ${userTier.rank}"

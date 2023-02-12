@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.canyongg.ui.search.SearchResultViewModel" />
+            type="io.github.seoj17.canyongg.ui.record.SummonerRecordViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -191,8 +191,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                bind:historyList="@{vm.summonerHistory}"
-                tools:listitem="@layout/item_summoner_match" />
+                bind:historyList="@{vm.summonerRecordHistory}"
+                tools:listitem="@layout/item_summoner_record" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

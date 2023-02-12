@@ -15,10 +15,10 @@
                 android:id="@+id/action_home_to_registerSummoner"
                 app:destination="@id/registerSummoner" />
             <argument
-                android:name="summoner"
-                android:defaultValue="@null"
-                app:argType="io.github.seoj17.canyongg.data.model.Summoner"
-                app:nullable="true" />
+                android:name="summonerName"
+                app:argType="string"
+                app:nullable="true"
+                android:defaultValue='""' />
             <action
                 android:id="@+id/action_home_to_SearchSummoner"
                 app:destination="@id/search_summoner" />
@@ -35,8 +35,8 @@
                 android:id="@+id/action_registerSummoner_to_home"
                 app:destination="@id/home">
                 <argument
-                    android:name="summoner"
-                    app:argType="io.github.seoj17.canyongg.data.model.Summoner" />
+                    android:name="summonerName"
+                    app:argType="string" />
             </action>
         </fragment>
     </navigation>
@@ -51,19 +51,23 @@
                 android:id="@+id/action_SearchSummoner_to_searchResult"
                 app:destination="@id/search_result" />
             <argument
-                android:name="summoner"
-                app:argType="io.github.seoj17.canyongg.data.model.Summoner" />
+                android:name="summonerName"
+                app:argType="string" />
+            <argument android:name="summonerPuuid"
+                app:argType="string" />
         </fragment>
         <fragment
             android:id="@+id/search_result"
-            android:name="io.github.seoj17.canyongg.ui.search.SearchResultFragment"
-            android:label="SearchResultFragment">
+            android:name="io.github.seoj17.canyongg.ui.record.SummonerRecordFragment"
+            android:label="SummonerRecordFragment">
             <action
                 android:id="@+id/action_searchResult_to_detailMatch"
                 app:destination="@id/detail_match" />
             <argument
-                android:name="summoner"
-                app:argType="io.github.seoj17.canyongg.data.model.Summoner" />
+                android:name="summonerName"
+                app:argType="string" />
+            <argument android:name="summonerPuuid"
+                app:argType="string" />
         </fragment>
         <fragment
             android:id="@+id/detail_match"

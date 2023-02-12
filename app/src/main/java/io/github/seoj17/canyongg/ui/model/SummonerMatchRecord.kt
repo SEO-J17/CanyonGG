@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import io.github.seoj17.canyongg.data.remote.response.match.Challenges
 import io.github.seoj17.canyongg.domain.model.DomainMatches
 
-class SummonerMatchRecord(
+data class SummonerMatchRecord(
     val puuid: String,
     val matchId: String,
     val participants: List<String>,

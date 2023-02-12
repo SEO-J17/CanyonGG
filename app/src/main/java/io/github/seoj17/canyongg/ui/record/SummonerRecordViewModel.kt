@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.ui.search
+package io.github.seoj17.canyongg.ui.record
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.domain.GetSummonerHistoryUseCase
 import io.github.seoj17.canyongg.domain.GetSummonerUseCase
+import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetUserTierUseCase
 import io.github.seoj17.canyongg.ui.model.ParticipantsMatches
 import io.github.seoj17.canyongg.ui.model.SummonerRecord
@@ -18,15 +19,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchResultViewModel @Inject constructor(
+class SummonerRecordViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
+    private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserTierUseCase: GetUserTierUseCase,
     private val getSummonerUseCase: GetSummonerUseCase,
     private val getSummonerHistoryUseCase: GetSummonerHistoryUseCase,
 ) : ViewModel() {
 
-    private val summoner =
-        SearchResultFragmentArgs.fromSavedStateHandle(savedStateHandle).summoner
+    private val summonerName =
+        SummonerRecordFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerName
+
+    private val summonerPuuid =
+        SummonerRecordFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerPuuid
 
     private val _summonerInfo = MutableLiveData<Summoner>()
     val summonerInfo: LiveData<Summoner> = _summonerInfo
@@ -37,21 +42,23 @@ class SearchResultViewModel @Inject constructor(
     private val _summonerRecord = MutableLiveData<SummonerRecord>()
     val summonerRecord: LiveData<SummonerRecord> = _summonerRecord
 
-    val summonerHistory =
-        getSummonerHistoryUseCase(summoner.puuid)
+    val summonerRecordHistory =
+        getSummonerHistoryUseCase(summonerPuuid)
             .asLiveData()
             .cachedIn(viewModelScope)
 
     init {
-        _summonerInfo.value = summoner
         viewModelScope.launch {
-            getUserTierUseCase(summoner.id)?.let { summonerTier ->
-                _summonerTier.value = "${summonerTier.tier} ${summonerTier.rank}"
-            }
+            getUserInfoUseCase(summonerName)?.let { summonerInfo ->
+                _summonerInfo.value = summonerInfo
+                getUserTierUseCase(summonerInfo.id)?.let { summonerTier ->
+                    _summonerTier.value = "${summonerTier.tier} ${summonerTier.rank}"
+                }
 
-            val matches = ParticipantsMatches(getSummonerUseCase(summoner.puuid))
-            if (matches.isNotEmpty()) {
-                calcSummonerInfo(matches)
+                val matches = ParticipantsMatches(getSummonerUseCase(summonerInfo.puuid))
+                if (matches.isNotEmpty()) {
+                    calcSummonerInfo(matches)
+                }
             }
         }
     }

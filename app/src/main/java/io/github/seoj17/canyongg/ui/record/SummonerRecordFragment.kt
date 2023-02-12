@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.ui.search
+package io.github.seoj17.canyongg.ui.record
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.seoj17.canyongg.databinding.FragmentSearchResultBinding
+import io.github.seoj17.canyongg.databinding.FragmentSummonerRecordBinding
 
 @AndroidEntryPoint
-class SearchResultFragment : Fragment() {
-    private lateinit var binding: FragmentSearchResultBinding
-    private val viewModel: SearchResultViewModel by viewModels()
+class SummonerRecordFragment : Fragment() {
+    private lateinit var binding: FragmentSummonerRecordBinding
+    private val viewModel: SummonerRecordViewModel by viewModels()
     private lateinit var navigator: NavController
 
     override fun onCreateView(
@@ -23,7 +23,7 @@ class SearchResultFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentSearchResultBinding.inflate(layoutInflater, container, false)
+        binding = FragmentSummonerRecordBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -40,7 +40,7 @@ class SearchResultFragment : Fragment() {
 
             binding.temp.setOnClickListener {
                 navigator.navigate(
-                SearchResultFragmentDirections.actionSearchResultToDetailMatch()
+                    SummonerRecordFragmentDirections.actionSearchResultToDetailMatch()
                 )
             }
         }

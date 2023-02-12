@@ -32,25 +32,43 @@ class SearchSummonerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigator = Navigation.findNavController(view)
-//        binding.temp.setOnClickListener {
-//            navigator.navigate(
-//                SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult()
-//            )
-//        }
+
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
+            recentSummonerListView.adapter =
+                SearchSummonerListAdapter(
+                    { viewModel.deleteRecentSummoner(it) }
+                ) { name, puuid ->
+                    navigator.navigate(
+                        SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
+                            name,
+                            puuid,
+                        )
+                    )
+                }
 
             viewModel.searchResult.observe(viewLifecycleOwner) { summoner ->
                 summoner?.let {
                     navigator.navigate(
-                        SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(it)
+                        SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
+                            summoner.name,
+                            summoner.puuid,
+                        )
                     )
                 }
             }
 
             viewModel.errorEvent.observeEvent(viewLifecycleOwner) {
                 NotFoundUserDialogFragment().show(childFragmentManager, null)
+            }
+            //임시버튼. 화면 이동하게함
+            temp.setOnClickListener {
+                navigator.navigate(
+                    SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
+                        "", ""
+                    )
+                )
             }
         }
     }

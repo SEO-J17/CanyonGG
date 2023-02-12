@@ -40,7 +40,7 @@ class RegisterSummonerFragment : Fragment() {
             viewModel.searchResult.observe(viewLifecycleOwner) { summoner ->
                 summoner?.let {
                     navigator.navigate(
-                        RegisterSummonerFragmentDirections.actionRegisterSummonerToHome(it)
+                        RegisterSummonerFragmentDirections.actionRegisterSummonerToHome(it.name)
                     )
                 }
             }

@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.ui.model
 
-class SummonerRecord(
+data class SummonerRecord(
     val winCount: Int = 0,
     val loseCount: Int = 0,
     val winRate: Int = 0,

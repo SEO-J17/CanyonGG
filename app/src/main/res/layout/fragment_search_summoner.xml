@@ -29,7 +29,7 @@
             bind:setOnQueryTextListener="@{vm.searchSummoner}" />
 
         <TextView
-            android:id="@+id/latest_summoner"
+            android:id="@+id/recent_summoner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -37,26 +37,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_bar" />
 
+        <TextView
+            android:id="@+id/delete_all_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:onClick="@{() -> vm.deleteAllSearchHistory()}"
+            android:text="@string/delete_history"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/recent_summoner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/recent_summoner" />
+
         <Button
             android:id="@+id/temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="임시 버튼"
-            app:layout_constraintBottom_toBottomOf="@id/latest_summoner"
+            app:layout_constraintBottom_toBottomOf="@id/recent_summoner"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/latest_summoner"
-            app:layout_constraintTop_toTopOf="@id/latest_summoner" />
+            app:layout_constraintStart_toEndOf="@id/recent_summoner"
+            app:layout_constraintTop_toTopOf="@id/recent_summoner" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recent_summoner_list_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="8dp"
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/latest_summoner"
-            tools:listitem="@layout/item_latest_name" />
+            app:layout_constraintTop_toBottomOf="@id/recent_summoner"
+            app:spanCount="3"
+            bind:recentSummonerList="@{vm.recentSearch}"
+            tools:listitem="@layout/item_recent_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
