@@ -16,9 +16,9 @@
                 app:destination="@id/registerSummoner" />
             <argument
                 android:name="summonerName"
+                android:defaultValue=""
                 app:argType="string"
-                app:nullable="true"
-                android:defaultValue='""' />
+                app:nullable="true" />
             <action
                 android:id="@+id/action_home_to_SearchSummoner"
                 app:destination="@id/search_summoner" />
@@ -53,7 +53,8 @@
             <argument
                 android:name="summonerName"
                 app:argType="string" />
-            <argument android:name="summonerPuuid"
+            <argument
+                android:name="summonerPuuid"
                 app:argType="string" />
         </fragment>
         <fragment
@@ -66,7 +67,8 @@
             <argument
                 android:name="summonerName"
                 app:argType="string" />
-            <argument android:name="summonerPuuid"
+            <argument
+                android:name="summonerPuuid"
                 app:argType="string" />
         </fragment>
         <fragment

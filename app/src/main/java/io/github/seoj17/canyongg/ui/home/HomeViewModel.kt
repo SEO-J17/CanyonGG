@@ -40,17 +40,19 @@ class HomeViewModel @Inject constructor(
     val mostChampList: LiveData<List<ChampInfo>> = _mostChampList
 
     init {
-        viewModelScope.launch {
-            getUserInfoUseCase(summonerName)?.let { summoner ->
-                _userInfo.value = summoner
-                getUserTierUseCase(summoner.id)?.let { userTier ->
-                    _userTier.value = "${userTier.tier} ${userTier.rank}"
-                }
+        if (summonerName.isNotBlank()) {
+            viewModelScope.launch {
+                getUserInfoUseCase(summonerName)?.let { summoner ->
+                    _userInfo.value = summoner
+                    getUserTierUseCase(summoner.id)?.let { userTier ->
+                        _userTier.value = "${userTier.tier} ${userTier.rank}"
+                    }
 
-                val myMatches = getMyMatchUseCase(summoner.puuid)
-                if (myMatches.isNotEmpty()) {
-                    calcUserInfo(myMatches)
-                    calcMostChampion(myMatches)
+                    val myMatches = getMyMatchUseCase(summoner.puuid)
+                    if (myMatches.isNotEmpty()) {
+                        calcUserInfo(myMatches)
+                        calcMostChampion(myMatches)
+                    }
                 }
             }
         }
