@@ -59,6 +59,15 @@ class SearchSummonerFragment : Fragment() {
                 }
             }
 
+            if (viewModel.isSetArguments()) {
+                navigator.navigate(
+                    SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
+                        viewModel.summonerName,
+                        viewModel.summonerPuuid,
+                    )
+                )
+            }
+
             viewModel.errorEvent.observeEvent(viewLifecycleOwner) {
                 NotFoundUserDialogFragment().show(childFragmentManager, null)
             }

@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.FragmentHomeBinding
 
 @AndroidEntryPoint
@@ -53,7 +56,18 @@ class HomeFragment : Fragment() {
             }
 
             tab2.setClickListener {
-                navigator.navigate(HomeFragmentDirections.actionHomeToSearchSummoner())
+                view.findNavController().navigate(R.id.action_global_search_navigation)
+            }
+            
+            detailMyInfo.setOnClickListener {
+                view.findNavController()
+                    .navigate(
+                        R.id.action_global_search_navigation,
+                        bundleOf(
+                            "summonerName" to viewModel.userInfo.value?.name,
+                            "summonerPuuid" to viewModel.userInfo.value?.puuid,
+                        )
+                    )
             }
         }
     }

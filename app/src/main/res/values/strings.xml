@@ -42,5 +42,6 @@
     <string name="summoner_assist">"/ %d"</string>
     <string name="summoner_kda">"%.2f : 1"</string>
     <string name="summoner_kill_cs">"CS : %d"</string>
+    <string name="detail_my_info_label">자세히 보기</string>
 
 </resources>

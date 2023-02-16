@@ -19,12 +19,7 @@
                 android:defaultValue=""
                 app:argType="string"
                 app:nullable="true" />
-            <action
-                android:id="@+id/action_home_to_SearchSummoner"
-                app:destination="@id/search_summoner" />
-            <action
-                android:id="@+id/action_home_to_settingFragment"
-                app:destination="@id/setting" />
+
         </fragment>
 
         <fragment
@@ -39,10 +34,19 @@
                     app:argType="string" />
             </action>
         </fragment>
+        <action
+            android:id="@+id/action_global_search_navigation"
+            app:destination="@id/search_navigation">
+        </action>
     </navigation>
     <navigation
         android:id="@+id/search_navigation"
         app:startDestination="@id/search_summoner">
+
+        <argument
+            android:name="summonerName"
+            app:argType="string" />
+
         <fragment
             android:id="@+id/search_summoner"
             android:name="io.github.seoj17.canyongg.ui.search.SearchSummonerFragment"
@@ -50,6 +54,16 @@
             <action
                 android:id="@+id/action_SearchSummoner_to_searchResult"
                 app:destination="@id/search_result" />
+            <argument
+                android:name="summonerName"
+                app:argType="string"
+                app:nullable="true"
+                android:defaultValue="" />
+            <argument
+                android:name="summonerPuuid"
+                app:argType="string"
+                app:nullable="true"
+                android:defaultValue="" />
         </fragment>
         <fragment
             android:id="@+id/search_result"
