@@ -1,7 +1,6 @@
 package io.github.seoj17.canyongg.ui.adapter
 
 import android.widget.ImageView
-import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
@@ -17,22 +16,7 @@ import io.github.seoj17.canyongg.ui.record.RecordListAdapter
 import io.github.seoj17.canyongg.ui.search.SearchSummonerListAdapter
 import io.github.seoj17.canyongg.utils.coroutineScope
 import io.github.seoj17.canyongg.utils.rankEmblemResId
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-
-@BindingAdapter("bind:setOnQueryTextListener")
-fun SearchView.setOnQueryText(searchSummoner: (String?) -> Job) {
-    this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(query: String?): Boolean {
-            searchSummoner(query)
-            return false
-        }
-
-        override fun onQueryTextChange(newText: String?): Boolean {
-            return false
-        }
-    })
-}
 
 @BindingAdapter("bind:summonerProfile")
 fun ImageView.setSummonerProfile(id: Int) {

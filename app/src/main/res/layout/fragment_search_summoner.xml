@@ -25,8 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="@string/search_summoner_hint"
-            bind:setOnQueryTextListener="@{vm.searchSummoner}" />
+            app:queryHint="@string/search_summoner_hint" />
 
         <TextView
             android:id="@+id/recent_summoner"

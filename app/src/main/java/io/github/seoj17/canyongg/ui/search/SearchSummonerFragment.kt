@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -47,6 +48,20 @@ class SearchSummonerFragment : Fragment() {
                         )
                     )
                 }
+
+            searchBar.isSubmitButtonEnabled = true
+            searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let {
+                        viewModel.validSearch(it)
+                    }
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return true
+                }
+            })
 
             viewModel.searchResult.observe(viewLifecycleOwner) { summoner ->
                 summoner?.let {

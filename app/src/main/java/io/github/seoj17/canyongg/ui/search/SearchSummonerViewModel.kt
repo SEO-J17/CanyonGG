@@ -42,7 +42,7 @@ class SearchSummonerViewModel @Inject constructor(
     private val _errorEvent = MutableLiveData<Event<Boolean>>()
     val errorEvent: LiveData<Event<Boolean>> = _errorEvent
 
-    val searchSummoner = { name: String ->
+    fun validSearch(name: String) {
         viewModelScope.launch {
             getUserInfoUseCase(name)?.let { summoner ->
                 _searchResult.value = summoner
