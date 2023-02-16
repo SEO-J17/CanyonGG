@@ -34,6 +34,10 @@ class MatchesRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getMatchInfo(matchId: String): MatchInfo {
+        return MatchInfo(matchRemoteService.getMatchInfo(matchId))
+    }
+
     companion object {
         private const val NETWORK_PAGE_SIZE = 20
     }

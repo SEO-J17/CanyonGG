@@ -1,10 +1,13 @@
 package io.github.seoj17.canyongg.ui.model
 
+import android.annotation.SuppressLint
+import androidx.recyclerview.widget.DiffUtil
 import io.github.seoj17.canyongg.data.remote.response.match.Challenges
 import io.github.seoj17.canyongg.data.remote.response.match.Perks
 import io.github.seoj17.canyongg.domain.model.DomainSummonerMatchInfo
 
 data class ParticipantsMatches(
+    val rank: String,
     val assists: Int,
     val baronKills: Int,
     val challenges: Challenges,
@@ -25,6 +28,11 @@ data class ParticipantsMatches(
     val item5: Int,
     val item6: Int,
     val kills: Int,
+    val kda: Double,
+    val firstSpell: String,
+    val secondSpell: String,
+    val mainPerk: String,
+    val subPerk: String,
     val largestMultiKill: Int,
     val participantId: Int,
     val perks: Perks,
@@ -41,6 +49,7 @@ data class ParticipantsMatches(
     val totalDamageDealtToChampions: Int,
     val totalDamageShieldedOnTeammates: Int,
     val totalDamageTaken: Int,
+    val totalMinionsKilled: Int,
     val visionScore: Int,
     val visionWardsBoughtInGame: Int,
     val wardsKilled: Int,
@@ -48,8 +57,26 @@ data class ParticipantsMatches(
     val win: Boolean
 ) {
     companion object {
-        operator fun invoke(domain: DomainSummonerMatchInfo): ParticipantsMatches {
+        val diffUtil = object : DiffUtil.ItemCallback<ParticipantsMatches>() {
+            override fun areItemsTheSame(
+                oldItem: ParticipantsMatches,
+                newItem: ParticipantsMatches,
+            ): Boolean {
+                return oldItem.summonerId == newItem.summonerId
+            }
+
+            @SuppressLint("DiffUtilEquals")
+            override fun areContentsTheSame(
+                oldItem: ParticipantsMatches,
+                newItem: ParticipantsMatches,
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
+
+        operator fun invoke(domain: DomainSummonerMatchInfo, rank: String): ParticipantsMatches {
             return ParticipantsMatches(
+                rank = rank,
                 assists = domain.assists,
                 baronKills = domain.baronKills,
                 challenges = domain.challenges,
@@ -70,6 +97,11 @@ data class ParticipantsMatches(
                 item5 = domain.item5,
                 item6 = domain.item6,
                 kills = domain.kills,
+                kda = domain.kda,
+                firstSpell = domain.firstSpell,
+                secondSpell = domain.secondSpell,
+                mainPerk = domain.mainPerk,
+                subPerk = domain.subPerk,
                 largestMultiKill = domain.largestMultiKill,
                 participantId = domain.participantId,
                 perks = domain.perks,
@@ -86,6 +118,7 @@ data class ParticipantsMatches(
                 totalDamageDealtToChampions = domain.totalDamageDealtToChampions,
                 totalDamageShieldedOnTeammates = domain.totalDamageShieldedOnTeammates,
                 totalDamageTaken = domain.totalDamageTaken,
+                totalMinionsKilled = domain.totalMinionsKilled,
                 visionScore = domain.visionScore,
                 visionWardsBoughtInGame = domain.visionWardsBoughtInGame,
                 wardsKilled = domain.wardsKilled,
@@ -94,9 +127,12 @@ data class ParticipantsMatches(
             )
         }
 
-        operator fun invoke(domain: List<DomainSummonerMatchInfo>): List<ParticipantsMatches> {
+        operator fun invoke(
+            domain: List<DomainSummonerMatchInfo>,
+            rank: String
+        ): List<ParticipantsMatches> {
             return domain.map {
-                invoke(it)
+                invoke(it, rank)
             }
         }
     }

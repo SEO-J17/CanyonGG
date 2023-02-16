@@ -55,7 +55,7 @@ class SummonerRecordViewModel @Inject constructor(
                     _summonerTier.value = "${summonerTier.tier} ${summonerTier.rank}"
                 }
 
-                val matches = ParticipantsMatches(getSummonerUseCase(summonerInfo.puuid))
+                val matches = ParticipantsMatches(getSummonerUseCase(summonerInfo.puuid), "")
                 if (matches.isNotEmpty()) {
                     calcSummonerInfo(matches)
                 }

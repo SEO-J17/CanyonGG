@@ -22,7 +22,7 @@ class GetSummonerUseCase @Inject constructor(
                         it.puuid == puuid
                     }
                     ?.let {
-                        myInfoList.add(DomainSummonerMatchInfo(it))
+                        myInfoList.add(DomainSummonerMatchInfo(it, "", "", "", ""))
                     }
             }
         return myInfoList

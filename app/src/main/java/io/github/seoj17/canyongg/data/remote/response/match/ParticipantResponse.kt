@@ -75,6 +75,7 @@ data class ParticipantResponse(
     val totalDamageDealtToChampions: Int,
     val totalDamageShieldedOnTeammates: Int,
     val totalDamageTaken: Int,
+    val totalMinionsKilled: Int,
     val tripleKills: Int,
     val turretKills: Int,
     val turretTakedowns: Int,

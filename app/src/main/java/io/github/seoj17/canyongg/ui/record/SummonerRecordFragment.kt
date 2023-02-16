@@ -34,13 +34,15 @@ class SummonerRecordFragment : Fragment() {
         with(binding) {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
-            summonerHistoryView.adapter = RecordListAdapter { matchId ->
-
+            summonerHistoryView.adapter = RecordListAdapter { id ->
+                navigator.navigate(
+                    SummonerRecordFragmentDirections.actionSearchResultToDetailMatch(id)
+                )
             }
 
             binding.temp.setOnClickListener {
                 navigator.navigate(
-                    SummonerRecordFragmentDirections.actionSearchResultToDetailMatch()
+                    SummonerRecordFragmentDirections.actionSearchResultToDetailMatch("")
                 )
             }
         }

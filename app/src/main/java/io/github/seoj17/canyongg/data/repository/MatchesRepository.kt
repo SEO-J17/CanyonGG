@@ -8,4 +8,5 @@ interface MatchesRepository {
     fun getMatches(puuid: String): Pager<Int, DataMatches>
     suspend fun getMatchId(puuid: String, startIndex: Int = 0): List<String>
     suspend fun getMatchInfo(puuid: String, startIndex: Int = 0): List<MatchInfo>
+    suspend fun getMatchInfo(matchId: String): MatchInfo
 }

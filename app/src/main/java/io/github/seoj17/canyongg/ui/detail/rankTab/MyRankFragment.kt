@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.ui.detail
+package io.github.seoj17.canyongg.ui.detail.rankTab
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,6 +20,12 @@ class MyRankFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = MyRankFragment()
+        fun newInstance(matchId: String): MyRankFragment {
+            return MyRankFragment().apply {
+                arguments = Bundle().apply {
+                    putString("matchId", matchId)
+                }
+            }
+        }
     }
 }

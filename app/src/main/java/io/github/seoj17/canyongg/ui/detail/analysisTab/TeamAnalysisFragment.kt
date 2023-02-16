@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.ui.detail
+package io.github.seoj17.canyongg.ui.detail.analysisTab
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,6 +20,12 @@ class TeamAnalysisFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = TeamAnalysisFragment()
+        fun newInstance(matchId: String): TeamAnalysisFragment {
+            return TeamAnalysisFragment().apply {
+                arguments = Bundle().apply {
+                    putString("matchId", matchId)
+                }
+            }
+        }
     }
 }

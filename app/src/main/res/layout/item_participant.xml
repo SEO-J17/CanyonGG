@@ -62,13 +62,24 @@
         tools:src="@drawable/emblem_bronze" />
 
     <TextView
+        android:id="@+id/summoner_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="15"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/kill"
+        app:layout_constraintStart_toEndOf="@id/main_rune"
+        app:layout_constraintTop_toTopOf="@id/main_rune"
+        tools:text="Hide on bush" />
+
+    <TextView
         android:id="@+id/kill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/match_kda"
-        app:layout_constraintStart_toEndOf="@id/main_rune"
-        app:layout_constraintTop_toTopOf="@id/main_rune"
+        app:layout_constraintBottom_toBottomOf="@id/sub_rune"
+        app:layout_constraintStart_toEndOf="@id/sub_rune"
+        app:layout_constraintTop_toBottomOf="@id/summoner_name"
         tools:text="18 /" />
 
     <TextView
@@ -96,18 +107,28 @@
         android:id="@+id/match_kda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/sub_rune"
-        app:layout_constraintStart_toStartOf="@id/kill"
-        app:layout_constraintTop_toBottomOf="@id/kill"
+        android:textSize="11sp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/assist"
+        app:layout_constraintStart_toEndOf="@+id/assist"
         tools:text="3.35 : 1" />
+
+    <ImageView
+        android:id="@+id/item_7"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/summoner_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/summoner_name"
+        tools:src="@drawable/emblem_challenger" />
 
     <ImageView
         android:id="@+id/item_6"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/assist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/assist"
+        app:layout_constraintBottom_toBottomOf="@id/item_7"
+        app:layout_constraintEnd_toStartOf="@id/item_7"
+        app:layout_constraintTop_toTopOf="@id/item_7"
         tools:src="@drawable/emblem_challenger" />
 
     <ImageView
@@ -159,9 +180,9 @@
         android:id="@+id/cs_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/match_kda"
+        app:layout_constraintBottom_toBottomOf="@id/death"
         app:layout_constraintStart_toStartOf="@id/item_1"
-        app:layout_constraintTop_toTopOf="@id/match_kda"
+        app:layout_constraintTop_toTopOf="@id/death"
         tools:text="CS: 123" />
 
     <ProgressBar
