@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
-import com.bumptech.glide.Glide
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.ViewMostChampBinding
 import io.github.seoj17.canyongg.ui.model.ChampInfo
+import io.github.seoj17.canyongg.utils.setChampion
 
 @BindingMethods(
     value = [
@@ -46,12 +46,8 @@ class MostChampView @JvmOverloads constructor(
         }
 
     private fun setChampThumbnail(champ: CharSequence?) {
-        val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/"
         champ?.let {
-            Glide
-                .with(binding.champ.context)
-                .load("${imgUrl}${champ}.png")
-                .into(binding.champ)
+            binding.champ.setChampion(champ.toString())
         }
     }
 

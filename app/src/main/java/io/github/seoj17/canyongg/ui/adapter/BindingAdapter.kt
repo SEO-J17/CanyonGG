@@ -5,6 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import io.github.seoj17.canyongg.contract.UrlContract
 import io.github.seoj17.canyongg.domain.model.DomainMatches
 import io.github.seoj17.canyongg.domain.model.DomainRecentSummoner
 import io.github.seoj17.canyongg.ui.detail.summaryTab.LoseParticipantsListAdapter
@@ -20,19 +21,17 @@ import kotlinx.coroutines.launch
 
 @BindingAdapter("bind:summonerProfile")
 fun ImageView.setSummonerProfile(id: Int) {
-    val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.3.1/img/profileicon/"
     Glide
         .with(this.context)
-        .load("${imgUrl}${id}.png")
+        .load(String.format(UrlContract.PROFILE_ICON_URL, id))
         .into(this)
 }
 
 @BindingAdapter("bind:summonerRankEmblem")
 fun ImageView.setSummonerRankEmblem(tier: String) {
-    val rank = tier.rankEmblemResId()
     Glide
         .with(this.context)
-        .load(rank)
+        .load(tier.rankEmblemResId())
         .into(this)
 }
 

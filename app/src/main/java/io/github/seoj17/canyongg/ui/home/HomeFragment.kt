@@ -1,11 +1,9 @@
 package io.github.seoj17.canyongg.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,17 +19,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var navigator: NavController
-    private lateinit var callback: OnBackPressedCallback
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                requireActivity().finish()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +45,7 @@ class HomeFragment : Fragment() {
             tab2.setClickListener {
                 view.findNavController().navigate(R.id.action_global_search_navigation)
             }
-            
+
             detailMyInfo.setOnClickListener {
                 view.findNavController()
                     .navigate(
@@ -72,8 +59,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        callback.remove()
+    override fun onDestroy() {
+        super.onDestroy()
+        requireActivity().finish()
     }
 }

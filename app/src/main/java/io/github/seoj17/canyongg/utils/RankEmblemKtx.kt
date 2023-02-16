@@ -1,8 +1,9 @@
 package io.github.seoj17.canyongg.utils
 
+import androidx.annotation.DrawableRes
 import io.github.seoj17.canyongg.R
 
-
+@DrawableRes
 fun String.rankEmblemResId(): Int? {
     val emblemMap = mapOf(
         "CHALLENGER" to R.drawable.emblem_challenger,

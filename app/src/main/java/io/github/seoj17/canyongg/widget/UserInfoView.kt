@@ -8,6 +8,7 @@ import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
 import io.github.seoj17.canyongg.R
+import io.github.seoj17.canyongg.contract.UrlContract
 import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.databinding.ViewUserInfoBinding
 import io.github.seoj17.canyongg.ui.model.UserRecord
@@ -57,10 +58,9 @@ class UserInfoView @JvmOverloads constructor(
         }
 
     private fun setUserThumbnail(imgId: Int?) {
-        val imgUrl = "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/"
         Glide
             .with(binding.mainUserThumbNail.context)
-            .load("${imgUrl}${imgId}.png")
+            .load(String.format(UrlContract.PROFILE_ICON_URL, imgId))
             .into(binding.mainUserThumbNail)
     }
 

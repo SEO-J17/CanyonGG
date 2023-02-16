@@ -19,7 +19,7 @@ class MatchesRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
-                MatchPagingSource(matchRemoteService, puuid)
+                MatchPagingSource(matchRemoteService, puuid, NETWORK_PAGE_SIZE)
             }
         )
     }

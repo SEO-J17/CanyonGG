@@ -16,11 +16,7 @@ class SearchSummonerListAdapter(
     override fun onBindViewHolder(holder: SearchSummonerListViewHolder, position: Int) {
         val summoner = getItem(position) ?: return
         with(holder) {
-            bind(summoner)
-
-            getDeleteButton().setOnClickListener {
-                deleteClickListener(summoner.name)
-            }
+            bind(summoner, deleteClickListener)
 
             itemView.setOnClickListener {
                 itemClickListener(summoner.name, summoner.puuid)

@@ -8,11 +8,12 @@ import io.github.seoj17.canyongg.data.remote.MatchesService
 class MatchPagingSource(
     private val matchRemoteService: MatchesService,
     private val summonerPuuid: String,
+    private val networkPageSize: Int,
 ) : PagingSource<Int, DataMatches>() {
     override fun getRefreshKey(state: PagingState<Int, DataMatches>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
-            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(20)
-                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(20)
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(networkPageSize)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(networkPageSize)
         }
     }
 
@@ -25,8 +26,8 @@ class MatchPagingSource(
 
         return LoadResult.Page(
             data = DataMatches(matchInfo, summonerPuuid),
-            prevKey = if (startId == STARTING_ID) null else startId - 20,
-            nextKey = if (matchesIds.size < params.loadSize) null else startId + 20
+            prevKey = if (startId == STARTING_ID) null else startId - networkPageSize,
+            nextKey = if (matchesIds.size < params.loadSize) null else startId + networkPageSize
         )
     }
 

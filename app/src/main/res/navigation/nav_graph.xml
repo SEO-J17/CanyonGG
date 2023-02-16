@@ -36,8 +36,7 @@
         </fragment>
         <action
             android:id="@+id/action_global_search_navigation"
-            app:destination="@id/search_navigation">
-        </action>
+            app:destination="@id/search_navigation" />
     </navigation>
     <navigation
         android:id="@+id/search_navigation"
@@ -56,14 +55,14 @@
                 app:destination="@id/search_result" />
             <argument
                 android:name="summonerName"
+                android:defaultValue=""
                 app:argType="string"
-                app:nullable="true"
-                android:defaultValue="" />
+                app:nullable="true" />
             <argument
                 android:name="summonerPuuid"
+                android:defaultValue=""
                 app:argType="string"
-                app:nullable="true"
-                android:defaultValue="" />
+                app:nullable="true" />
         </fragment>
         <fragment
             android:id="@+id/search_result"
@@ -99,9 +98,6 @@
                 android:name="matchId"
                 app:argType="string" />
         </fragment>
-        <action
-            android:id="@+id/action_global_search_result4"
-            app:destination="@id/search_result" />
     </navigation>
     <navigation
         android:id="@+id/settings_navigation"

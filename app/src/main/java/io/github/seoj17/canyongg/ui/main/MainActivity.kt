@@ -23,9 +23,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavBar.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            val id = destination.id
             binding.bottomNavBar.visibility =
-                if (id == R.id.search_result || id == R.id.detail_match) {
+                if (destination.label.toString() == "SummonerRecordFragment"
+                    || destination.label.toString() == "DetailMatchFragment"
+                ) {
                     View.GONE
                 } else {
                     View.VISIBLE
