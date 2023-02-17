@@ -51,8 +51,23 @@ class HomeFragment : Fragment() {
                     .navigate(
                         R.id.action_global_search_navigation,
                         bundleOf(
-                            "summonerName" to viewModel.userInfo.value?.name,
-                            "summonerPuuid" to viewModel.userInfo.value?.puuid,
+                            NAME_KEY to viewModel.userInfo.value?.name,
+                            PUUID_KEY to viewModel.userInfo.value?.puuid,
+                        )
+                    )
+            }
+
+            bookMarkList.adapter = BookmarkListAdapter(
+                { deleteName ->
+                    viewModel.removeBookmark(deleteName)
+                }
+            ) { name, puuid ->
+                view.findNavController()
+                    .navigate(
+                        R.id.action_global_search_navigation,
+                        bundleOf(
+                            NAME_KEY to name,
+                            PUUID_KEY to puuid,
                         )
                     )
             }
@@ -62,5 +77,10 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         requireActivity().finish()
+    }
+
+    companion object {
+        private const val NAME_KEY = "summonerName"
+        private const val PUUID_KEY = "summonerPuuid"
     }
 }

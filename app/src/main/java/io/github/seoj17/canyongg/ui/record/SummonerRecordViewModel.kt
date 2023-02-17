@@ -9,12 +9,17 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.Summoner
+import io.github.seoj17.canyongg.domain.AddBookmarkSummoner
+import io.github.seoj17.canyongg.domain.CheckBookmarkedSummonerUseCase
+import io.github.seoj17.canyongg.domain.DeleteBookmarkSummonerUseCase
 import io.github.seoj17.canyongg.domain.GetSummonerHistoryUseCase
 import io.github.seoj17.canyongg.domain.GetSummonerUseCase
 import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetUserTierUseCase
+import io.github.seoj17.canyongg.domain.model.DomainBookmarkSummoner
 import io.github.seoj17.canyongg.ui.model.ParticipantsMatches
 import io.github.seoj17.canyongg.ui.model.SummonerRecord
+import io.github.seoj17.canyongg.utils.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,6 +30,9 @@ class SummonerRecordViewModel @Inject constructor(
     private val getUserTierUseCase: GetUserTierUseCase,
     private val getSummonerUseCase: GetSummonerUseCase,
     private val getSummonerHistoryUseCase: GetSummonerHistoryUseCase,
+    private val addBookmarkSummoner: AddBookmarkSummoner,
+    private val deleteBookmarkSummoner: DeleteBookmarkSummonerUseCase,
+    private val checkBookmarkedSummoner: CheckBookmarkedSummonerUseCase,
 ) : ViewModel() {
 
     private val summonerName =
@@ -47,8 +55,18 @@ class SummonerRecordViewModel @Inject constructor(
             .asLiveData()
             .cachedIn(viewModelScope)
 
+    private val _bookmarkedSummoner = MutableLiveData<Boolean>()
+    val bookmarkedSummoner: LiveData<Boolean> = _bookmarkedSummoner
+
+    private val _addBookmarkEvent = MutableLiveData<Event<Boolean>>()
+    val addBookmarkEvent: LiveData<Event<Boolean>> = _addBookmarkEvent
+
+    private val _deleteBookmarkEvent = MutableLiveData<Event<Boolean>>()
+    val deleteBookmarkEvent: LiveData<Event<Boolean>> = _deleteBookmarkEvent
+
     init {
         viewModelScope.launch {
+            _bookmarkedSummoner.value = checkBookmarkedSummoner(summonerPuuid)
             getUserInfoUseCase(summonerName)?.let { summonerInfo ->
                 _summonerInfo.value = summonerInfo
                 getUserTierUseCase(summonerInfo.id)?.let { summonerTier ->
@@ -85,6 +103,28 @@ class SummonerRecordViewModel @Inject constructor(
             5 -> "펜타 킬"
             else -> ""
         }
+    }
+
+    fun addBookmark() {
+        val summoner = _summonerInfo.value!!
+        viewModelScope.launch {
+            addBookmarkSummoner(
+                DomainBookmarkSummoner(
+                    summonerPuuid = summoner.puuid,
+                    summonerName = summoner.name,
+                    summonerLevel = summoner.summonerLevel,
+                    summonerIcon = summoner.profileIconId,
+                )
+            )
+        }
+        _addBookmarkEvent.value = Event(true)
+    }
+
+    fun deleteBookmark() {
+        viewModelScope.launch {
+            deleteBookmarkSummoner(summonerName)
+        }
+        _deleteBookmarkEvent.value = Event(true)
     }
 }
 

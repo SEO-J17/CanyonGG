@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.seoj17.canyongg.data.local.RecentSearchDao
+import io.github.seoj17.canyongg.data.local.SummonerBookmarkDao
 import io.github.seoj17.canyongg.data.local.SummonerDatabase
 import javax.inject.Singleton
 
@@ -28,5 +29,11 @@ object DatabaseModule {
     @Provides
     fun provideRecentSearchDao(database: SummonerDatabase): RecentSearchDao {
         return database.recentSearchDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideSummonerBookmarkDao(database: SummonerDatabase): SummonerBookmarkDao {
+        return database.summonerBookmarkDao()
     }
 }

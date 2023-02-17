@@ -4,10 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.MainMyInfo
 import io.github.seoj17.canyongg.data.model.Summoner
+import io.github.seoj17.canyongg.domain.DeleteBookmarkSummonerUseCase
+import io.github.seoj17.canyongg.domain.GetBookmarkSummonerUseCase
 import io.github.seoj17.canyongg.domain.GetMyMatchUseCase
 import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetUserTierUseCase
@@ -22,6 +25,8 @@ class HomeViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserTierUseCase: GetUserTierUseCase,
     private val getMyMatchUseCase: GetMyMatchUseCase,
+    private val getBookmarkSummoner: GetBookmarkSummonerUseCase,
+    private val deleteBookmarkSummoner: DeleteBookmarkSummonerUseCase,
 ) : ViewModel() {
 
     private val summonerName =
@@ -38,6 +43,8 @@ class HomeViewModel @Inject constructor(
 
     private val _mostChampList = MutableLiveData<List<ChampInfo>>()
     val mostChampList: LiveData<List<ChampInfo>> = _mostChampList
+
+    val bookmarkSummoners = getBookmarkSummoner().asLiveData()
 
     init {
         if (summonerName.isNotBlank()) {
@@ -111,6 +118,12 @@ class HomeViewModel @Inject constructor(
             infoList.add(ChampInfo(champ, winRate, kda))
         }
         _mostChampList.value = infoList
+    }
+
+    fun removeBookmark(name: String) {
+        viewModelScope.launch {
+            deleteBookmarkSummoner(name)
+        }
     }
 }
 

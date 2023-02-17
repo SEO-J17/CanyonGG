@@ -10,6 +10,8 @@ import io.github.seoj17.canyongg.data.repository.MatchesRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerRepository
 import io.github.seoj17.canyongg.data.repository.SummonerRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.DataCenterRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.SummonerBookmarkRepository
+import io.github.seoj17.canyongg.data.repository.SummonerBookmarkRepositoryImpl
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -22,4 +24,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindDataCenterRepository(dataCenterRepositoryImpl: DataCenterRepositoryImpl): DataCenterRepository
+
+    @Binds
+    abstract fun bindSummonerBookmarkRepository(summonerBookmarkRepositoryImpl: SummonerBookmarkRepositoryImpl): SummonerBookmarkRepository
 }

@@ -43,5 +43,7 @@
     <string name="summoner_kda">"%.2f : 1"</string>
     <string name="summoner_kill_cs">"CS : %d"</string>
     <string name="detail_my_info_label">자세히 보기</string>
+    <string name="add_bookmark_message">즐겨찾기에 등록 되었습니다!</string>
+    <string name="delete_bookmark_message">즐겨찾기에 해제 되었습니다!</string>
 
 </resources>

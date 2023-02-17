@@ -86,9 +86,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:visibility="@{vm.bookmarkSummoners.size == 0 ? View.VISIBLE : View.GONE}"
                 bind:buttonName="@{@string/book_mark_tab_btn_text}"
                 bind:emptyContent="@{@string/book_mark_label_content}"
                 bind:emptyTitle="@{@string/bookmark_label}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/bookmark_label"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:visibility="@{vm.bookmarkSummoners.size == 0 ? View.GONE : View.VISIBLE}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/book_mark_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:visibility="@{vm.bookmarkSummoners.size == 0 ? View.GONE : View.VISIBLE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:bookmarkSummonersList="@{vm.bookmarkSummoners}"
+                tools:listitem="@layout/item_bookmark_summoner" />
 
             <io.github.seoj17.canyongg.widget.EmptyView
                 android:id="@+id/tab3"
