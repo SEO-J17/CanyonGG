@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.ActivityMainBinding
+import io.github.seoj17.canyongg.worker.DataFetchWorker
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -17,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val host = supportFragmentManager.findFragmentById(binding.container.id) as NavHostFragment
         val navController = host.navController
         binding.bottomNavBar.setupWithNavController(navController)
@@ -32,5 +33,11 @@ class MainActivity : AppCompatActivity() {
                     View.VISIBLE
                 }
         }
+        workFetchData()
+    }
+
+    private fun workFetchData() {
+        val request = OneTimeWorkRequestBuilder<DataFetchWorker>().build()
+        WorkManager.getInstance(this).enqueue(request)
     }
 }
