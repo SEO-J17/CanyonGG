@@ -9,9 +9,8 @@ import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.contract.UrlContract
-import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.databinding.ViewUserInfoBinding
-import io.github.seoj17.canyongg.ui.model.UserRecord
+import io.github.seoj17.canyongg.ui.model.MyUserInfo
 
 @BindingMethods(
     value = [
@@ -19,16 +18,6 @@ import io.github.seoj17.canyongg.ui.model.UserRecord
             type = UserInfoView::class,
             attribute = "userInfo",
             method = "setUserInfo"
-        ),
-        BindingMethod(
-            type = UserInfoView::class,
-            attribute = "userTier",
-            method = "setUserTier"
-        ),
-        BindingMethod(
-            type = UserInfoView::class,
-            attribute = "userRecord",
-            method = "setUserRecord"
         ),
     ]
 )
@@ -38,15 +27,20 @@ class UserInfoView @JvmOverloads constructor(
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attributeSet, defStyleAttr) {
-    private val binding =
-        ViewUserInfoBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding = ViewUserInfoBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var userInfo: Summoner? = null
+    var userInfo: MyUserInfo? = null
         set(value) {
             value?.let {
-                userProfileId = it.profileIconId
-                userLevel = it.summonerLevel
+                userProfileId = it.profile
+                userLevel = it.level
                 userName = it.name
+                userMatches = it.wholeMatch
+                userWin = it.win
+                userLose = it.lose
+                userWinRate = it.winRate
+                userTier = it.tier
+                userKda = it.kda
             }
             field = value
         }
@@ -58,8 +52,7 @@ class UserInfoView @JvmOverloads constructor(
         }
 
     private fun setUserThumbnail(imgId: Int?) {
-        Glide
-            .with(binding.mainUserThumbNail.context)
+        Glide.with(binding.mainUserThumbNail.context)
             .load(String.format(UrlContract.PROFILE_ICON_URL, imgId))
             .into(binding.mainUserThumbNail)
     }
@@ -80,18 +73,6 @@ class UserInfoView @JvmOverloads constructor(
     var userTier: CharSequence = ""
         set(value) {
             binding.mainUserTier.text = value
-            field = value
-        }
-
-    var userRecord: UserRecord? = null
-        set(value) {
-            value?.let {
-                userMatches = it.wholeMatch
-                userWin = it.winCount
-                userLose = it.loseCount
-                userWinRate = it.winRate
-                userKda = it.kda
-            }
             field = value
         }
 
@@ -124,4 +105,14 @@ class UserInfoView @JvmOverloads constructor(
             binding.userKda.text = resources.getString(R.string.user_view_kda, value)
             field = value
         }
+
+    fun setClickListener(onClick: () -> Unit) {
+        binding.userInfoDelete.setOnClickListener {
+            onClick()
+        }
+
+        binding.mainUserRefresh.setOnClickListener {
+            onClick()
+        }
+    }
 }

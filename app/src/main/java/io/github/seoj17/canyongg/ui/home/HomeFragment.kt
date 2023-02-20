@@ -46,6 +46,10 @@ class HomeFragment : Fragment() {
                 view.findNavController().navigate(R.id.action_global_search_navigation)
             }
 
+            summonerTab.setClickListener {
+                viewModel.removeMyInfo()
+            }
+
             detailMyInfo.setOnClickListener {
                 view.findNavController()
                     .navigate(

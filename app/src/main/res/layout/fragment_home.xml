@@ -29,16 +29,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{vm.userInfo != null ? View.VISIBLE : View.GONE}"
-                bind:userInfo="@{vm.userInfo}"
-                bind:userRecord="@{vm.userRecord}"
-                bind:userTier="@{vm.userTier}" />
+                bind:userInfo="@{vm.userInfo}" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:visibility="@{vm.mostChampList != null ? View.VISIBLE : View.GONE}">
+                android:orientation="horizontal">
 
                 <io.github.seoj17.canyongg.widget.MostChampView
                     android:id="@+id/most_champ_1"
@@ -46,21 +43,24 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="20dp"
-                    bind:champInfo="@{vm.mostChampList.get(0)}" />
+                    android:visibility="@{vm.firstMostChamp == null ? View.GONE : View.VISIBLE}"
+                    bind:champInfo="@{vm.firstMostChamp}" />
 
                 <io.github.seoj17.canyongg.widget.MostChampView
                     android:id="@+id/most_champ_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    bind:champInfo="@{vm.mostChampList.get(1)}" />
+                    android:visibility="@{vm.secondMostChamp == null ? View.GONE : View.VISIBLE}"
+                    bind:champInfo="@{vm.secondMostChamp}" />
 
                 <io.github.seoj17.canyongg.widget.MostChampView
                     android:id="@+id/most_champ_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    bind:champInfo="@{vm.mostChampList.get(2)}" />
+                    android:visibility="@{vm.thirdMostChamp == null ? View.GONE : View.VISIBLE}"
+                    bind:champInfo="@{vm.thirdMostChamp}" />
             </LinearLayout>
 
             <Button
@@ -70,7 +70,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:text="@string/detail_my_info_label"
-                android:visibility="@{vm.mostChampList != null ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{vm.mostChampsInfo != null ? View.VISIBLE : View.GONE}" />
 
             <io.github.seoj17.canyongg.widget.EmptyView
                 android:id="@+id/tab1"

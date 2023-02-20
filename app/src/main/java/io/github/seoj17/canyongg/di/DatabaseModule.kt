@@ -8,6 +8,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.seoj17.canyongg.data.local.ChampionsDao
+import io.github.seoj17.canyongg.data.local.MyMostChampDao
+import io.github.seoj17.canyongg.data.local.MyUserInfoDao
 import io.github.seoj17.canyongg.data.local.PerksDao
 import io.github.seoj17.canyongg.data.local.RecentSearchDao
 import io.github.seoj17.canyongg.data.local.SummonerBookmarkDao
@@ -49,5 +51,17 @@ object DatabaseModule {
     @Provides
     fun providePerksDao(database: SummonerDatabase): PerksDao {
         return database.perksDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideMyUserInfoDao(database: SummonerDatabase): MyUserInfoDao {
+        return database.MyUserInfoDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideMyMostChampDao(database: SummonerDatabase): MyMostChampDao {
+        return database.myMostChampDao()
     }
 }

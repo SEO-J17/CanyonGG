@@ -12,6 +12,8 @@ import io.github.seoj17.canyongg.data.repository.MatchesRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerRepository
 import io.github.seoj17.canyongg.data.repository.SummonerRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.DataCenterRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.MyUserRepository
+import io.github.seoj17.canyongg.data.repository.MyUserRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.PerksRepository
 import io.github.seoj17.canyongg.data.repository.PerksRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerBookmarkRepository
@@ -37,5 +39,8 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindPerksRepository(perksRepositoryImpl: PerksRepositoryImpl): PerksRepository
+
+    @Binds
+    abstract fun bindMyUserRepository(myUserRepositoryImpl: MyUserRepositoryImpl): MyUserRepository
 
 }

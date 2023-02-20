@@ -8,7 +8,9 @@ import androidx.room.RoomDatabase
         RecentSearchNameEntity::class,
         SummonerBookmarkEntity::class,
         ChampionsEntity::class,
-        PerksEntity::class
+        PerksEntity::class,
+        MyUserInfoEntity::class,
+        MyMostChampEntity::class,
     ],
     version = 1
 )
@@ -17,4 +19,6 @@ abstract class SummonerDatabase : RoomDatabase() {
     abstract fun summonerBookmarkDao(): SummonerBookmarkDao
     abstract fun championsDao(): ChampionsDao
     abstract fun perksDao(): PerksDao
+    abstract fun MyUserInfoDao(): MyUserInfoDao
+    abstract fun myMostChampDao(): MyMostChampDao
 }
