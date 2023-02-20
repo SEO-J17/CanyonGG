@@ -70,7 +70,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:text="@string/detail_my_info_label"
-                android:visibility="@{vm.mostChampsInfo != null ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{vm.firstMostChamp != null ? View.VISIBLE : View.GONE}" />
 
             <io.github.seoj17.canyongg.widget.EmptyView
                 android:id="@+id/tab1"

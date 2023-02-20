@@ -23,9 +23,9 @@ import io.github.seoj17.canyongg.domain.GetUserTierUseCase
 import io.github.seoj17.canyongg.domain.model.DomainMostChamps
 import io.github.seoj17.canyongg.domain.model.DomainMyUserInfo
 import io.github.seoj17.canyongg.ui.model.ChampInfo
-import io.github.seoj17.canyongg.ui.model.MostChamps
 import io.github.seoj17.canyongg.ui.model.MyUserInfo
 import io.github.seoj17.canyongg.ui.model.UserRecord
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -47,19 +47,9 @@ class HomeViewModel @Inject constructor(
     private val summonerName =
         HomeFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerName ?: ""
 
-    val userInfo =
-        getMyUserInfoUseCase()
-            .asLiveData()
-            .map { domain ->
-                domain?.let { it -> MyUserInfo(it) }
-            }
-
-    val mostChampsInfo =
-        getMostChampUseCase()
-            .asLiveData()
-            .map { domain ->
-                domain?.let { it -> MostChamps(it) }
-            }
+    val userInfo = getMyUserInfoUseCase().asLiveData().map { domain ->
+        domain?.let { it -> MyUserInfo(it) }
+    }
 
     private val _firstMostChamp = MutableLiveData<ChampInfo>()
     val firstMostChamp: LiveData<ChampInfo> = _firstMostChamp
@@ -116,17 +106,11 @@ class HomeViewModel @Inject constructor(
         val champDeathMap = mutableMapOf<String, Int>()
         //가장 많이 플레이 한 챔피언 3개
         val mostChampsMap =
-            myMatches
-                .filter { !it.gameEndedInEarlySurrender }
-                .groupingBy { it.championName }
-                .eachCount()
-                .toList()
-                .sortedWith(
+            myMatches.filter { !it.gameEndedInEarlySurrender }.groupingBy { it.championName }
+                .eachCount().toList().sortedWith(
                     // 챔피언 별로 몇번 플레이 했는지 내림차순 정렬, 플레이 수가 같으면 이름 정렬.
                     compareBy({ -it.second }, { it.first })
-                )
-                .take(3)
-                .toMap()
+                ).take(3).toMap()
 
         myMatches.forEach { myInfo ->
             val name = myInfo.championName
@@ -174,20 +158,16 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun insertMostChampLocal(summoner: Summoner, champs: List<ChampInfo>) {
-        addMyMostChamps(
-            DomainMostChamps(
-                userPuuid = summoner.puuid,
-                firstMostChamp = champs[0].name,
-                secondMostChamp = champs[1].name,
-                thirdMostChamp = champs[2].name,
-                firstChampKda = champs[0].kda,
-                secondChampKda = champs[1].kda,
-                thirdChampKda = champs[2].kda,
-                firstChampWinRate = champs[0].winRate,
-                secondChampWinRate = champs[1].winRate,
-                thirdChampWinRate = champs[2].winRate,
+        champs.forEach {
+            addMyMostChamps(
+                DomainMostChamps(
+                    champName = it.name,
+                    userPuuid = summoner.puuid,
+                    champKda = it.kda,
+                    champWinRate = it.winRate,
+                )
             )
-        )
+        }
     }
 
     fun removeBookmark(name: String) {
@@ -202,26 +182,40 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun refreshMyInfo() {
+        viewModelScope.launch {
+            fetchData()
+            updateMostChamps()
+        }
+    }
+
     private fun updateMostChamps() {
-        mostChampsInfo.value?.let {
-            _firstMostChamp.value =
-                ChampInfo(
-                    name = it.firstMostChamp,
-                    kda = it.firstChampKda,
-                    winRate = it.firstChampWinRate,
-                )
-            _secondMostChamp.value =
-                ChampInfo(
-                    name = it.secondMostChamp,
-                    kda = it.secondChampKda,
-                    winRate = it.secondChampWinRate,
-                )
-            _thirdMostChamp.value =
-                ChampInfo(
-                    name = it.thirdMostChamp,
-                    kda = it.thirdChampKda,
-                    winRate = it.thirdChampWinRate,
-                )
+        getMostChampUseCase().map {
+            it.forEachIndexed { index, data ->
+                when (index) {
+                    0 -> {
+                        _firstMostChamp.value = ChampInfo(
+                            name = data.champName,
+                            kda = data.champKda,
+                            winRate = data.champWinRate,
+                        )
+                    }
+                    1 -> {
+                        _secondMostChamp.value = ChampInfo(
+                            name = data.champName,
+                            kda = data.champKda,
+                            winRate = data.champWinRate,
+                        )
+                    }
+                    2 -> {
+                        _thirdMostChamp.value = ChampInfo(
+                            name = data.champName,
+                            kda = data.champKda,
+                            winRate = data.champWinRate,
+                        )
+                    }
+                }
+            }
         }
     }
 }

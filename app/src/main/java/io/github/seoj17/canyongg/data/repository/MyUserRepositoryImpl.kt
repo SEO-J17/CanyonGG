@@ -15,7 +15,7 @@ class MyUserRepositoryImpl @Inject constructor(
         return myUserLocalService.getMyUserInfo()
     }
 
-    override fun getMyMostChamps(): Flow<MyMostChampEntity?> {
+    override fun getMyMostChamps(): Flow<List<MyMostChampEntity>> {
         return mostChampLocalService.getMostChamps()
     }
 

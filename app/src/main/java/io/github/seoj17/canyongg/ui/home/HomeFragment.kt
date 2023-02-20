@@ -50,6 +50,10 @@ class HomeFragment : Fragment() {
                 viewModel.removeMyInfo()
             }
 
+            summonerTab.setRefreshClickListener {
+                viewModel.refreshMyInfo()
+            }
+
             detailMyInfo.setOnClickListener {
                 view.findNavController()
                     .navigate(

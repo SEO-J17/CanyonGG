@@ -3,31 +3,25 @@ package io.github.seoj17.canyongg.domain.model
 import io.github.seoj17.canyongg.data.local.MyMostChampEntity
 
 data class DomainMostChamps(
+    val champName: String,
     val userPuuid: String,
-    val firstMostChamp: String,
-    val secondMostChamp: String,
-    val thirdMostChamp: String,
-    val firstChampKda: Double,
-    val secondChampKda: Double,
-    val thirdChampKda: Double,
-    val firstChampWinRate: Int,
-    val secondChampWinRate: Int,
-    val thirdChampWinRate: Int,
+    val champKda: Double,
+    val champWinRate: Int,
 ) {
     companion object {
         operator fun invoke(entity: MyMostChampEntity): DomainMostChamps {
             return DomainMostChamps(
+                champName = entity.champName,
                 userPuuid = entity.userPuuid,
-                firstMostChamp = entity.firstMostChamp,
-                secondMostChamp = entity.secondMostChamp,
-                thirdMostChamp = entity.thirdMostChamp,
-                firstChampKda = entity.firstChampKda,
-                secondChampKda = entity.secondChampKda,
-                thirdChampKda = entity.thirdChampKda,
-                firstChampWinRate = entity.firstChampWinRate,
-                secondChampWinRate = entity.secondChampWinRate,
-                thirdChampWinRate = entity.thirdChampWinRate,
+                champKda = entity.champKda,
+                champWinRate = entity.champWinRate,
             )
+        }
+
+        operator fun invoke(entities: List<MyMostChampEntity>): List<DomainMostChamps> {
+            return entities.map {
+                invoke(it)
+            }
         }
     }
 }

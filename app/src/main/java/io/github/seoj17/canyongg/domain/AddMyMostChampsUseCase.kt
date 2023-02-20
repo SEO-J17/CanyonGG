@@ -13,16 +13,10 @@ class AddMyMostChampsUseCase @Inject constructor(
     suspend operator fun invoke(domain: DomainMostChamps) {
         repository.addMostChamps(
             MyMostChampEntity(
+                champName = domain.champName,
                 userPuuid = domain.userPuuid,
-                firstMostChamp = domain.firstMostChamp,
-                secondMostChamp = domain.secondMostChamp,
-                thirdMostChamp = domain.thirdMostChamp,
-                firstChampKda = domain.firstChampKda,
-                secondChampKda = domain.secondChampKda,
-                thirdChampKda = domain.thirdChampKda,
-                firstChampWinRate = domain.firstChampWinRate,
-                secondChampWinRate = domain.secondChampWinRate,
-                thirdChampWinRate = domain.thirdChampWinRate,
+                champKda = domain.champKda,
+                champWinRate = domain.champWinRate,
             )
         )
     }

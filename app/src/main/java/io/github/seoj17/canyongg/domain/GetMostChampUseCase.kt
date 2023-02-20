@@ -11,11 +11,10 @@ import javax.inject.Inject
 class GetMostChampUseCase @Inject constructor(
     private val repository: MyUserRepository
 ) {
-    operator fun invoke(): Flow<DomainMostChamps?> {
+    operator fun invoke(): Flow<List<DomainMostChamps>> {
         return repository
-            .getMyMostChamps()
-            .map { entity ->
-                entity?.let { it -> DomainMostChamps(it) }
+            .getMyMostChamps().map {
+                DomainMostChamps(it)
             }
     }
 }

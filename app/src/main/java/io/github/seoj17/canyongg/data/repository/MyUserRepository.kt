@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MyUserRepository {
     fun getMyUserInfo(): Flow<MyUserInfoEntity?>
-    fun getMyMostChamps(): Flow<MyMostChampEntity?>
+    fun getMyMostChamps(): Flow<List<MyMostChampEntity>>
     suspend fun addMyUserInfo(entity: MyUserInfoEntity)
     suspend fun addMostChamps(entity: MyMostChampEntity)
     suspend fun deleteMostChamps()

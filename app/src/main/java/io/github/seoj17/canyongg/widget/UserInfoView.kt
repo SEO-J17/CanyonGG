@@ -110,7 +110,9 @@ class UserInfoView @JvmOverloads constructor(
         binding.userInfoDelete.setOnClickListener {
             onClick()
         }
+    }
 
+    fun setRefreshClickListener(onClick: () -> Unit) {
         binding.mainUserRefresh.setOnClickListener {
             onClick()
         }

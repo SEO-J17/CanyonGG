@@ -21,5 +21,5 @@ interface MyMostChampDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM my_user_most_champ")
-    fun getMostChamps(): Flow<MyMostChampEntity?>
+    fun getMostChamps(): Flow<List<MyMostChampEntity>>
 }
