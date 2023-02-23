@@ -9,12 +9,13 @@ import io.github.seoj17.canyongg.ui.detail.summaryTab.MatchSummaryFragment
 class ViewPagerAdapter(
     fragment: Fragment,
     matchId: String,
+    puuid: String,
 ) : FragmentStateAdapter(fragment) {
 
     private val tabs: List<Fragment> = listOf(
-        MatchSummaryFragment.newInstance(matchId),
-        TeamAnalysisFragment.newInstance(matchId),
-        MyRankFragment.newInstance(matchId)
+        MatchSummaryFragment.newInstance(matchId, puuid),
+        TeamAnalysisFragment.newInstance(matchId, puuid),
+        MyRankFragment.newInstance(matchId, puuid)
     )
 
     override fun getItemCount(): Int = tabs.size

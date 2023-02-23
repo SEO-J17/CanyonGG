@@ -27,7 +27,7 @@ class DetailMatchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            tabPager.adapter = ViewPagerAdapter(this@DetailMatchFragment, args.matchId)
+            tabPager.adapter = ViewPagerAdapter(this@DetailMatchFragment, args.matchId, args.puuid)
             TabLayoutMediator(tabLayout, tabPager) { tab, position ->
                 when (position) {
                     0 -> tab.text = getString(R.string.match_summary)

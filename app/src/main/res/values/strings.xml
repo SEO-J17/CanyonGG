@@ -47,5 +47,14 @@
     <string name="delete_bookmark_message">즐겨찾기에 해제 되었습니다!</string>
     <string name="victory_team_label">승리팀</string>
     <string name="lose_team_label">패배팀</string>
+    <string name="rank_user_name_title">"%s 님의 지표별 순위 입니다."</string>
+    <string name="rank_dealt">"챔피언에게 가한 피해량"</string>
+    <string name="rank_damaged">"챔피언에게 받은 피해량"</string>
+    <string name="rank_kill">"챔피언 처치"</string>
+    <string name="rank_death">"데스"</string>
+    <string name="rank_assist">"챔피언 처치 도움"</string>
+    <string name="rank_minions">"CS"</string>
+    <string name="rank_spent_gold">"소비한 골드"</string>
+    <string name="rank_placed_ward">"설치한 와드"</string>
 
 </resources>

@@ -5,7 +5,7 @@ import androidx.paging.PagingDataAdapter
 import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
 
 class RecordListAdapter(
-    private val itemClickListener: (String) -> Unit,
+    private val itemClickListener: (String, String) -> Unit,
 ) : PagingDataAdapter<SummonerMatchRecord, RecordListViewHolder>(SummonerMatchRecord.diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = RecordListViewHolder(parent)
@@ -15,7 +15,7 @@ class RecordListAdapter(
         with(holder) {
             bind(summonerInfo)
             itemView.setOnClickListener {
-                itemClickListener(summonerInfo.matchId)
+                itemClickListener(summonerInfo.matchId, summonerInfo.puuid)
             }
         }
     }

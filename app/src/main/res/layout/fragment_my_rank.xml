@@ -1,15 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="개인별 순위"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="vm"
+            type="io.github.seoj17.canyongg.ui.detail.rankTab.MyRankViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_name_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@{@string/rank_user_name_title(vm.summonerName)}"
+                android:textSize="20sp"
+                tools:text="Hide 님의 지표별 순위 입니다." />
+
+            <io.github.seoj17.canyongg.widget.MyRankView
+                android:id="@+id/dealt_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:rankInfo="@{vm.dealtRank}"
+                bind:rankTitle="@{@string/rank_dealt}" />
+
+            <io.github.seoj17.canyongg.widget.MyRankView
+                android:id="@+id/damaged_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:rankInfo="@{vm.damagedRank}"
+                bind:rankTitle="@{@string/rank_damaged}" />
+
+            <io.github.seoj17.canyongg.widget.MyRankView
+                android:id="@+id/kill_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:rankInfo="@{vm.killRank}"
+                bind:rankTitle="@{@string/rank_kill}" />
+
+            <io.github.seoj17.canyongg.widget.MyRankView
+                android:id="@+id/death_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:rankInfo="@{vm.deathRank}"
+                bind:rankTitle="@{@string/rank_death}" />
+
+            <io.github.seoj17.canyongg.widget.MyRankView
+                android:id="@+id/assist_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:rankInfo="@{vm.assistRank}"
+                bind:rankTitle="@{@string/rank_assist}" />
+
+            <io.github.seoj17.canyongg.widget.MyRankView
+                android:id="@+id/minion_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:rankInfo="@{vm.minionRank}"
+                bind:rankTitle="@{@string/rank_minions}" />
+
+            <io.github.seoj17.canyongg.widget.MyRankView
+                android:id="@+id/gold_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:rankInfo="@{vm.spentGoldRank}"
+                bind:rankTitle="@{@string/rank_spent_gold}" />
+
+            <io.github.seoj17.canyongg.widget.MyRankView
+                android:id="@+id/ward_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:rankInfo="@{vm.placedWardRank}"
+                bind:rankTitle="@{@string/rank_placed_ward}" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

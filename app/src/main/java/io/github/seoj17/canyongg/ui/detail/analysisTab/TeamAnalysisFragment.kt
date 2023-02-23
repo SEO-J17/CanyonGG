@@ -44,10 +44,11 @@ class TeamAnalysisFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(matchId: String): TeamAnalysisFragment {
+        fun newInstance(matchId: String, puuid: String): TeamAnalysisFragment {
             return TeamAnalysisFragment().apply {
                 arguments = Bundle().apply {
                     putString("matchId", matchId)
+                    putString("puuid", puuid)
                 }
             }
         }

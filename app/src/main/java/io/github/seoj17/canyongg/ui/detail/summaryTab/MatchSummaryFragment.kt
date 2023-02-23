@@ -39,7 +39,6 @@ class MatchSummaryFragment : Fragment() {
                         puuid,
                     )
                 )
-
             }
 
             loseList.adapter = LoseParticipantsListAdapter { name, puuid ->
@@ -54,10 +53,11 @@ class MatchSummaryFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(matchId: String): MatchSummaryFragment {
+        fun newInstance(matchId: String, puuid: String): MatchSummaryFragment {
             return MatchSummaryFragment().apply {
                 arguments = Bundle().apply {
                     putString("matchId", matchId)
+                    putString("puuid", puuid)
                 }
             }
         }
