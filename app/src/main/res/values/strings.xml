@@ -45,5 +45,7 @@
     <string name="detail_my_info_label">자세히 보기</string>
     <string name="add_bookmark_message">즐겨찾기에 등록 되었습니다!</string>
     <string name="delete_bookmark_message">즐겨찾기에 해제 되었습니다!</string>
+    <string name="victory_team_label">승리팀</string>
+    <string name="lose_team_label">패배팀</string>
 
 </resources>

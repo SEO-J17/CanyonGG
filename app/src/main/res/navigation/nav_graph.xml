@@ -42,6 +42,71 @@
         android:id="@+id/search_navigation"
         app:startDestination="@id/search_summoner">
 
+        <fragment
+            android:id="@+id/teamAnalysisFragment"
+            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.TeamAnalysisFragment"
+            android:label="TeamAnalysisFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/team_ward"
+            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamWardFragment"
+            android:label="TeamWardFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/my_rank"
+            android:name="io.github.seoj17.canyongg.ui.detail.rankTab.MyRankFragment"
+            android:label="MyRankFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string"
+                android:defaultValue='""' />
+        </fragment>
+        <fragment
+            android:id="@+id/team_dealt"
+            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamDealtFragment"
+            android:label="TeamDealtFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/team_gold"
+            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamGoldFragment"
+            android:label="TeamGoldFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/team_kill"
+            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamKillsFragment"
+            android:label="TeamKillsFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/team_minion"
+            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamMinionFragment"
+            android:label="TeamMinionFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/team_damage"
+            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamDamagedFragment"
+            android:label="TeamDamagedFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string" />
+        </fragment>
         <argument
             android:name="summonerName"
             app:argType="string" />

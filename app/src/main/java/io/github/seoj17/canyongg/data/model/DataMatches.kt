@@ -1,82 +1,82 @@
 package io.github.seoj17.canyongg.data.model
 
-import io.github.seoj17.canyongg.data.remote.response.match.Challenges
-import io.github.seoj17.canyongg.data.remote.response.match.MatchInfoResponse
-import io.github.seoj17.canyongg.data.remote.response.match.ParticipantResponse
-import io.github.seoj17.canyongg.data.remote.response.match.Perks
+import io.github.seoj17.canyongg.data.local.MatchInfoEntity
 
 class DataMatches(
     val puuid: String,
     val matchId: String,
-    val participants: List<String>,
-    val championId: Int,
-    val champLevel: Int,
-    val challenges: Challenges,
-    val gameMode: String,
-    val gameCreation: Long,
-    val kills: Int,
-    val assists: Int,
-    val deaths: Int,
-    val item0: Int,
+    val summonerName: String,
+    val championName: String,
+    val championLevel: Int,
+    val kda: Double,
+    val win: Boolean,
+    val mainRune: Int,
+    val subRune: Int,
+    val firstSpell: Int,
+    val secondSpell: Int,
+    val kill: Int,
+    val death: Int,
+    val assist: Int,
     val item1: Int,
     val item2: Int,
     val item3: Int,
     val item4: Int,
     val item5: Int,
     val item6: Int,
-    val kda: Double,
-    val perks: Perks,
-    val summoner1Id: Int,
-    val summoner2Id: Int,
+    val item7: Int,
+    val totalDealt: Int,
+    val totalDamaged: Int,
+    val wardPlaced: Int,
+    val minions: Int,
     val largestMultiKill: Int,
-    val timePlayed: Int,
-    val win: Boolean
+    val gameMode: String,
+    val spentGold: Int,
+    val playedDate: Long,
+    val playedTime: Int,
 ) {
     companion object {
         operator fun invoke(
-            matchInfo: MatchInfoResponse,
-            participant: ParticipantResponse,
-            summonerPuuid: String
+            entity: MatchInfoEntity,
         ): DataMatches {
             return DataMatches(
-                puuid = summonerPuuid,
-                matchId = matchInfo.metadata.matchId,
-                participants = matchInfo.metadata.participants,
-                championId = participant.championId,
-                champLevel = participant.champLevel,
-                challenges = participant.challenges,
-                gameMode = matchInfo.info.gameMode,
-                gameCreation = matchInfo.info.gameCreation,
-                kills = participant.kills,
-                assists = participant.kills,
-                deaths = participant.deaths,
-                item0 = participant.item0,
-                item1 = participant.item1,
-                item2 = participant.item2,
-                item3 = participant.item3,
-                item4 = participant.item4,
-                item5 = participant.item5,
-                item6 = participant.item6,
-                perks = participant.perks,
-                kda = participant.challenges.kda,
-                summoner1Id = participant.summoner1Id,
-                summoner2Id = participant.summoner2Id,
-                largestMultiKill = participant.largestMultiKill,
-                timePlayed = participant.timePlayed,
-                win = participant.win,
+                puuid = entity.puuid,
+                matchId = entity.matchId,
+                summonerName = entity.summonerName,
+                championLevel = entity.championLevel,
+                championName = entity.championName,
+                kda = entity.kda,
+                win = entity.win,
+                mainRune = entity.mainRune,
+                subRune = entity.subRune,
+                firstSpell = entity.firstSpell,
+                secondSpell = entity.secondSpell,
+                kill = entity.kill,
+                death = entity.death,
+                assist = entity.assist,
+                item1 = entity.item1,
+                item2 = entity.item2,
+                item3 = entity.item3,
+                item4 = entity.item4,
+                item5 = entity.item5,
+                item6 = entity.item6,
+                item7 = entity.item7,
+                totalDealt = entity.totalDealt,
+                totalDamaged = entity.totalDamaged,
+                wardPlaced = entity.wardPlaced,
+                minions = entity.minions,
+                largestMultiKill = entity.largestMultiKill,
+                gameMode = entity.gameMode,
+                spentGold = entity.spentGold,
+                playedDate = entity.playedDate,
+                playedTime = entity.playedTime,
             )
         }
 
         operator fun invoke(
-            matchInfo: List<MatchInfoResponse>,
-            summonerPuuid: String
+            matchInfo: List<MatchInfoEntity>,
         ): List<DataMatches> {
             return matchInfo.map {
-                invoke(
-                    it,
-                    it.info.participants.find { it.puuid == summonerPuuid }!!,
-                    summonerPuuid,
-                )
+                invoke(it)
             }
         }
     }

@@ -2,11 +2,11 @@ package io.github.seoj17.canyongg.ui.detail.summaryTab
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import io.github.seoj17.canyongg.ui.model.ParticipantsMatches
+import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
 
 class LoseParticipantsListAdapter(
     private val itemClickListener: (String, String) -> Unit,
-) : ListAdapter<ParticipantsMatches, LoseParticipantsListViewHolder>(ParticipantsMatches.diffUtil) {
+) : ListAdapter<SummonerMatchRecord, LoseParticipantsListViewHolder>(SummonerMatchRecord.diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         LoseParticipantsListViewHolder(parent)
 

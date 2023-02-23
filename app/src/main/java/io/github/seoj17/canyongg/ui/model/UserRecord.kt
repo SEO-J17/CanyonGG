@@ -6,4 +6,5 @@ data class UserRecord(
     val loseCount: Int = 0,
     val winRate: Int = 0,
     val kda: Double = 0.0,
+    val largestKill: Int = 0
 )

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamDamagedViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/win_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/victory_team_label"
+            app:layout_constraintEnd_toStartOf="@+id/lose_team"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/win_team_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.winTeamScore}"
+            app:layout_constraintEnd_toEndOf="@id/win_team"
+            app:layout_constraintStart_toStartOf="@id/win_team"
+            app:layout_constraintTop_toBottomOf="@id/win_team"
+            tools:text="23" />
+
+        <TextView
+            android:id="@+id/lose_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lose_team_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/win_team"
+            app:layout_constraintTop_toTopOf="@+id/win_team" />
+
+        <TextView
+            android:id="@+id/lose_team_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.loseTeamScore}"
+            app:layout_constraintEnd_toEndOf="@id/lose_team"
+            app:layout_constraintStart_toStartOf="@id/lose_team"
+            app:layout_constraintTop_toBottomOf="@id/lose_team"
+            tools:text="23" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/team_damaged_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/win_team_value"
+            bind:teamAnalysisList="@{vm.matchInfo}"
+            tools:listitem="@layout/item_team_analysis" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

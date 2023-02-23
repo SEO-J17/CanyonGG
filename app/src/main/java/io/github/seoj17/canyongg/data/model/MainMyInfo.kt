@@ -10,6 +10,7 @@ data class MainMyInfo(
     val puuid: String,
     val gameEndedInEarlySurrender: Boolean,
     val win: Boolean,
+    val largestKill: Int,
 ) {
     companion object {
         operator fun invoke(response: ParticipantResponse): MainMyInfo {
@@ -21,6 +22,7 @@ data class MainMyInfo(
                 puuid = response.puuid,
                 gameEndedInEarlySurrender = response.gameEndedInEarlySurrender,
                 win = response.win,
+                largestKill = response.largestMultiKill
             )
         }
 

@@ -3,7 +3,6 @@ package io.github.seoj17.canyongg.domain
 import androidx.paging.PagingData
 import androidx.paging.map
 import dagger.Reusable
-import io.github.seoj17.canyongg.data.repository.ChampionsRepository
 import io.github.seoj17.canyongg.data.repository.DataCenterRepository
 import io.github.seoj17.canyongg.data.repository.MatchesRepository
 import io.github.seoj17.canyongg.data.repository.PerksRepository
@@ -17,7 +16,6 @@ class GetSummonerHistoryUseCase @Inject constructor(
     private val matchRepository: MatchesRepository,
     private val dataCenterRepository: DataCenterRepository,
     private val perksRepository: PerksRepository,
-    private val championsRepository: ChampionsRepository,
 ) {
     operator fun invoke(puuid: String): Flow<PagingData<DomainMatches>> {
         return matchRepository
@@ -27,11 +25,10 @@ class GetSummonerHistoryUseCase @Inject constructor(
                 paging.map { data ->
                     DomainMatches(
                         data,
-                        dataCenterRepository.getSpell(data.summoner1Id),
-                        dataCenterRepository.getSpell(data.summoner2Id),
-                        perksRepository.getPerk(data.perks.styles[0].selections[0].perk).imgUrl,
-                        perksRepository.getPerk(data.perks.styles[1].style).imgUrl,
-                        championsRepository.getChampion(data.championId),
+                        dataCenterRepository.getSpell(data.firstSpell),
+                        dataCenterRepository.getSpell(data.secondSpell),
+                        perksRepository.getPerk(data.mainRune).imgUrl,
+                        perksRepository.getPerk(data.subRune).imgUrl,
                     )
                 }
             }

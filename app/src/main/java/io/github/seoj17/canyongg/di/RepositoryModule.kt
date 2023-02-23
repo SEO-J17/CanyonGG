@@ -18,6 +18,8 @@ import io.github.seoj17.canyongg.data.repository.PerksRepository
 import io.github.seoj17.canyongg.data.repository.PerksRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerBookmarkRepository
 import io.github.seoj17.canyongg.data.repository.SummonerBookmarkRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.SummonerInfoRepository
+import io.github.seoj17.canyongg.data.repository.SummonerInfoRepositoryImpl
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -43,4 +45,6 @@ abstract class RepositoryModule {
     @Binds
     abstract fun bindMyUserRepository(myUserRepositoryImpl: MyUserRepositoryImpl): MyUserRepository
 
+    @Binds
+    abstract fun bindSummonerInfoRepository(summonerInfoRepositoryImpl: SummonerInfoRepositoryImpl): SummonerInfoRepository
 }

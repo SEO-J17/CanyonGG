@@ -2,11 +2,14 @@ package io.github.seoj17.canyongg.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import io.github.seoj17.canyongg.data.local.MatchInfoDao
+import io.github.seoj17.canyongg.data.local.MatchInfoEntity
 import io.github.seoj17.canyongg.data.model.DataMatches
 import io.github.seoj17.canyongg.data.remote.MatchesService
 
 class MatchPagingSource(
     private val matchRemoteService: MatchesService,
+    private val localService: MatchInfoDao,
     private val summonerPuuid: String,
     private val networkPageSize: Int,
 ) : PagingSource<Int, DataMatches>() {
@@ -24,8 +27,19 @@ class MatchPagingSource(
             matchRemoteService.getMatchInfo(it)
         }
 
+        matchInfo.forEach { response ->
+            localService.insert(
+                MatchInfoEntity(
+                    response.info.participants,
+                    response.info.gameCreation,
+                    response.metadata.matchId,
+                    response.info.gameMode,
+                )
+            )
+        }
+
         return LoadResult.Page(
-            data = DataMatches(matchInfo, summonerPuuid),
+            data = DataMatches(localService.getMyMatchInfo(summonerPuuid)),
             prevKey = if (startId == STARTING_ID) null else startId - networkPageSize,
             nextKey = if (matchesIds.size < params.loadSize) null else startId + networkPageSize
         )

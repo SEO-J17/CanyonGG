@@ -9,10 +9,10 @@ import io.github.seoj17.canyongg.contract.UrlContract
 import io.github.seoj17.canyongg.domain.model.DomainBookmarkSummoner
 import io.github.seoj17.canyongg.domain.model.DomainMatches
 import io.github.seoj17.canyongg.domain.model.DomainRecentSummoner
+import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.AnalysisPageListAdapter
 import io.github.seoj17.canyongg.ui.detail.summaryTab.LoseParticipantsListAdapter
 import io.github.seoj17.canyongg.ui.detail.summaryTab.WinParticipantsListAdapter
 import io.github.seoj17.canyongg.ui.home.BookmarkListAdapter
-import io.github.seoj17.canyongg.ui.model.ParticipantsMatches
 import io.github.seoj17.canyongg.ui.model.RecentSummoners
 import io.github.seoj17.canyongg.ui.model.SummonerBookmark
 import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
@@ -31,10 +31,10 @@ fun ImageView.setSummonerProfile(id: Int) {
 }
 
 @BindingAdapter("bind:summonerRankEmblem")
-fun ImageView.setSummonerRankEmblem(tier: String) {
+fun ImageView.setSummonerRankEmblem(tier: String?) {
     Glide
         .with(this.context)
-        .load(tier.rankEmblemResId())
+        .load(tier?.rankEmblemResId())
         .into(this)
 }
 
@@ -52,13 +52,13 @@ fun RecyclerView.setRecentSummonerList(recentSummoners: List<DomainRecentSummone
 }
 
 @BindingAdapter("bind:winParticipantsList")
-fun RecyclerView.setWinParticipantsList(participantsMatches: List<ParticipantsMatches>?) {
+fun RecyclerView.setWinParticipantsList(participantsMatches: List<SummonerMatchRecord>?) {
     val list = participantsMatches ?: emptyList()
     (adapter as? WinParticipantsListAdapter)?.submitList(list)
 }
 
 @BindingAdapter("bind:loseParticipantsList")
-fun RecyclerView.setLoseParticipantsList(participantsMatches: List<ParticipantsMatches>?) {
+fun RecyclerView.setLoseParticipantsList(participantsMatches: List<SummonerMatchRecord>?) {
     val list = participantsMatches ?: emptyList()
     (adapter as? LoseParticipantsListAdapter)?.submitList(list)
 }
@@ -67,4 +67,10 @@ fun RecyclerView.setLoseParticipantsList(participantsMatches: List<ParticipantsM
 fun RecyclerView.setBookmarkSummonersList(bookmarkSummoners: List<DomainBookmarkSummoner>?) {
     val list = bookmarkSummoners ?: emptyList()
     (adapter as? BookmarkListAdapter)?.submitList(SummonerBookmark(list))
+}
+
+@BindingAdapter("bind:teamAnalysisList")
+fun RecyclerView.setTeamAnalysisList(summonerRecord: List<SummonerMatchRecord>?) {
+    val list = summonerRecord ?: emptyList()
+    (adapter as? AnalysisPageListAdapter)?.submitList(list)
 }

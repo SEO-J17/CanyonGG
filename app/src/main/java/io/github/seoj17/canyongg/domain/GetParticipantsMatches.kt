@@ -4,7 +4,7 @@ import dagger.Reusable
 import io.github.seoj17.canyongg.data.repository.DataCenterRepository
 import io.github.seoj17.canyongg.data.repository.MatchesRepository
 import io.github.seoj17.canyongg.data.repository.PerksRepository
-import io.github.seoj17.canyongg.domain.model.DomainSummonerMatchInfo
+import io.github.seoj17.canyongg.domain.model.DomainMatches
 import javax.inject.Inject
 
 @Reusable
@@ -13,18 +13,16 @@ class GetParticipantsMatches @Inject constructor(
     private val dataCenterRepository: DataCenterRepository,
     private val perksRepository: PerksRepository,
 ) {
-    suspend operator fun invoke(matchId: String): List<DomainSummonerMatchInfo> {
+    suspend operator fun invoke(matchId: String): List<DomainMatches> {
         return matchRepository
-            .getMatchInfo(matchId)
-            .info
-            .participants
-            .map { response ->
-                DomainSummonerMatchInfo(
-                    response,
-                    dataCenterRepository.getSpell(response.summoner1Id),
-                    dataCenterRepository.getSpell(response.summoner2Id),
-                    perksRepository.getPerk(response.perks.styles[0].selections[0].perk).imgUrl,
-                    perksRepository.getPerk(response.perks.styles[1].style).imgUrl
+            .getParticipantsMatchInfo(matchId)
+            .map { entity ->
+                DomainMatches(
+                    entity,
+                    dataCenterRepository.getSpell(entity.firstSpell),
+                    dataCenterRepository.getSpell(entity.secondSpell),
+                    perksRepository.getPerk(entity.mainRune).imgUrl,
+                    perksRepository.getPerk(entity.subRune).imgUrl,
                 )
             }
     }

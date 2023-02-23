@@ -11,6 +11,8 @@ import androidx.room.RoomDatabase
         PerksEntity::class,
         MyUserInfoEntity::class,
         MyMostChampEntity::class,
+        MatchInfoEntity::class,
+        SummonerInfoEntity::class,
     ],
     version = 1
 )
@@ -21,4 +23,6 @@ abstract class SummonerDatabase : RoomDatabase() {
     abstract fun perksDao(): PerksDao
     abstract fun MyUserInfoDao(): MyUserInfoDao
     abstract fun myMostChampDao(): MyMostChampDao
+    abstract fun matchInfoDao(): MatchInfoDao
+    abstract fun summonerInfoDao(): SummonerInfoDao
 }

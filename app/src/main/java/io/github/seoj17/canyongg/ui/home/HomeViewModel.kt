@@ -12,6 +12,7 @@ import io.github.seoj17.canyongg.data.model.MainMyInfo
 import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.domain.AddMyMostChampsUseCase
 import io.github.seoj17.canyongg.domain.AddMyUserInfoUseCase
+import io.github.seoj17.canyongg.domain.AddSummonerInfoUseCase
 import io.github.seoj17.canyongg.domain.DeleteBookmarkSummonerUseCase
 import io.github.seoj17.canyongg.domain.DeleteMyUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetBookmarkSummonerUseCase
@@ -22,6 +23,7 @@ import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetUserTierUseCase
 import io.github.seoj17.canyongg.domain.model.DomainMostChamps
 import io.github.seoj17.canyongg.domain.model.DomainMyUserInfo
+import io.github.seoj17.canyongg.domain.model.DomainSummonerInfo
 import io.github.seoj17.canyongg.ui.model.ChampInfo
 import io.github.seoj17.canyongg.ui.model.MyUserInfo
 import io.github.seoj17.canyongg.ui.model.UserRecord
@@ -42,6 +44,7 @@ class HomeViewModel @Inject constructor(
     private val addMyUserInfo: AddMyUserInfoUseCase,
     private val addMyMostChamps: AddMyMostChampsUseCase,
     private val deleteMyUserInfo: DeleteMyUserInfoUseCase,
+    private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
 ) : ViewModel() {
 
     private val summonerName =
@@ -96,8 +99,9 @@ class HomeViewModel @Inject constructor(
         val lose = realMatch - win
         val winRate = (win * 100) / realMatch
         val kda = kills / myMatches.sumOf { it.deaths }.toDouble()
+        val mostKill = myMatches.maxOf { it.largestKill }
 
-        return UserRecord(wholeMatch, win, lose, winRate, kda)
+        return UserRecord(wholeMatch, win, lose, winRate, kda, mostKill)
     }
 
     private fun calcMostChampion(myMatches: List<MainMyInfo>): List<ChampInfo> {
@@ -153,6 +157,21 @@ class HomeViewModel @Inject constructor(
                 lose = record.loseCount,
                 winRate = record.winRate,
                 kda = record.kda,
+            )
+        )
+        addSummonerInfoUseCase(
+            DomainSummonerInfo(
+                puuid = summoner.puuid,
+                profile = summoner.profileIconId,
+                level = summoner.summonerLevel,
+                name = summoner.name,
+                tier = tier,
+                wholeMatch = record.wholeMatch,
+                win = record.winCount,
+                lose = record.loseCount,
+                winRate = record.winRate,
+                kda = record.kda,
+                largestKill = record.largestKill,
             )
         )
     }
