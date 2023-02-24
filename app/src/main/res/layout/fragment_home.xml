@@ -13,10 +13,10 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/tab_container"
@@ -132,13 +132,13 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/main_rotation_list_view"
+                android:id="@+id/champ_rotation_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:padding="10dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:rotationChampList="@{vm.rotationChamp}"
                 tools:listitem="@layout/item_rotation" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </layout>

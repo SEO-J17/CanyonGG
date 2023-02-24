@@ -9,4 +9,5 @@ object UrlContract {
     const val ITEM_URL = "$DATA_CENTER_URL/cdn/$CDN_VERSION/img/item/%d.png"
     const val RUNE_URL = "$DATA_CENTER_URL/cdn/img/"
     const val CHAMPION_URL = "$DATA_CENTER_URL/cdn/$CDN_VERSION/img/champion/%s.png"
+    const val ROTATION_CHAMPION_URL = "$DATA_CENTER_URL/cdn/img/champion/loading/%s_0.jpg"
 }

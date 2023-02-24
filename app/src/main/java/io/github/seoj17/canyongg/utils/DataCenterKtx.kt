@@ -31,3 +31,10 @@ fun ImageView.setChampion(champ: String) {
         .load(String.format(UrlContract.CHAMPION_URL, champ))
         .into(this)
 }
+
+fun ImageView.setRotationChampion(champ: String) {
+    Glide
+        .with(this.context)
+        .load(String.format(UrlContract.ROTATION_CHAMPION_URL, champ))
+        .into(this)
+}

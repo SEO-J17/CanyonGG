@@ -1,5 +1,6 @@
 package io.github.seoj17.canyongg.data.remote
 
+import io.github.seoj17.canyongg.data.remote.response.champion.RotationChampResponse
 import io.github.seoj17.canyongg.data.remote.response.summoner.SummonerResponse
 import io.github.seoj17.canyongg.data.remote.response.summoner.TierResponse
 import retrofit2.await
@@ -26,6 +27,18 @@ class SummonerService @Inject constructor(
         }.fold(
             onSuccess = { tierList ->
                 tierList
+            }, onFailure = {
+                emptyList()
+            }
+        )
+    }
+
+    suspend fun getRotationChamps(): List<Int> {
+        return runCatching {
+            responseSummoner.getRotationChampIds().await()
+        }.fold(
+            onSuccess = { response ->
+                response.freeChampionIds
             }, onFailure = {
                 emptyList()
             }

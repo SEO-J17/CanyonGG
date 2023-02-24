@@ -1,6 +1,7 @@
 package io.github.seoj17.canyongg.ui.home
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -15,9 +16,11 @@ import io.github.seoj17.canyongg.domain.AddSummonerInfoUseCase
 import io.github.seoj17.canyongg.domain.DeleteBookmarkSummonerUseCase
 import io.github.seoj17.canyongg.domain.DeleteMyUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetBookmarkSummonerUseCase
+import io.github.seoj17.canyongg.domain.GetChampionName
 import io.github.seoj17.canyongg.domain.GetMostChampUseCase
 import io.github.seoj17.canyongg.domain.GetMyMatchUseCase
 import io.github.seoj17.canyongg.domain.GetMyUserInfoUseCase
+import io.github.seoj17.canyongg.domain.GetRotationChamp
 import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.GetUserTierUseCase
 import io.github.seoj17.canyongg.domain.model.DomainMostChamps
@@ -26,6 +29,7 @@ import io.github.seoj17.canyongg.domain.model.DomainSummonerInfo
 import io.github.seoj17.canyongg.ui.model.ChampInfo
 import io.github.seoj17.canyongg.ui.model.MyUserInfo
 import io.github.seoj17.canyongg.ui.model.UserRecord
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -43,6 +47,8 @@ class HomeViewModel @Inject constructor(
     private val addMyMostChamps: AddMyMostChampsUseCase,
     private val deleteMyUserInfo: DeleteMyUserInfoUseCase,
     private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
+    private val getRotationChamp: GetRotationChamp,
+    private val getChampionName: GetChampionName,
 ) : ViewModel() {
 
     private val summonerName =
@@ -62,9 +68,18 @@ class HomeViewModel @Inject constructor(
 
     val bookmarkSummoners = getBookmarkSummoner().asLiveData()
 
+    private val _rotationChamp = MutableLiveData<List<String>?>()
+    val rotationChamp: LiveData<List<String>?> = _rotationChamp
+
     init {
         if (summonerName.isNotBlank()) {
             fetchData()
+        }
+        viewModelScope.launch {
+            delay(100)
+            val champIds = getRotationChamp()
+            _rotationChamp.value = getChampionName(champIds)
+
         }
     }
 

@@ -35,6 +35,10 @@ class SummonerRepositoryImpl @Inject constructor(
         return localService.getSummoners()
     }
 
+    override suspend fun getRotationChamps(): List<Int> {
+        return remoteService.getRotationChamps()
+    }
+
     override suspend fun deleteRecentSummoner(name: String) {
         return localService.delete(name)
     }

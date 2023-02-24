@@ -13,6 +13,7 @@ import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.AnalysisPageListAda
 import io.github.seoj17.canyongg.ui.detail.summaryTab.LoseParticipantsListAdapter
 import io.github.seoj17.canyongg.ui.detail.summaryTab.WinParticipantsListAdapter
 import io.github.seoj17.canyongg.ui.home.BookmarkListAdapter
+import io.github.seoj17.canyongg.ui.home.RotationChampListAdapter
 import io.github.seoj17.canyongg.ui.model.RecentSummoners
 import io.github.seoj17.canyongg.ui.model.SummonerBookmark
 import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
@@ -73,4 +74,10 @@ fun RecyclerView.setBookmarkSummonersList(bookmarkSummoners: List<DomainBookmark
 fun RecyclerView.setTeamAnalysisList(summonerRecord: List<SummonerMatchRecord>?) {
     val list = summonerRecord ?: emptyList()
     (adapter as? AnalysisPageListAdapter)?.submitList(list)
+}
+
+@BindingAdapter("bind:rotationChampList")
+fun RecyclerView.setRotationChampList(champions: List<String>?) {
+    val championNameList = champions ?: emptyList()
+    (adapter as? RotationChampListAdapter)?.submitList(championNameList)
 }

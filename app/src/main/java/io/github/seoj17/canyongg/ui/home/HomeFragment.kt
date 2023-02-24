@@ -90,6 +90,7 @@ class HomeFragment : Fragment() {
                         )
                     )
             }
+            champRotationListView.adapter = RotationChampListAdapter()
         }
     }
 

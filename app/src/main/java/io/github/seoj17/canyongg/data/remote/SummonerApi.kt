@@ -1,5 +1,6 @@
 package io.github.seoj17.canyongg.data.remote
 
+import io.github.seoj17.canyongg.data.remote.response.champion.RotationChampResponse
 import io.github.seoj17.canyongg.data.remote.response.summoner.SummonerResponse
 import io.github.seoj17.canyongg.data.remote.response.summoner.TierResponse
 import retrofit2.Call
@@ -16,4 +17,7 @@ interface SummonerApi {
     fun getSummonerTier(
         @Path("encryptedSummonerId") summonerId: String
     ): Call<List<TierResponse>>
+
+    @GET("/lol/platform/v3/champion-rotations")
+    fun getRotationChampIds(): Call<RotationChampResponse>
 }
