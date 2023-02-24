@@ -8,7 +8,7 @@ interface MyUserRepository {
     fun getMyUserInfo(): Flow<MyUserInfoEntity?>
     fun getMyMostChamps(): Flow<List<MyMostChampEntity>>
     suspend fun addMyUserInfo(entity: MyUserInfoEntity)
-    suspend fun addMostChamps(entity: MyMostChampEntity)
+    suspend fun addMostChamps(entity: List<MyMostChampEntity>)
     suspend fun deleteMostChamps()
     suspend fun deleteMyUserChamps()
 }

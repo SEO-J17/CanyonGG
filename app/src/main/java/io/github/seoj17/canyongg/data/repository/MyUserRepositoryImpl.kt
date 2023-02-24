@@ -23,7 +23,7 @@ class MyUserRepositoryImpl @Inject constructor(
         myUserLocalService.insert(entity)
     }
 
-    override suspend fun addMostChamps(entity: MyMostChampEntity) {
+    override suspend fun addMostChamps(entity: List<MyMostChampEntity>) {
         mostChampLocalService.insert(entity)
     }
 

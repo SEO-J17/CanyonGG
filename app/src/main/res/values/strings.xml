@@ -56,5 +56,7 @@
     <string name="rank_minions">"CS"</string>
     <string name="rank_spent_gold">"소비한 골드"</string>
     <string name="rank_placed_ward">"설치한 와드"</string>
+    <string name="info_delete_toast">삭제되었습니다.</string>
+    <string name="infro_refresh_toast">새로고침 되었습니다.</string>
 
 </resources>

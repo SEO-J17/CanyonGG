@@ -1,7 +1,6 @@
 package io.github.seoj17.canyongg.ui.home
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -27,7 +26,6 @@ import io.github.seoj17.canyongg.domain.model.DomainSummonerInfo
 import io.github.seoj17.canyongg.ui.model.ChampInfo
 import io.github.seoj17.canyongg.ui.model.MyUserInfo
 import io.github.seoj17.canyongg.ui.model.UserRecord
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -54,19 +52,17 @@ class HomeViewModel @Inject constructor(
         domain?.let { it -> MyUserInfo(it) }
     }
 
-    private val _firstMostChamp = MutableLiveData<ChampInfo>()
-    val firstMostChamp: LiveData<ChampInfo> = _firstMostChamp
+    private val mostChampsInfo = getMostChampUseCase().asLiveData()
 
-    private val _secondMostChamp = MutableLiveData<ChampInfo>()
-    val secondMostChamp: LiveData<ChampInfo> = _secondMostChamp
+    val firstMostChamp: LiveData<ChampInfo?> = setMostChamps(index = 0)
 
-    private val _thirdMostChamp = MutableLiveData<ChampInfo>()
-    val thirdMostChamp: LiveData<ChampInfo> = _thirdMostChamp
+    val secondMostChamp: LiveData<ChampInfo?> = setMostChamps(index = 1)
+
+    val thirdMostChamp: LiveData<ChampInfo?> = setMostChamps(index = 2)
 
     val bookmarkSummoners = getBookmarkSummoner().asLiveData()
 
     init {
-        updateMostChamps()
         if (summonerName.isNotBlank()) {
             fetchData()
         }
@@ -85,7 +81,6 @@ class HomeViewModel @Inject constructor(
                     insertUserInfoLocal(summoner, calcUserInfo(myMatches), tier)
                     insertMostChampLocal(summoner, calcMostChampion(myMatches))
                 }
-                updateMostChamps()
             }
         }
     }
@@ -177,16 +172,16 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun insertMostChampLocal(summoner: Summoner, champs: List<ChampInfo>) {
-        champs.forEach {
-            addMyMostChamps(
+        addMyMostChamps(
+            champs.map {
                 DomainMostChamps(
                     champName = it.name,
                     userPuuid = summoner.puuid,
                     champKda = it.kda,
                     champWinRate = it.winRate,
                 )
-            )
-        }
+            }
+        )
     }
 
     fun removeBookmark(name: String) {
@@ -204,36 +199,19 @@ class HomeViewModel @Inject constructor(
     fun refreshMyInfo() {
         viewModelScope.launch {
             fetchData()
-            updateMostChamps()
         }
     }
 
-    private fun updateMostChamps() {
-        getMostChampUseCase().map {
-            it.forEachIndexed { index, data ->
-                when (index) {
-                    0 -> {
-                        _firstMostChamp.value = ChampInfo(
-                            name = data.champName,
-                            kda = data.champKda,
-                            winRate = data.champWinRate,
-                        )
-                    }
-                    1 -> {
-                        _secondMostChamp.value = ChampInfo(
-                            name = data.champName,
-                            kda = data.champKda,
-                            winRate = data.champWinRate,
-                        )
-                    }
-                    2 -> {
-                        _thirdMostChamp.value = ChampInfo(
-                            name = data.champName,
-                            kda = data.champKda,
-                            winRate = data.champWinRate,
-                        )
-                    }
-                }
+    private fun setMostChamps(index: Int): LiveData<ChampInfo?> {
+        return mostChampsInfo.map {
+            try {
+                ChampInfo(
+                    name = it[index].champName,
+                    kda = it[index].champKda,
+                    winRate = it[index].champWinRate,
+                )
+            } catch (e: IndexOutOfBoundsException) {
+                null
             }
         }
     }

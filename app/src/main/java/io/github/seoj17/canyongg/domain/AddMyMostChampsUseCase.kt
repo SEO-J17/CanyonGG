@@ -10,14 +10,16 @@ import javax.inject.Inject
 class AddMyMostChampsUseCase @Inject constructor(
     private val repository: MyUserRepository
 ) {
-    suspend operator fun invoke(domain: DomainMostChamps) {
+    suspend operator fun invoke(domain: List<DomainMostChamps>) {
         repository.addMostChamps(
-            MyMostChampEntity(
-                champName = domain.champName,
-                userPuuid = domain.userPuuid,
-                champKda = domain.champKda,
-                champWinRate = domain.champWinRate,
-            )
+            domain.map {
+                MyMostChampEntity(
+                    champName = it.champName,
+                    userPuuid = it.userPuuid,
+                    champKda = it.champKda,
+                    champWinRate = it.champWinRate,
+                )
+            }
         )
     }
 }

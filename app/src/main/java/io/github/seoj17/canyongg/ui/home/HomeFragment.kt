@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -48,10 +49,20 @@ class HomeFragment : Fragment() {
 
             summonerTab.setClickListener {
                 viewModel.removeMyInfo()
+                Toast.makeText(
+                    this@HomeFragment.context,
+                    getString(R.string.info_delete_toast),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             summonerTab.setRefreshClickListener {
                 viewModel.refreshMyInfo()
+                Toast.makeText(
+                    this@HomeFragment.context,
+                    getString(R.string.infro_refresh_toast),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             detailMyInfo.setOnClickListener {
