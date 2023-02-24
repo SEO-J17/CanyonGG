@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.FragmentTeamAnalysisBinding
 
 @AndroidEntryPoint
@@ -32,12 +33,12 @@ class TeamAnalysisFragment : Fragment() {
                 AnalysisViewPagerAdapter(this@TeamAnalysisFragment, args.matchId)
             TabLayoutMediator(analysisTabLayout, analysisTabPager) { tab, position ->
                 when (position) {
-                    0 -> tab.text = "챔피언 킬"
-                    1 -> tab.text = "가한 피해량"
-                    2 -> tab.text = "받은 피해량"
-                    3 -> tab.text = "골드"
-                    4 -> tab.text = "미니언"
-                    5 -> tab.text = "와드"
+                    0 -> tab.text = getString(R.string.sub_pager_kill)
+                    1 -> tab.text = getString(R.string.sub_pager_dealt)
+                    2 -> tab.text = getString(R.string.sub_pager_damaged)
+                    3 -> tab.text = getString(R.string.sub_pager_spent_gold)
+                    4 -> tab.text = getString(R.string.sub_pager_minions)
+                    5 -> tab.text = getString(R.string.sub_pager_vision_score)
                 }
             }.attach()
         }

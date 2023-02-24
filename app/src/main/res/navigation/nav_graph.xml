@@ -43,6 +43,14 @@
         app:startDestination="@id/search_summoner">
 
         <fragment
+            android:id="@+id/team_vision_score"
+            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamVisionScoreFragment"
+            android:label="TeamVisionScoreFragment" >
+            <argument
+                android:name="matchId"
+                app:argType="string" />
+        </fragment>
+        <fragment
             android:id="@+id/team_analysis"
             android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.TeamAnalysisFragment"
             android:label="TeamAnalysisFragment" >
@@ -51,14 +59,6 @@
                 app:argType="string" />
             <argument
                 android:name="puuid"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/team_ward"
-            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamWardFragment"
-            android:label="TeamWardFragment" >
-            <argument
-                android:name="matchId"
                 app:argType="string" />
         </fragment>
         <fragment

@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamWardViewModel" />
+            type="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamVisionScoreViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -57,7 +57,7 @@
             tools:text="23" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/team_wards_list"
+            android:id="@+id/team_vision_score_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"

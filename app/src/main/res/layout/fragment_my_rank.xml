@@ -83,11 +83,11 @@
                 bind:rankTitle="@{@string/rank_spent_gold}" />
 
             <io.github.seoj17.canyongg.widget.MyRankView
-                android:id="@+id/ward_tab"
+                android:id="@+id/vision_score_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                bind:rankInfo="@{vm.placedWardRank}"
-                bind:rankTitle="@{@string/rank_placed_ward}" />
+                bind:rankInfo="@{vm.visionScoreRank}"
+                bind:rankTitle="@{@string/rank_vision_score}" />
         </LinearLayout>
     </ScrollView>
 </layout>

@@ -59,13 +59,13 @@ class AnalysisPageListAdapter(
             is TeamWardViewHolder -> {
                 holder.bind(
                     dataSet,
-                    currentList.maxOf { it.wardPlaced }
+                    currentList.maxOf { it.visionScore },
                 )
             }
             is TeamMinionsViewHolder -> {
                 holder.bind(
                     dataSet,
-                    currentList.maxOf { it.minions }
+                    currentList.maxOf { it.minions },
                 )
             }
         }

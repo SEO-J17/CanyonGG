@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.seoj17.canyongg.databinding.FragmentTeamWardBinding
+import io.github.seoj17.canyongg.databinding.FragmentTeamVisionScoreBinding
 
 @AndroidEntryPoint
-class TeamWardFragment : Fragment() {
-    private lateinit var binding: FragmentTeamWardBinding
-    private val viewModel: TeamWardViewModel by viewModels()
+class TeamVisionScoreFragment : Fragment() {
+    private lateinit var binding: FragmentTeamVisionScoreBinding
+    private val viewModel: TeamVisionScoreViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +20,7 @@ class TeamWardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentTeamWardBinding.inflate(layoutInflater, container, false)
+        binding = FragmentTeamVisionScoreBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -29,12 +29,13 @@ class TeamWardFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-            teamWardsList.adapter = AnalysisPageListAdapter(4)
+            teamVisionScoreList.adapter = AnalysisPageListAdapter(4)
         }
     }
+
     companion object {
-        fun newInstance(matchId: String): TeamWardFragment {
-            return TeamWardFragment().apply {
+        fun newInstance(matchId: String): TeamVisionScoreFragment {
+            return TeamVisionScoreFragment().apply {
                 arguments = Bundle().apply {
                     putString("matchId", matchId)
                 }

@@ -7,7 +7,7 @@ import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamDealtFragment
 import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamGoldFragment
 import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamKillsFragment
 import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamMinionFragment
-import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamWardFragment
+import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamVisionScoreFragment
 
 
 class AnalysisViewPagerAdapter(
@@ -21,7 +21,7 @@ class AnalysisViewPagerAdapter(
         TeamDamagedFragment.newInstance(matchId),
         TeamGoldFragment.newInstance(matchId),
         TeamMinionFragment.newInstance(matchId),
-        TeamWardFragment.newInstance(matchId),
+        TeamVisionScoreFragment.newInstance(matchId),
     )
 
     override fun getItemCount(): Int = tabs.size

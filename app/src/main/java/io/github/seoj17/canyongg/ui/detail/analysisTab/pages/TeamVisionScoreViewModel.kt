@@ -12,11 +12,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TeamWardViewModel @Inject constructor(
+class TeamVisionScoreViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getParticipantsMatches: GetParticipantsMatches,
 ) : ViewModel() {
-    private val matchId = TeamWardFragmentArgs.fromSavedStateHandle(savedStateHandle).matchId
+    private val matchId = TeamVisionScoreFragmentArgs.fromSavedStateHandle(savedStateHandle).matchId
 
     private val _matchInfo = MutableLiveData<List<SummonerMatchRecord>>()
     val matchInfo: LiveData<List<SummonerMatchRecord>> = _matchInfo
@@ -35,11 +35,11 @@ class TeamWardViewModel @Inject constructor(
                 _matchInfo.value = matchInfo
                 _winTeamScore.value = matchInfo
                     .filter { it.win }
-                    .sumOf { it.wardPlaced }
+                    .sumOf { it.visionScore }
                     .toString()
                 _loseTeamScore.value = matchInfo
                     .filter { !it.win }
-                    .sumOf { it.wardPlaced }
+                    .sumOf { it.visionScore }
                     .toString()
             }
         }

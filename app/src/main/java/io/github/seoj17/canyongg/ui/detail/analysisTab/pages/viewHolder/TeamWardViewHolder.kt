@@ -14,8 +14,8 @@ class TeamWardViewHolder(
         with(binding) {
             champion.setChampion(data.championName)
             summonerName.text = data.summonerName
-            itemValue.text = data.wardPlaced.toString()
-            valueGraph.progress = data.wardPlaced
+            itemValue.text = data.visionScore.toString()
+            valueGraph.progress = data.visionScore
             valueGraph.max = maxValue
         }
     }

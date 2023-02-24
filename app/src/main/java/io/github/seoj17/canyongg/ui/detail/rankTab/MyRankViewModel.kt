@@ -45,8 +45,8 @@ class MyRankViewModel @Inject constructor(
     private val _spentGoldRank = MutableLiveData<MyRank>()
     val spentGoldRank: LiveData<MyRank> = _spentGoldRank
 
-    private val _placedWardRank = MutableLiveData<MyRank>()
-    val placedWardRank: LiveData<MyRank> = _placedWardRank
+    private val _visionScoreRank = MutableLiveData<MyRank>()
+    val visionScoreRank: LiveData<MyRank> = _visionScoreRank
 
     init {
         viewModelScope.launch {
@@ -98,10 +98,10 @@ class MyRankViewModel @Inject constructor(
                     summonerMatches.find { it.puuid == puuid }?.spentGold,
                 )
 
-            _placedWardRank.value =
+            _visionScoreRank.value =
                 getSummonerRank(
-                    summonerMatches.map { it.wardPlaced }.sortedByDescending { it },
-                    summonerMatches.find { it.puuid == puuid }?.wardPlaced,
+                    summonerMatches.map { it.visionScore }.sortedByDescending { it },
+                    summonerMatches.find { it.puuid == puuid }?.visionScore,
                 )
         }
     }

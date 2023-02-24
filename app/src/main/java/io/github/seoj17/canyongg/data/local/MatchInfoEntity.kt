@@ -53,8 +53,8 @@ data class MatchInfoEntity(
     var totalDealt: Int,
     @ColumnInfo(name = "total_damaged")
     var totalDamaged: Int,
-    @ColumnInfo(name = "ward_placed")
-    var wardPlaced: Int,
+    @ColumnInfo(name = "vision_score")
+    var visionScore: Int,
     @ColumnInfo(name = "minions_kill")
     var minions: Int,
     @ColumnInfo(name = "largest_kill")
@@ -102,7 +102,7 @@ data class MatchInfoEntity(
                 item7 = response.item6,
                 totalDealt = response.totalDamageDealtToChampions,
                 totalDamaged = response.totalDamageTaken,
-                wardPlaced = response.wardsPlaced,
+                visionScore = response.visionScore,
                 minions = response.totalMinionsKilled,
                 largestMultiKill = response.largestMultiKill,
                 gameMode = gameMode,

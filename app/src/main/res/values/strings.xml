@@ -55,8 +55,14 @@
     <string name="rank_assist">"챔피언 처치 도움"</string>
     <string name="rank_minions">"CS"</string>
     <string name="rank_spent_gold">"소비한 골드"</string>
-    <string name="rank_placed_ward">"설치한 와드"</string>
+    <string name="rank_vision_score">"시야 점수"</string>
     <string name="info_delete_toast">삭제되었습니다.</string>
     <string name="infro_refresh_toast">새로고침 되었습니다.</string>
+    <string name="sub_pager_kill">챔피언 킬</string>
+    <string name="sub_pager_dealt">가한 피해량</string>
+    <string name="sub_pager_damaged">받은 피해량</string>
+    <string name="sub_pager_spent_gold">사용한 골드</string>
+    <string name="sub_pager_minions">미니언</string>
+    <string name="sub_pager_vision_score">시야 점수</string>
 
 </resources>
