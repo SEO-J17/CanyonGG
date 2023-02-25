@@ -64,5 +64,9 @@
     <string name="sub_pager_spent_gold">사용한 골드</string>
     <string name="sub_pager_minions">미니언</string>
     <string name="sub_pager_vision_score">시야 점수</string>
+    <string name="setting_cache_key">cache_delete</string>
+    <string name="setting_theme_list_key">theme_list</string>
+    <string name="setting_light_theme_value">light_theme</string>
+    <string name="setting_dark_theme_value">dark_theme</string>
 
 </resources>
