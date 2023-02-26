@@ -2,10 +2,9 @@ package io.github.seoj17.canyongg.data.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 import io.github.seoj17.canyongg.data.remote.response.match.ParticipantResponse
 
-@Entity(tableName = "match_info")
+@Entity(tableName = "match_info", primaryKeys = ["match_id", "summoner_puuid"])
 data class MatchInfoEntity(
     @ColumnInfo(name = "match_id")
     var matchId: String,
@@ -68,9 +67,6 @@ data class MatchInfoEntity(
     @ColumnInfo(name = "play_time")
     var playedTime: Int,
 ) {
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
-
     companion object {
         operator fun invoke(
             response: ParticipantResponse,
