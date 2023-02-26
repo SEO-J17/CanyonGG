@@ -94,11 +94,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().finish()
-    }
-
     companion object {
         private const val NAME_KEY = "summonerName"
         private const val PUUID_KEY = "summonerPuuid"
