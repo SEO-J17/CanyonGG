@@ -14,14 +14,14 @@ data class SummonerBookmark(
         val diffUtil = object : DiffUtil.ItemCallback<SummonerBookmark>() {
             override fun areItemsTheSame(
                 oldItem: SummonerBookmark,
-                newItem: SummonerBookmark
+                newItem: SummonerBookmark,
             ): Boolean {
                 return oldItem.summonerPuuid == newItem.summonerPuuid
             }
 
             override fun areContentsTheSame(
                 oldItem: SummonerBookmark,
-                newItem: SummonerBookmark
+                newItem: SummonerBookmark,
             ): Boolean {
                 return oldItem == newItem
             }

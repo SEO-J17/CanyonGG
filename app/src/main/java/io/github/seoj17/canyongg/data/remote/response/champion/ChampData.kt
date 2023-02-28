@@ -11,5 +11,5 @@ data class ChampData(
     val name: String,
     val partype: String,
     val title: String,
-    val version: String
+    val version: String,
 )

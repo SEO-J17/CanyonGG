@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.domain.model
 
-import io.github.seoj17.canyongg.data.local.RecentSearchNameEntity
+import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchNameEntity
 
 data class DomainRecentSummoner(
     val name: String,

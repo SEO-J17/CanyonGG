@@ -10,19 +10,19 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.MainMyInfo
 import io.github.seoj17.canyongg.data.model.Summoner
-import io.github.seoj17.canyongg.domain.AddMyMostChampsUseCase
-import io.github.seoj17.canyongg.domain.AddMyUserInfoUseCase
-import io.github.seoj17.canyongg.domain.AddSummonerInfoUseCase
-import io.github.seoj17.canyongg.domain.DeleteBookmarkSummonerUseCase
-import io.github.seoj17.canyongg.domain.DeleteMyUserInfoUseCase
-import io.github.seoj17.canyongg.domain.GetBookmarkSummonerUseCase
-import io.github.seoj17.canyongg.domain.GetChampionName
-import io.github.seoj17.canyongg.domain.GetMostChampUseCase
-import io.github.seoj17.canyongg.domain.GetMyMatchUseCase
-import io.github.seoj17.canyongg.domain.GetMyUserInfoUseCase
-import io.github.seoj17.canyongg.domain.GetRotationChamp
-import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
-import io.github.seoj17.canyongg.domain.GetUserTierUseCase
+import io.github.seoj17.canyongg.domain.usecase.champion.AddMyMostChampsUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.AddMyUserInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.bookmark.DeleteBookmarkSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.DeleteMyUserInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.bookmark.GetBookmarkSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.champion.GetChampionNameUseCase
+import io.github.seoj17.canyongg.domain.usecase.champion.GetMostChampUseCase
+import io.github.seoj17.canyongg.domain.usecase.match.GetMyMatchUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetMyUserInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.champion.GetRotationChampUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetUserInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetUserTierUseCase
 import io.github.seoj17.canyongg.domain.model.DomainMostChamps
 import io.github.seoj17.canyongg.domain.model.DomainMyUserInfo
 import io.github.seoj17.canyongg.domain.model.DomainSummonerInfo
@@ -47,8 +47,8 @@ class HomeViewModel @Inject constructor(
     private val addMyMostChamps: AddMyMostChampsUseCase,
     private val deleteMyUserInfo: DeleteMyUserInfoUseCase,
     private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
-    private val getRotationChamp: GetRotationChamp,
-    private val getChampionName: GetChampionName,
+    private val getRotationChamp: GetRotationChampUseCase,
+    private val getChampionName: GetChampionNameUseCase,
 ) : ViewModel() {
 
     private val summonerName =

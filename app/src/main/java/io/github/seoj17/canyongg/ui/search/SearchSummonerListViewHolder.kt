@@ -7,7 +7,7 @@ import io.github.seoj17.canyongg.databinding.ItemRecentNameBinding
 import io.github.seoj17.canyongg.ui.model.RecentSummoners
 
 class SearchSummonerListViewHolder(
-    private val binding: ItemRecentNameBinding
+    private val binding: ItemRecentNameBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(
         recent: RecentSummoners,

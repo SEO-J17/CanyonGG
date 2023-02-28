@@ -42,5 +42,5 @@ data class TierResponse(
     val veteran: Boolean,
 
     @Json(name = "wins")
-    val wins: Int
+    val wins: Int,
 )

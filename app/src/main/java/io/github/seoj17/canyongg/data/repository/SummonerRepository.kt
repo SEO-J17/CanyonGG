@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.repository
 
-import io.github.seoj17.canyongg.data.local.RecentSearchNameEntity
+import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchNameEntity
 import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.data.model.SummonerTier
 import kotlinx.coroutines.flow.Flow

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
+import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.ViewMyRankBinding
 import io.github.seoj17.canyongg.ui.model.MyRank
 
@@ -51,7 +52,7 @@ class MyRankView @JvmOverloads constructor(
 
     var myValueLabel: CharSequence? = null
         set(value) {
-            binding.myValue.text = "${value} / "
+            binding.myValue.text = context.getString(R.string.rank_view_value)
             field = value
         }
 
@@ -63,7 +64,7 @@ class MyRankView @JvmOverloads constructor(
 
     var myRankLabel: CharSequence? = null
         set(value) {
-            binding.myRankValue.text = "${value}위"
+            binding.myRankValue.text = context.getString(R.string.rank_view_ranking)
             field = value
         }
 

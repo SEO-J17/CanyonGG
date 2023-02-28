@@ -51,5 +51,5 @@ data class Challenges(
     val visionScorePerMinute: Double?,
     val wardTakedowns: Int,
     val wardTakedownsBefore20M: Int,
-    val wardsGuarded: Int
+    val wardsGuarded: Int,
 )

@@ -1,7 +1,7 @@
 package io.github.seoj17.canyongg.data.repository
 
 import androidx.paging.Pager
-import io.github.seoj17.canyongg.data.local.MatchInfoEntity
+import io.github.seoj17.canyongg.data.local.match.MatchInfoEntity
 import io.github.seoj17.canyongg.data.model.DataMatches
 import io.github.seoj17.canyongg.data.model.MatchInfo
 

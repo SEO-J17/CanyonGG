@@ -10,16 +10,18 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.databinding.FragmentMatchSummaryBinding
 import io.github.seoj17.canyongg.ui.detail.DetailMatchFragmentDirections
+import io.github.seoj17.canyongg.ui.detail.DetailMatchViewModel
 
 @AndroidEntryPoint
 class MatchSummaryFragment : Fragment() {
     private lateinit var binding: FragmentMatchSummaryBinding
     private val viewModel: MatchSummaryViewModel by viewModels()
+    private val parentViewModel: DetailMatchViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentMatchSummaryBinding.inflate(layoutInflater, container, false)
@@ -49,17 +51,12 @@ class MatchSummaryFragment : Fragment() {
                     )
                 )
             }
+            viewModel.setMatchId(parentViewModel.matchId)
+            viewModel.fetch()
         }
     }
 
     companion object {
-        fun newInstance(matchId: String, puuid: String): MatchSummaryFragment {
-            return MatchSummaryFragment().apply {
-                arguments = Bundle().apply {
-                    putString("matchId", matchId)
-                    putString("puuid", puuid)
-                }
-            }
-        }
+        fun newInstance() = MatchSummaryFragment()
     }
 }

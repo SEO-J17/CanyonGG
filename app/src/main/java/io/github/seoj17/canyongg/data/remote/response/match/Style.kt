@@ -6,5 +6,5 @@ import com.squareup.moshi.JsonClass
 data class Style(
     val description: String,
     val selections: List<Selection>,
-    val style: Int
+    val style: Int,
 )

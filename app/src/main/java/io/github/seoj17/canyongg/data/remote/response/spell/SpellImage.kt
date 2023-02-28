@@ -10,5 +10,5 @@ data class SpellImage(
     val sprite: String,
     val w: Int,
     val x: Int,
-    val y: Int
+    val y: Int,
 )

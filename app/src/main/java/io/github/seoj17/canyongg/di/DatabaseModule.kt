@@ -7,15 +7,15 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import io.github.seoj17.canyongg.data.local.ChampionsDao
-import io.github.seoj17.canyongg.data.local.MatchInfoDao
-import io.github.seoj17.canyongg.data.local.MyMostChampDao
-import io.github.seoj17.canyongg.data.local.MyUserInfoDao
-import io.github.seoj17.canyongg.data.local.PerksDao
-import io.github.seoj17.canyongg.data.local.RecentSearchDao
-import io.github.seoj17.canyongg.data.local.SummonerBookmarkDao
+import io.github.seoj17.canyongg.data.local.champions.ChampionsDao
+import io.github.seoj17.canyongg.data.local.match.MatchInfoDao
+import io.github.seoj17.canyongg.data.local.user.MyMostChampDao
+import io.github.seoj17.canyongg.data.local.user.MyUserInfoDao
+import io.github.seoj17.canyongg.data.local.perks.PerksDao
+import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchDao
+import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkDao
 import io.github.seoj17.canyongg.data.local.SummonerDatabase
-import io.github.seoj17.canyongg.data.local.SummonerInfoDao
+import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoDao
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)

@@ -13,18 +13,18 @@ import io.github.seoj17.canyongg.databinding.ViewEmptyBinding
         BindingMethod(
             type = EmptyView::class,
             attribute = "emptyTitle",
-            method = "setTitle"
+            method = "setTitle",
         ),
         BindingMethod(
             type = EmptyView::class,
             attribute = "emptyContent",
-            method = "setContent"
+            method = "setContent",
         ),
         BindingMethod(
             type = EmptyView::class,
             attribute = "buttonName",
-            method = "setButtonName"
-        )
+            method = "setButtonName",
+        ),
     ]
 )
 

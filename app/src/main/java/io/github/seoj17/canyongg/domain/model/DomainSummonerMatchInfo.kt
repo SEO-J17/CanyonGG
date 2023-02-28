@@ -51,15 +51,15 @@ class DomainSummonerMatchInfo(
     val visionWardsBoughtInGame: Int,
     val wardsKilled: Int,
     val wardsPlaced: Int,
-    val win: Boolean
+    val win: Boolean,
 ) {
     companion object {
         operator fun invoke(
             response: ParticipantResponse,
-            firstSpell: String,
-            secondSpell: String,
-            mainPerk: String,
-            subPerk: String,
+            firstSpell: String = "",
+            secondSpell: String = "",
+            mainPerk: String = "",
+            subPerk: String = "",
         ): DomainSummonerMatchInfo {
             return DomainSummonerMatchInfo(
                 assists = response.assists,

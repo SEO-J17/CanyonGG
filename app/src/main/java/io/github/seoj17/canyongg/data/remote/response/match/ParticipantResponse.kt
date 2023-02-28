@@ -85,5 +85,5 @@ data class ParticipantResponse(
     val visionWardsBoughtInGame: Int,
     val wardsKilled: Int,
     val wardsPlaced: Int,
-    val win: Boolean
+    val win: Boolean,
 )

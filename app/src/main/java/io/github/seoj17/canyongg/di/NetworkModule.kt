@@ -86,7 +86,7 @@ object NetworkModule {
     @Provides
     @AuthToken
     fun provideAuthToken(): String {
-        return "RGAPI-6fa47745-e818-4f6b-aa0a-e09a69785bea"
+        return "RGAPI-b1c76c88-f545-49b9-91d3-fd0196d8e5c7"
     }
 
     @Singleton

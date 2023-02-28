@@ -3,8 +3,8 @@ package io.github.seoj17.canyongg.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import io.github.seoj17.canyongg.data.MatchPagingSource
-import io.github.seoj17.canyongg.data.local.MatchInfoDao
-import io.github.seoj17.canyongg.data.local.MatchInfoEntity
+import io.github.seoj17.canyongg.data.local.match.MatchInfoDao
+import io.github.seoj17.canyongg.data.local.match.MatchInfoEntity
 import io.github.seoj17.canyongg.data.model.DataMatches
 import io.github.seoj17.canyongg.data.model.MatchInfo
 import io.github.seoj17.canyongg.data.remote.MatchesService
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class MatchesRepositoryImpl @Inject constructor(
     private val matchRemoteService: MatchesService,
-    private val matchInfoService: MatchInfoDao
+    private val matchInfoService: MatchInfoDao,
 ) : MatchesRepository {
 
     override fun getMatches(puuid: String): Pager<Int, DataMatches> {

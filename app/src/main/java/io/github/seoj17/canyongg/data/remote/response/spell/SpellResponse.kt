@@ -10,6 +10,6 @@ class SpellResponse(
     @Json(name = "type")
     val type: String,
     @Json(name = "version")
-    val version: String
+    val version: String,
 ) {
 }

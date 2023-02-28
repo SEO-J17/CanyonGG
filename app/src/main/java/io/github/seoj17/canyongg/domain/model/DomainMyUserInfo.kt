@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.domain.model
 
-import io.github.seoj17.canyongg.data.local.MyUserInfoEntity
+import io.github.seoj17.canyongg.data.local.user.MyUserInfoEntity
 
 data class DomainMyUserInfo(
     val puuid: String,

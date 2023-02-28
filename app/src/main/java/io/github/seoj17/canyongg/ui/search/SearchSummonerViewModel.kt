@@ -8,11 +8,11 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.Summoner
-import io.github.seoj17.canyongg.domain.AddSummonerUseCase
-import io.github.seoj17.canyongg.domain.DeleteAllRecentSummonerUseCase
-import io.github.seoj17.canyongg.domain.DeleteRecentSummonerUseCase
-import io.github.seoj17.canyongg.domain.GetRecentSummonerUseCase
-import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.recent.search.DeleteAllRecentSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.recent.search.DeleteRecentSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.recent.search.GetRecentSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.model.DomainRecentSummoner
 import io.github.seoj17.canyongg.utils.Event
 import kotlinx.coroutines.launch

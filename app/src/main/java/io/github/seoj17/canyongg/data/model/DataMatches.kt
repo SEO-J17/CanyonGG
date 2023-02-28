@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.model
 
-import io.github.seoj17.canyongg.data.local.MatchInfoEntity
+import io.github.seoj17.canyongg.data.local.match.MatchInfoEntity
 
 class DataMatches(
     val puuid: String,

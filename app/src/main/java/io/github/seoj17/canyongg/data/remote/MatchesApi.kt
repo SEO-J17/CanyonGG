@@ -15,6 +15,6 @@ interface MatchesApi {
 
     @GET("/lol/match/v5/matches/{matchId}")
     fun getMatchInfo(
-        @Path("matchId") matchId: String
+        @Path("matchId") matchId: String,
     ): Call<MatchInfoResponse>
 }

@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.domain.model
 
-import io.github.seoj17.canyongg.data.local.SummonerInfoEntity
+import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoEntity
 
 data class DomainSummonerInfo(
     val puuid: String,

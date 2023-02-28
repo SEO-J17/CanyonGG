@@ -10,7 +10,7 @@ class BookmarkListAdapter(
 ) : ListAdapter<SummonerBookmark, BookmarkListViewHolder>(SummonerBookmark.diffUtil) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ) = BookmarkListViewHolder(parent)
 
     override fun onBindViewHolder(holder: BookmarkListViewHolder, position: Int) {
@@ -18,7 +18,7 @@ class BookmarkListAdapter(
         with(holder) {
             bind(markedSummoner, deleteClickListener)
             itemView.setOnClickListener {
-                itemClickListener(markedSummoner.summonerName,markedSummoner.summonerPuuid)
+                itemClickListener(markedSummoner.summonerName, markedSummoner.summonerPuuid)
             }
         }
     }

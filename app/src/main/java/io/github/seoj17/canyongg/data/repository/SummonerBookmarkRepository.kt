@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.repository
 
-import io.github.seoj17.canyongg.data.local.SummonerBookmarkEntity
+import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkEntity
 import kotlinx.coroutines.flow.Flow
 
 interface SummonerBookmarkRepository {

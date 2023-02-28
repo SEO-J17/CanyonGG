@@ -10,7 +10,7 @@ class SearchSummonerListAdapter(
 ) : ListAdapter<RecentSummoners, SearchSummonerListViewHolder>(RecentSummoners.diffUtil) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ) = SearchSummonerListViewHolder(parent)
 
     override fun onBindViewHolder(holder: SearchSummonerListViewHolder, position: Int) {

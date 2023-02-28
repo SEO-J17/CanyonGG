@@ -5,5 +5,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Perks(
     val statPerks: StatPerks,
-    val styles: List<Style>
+    val styles: List<Style>,
 )

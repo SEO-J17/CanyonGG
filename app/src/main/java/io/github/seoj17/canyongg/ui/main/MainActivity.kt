@@ -1,6 +1,5 @@
 package io.github.seoj17.canyongg.ui.main
 
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View

@@ -10,7 +10,7 @@ data class SummonerTier(
     val rank: String,
     val summonerName: String,
     val tier: String,
-    val wins: Int
+    val wins: Int,
 ) {
     companion object {
         operator fun invoke(response: TierResponse): SummonerTier {

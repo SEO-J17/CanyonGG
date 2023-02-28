@@ -8,5 +8,5 @@ data class MatchInfoResponse(
     @Json(name = "info")
     val info: Info,
     @Json(name = "metadata")
-    val metadata: Metadata
+    val metadata: Metadata,
 )

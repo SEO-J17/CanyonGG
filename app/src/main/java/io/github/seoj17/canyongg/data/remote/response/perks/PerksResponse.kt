@@ -14,5 +14,5 @@ data class PerksResponse(
     @Json(name = "name")
     val name: String,
     @Json(name = "slots")
-    val slots: List<Slot>
+    val slots: List<Slot>,
 )

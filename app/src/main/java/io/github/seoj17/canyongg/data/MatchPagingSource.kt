@@ -2,8 +2,8 @@ package io.github.seoj17.canyongg.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import io.github.seoj17.canyongg.data.local.MatchInfoDao
-import io.github.seoj17.canyongg.data.local.MatchInfoEntity
+import io.github.seoj17.canyongg.data.local.match.MatchInfoDao
+import io.github.seoj17.canyongg.data.local.match.MatchInfoEntity
 import io.github.seoj17.canyongg.data.model.DataMatches
 import io.github.seoj17.canyongg.data.remote.MatchesService
 

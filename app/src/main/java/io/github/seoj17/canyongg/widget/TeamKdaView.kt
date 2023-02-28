@@ -49,19 +49,19 @@ class TeamKdaView @JvmOverloads constructor(
 
     var teamKill: Int = 0
         set(value) {
-            binding.teamKills.text = resources.getString(R.string.summoner_kill, value)
+            binding.teamKills.text = context.getString(R.string.summoner_kill, value)
             field = value
         }
 
     var teamDeath: Int = 0
         set(value) {
-            binding.teamDeaths.text = resources.getString(R.string.summoner_death, value)
+            binding.teamDeaths.text = context.getString(R.string.summoner_death, value)
             field = value
         }
 
     var teamAssists: Int = 0
         set(value) {
-            binding.teamAssists.text = resources.getString(R.string.summoner_assist, value)
+            binding.teamAssists.text = context.getString(R.string.summoner_assist, value)
             field = value
         }
 

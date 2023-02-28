@@ -6,9 +6,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import io.github.seoj17.canyongg.R
 
-class SettingPreference
-    : PreferenceFragmentCompat(),
-    Preference.OnPreferenceChangeListener {
+class SettingPreference : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_preference, rootKey)
         val preference: ListPreference? = findPreference(getString(R.string.setting_theme_list_key))

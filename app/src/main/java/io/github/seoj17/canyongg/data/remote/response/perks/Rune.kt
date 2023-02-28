@@ -9,5 +9,5 @@ data class Rune(
     val key: String,
     val longDesc: String,
     val name: String,
-    val shortDesc: String
+    val shortDesc: String,
 )

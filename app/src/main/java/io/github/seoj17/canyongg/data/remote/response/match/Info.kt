@@ -18,5 +18,5 @@ data class Info(
     val platformId: String,
     val queueId: Int,
     val teams: List<Team>,
-    val tournamentCode: String
+    val tournamentCode: String,
 )

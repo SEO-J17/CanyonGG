@@ -13,7 +13,7 @@ class LoseParticipantsListAdapter(
     override fun onBindViewHolder(holder: LoseParticipantsListViewHolder, position: Int) {
         val data = getItem(position) ?: return
         with(holder) {
-            bind(data)
+            bind(data, currentList)
             itemView.setOnClickListener {
                 itemClickListener(data.summonerName, data.puuid)
             }

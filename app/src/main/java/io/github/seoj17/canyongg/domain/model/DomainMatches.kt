@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.domain.model
 
-import io.github.seoj17.canyongg.data.local.MatchInfoEntity
+import io.github.seoj17.canyongg.data.local.match.MatchInfoEntity
 import io.github.seoj17.canyongg.data.model.DataMatches
 
 data class DomainMatches(

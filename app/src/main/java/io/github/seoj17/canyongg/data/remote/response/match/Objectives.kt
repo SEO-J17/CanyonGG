@@ -6,5 +6,5 @@ import com.squareup.moshi.JsonClass
 data class Objectives(
     val baron: Baron,
     val dragon: Dragon,
-    val tower: Tower
+    val tower: Tower,
 )

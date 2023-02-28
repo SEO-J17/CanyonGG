@@ -2,6 +2,22 @@ package io.github.seoj17.canyongg.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkDao
+import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkEntity
+import io.github.seoj17.canyongg.data.local.champions.ChampionsDao
+import io.github.seoj17.canyongg.data.local.champions.ChampionsEntity
+import io.github.seoj17.canyongg.data.local.match.MatchInfoDao
+import io.github.seoj17.canyongg.data.local.match.MatchInfoEntity
+import io.github.seoj17.canyongg.data.local.perks.PerksDao
+import io.github.seoj17.canyongg.data.local.perks.PerksEntity
+import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchDao
+import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchNameEntity
+import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoDao
+import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoEntity
+import io.github.seoj17.canyongg.data.local.user.MyMostChampDao
+import io.github.seoj17.canyongg.data.local.user.MyMostChampEntity
+import io.github.seoj17.canyongg.data.local.user.MyUserInfoDao
+import io.github.seoj17.canyongg.data.local.user.MyUserInfoEntity
 
 @Database(
     entities = [

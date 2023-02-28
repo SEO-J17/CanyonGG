@@ -6,10 +6,10 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import io.github.seoj17.canyongg.domain.AddChampionListUseCase
-import io.github.seoj17.canyongg.domain.AddPerksListUseCase
-import io.github.seoj17.canyongg.domain.GetChampionsUseCase
-import io.github.seoj17.canyongg.domain.GetPerksListUseCase
+import io.github.seoj17.canyongg.domain.usecase.champion.AddChampionListUseCase
+import io.github.seoj17.canyongg.domain.usecase.perks.AddPerksListUseCase
+import io.github.seoj17.canyongg.domain.usecase.champion.GetChampionsUseCase
+import io.github.seoj17.canyongg.domain.usecase.perks.GetPerksListUseCase
 
 @HiltWorker
 class DataFetchWorker @AssistedInject constructor(
@@ -30,7 +30,7 @@ class DataFetchWorker @AssistedInject constructor(
             },
             onFailure = {
                 return Result.retry()
-            }
+            },
         )
     }
 }

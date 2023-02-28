@@ -1,7 +1,7 @@
 package io.github.seoj17.canyongg.data.repository
 
-import io.github.seoj17.canyongg.data.local.MyMostChampEntity
-import io.github.seoj17.canyongg.data.local.MyUserInfoEntity
+import io.github.seoj17.canyongg.data.local.user.MyMostChampEntity
+import io.github.seoj17.canyongg.data.local.user.MyUserInfoEntity
 import kotlinx.coroutines.flow.Flow
 
 interface MyUserRepository {

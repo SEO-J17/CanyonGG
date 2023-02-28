@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.repository
 
-import io.github.seoj17.canyongg.data.local.PerksEntity
+import io.github.seoj17.canyongg.data.local.perks.PerksEntity
 import io.github.seoj17.canyongg.data.model.DataPerks
 
 interface PerksRepository {

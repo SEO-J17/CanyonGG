@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.domain.model
 
-import io.github.seoj17.canyongg.data.local.SummonerBookmarkEntity
+import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkEntity
 
 data class DomainBookmarkSummoner(
     val summonerPuuid: String,

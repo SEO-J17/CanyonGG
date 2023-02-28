@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.domain.model
 
-import io.github.seoj17.canyongg.data.local.MyMostChampEntity
+import io.github.seoj17.canyongg.data.local.user.MyMostChampEntity
 
 data class DomainMostChamps(
     val champName: String,

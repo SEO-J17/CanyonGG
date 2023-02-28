@@ -13,7 +13,7 @@ class WinParticipantsListAdapter(
     override fun onBindViewHolder(holder: WinParticipantsListViewHolder, position: Int) {
         val data = getItem(position) ?: return
         with(holder) {
-            bind(data)
+            bind(data,currentList)
             itemView.setOnClickListener {
                 itemClickListener(data.summonerName, data.puuid)
             }

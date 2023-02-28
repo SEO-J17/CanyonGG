@@ -5,21 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
+import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.FragmentTeamAnalysisBinding
+import io.github.seoj17.canyongg.ui.detail.DetailMatchViewModel
 
 @AndroidEntryPoint
 class TeamAnalysisFragment : Fragment() {
     private lateinit var binding: FragmentTeamAnalysisBinding
-    private val args: TeamAnalysisFragmentArgs by navArgs()
+    private val viewModel: TeamAnalysisViewModel by viewModels()
+    private val parentViewModel: DetailMatchViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentTeamAnalysisBinding.inflate(layoutInflater, container, false)
@@ -30,28 +31,17 @@ class TeamAnalysisFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             analysisTabPager.adapter =
-                AnalysisViewPagerAdapter(this@TeamAnalysisFragment, args.matchId)
+                AnalysisViewPagerAdapter(this@TeamAnalysisFragment)
+
             TabLayoutMediator(analysisTabLayout, analysisTabPager) { tab, position ->
-                when (position) {
-                    0 -> tab.text = getString(R.string.sub_pager_kill)
-                    1 -> tab.text = getString(R.string.sub_pager_dealt)
-                    2 -> tab.text = getString(R.string.sub_pager_damaged)
-                    3 -> tab.text = getString(R.string.sub_pager_spent_gold)
-                    4 -> tab.text = getString(R.string.sub_pager_minions)
-                    5 -> tab.text = getString(R.string.sub_pager_vision_score)
-                }
+                tab.setText(TeamAnalysisTabs.values()[position].title)
             }.attach()
+
+            viewModel.setMatchId(parentViewModel.matchId)
         }
     }
 
     companion object {
-        fun newInstance(matchId: String, puuid: String): TeamAnalysisFragment {
-            return TeamAnalysisFragment().apply {
-                arguments = Bundle().apply {
-                    putString("matchId", matchId)
-                    putString("puuid", puuid)
-                }
-            }
-        }
+        fun newInstance() = TeamAnalysisFragment()
     }
 }

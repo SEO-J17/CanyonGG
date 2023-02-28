@@ -7,5 +7,5 @@ data class ChampInfo(
     val attack: Int,
     val defense: Int,
     val difficulty: Int,
-    val magic: Int
+    val magic: Int,
 )

@@ -1,9 +1,9 @@
 package io.github.seoj17.canyongg.data.repository
 
-import io.github.seoj17.canyongg.data.local.MyMostChampDao
-import io.github.seoj17.canyongg.data.local.MyMostChampEntity
-import io.github.seoj17.canyongg.data.local.MyUserInfoDao
-import io.github.seoj17.canyongg.data.local.MyUserInfoEntity
+import io.github.seoj17.canyongg.data.local.user.MyMostChampDao
+import io.github.seoj17.canyongg.data.local.user.MyMostChampEntity
+import io.github.seoj17.canyongg.data.local.user.MyUserInfoDao
+import io.github.seoj17.canyongg.data.local.user.MyUserInfoEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

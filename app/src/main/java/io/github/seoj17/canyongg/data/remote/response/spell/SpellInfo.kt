@@ -11,5 +11,5 @@ data class SpellInfo(
     val modes: List<String>,
     val name: String,
     val tooltip: String,
-    val vars: List<Any>
+    val vars: List<Any>,
 )

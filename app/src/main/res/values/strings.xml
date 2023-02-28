@@ -36,6 +36,8 @@
     <string name="user_view_lose_count">" %d패"</string>
     <string name="user_view_win_rate">" 승률 %d%%"</string>
     <string name="user_view_kda">" KDA %.2f : 1"</string>
+    <string name="rank_view_ranking">"%s위"</string>
+    <string name="rank_view_value">"%s / "</string>
     <string name="delete_history">전체 삭제</string>
     <string name="summoner_kill">"%d /"</string>
     <string name="summoner_death">" %d "</string>
@@ -68,5 +70,4 @@
     <string name="setting_theme_list_key">theme_list</string>
     <string name="setting_light_theme_value">light_theme</string>
     <string name="setting_dark_theme_value">dark_theme</string>
-
 </resources>

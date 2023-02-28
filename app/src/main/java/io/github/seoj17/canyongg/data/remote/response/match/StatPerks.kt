@@ -6,5 +6,5 @@ import com.squareup.moshi.JsonClass
 data class StatPerks(
     val defense: Int,
     val flex: Int,
-    val offense: Int
+    val offense: Int,
 )

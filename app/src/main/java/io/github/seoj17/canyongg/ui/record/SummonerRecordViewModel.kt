@@ -10,15 +10,15 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.data.model.Summoner
-import io.github.seoj17.canyongg.domain.AddBookmarkSummoner
-import io.github.seoj17.canyongg.domain.AddSummonerInfoUseCase
-import io.github.seoj17.canyongg.domain.CheckBookmarkedSummonerUseCase
-import io.github.seoj17.canyongg.domain.DeleteBookmarkSummonerUseCase
-import io.github.seoj17.canyongg.domain.GetSummonerHistoryUseCase
-import io.github.seoj17.canyongg.domain.GetSummonerInfoUseCase
-import io.github.seoj17.canyongg.domain.GetSummonerUseCase
-import io.github.seoj17.canyongg.domain.GetUserInfoUseCase
-import io.github.seoj17.canyongg.domain.GetUserTierUseCase
+import io.github.seoj17.canyongg.domain.usecase.bookmark.AddBookmarkSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.bookmark.CheckBookmarkedSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.bookmark.DeleteBookmarkSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.GetSummonerHistoryUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.GetSummonerInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.GetSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetUserInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetUserTierUseCase
 import io.github.seoj17.canyongg.domain.model.DomainBookmarkSummoner
 import io.github.seoj17.canyongg.domain.model.DomainSummonerInfo
 import io.github.seoj17.canyongg.ui.model.ParticipantsMatches
@@ -34,7 +34,7 @@ class SummonerRecordViewModel @Inject constructor(
     private val getUserTierUseCase: GetUserTierUseCase,
     private val getSummonerUseCase: GetSummonerUseCase,
     private val getSummonerHistoryUseCase: GetSummonerHistoryUseCase,
-    private val addBookmarkSummoner: AddBookmarkSummoner,
+    private val addBookmarkSummoner: AddBookmarkSummonerUseCase,
     private val deleteBookmarkSummoner: DeleteBookmarkSummonerUseCase,
     private val checkBookmarkedSummoner: CheckBookmarkedSummonerUseCase,
     private val getSummonerInfoUseCase: GetSummonerInfoUseCase,
@@ -54,14 +54,14 @@ class SummonerRecordViewModel @Inject constructor(
                 domain?.let { it -> SummonerInfo(it) }
             }
 
-    private val _summonerMostKill = MutableLiveData<String>("단일 킬")
+    private val _summonerMostKill = MutableLiveData<String>()
     val summonerMostKill: LiveData<String> = _summonerMostKill
 
     val summonerRecordHistory =
         getSummonerHistoryUseCase(summonerPuuid).asLiveData().cachedIn(viewModelScope)
 
-    private val _bookmarkedSummoner = MutableLiveData<Boolean>()
-    val bookmarkedSummoner: LiveData<Boolean> = _bookmarkedSummoner
+    private val _bookmarkedSummoner = MutableLiveData<Boolean?>()
+    val bookmarkedSummoner: LiveData<Boolean?> = _bookmarkedSummoner
 
     private val _addBookmarkEvent = MutableLiveData<Event<Boolean>>()
     val addBookmarkEvent: LiveData<Event<Boolean>> = _addBookmarkEvent
@@ -77,7 +77,7 @@ class SummonerRecordViewModel @Inject constructor(
                     "${summonerTier.tier} ${summonerTier.rank}"
                 } ?: "UNRANKED"
 
-                val matches = ParticipantsMatches(getSummonerUseCase(summonerInfo.puuid), "")
+                val matches = ParticipantsMatches(getSummonerUseCase(summonerInfo.puuid))
                 if (matches.isNotEmpty()) {
                     calcSummonerInfo(matches, summonerInfo, tier)
                 }
@@ -88,7 +88,7 @@ class SummonerRecordViewModel @Inject constructor(
     private fun calcSummonerInfo(
         myMatches: List<ParticipantsMatches>,
         summonerInfo: Summoner,
-        tier: String
+        tier: String,
     ) {
         val wholeMatch = myMatches.size
         val realMatch = wholeMatch - myMatches.count { it.gameEndedInEarlySurrender }
@@ -126,7 +126,7 @@ class SummonerRecordViewModel @Inject constructor(
             3 -> "트리플 킬"
             4 -> "쿼드라 킬"
             5 -> "펜타 킬"
-            else -> ""
+            else -> "단일 킬"
         }
     }
 

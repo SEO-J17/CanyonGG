@@ -78,31 +78,31 @@ class UserInfoView @JvmOverloads constructor(
 
     var userMatches: Int = 0
         set(value) {
-            binding.userMatches.text = resources.getString(R.string.user_view_whole_match, value)
+            binding.userMatches.text = context.getString(R.string.user_view_whole_match, value)
             field = value
         }
 
     var userWin: Int = 0
         set(value) {
-            binding.userWin.text = resources.getString(R.string.user_view_win_count, value)
+            binding.userWin.text = context.getString(R.string.user_view_win_count, value)
             field = value
         }
 
     var userLose: Int = 0
         set(value) {
-            binding.userLose.text = resources.getString(R.string.user_view_lose_count, value)
+            binding.userLose.text = context.getString(R.string.user_view_lose_count, value)
             field = value
         }
 
     var userWinRate: Int = 0
         set(value) {
-            binding.userWinScore.text = resources.getString(R.string.user_view_win_rate, value)
+            binding.userWinScore.text = context.getString(R.string.user_view_win_rate, value)
             field = value
         }
 
     var userKda: Double = 0.0
         set(value) {
-            binding.userKda.text = resources.getString(R.string.user_view_kda, value)
+            binding.userKda.text = context.getString(R.string.user_view_kda, value)
             field = value
         }
 

@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamMinionViewModel" />
+            type="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.minion.TeamMinionViewModel" />
 
         <import type="android.view.View" />
     </data>

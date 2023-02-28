@@ -6,5 +6,5 @@ import com.squareup.moshi.JsonClass
 data class Metadata(
     val dataVersion: String,
     val matchId: String,
-    val participants: List<String>
+    val participants: List<String>,
 )

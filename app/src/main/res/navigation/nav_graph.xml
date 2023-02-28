@@ -42,77 +42,6 @@
         android:id="@+id/search_navigation"
         app:startDestination="@id/search_summoner">
 
-        <fragment
-            android:id="@+id/team_vision_score"
-            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamVisionScoreFragment"
-            android:label="TeamVisionScoreFragment" >
-            <argument
-                android:name="matchId"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/team_analysis"
-            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.TeamAnalysisFragment"
-            android:label="TeamAnalysisFragment" >
-            <argument
-                android:name="matchId"
-                app:argType="string" />
-            <argument
-                android:name="puuid"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/my_rank"
-            android:name="io.github.seoj17.canyongg.ui.detail.rankTab.MyRankFragment"
-            android:label="MyRankFragment" >
-            <argument
-                android:name="matchId"
-                app:argType="string"
-                android:defaultValue='""' />
-            <argument
-                android:name="puuid"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/team_dealt"
-            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamDealtFragment"
-            android:label="TeamDealtFragment" >
-            <argument
-                android:name="matchId"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/team_gold"
-            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamGoldFragment"
-            android:label="TeamGoldFragment" >
-            <argument
-                android:name="matchId"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/team_kill"
-            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamKillsFragment"
-            android:label="TeamKillsFragment" >
-            <argument
-                android:name="matchId"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/team_minion"
-            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamMinionFragment"
-            android:label="TeamMinionFragment" >
-            <argument
-                android:name="matchId"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/team_damage"
-            android:name="io.github.seoj17.canyongg.ui.detail.analysisTab.pages.TeamDamagedFragment"
-            android:label="TeamDamagedFragment" >
-            <argument
-                android:name="matchId"
-                app:argType="string" />
-        </fragment>
         <argument
             android:name="summonerName"
             app:argType="string" />
@@ -164,14 +93,6 @@
                 app:argType="string" />
         </fragment>
 
-        <fragment
-            android:id="@+id/match_summary"
-            android:name="io.github.seoj17.canyongg.ui.detail.summaryTab.MatchSummaryFragment"
-            android:label="MatchSummaryFragment">
-            <argument
-                android:name="matchId"
-                app:argType="string" />
-        </fragment>
     </navigation>
     <navigation
         android:id="@+id/settings_navigation"

@@ -7,7 +7,7 @@ import retrofit2.await
 import javax.inject.Inject
 
 class DataCenterService @Inject constructor(
-    private val dataCenterResponse: DataCenterApi
+    private val dataCenterResponse: DataCenterApi,
 ) {
     suspend fun getSpells(): SpellResponse {
         return runCatching {

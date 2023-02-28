@@ -5,5 +5,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Baron(
     val first: Boolean,
-    val kills: Int
+    val kills: Int,
 )

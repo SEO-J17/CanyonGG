@@ -16,7 +16,7 @@ import io.github.seoj17.canyongg.utils.setChampion
         BindingMethod(
             type = MostChampView::class,
             attribute = "champInfo",
-            method = "setChampInfo"
+            method = "setChampInfo",
         ),
     ]
 )
@@ -53,13 +53,13 @@ class MostChampView @JvmOverloads constructor(
 
     var champWinRate: Int = 0
         set(value) {
-            binding.champWinScore.text = resources.getString(R.string.empty_view_win_rate, value)
+            binding.champWinScore.text = context.getString(R.string.empty_view_win_rate, value)
             field = value
         }
 
     var champKda: Double = 0.0
         set(value) {
-            binding.champKda.text = resources.getString(R.string.empty_view_kda, value)
+            binding.champKda.text = context.getString(R.string.empty_view_kda, value)
             field = value
         }
 }

@@ -1,12 +1,12 @@
 package io.github.seoj17.canyongg.domain.model
 
-import io.github.seoj17.canyongg.data.local.PerksEntity
+import io.github.seoj17.canyongg.data.local.perks.PerksEntity
 import io.github.seoj17.canyongg.data.model.DataPerks
 
 data class DomainPerks(
     var id: Int,
     var name: String,
-    var imgUrl: String
+    var imgUrl: String,
 ) {
     companion object {
         operator fun invoke(data: DataPerks): DomainPerks {

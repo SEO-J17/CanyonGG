@@ -1,7 +1,7 @@
 package io.github.seoj17.canyongg.data.repository
 
-import io.github.seoj17.canyongg.data.local.ChampionsDao
-import io.github.seoj17.canyongg.data.local.ChampionsEntity
+import io.github.seoj17.canyongg.data.local.champions.ChampionsDao
+import io.github.seoj17.canyongg.data.local.champions.ChampionsEntity
 import io.github.seoj17.canyongg.data.model.DataChampions
 import io.github.seoj17.canyongg.data.remote.DataCenterService
 import javax.inject.Inject

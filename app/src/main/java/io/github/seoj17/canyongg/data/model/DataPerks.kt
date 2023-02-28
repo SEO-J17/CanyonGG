@@ -6,7 +6,7 @@ import io.github.seoj17.canyongg.data.remote.response.perks.Rune
 data class DataPerks(
     var id: Int,
     var name: String,
-    var imgUrl: String
+    var imgUrl: String,
 ) {
     companion object {
         operator fun invoke(response: PerksResponse): DataPerks {
@@ -31,6 +31,7 @@ data class DataPerks(
                 imgUrl = runes.icon,
             )
         }
+
         @JvmName("runesToDataPerks")
         operator fun invoke(runes: List<Rune>): List<DataPerks> {
             return runes.map {

@@ -5,7 +5,7 @@ import retrofit2.await
 import javax.inject.Inject
 
 class MatchesService @Inject constructor(
-    private val responseMatch: MatchesApi
+    private val responseMatch: MatchesApi,
 ) {
     suspend fun getMatchId(puuid: String, start: Int): List<String> {
         return runCatching {

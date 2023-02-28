@@ -7,7 +7,7 @@ import io.github.seoj17.canyongg.databinding.ItemRotationBinding
 import io.github.seoj17.canyongg.utils.setRotationChampion
 
 class RotationChampViewHolder(
-    private val binding: ItemRotationBinding
+    private val binding: ItemRotationBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(champName: String) {
         with(binding) {

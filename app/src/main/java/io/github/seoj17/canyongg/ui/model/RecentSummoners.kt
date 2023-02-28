@@ -11,14 +11,14 @@ data class RecentSummoners(
         val diffUtil = object : DiffUtil.ItemCallback<RecentSummoners>() {
             override fun areItemsTheSame(
                 oldItem: RecentSummoners,
-                newItem: RecentSummoners
+                newItem: RecentSummoners,
             ): Boolean {
                 return oldItem.puuid == newItem.puuid
             }
 
             override fun areContentsTheSame(
                 oldItem: RecentSummoners,
-                newItem: RecentSummoners
+                newItem: RecentSummoners,
             ): Boolean {
                 return oldItem == newItem
             }

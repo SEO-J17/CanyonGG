@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.data.repository
 
-import io.github.seoj17.canyongg.data.local.SummonerInfoEntity
+import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoEntity
 import kotlinx.coroutines.flow.Flow
 
 interface SummonerInfoRepository {
