@@ -67,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/win_team_value"
-            bind:teamAnalysisList="@{vm.matchInfo}"
+            bind:teamAnalysisList="@{vm.participantsMatches}"
             tools:listitem="@layout/item_team_analysis" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

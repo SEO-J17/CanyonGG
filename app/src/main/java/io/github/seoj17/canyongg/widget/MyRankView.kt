@@ -52,7 +52,7 @@ class MyRankView @JvmOverloads constructor(
 
     var myValueLabel: CharSequence? = null
         set(value) {
-            binding.myValue.text = context.getString(R.string.rank_view_value)
+            binding.myValue.text = context.getString(R.string.rank_view_value, value)
             field = value
         }
 
@@ -64,7 +64,7 @@ class MyRankView @JvmOverloads constructor(
 
     var myRankLabel: CharSequence? = null
         set(value) {
-            binding.myRankValue.text = context.getString(R.string.rank_view_ranking)
+            binding.myRankValue.text = context.getString(R.string.rank_view_ranking, value)
             field = value
         }
 

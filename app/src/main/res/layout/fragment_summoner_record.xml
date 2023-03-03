@@ -48,31 +48,17 @@
             app:layout_constraintStart_toStartOf="@id/user_thumbNail"
             tools:text="154" />
 
-        <ImageView
-            android:id="@+id/summoner_empty_book_mark"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/summoner_book_mark"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:onClick="@{() -> vm.addBookmark()}"
-            android:paddingStart="5dp"
-            android:src="@drawable/ic_baseline_star_outline_24"
-            android:visibility="@{vm.bookmarkedSummoner ? View.GONE : View.VISIBLE}"
+            android:background="@drawable/selector_bookmark"
+            android:visibility="@{vm.summonerMostKill == null ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/summoner_add_finish_book_mark"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:onClick="@{() -> vm.deleteBookmark()}"
-            android:paddingStart="5dp"
-            android:src="@drawable/ic_baseline_star_rate_24"
-            android:visibility="@{vm.bookmarkedSummoner ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            bind:bookmarkState="@{vm.bookmarkedSummoner}" />
 
         <TextView
             android:id="@+id/user_name"
@@ -195,10 +181,10 @@
             android:id="@+id/highest_kill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{vm.summonerMostKill}"
             app:layout_constraintEnd_toEndOf="@+id/highest_kill_label"
             app:layout_constraintStart_toStartOf="@+id/highest_kill_label"
             app:layout_constraintTop_toBottomOf="@id/highest_kill_label"
+            bind:mostKill="@{vm.summonerMostKill}"
             tools:text="펜타 킬" />
 
         <LinearLayout

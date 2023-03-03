@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 data class ChampionsEntity(
     @PrimaryKey
     @ColumnInfo(name = "champion_key")
-    var key: Int,
+    val key: Int,
     @ColumnInfo(name = "champion_name")
-    var name: String,
+    val name: String,
 )

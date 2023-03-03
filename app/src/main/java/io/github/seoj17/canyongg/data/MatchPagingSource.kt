@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import io.github.seoj17.canyongg.data.local.match.MatchInfoDao
 import io.github.seoj17.canyongg.data.local.match.MatchInfoEntity
-import io.github.seoj17.canyongg.data.model.DataMatches
+import io.github.seoj17.canyongg.data.model.MatchInfoDataModel
 import io.github.seoj17.canyongg.data.remote.MatchesService
 
 class MatchPagingSource(
@@ -12,15 +12,15 @@ class MatchPagingSource(
     private val localService: MatchInfoDao,
     private val summonerPuuid: String,
     private val networkPageSize: Int,
-) : PagingSource<Int, DataMatches>() {
-    override fun getRefreshKey(state: PagingState<Int, DataMatches>): Int? {
+) : PagingSource<Int, MatchInfoDataModel>() {
+    override fun getRefreshKey(state: PagingState<Int, MatchInfoDataModel>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(networkPageSize)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(networkPageSize)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DataMatches> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MatchInfoDataModel> {
         val startId = params.key ?: STARTING_ID
         val matchesIds = matchRemoteService.getMatchId(summonerPuuid, startId)
         val matchInfo = matchesIds.map {
@@ -39,7 +39,7 @@ class MatchPagingSource(
         }
 
         return LoadResult.Page(
-            data = DataMatches(localService.getMyMatchInfo(summonerPuuid)),
+            data = MatchInfoDataModel(localService.getMatchInfo(summonerPuuid)),
             prevKey = if (startId == STARTING_ID) null else startId - networkPageSize,
             nextKey = if (matchesIds.size < params.loadSize) null else startId + networkPageSize
         )

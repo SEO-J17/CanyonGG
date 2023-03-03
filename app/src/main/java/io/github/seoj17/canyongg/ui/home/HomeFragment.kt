@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.FragmentHomeBinding
@@ -39,12 +37,12 @@ class HomeFragment : Fragment() {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
 
-            tab1.setClickListener {
+            registerUserTab.setClickListener {
                 navigator.navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
             }
 
-            tab2.setClickListener {
-                view.findNavController().navigate(R.id.action_global_search_navigation)
+            searchSummonerTab.setClickListener {
+                navigator.navigate(HomeFragmentDirections.actionGlobalSearchNavigation())
             }
 
             summonerTab.setClickListener {
@@ -66,14 +64,12 @@ class HomeFragment : Fragment() {
             }
 
             detailMyInfo.setOnClickListener {
-                view.findNavController()
-                    .navigate(
-                        R.id.action_global_search_navigation,
-                        bundleOf(
-                            NAME_KEY to viewModel.userInfo.value?.name,
-                            PUUID_KEY to viewModel.userInfo.value?.puuid,
-                        )
+                navigator.navigate(
+                    HomeFragmentDirections.actionGlobalSearchNavigation(
+                        summonerName = viewModel.userInfo.value?.name,
+                        summonerPuuid = viewModel.userInfo.value?.puuid,
                     )
+                )
             }
 
             bookMarkList.adapter = BookmarkListAdapter(
@@ -81,21 +77,14 @@ class HomeFragment : Fragment() {
                     viewModel.removeBookmark(deleteName)
                 }
             ) { name, puuid ->
-                view.findNavController()
-                    .navigate(
-                        R.id.action_global_search_navigation,
-                        bundleOf(
-                            NAME_KEY to name,
-                            PUUID_KEY to puuid,
-                        )
+                navigator.navigate(
+                    HomeFragmentDirections.actionGlobalSearchNavigation(
+                        summonerName = name,
+                        summonerPuuid = puuid,
                     )
+                )
             }
             champRotationListView.adapter = RotationChampListAdapter()
         }
-    }
-
-    companion object {
-        private const val NAME_KEY = "summonerName"
-        private const val PUUID_KEY = "summonerPuuid"
     }
 }

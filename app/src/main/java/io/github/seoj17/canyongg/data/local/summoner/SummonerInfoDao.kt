@@ -14,15 +14,15 @@ interface SummonerInfoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: List<SummonerInfoEntity>)
 
-    @Query("DELETE FROM summoner_info WHERE summoner_puuid = :puuid")
+    @Query("DELETE FROM summoner_info WHERE puuid = :puuid")
     suspend fun delete(puuid: String)
 
     @Query("DELETE FROM summoner_info")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM summoner_info WHERE summoner_puuid = :puuid")
-    fun getSummonerInfo(puuid: String): Flow<SummonerInfoEntity?>
+    @Query("SELECT * FROM summoner_info WHERE puuid = :puuid")
+    fun get(puuid: String): Flow<SummonerInfoEntity?>
 
-    @Query("SELECT EXISTS(SELECT * FROM my_user_info WHERE my_user_puuid = :puuid)")
+    @Query("SELECT EXISTS(SELECT * FROM summoner_info WHERE puuid = :puuid)")
     suspend fun isMyUser(puuid: String): Boolean
 }

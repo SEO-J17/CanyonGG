@@ -73,8 +73,8 @@ class SearchSummonerFragment : Fragment() {
                     )
                 }
             }
-
-            if (viewModel.isSetArguments()) {
+            //홈 화면에서 자세히 보기 버튼을 눌렀을 때 바로 검색 결과 화면이 보이도록 하는 함수
+            if (viewModel.isClickDetailInfo()) {
                 navigator.navigate(
                     SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                         viewModel.summonerName,

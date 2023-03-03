@@ -1,7 +1,7 @@
 package io.github.seoj17.canyongg.ui.model
 
 import androidx.recyclerview.widget.DiffUtil
-import io.github.seoj17.canyongg.domain.model.DomainBookmarkSummoner
+import io.github.seoj17.canyongg.domain.model.BookmarkSummonerDomainModel
 
 
 data class SummonerBookmark(
@@ -27,19 +27,28 @@ data class SummonerBookmark(
             }
         }
 
-        operator fun invoke(domain: DomainBookmarkSummoner): SummonerBookmark {
+        operator fun invoke(domain: BookmarkSummonerDomainModel): SummonerBookmark {
             return SummonerBookmark(
-                summonerPuuid = domain.summonerPuuid,
+                summonerPuuid = domain.puuid,
                 summonerName = domain.summonerName,
                 summonerLevel = domain.summonerLevel,
                 summonerIcon = domain.summonerIcon,
             )
         }
 
-        operator fun invoke(domain: List<DomainBookmarkSummoner>): List<SummonerBookmark> {
+        operator fun invoke(domain: List<BookmarkSummonerDomainModel>): List<SummonerBookmark> {
             return domain.map {
                 invoke(it)
             }
+        }
+
+        fun toDomainModel(summoner: SummonerInfo): BookmarkSummonerDomainModel {
+            return BookmarkSummonerDomainModel(
+                puuid = summoner.puuid,
+                summonerName = summoner.name,
+                summonerLevel = summoner.level,
+                summonerIcon = summoner.profile,
+            )
         }
     }
 }

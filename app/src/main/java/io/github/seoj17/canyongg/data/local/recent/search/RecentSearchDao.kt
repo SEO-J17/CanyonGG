@@ -24,5 +24,5 @@ interface RecentSearchDao {
     suspend fun getName(name: String): RecentSearchNameEntity?
 
     @Query("SELECT * FROM recent_search")
-    fun getSummoners(): Flow<List<RecentSearchNameEntity>>
+    fun get(): Flow<List<RecentSearchNameEntity>>
 }

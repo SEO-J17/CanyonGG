@@ -8,8 +8,8 @@ import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.ViewTeamKdaBinding
+import io.github.seoj17.canyongg.ui.adapter.setMatchPlayedTime
 import io.github.seoj17.canyongg.ui.model.TeamKdaInfo
-import io.github.seoj17.canyongg.utils.TimeFormatter
 
 @BindingMethods(
     value = [
@@ -31,7 +31,7 @@ class TeamKdaView @JvmOverloads constructor(
     var teamKdaInfo: TeamKdaInfo? = null
         set(value) {
             value?.let {
-                teamWin = if (it.win) "승리" else "패배"
+                teamWin = it.win
                 teamKill = it.kills
                 teamDeath = it.deaths
                 teamAssists = it.assists
@@ -41,9 +41,17 @@ class TeamKdaView @JvmOverloads constructor(
         }
 
 
-    var teamWin: String? = null
+    var teamWin: Boolean? = null
         set(value) {
-            binding.winResult.text = value
+            binding
+                .winResult
+                .setText(
+                    if (value == true) {
+                        R.string.victory_label
+                    } else {
+                        R.string.lose_label
+                    }
+                )
             field = value
         }
 
@@ -65,10 +73,9 @@ class TeamKdaView @JvmOverloads constructor(
             field = value
         }
 
-
     var playedTime: Int = 0
         set(value) {
-            binding.matchDate.text = TimeFormatter.formatTime(value * 1000)
+            binding.matchDate.setMatchPlayedTime(value)
             field = value
         }
 }

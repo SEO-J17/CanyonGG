@@ -7,15 +7,15 @@ import dagger.hilt.components.SingletonComponent
 import io.github.seoj17.canyongg.data.repository.ChampionsRepository
 import io.github.seoj17.canyongg.data.repository.ChampionsRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.DataCenterRepository
-import io.github.seoj17.canyongg.data.repository.MatchesRepository
-import io.github.seoj17.canyongg.data.repository.MatchesRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.MatchRepository
+import io.github.seoj17.canyongg.data.repository.MatchRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerRepository
 import io.github.seoj17.canyongg.data.repository.SummonerRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.DataCenterRepositoryImpl
-import io.github.seoj17.canyongg.data.repository.MyUserRepository
-import io.github.seoj17.canyongg.data.repository.MyUserRepositoryImpl
-import io.github.seoj17.canyongg.data.repository.PerksRepository
-import io.github.seoj17.canyongg.data.repository.PerksRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.RegisterUserRepository
+import io.github.seoj17.canyongg.data.repository.RegisterUserRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.PerkRepository
+import io.github.seoj17.canyongg.data.repository.PerkRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerBookmarkRepository
 import io.github.seoj17.canyongg.data.repository.SummonerBookmarkRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerInfoRepository
@@ -28,7 +28,7 @@ abstract class RepositoryModule {
     abstract fun bindSummonerRepository(summonerRepositoryImpl: SummonerRepositoryImpl): SummonerRepository
 
     @Binds
-    abstract fun bindMatchesRepository(matchesRepositoryImpl: MatchesRepositoryImpl): MatchesRepository
+    abstract fun bindMatchesRepository(matchesRepositoryImpl: MatchRepositoryImpl): MatchRepository
 
     @Binds
     abstract fun bindDataCenterRepository(dataCenterRepositoryImpl: DataCenterRepositoryImpl): DataCenterRepository
@@ -40,10 +40,10 @@ abstract class RepositoryModule {
     abstract fun bindChampionsRepository(championsRepositoryImpl: ChampionsRepositoryImpl): ChampionsRepository
 
     @Binds
-    abstract fun bindPerksRepository(perksRepositoryImpl: PerksRepositoryImpl): PerksRepository
+    abstract fun bindPerksRepository(perksRepositoryImpl: PerkRepositoryImpl): PerkRepository
 
     @Binds
-    abstract fun bindMyUserRepository(myUserRepositoryImpl: MyUserRepositoryImpl): MyUserRepository
+    abstract fun bindMyUserRepository(myUserRepositoryImpl: RegisterUserRepositoryImpl): RegisterUserRepository
 
     @Binds
     abstract fun bindSummonerInfoRepository(summonerInfoRepositoryImpl: SummonerInfoRepositoryImpl): SummonerInfoRepository

@@ -44,7 +44,15 @@
 
         <argument
             android:name="summonerName"
-            app:argType="string" />
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="summonerPuuid"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
 
         <fragment
             android:id="@+id/search_summoner"
@@ -68,6 +76,11 @@
             android:id="@+id/search_result"
             android:name="io.github.seoj17.canyongg.ui.record.SummonerRecordFragment"
             android:label="SummonerRecordFragment">
+
+            <argument
+                android:name="showBottomNavView"
+                android:defaultValue="false" />
+
             <action
                 android:id="@+id/action_searchResult_to_detailMatch"
                 app:destination="@id/detail_match" />
@@ -82,6 +95,11 @@
             android:id="@+id/detail_match"
             android:name="io.github.seoj17.canyongg.ui.detail.DetailMatchFragment"
             android:label="DetailMatchFragment">
+
+            <argument
+                android:name="showBottomNavView"
+                android:defaultValue="false" />
+
             <argument
                 android:name="matchId"
                 app:argType="string" />
@@ -97,6 +115,11 @@
     <navigation
         android:id="@+id/settings_navigation"
         app:startDestination="@id/setting">
+
+        <argument
+            android:name="showBottomNavView"
+            android:defaultValue="true" />
+
         <fragment
             android:id="@+id/setting"
             android:name="io.github.seoj17.canyongg.ui.setting.SettingFragment"

@@ -1,10 +1,9 @@
 package io.github.seoj17.canyongg.ui.model
 
-import android.annotation.SuppressLint
 import androidx.paging.PagingData
 import androidx.paging.map
 import androidx.recyclerview.widget.DiffUtil
-import io.github.seoj17.canyongg.domain.model.DomainMatches
+import io.github.seoj17.canyongg.domain.model.MatchInfoDomainModel
 
 data class SummonerMatchRecord(
     val puuid: String,
@@ -47,7 +46,6 @@ data class SummonerMatchRecord(
                 return oldItem.matchId == newItem.matchId
             }
 
-            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(
                 oldItem: SummonerMatchRecord,
                 newItem: SummonerMatchRecord,
@@ -56,7 +54,7 @@ data class SummonerMatchRecord(
             }
         }
 
-        operator fun invoke(domain: DomainMatches): SummonerMatchRecord {
+        operator fun invoke(domain: MatchInfoDomainModel): SummonerMatchRecord {
             return SummonerMatchRecord(
                 puuid = domain.puuid,
                 matchId = domain.matchId,
@@ -91,13 +89,13 @@ data class SummonerMatchRecord(
             )
         }
 
-        operator fun invoke(paging: PagingData<DomainMatches>): PagingData<SummonerMatchRecord> {
+        operator fun invoke(paging: PagingData<MatchInfoDomainModel>): PagingData<SummonerMatchRecord> {
             return paging.map { data ->
                 invoke(data)
             }
         }
 
-        operator fun invoke(list: List<DomainMatches>): List<SummonerMatchRecord> {
+        operator fun invoke(list: List<MatchInfoDomainModel>): List<SummonerMatchRecord> {
             return list.map {
                 invoke(it)
             }

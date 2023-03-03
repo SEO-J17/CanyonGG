@@ -20,9 +20,9 @@ interface ChampionsDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM champions_info WHERE champion_name = :name")
-    suspend fun getChampion(name: String): ChampionsEntity
+    suspend fun get(name: String): ChampionsEntity
 
     @Query("SELECT * FROM champions_info WHERE champion_key = :key")
-    suspend fun getChampion(key: Int): ChampionsEntity
+    suspend fun get(key: Int): ChampionsEntity
 
 }

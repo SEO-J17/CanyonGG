@@ -26,6 +26,6 @@ interface SummonerBookmarkDao {
     @Query("SELECT * FROM summoner_bookmark")
     fun getSummoners(): Flow<List<SummonerBookmarkEntity>>
 
-    @Query("SELECT EXISTS(SELECT * FROM summoner_bookmark WHERE summoner_puuid = :puuid)")
+    @Query("SELECT EXISTS(SELECT * FROM summoner_bookmark WHERE puuid = :puuid)")
     suspend fun isBookmarkedSummoner(puuid: String): Boolean
 }

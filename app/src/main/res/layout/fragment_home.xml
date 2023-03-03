@@ -73,7 +73,7 @@
                 android:visibility="@{vm.firstMostChamp != null ? View.VISIBLE : View.GONE}" />
 
             <io.github.seoj17.canyongg.widget.EmptyView
-                android:id="@+id/tab1"
+                android:id="@+id/register_user_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{vm.userInfo == null ? View.VISIBLE : View.GONE}"
@@ -82,7 +82,7 @@
                 bind:emptyTitle="@{@string/main_my_history_label}" />
 
             <io.github.seoj17.canyongg.widget.EmptyView
-                android:id="@+id/tab2"
+                android:id="@+id/search_summoner_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

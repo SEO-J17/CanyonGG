@@ -2,16 +2,13 @@ package io.github.seoj17.canyongg.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.ActivityMainBinding
-import io.github.seoj17.canyongg.worker.DataFetchWorker
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -26,18 +23,9 @@ class MainActivity : AppCompatActivity() {
         val navController = host.navController
         binding.bottomNavBar.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.bottomNavBar.visibility =
-                if (
-                    destination.label.toString() == "SummonerRecordFragment"
-                    || destination.label.toString() == "DetailMatchFragment"
-                ) {
-                    View.GONE
-                } else {
-                    View.VISIBLE
-                }
+        navController.addOnDestinationChangedListener { _, _, arguments  ->
+            binding.bottomNavBar.isVisible = arguments?.getBoolean("showBottomNavView",true) == true
         }
-        workFetchData()
     }
 
     private fun setPreferenceTheme() {
@@ -54,10 +42,5 @@ class MainActivity : AppCompatActivity() {
                 setTheme(R.style.Theme_Dark)
             }
         }
-    }
-
-    private fun workFetchData() {
-        val request = OneTimeWorkRequestBuilder<DataFetchWorker>().build()
-        WorkManager.getInstance(this).enqueue(request)
     }
 }

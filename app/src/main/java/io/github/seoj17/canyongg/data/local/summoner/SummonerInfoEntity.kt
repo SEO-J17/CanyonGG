@@ -7,26 +7,26 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "summoner_info")
 data class SummonerInfoEntity(
     @PrimaryKey
-    @ColumnInfo(name = "summoner_puuid")
-    var puuid: String,
-    @ColumnInfo(name = "summoner_profile")
-    var profile: Int,
-    @ColumnInfo(name = "summoner_level")
-    var level: Int,
-    @ColumnInfo(name = "summoner_name")
-    var name: String,
-    @ColumnInfo(name = "summoner_tier")
-    var tier: String,
-    @ColumnInfo(name = "summoner_whole_match")
-    var wholeMatch: Int,
-    @ColumnInfo(name = "summoner_win")
-    var win: Int,
-    @ColumnInfo(name = "summoner_lose")
-    var lose: Int,
-    @ColumnInfo(name = "summoner_win_rate")
-    var winRate: Int,
-    @ColumnInfo(name = "summoner_kda")
-    var kda: Double,
-    @ColumnInfo(name = "summoner_largest_kill")
-    var largestKill: Int,
+    @ColumnInfo(name = "puuid")
+    val puuid: String,
+    @ColumnInfo(name = "profile")
+    val profile: Int,
+    @ColumnInfo(name = "level")
+    val level: Int,
+    @ColumnInfo(name = "name")
+    val name: String,
+    @ColumnInfo(name = "tier")
+    val tier: String,
+    @ColumnInfo(name = "whole_match")
+    val wholeMatch: Int,
+    @ColumnInfo(name = "win")
+    val win: Int,
+    @ColumnInfo(name = "lose")
+    val lose: Int,
+    @ColumnInfo(name = "win_rate")
+    val winRate: Int,
+    @ColumnInfo(name = "kda")
+    val kda: Double,
+    @ColumnInfo(name = "largest_kill")
+    val largestKill: Int,
 )

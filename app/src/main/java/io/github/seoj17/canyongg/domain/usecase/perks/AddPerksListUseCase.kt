@@ -1,24 +1,17 @@
 package io.github.seoj17.canyongg.domain.usecase.perks
 
 import dagger.Reusable
-import io.github.seoj17.canyongg.data.local.perks.PerksEntity
-import io.github.seoj17.canyongg.data.repository.PerksRepository
-import io.github.seoj17.canyongg.domain.model.DomainPerks
+import io.github.seoj17.canyongg.data.repository.PerkRepository
+import io.github.seoj17.canyongg.domain.model.PerkDomainModel
 import javax.inject.Inject
 
 @Reusable
 class AddPerksListUseCase @Inject constructor(
-    private val repository: PerksRepository,
+    private val repository: PerkRepository,
 ) {
-    suspend operator fun invoke(domain: List<DomainPerks>) {
+    suspend operator fun invoke(domain: List<PerkDomainModel>) {
         repository.addPerksList(
-            domain.map {
-                PerksEntity(
-                    id = it.id,
-                    name = it.name,
-                    imgUrl = it.imgUrl,
-                )
-            }
+            PerkDomainModel.toEntity(domain)
         )
     }
 }

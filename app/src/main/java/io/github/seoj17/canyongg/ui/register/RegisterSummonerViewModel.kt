@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.domain.usecase.user.GetUserInfoUseCase
+import io.github.seoj17.canyongg.ui.model.Summoner
 import io.github.seoj17.canyongg.utils.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,7 +24,8 @@ class RegisterSummonerViewModel @Inject constructor(
 
     fun getSummonerName(name: String) {
         viewModelScope.launch {
-            getUserInfoUseCase(name)?.let { summoner ->
+            getUserInfoUseCase(name)?.let { summonerDomain ->
+                val summoner = Summoner(summonerDomain)
                 _searchResult.value = summoner
             } ?: run {
                 _errorEvent.value = Event(true)

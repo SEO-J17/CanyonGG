@@ -12,7 +12,6 @@ import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.FragmentSummonerRecordBinding
-import io.github.seoj17.canyongg.utils.observeEvent
 
 @AndroidEntryPoint
 class SummonerRecordFragment : Fragment() {
@@ -46,22 +45,16 @@ class SummonerRecordFragment : Fragment() {
                 )
             }
 
-            viewModel.addBookmarkEvent.observeEvent(viewLifecycleOwner) {
-                setBookmarkState(
-                    getString(
-                        R.string.add_bookmark_message
-                    ),
-                    View.VISIBLE,
-                    View.GONE
-                )
-            }
-
-            viewModel.deleteBookmarkEvent.observeEvent(viewLifecycleOwner) {
-                setBookmarkState(
-                    getString(R.string.delete_bookmark_message),
-                    View.GONE,
-                    View.VISIBLE,
-                )
+            summonerBookMark.setOnClickListener {
+                if (it.isSelected) {
+                    it.isSelected = false
+                    viewModel.deleteBookmark()
+                    bookmarkedMessage(R.string.delete_bookmark_message)
+                } else {
+                    it.isSelected = true
+                    viewModel.addBookmark()
+                    bookmarkedMessage(R.string.add_bookmark_message)
+                }
             }
 
             temp.setOnClickListener {
@@ -72,11 +65,9 @@ class SummonerRecordFragment : Fragment() {
         }
     }
 
-    private fun setBookmarkState(message: String, state1: Int, state2: Int) {
+    private fun bookmarkedMessage(message: Int) {
         Toast.makeText(
-            this@SummonerRecordFragment.context, message, Toast.LENGTH_SHORT
+            context, message, Toast.LENGTH_SHORT
         ).show()
-        binding.summonerAddFinishBookMark.visibility = state1
-        binding.summonerEmptyBookMark.visibility = state2
     }
 }

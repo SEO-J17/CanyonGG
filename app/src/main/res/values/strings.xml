@@ -70,4 +70,11 @@
     <string name="setting_theme_list_key">theme_list</string>
     <string name="setting_light_theme_value">light_theme</string>
     <string name="setting_dark_theme_value">dark_theme</string>
+    <string name="victory_label">승리</string>
+    <string name="lose_label">패배</string>
+    <string name="sole_kill">단일 킬</string>
+    <string name="double_kill">더블 킬</string>
+    <string name="triple_kill">트리플 킬</string>
+    <string name="quadra_kill">쿼드라 킬</string>
+    <string name="penta_kill">펜타 킬</string>
 </resources>

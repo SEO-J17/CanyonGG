@@ -2,14 +2,13 @@ package io.github.seoj17.canyongg.ui.adapter
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.contract.UrlContract
-import io.github.seoj17.canyongg.domain.model.DomainBookmarkSummoner
-import io.github.seoj17.canyongg.domain.model.DomainMatches
-import io.github.seoj17.canyongg.domain.model.DomainRecentSummoner
 import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.AnalysisPageListAdapter
 import io.github.seoj17.canyongg.ui.detail.summaryTab.LoseParticipantsListAdapter
 import io.github.seoj17.canyongg.ui.detail.summaryTab.WinParticipantsListAdapter
@@ -42,16 +41,16 @@ fun ImageView.setSummonerRankEmblem(tier: String?) {
 }
 
 @BindingAdapter("bind:historyList")
-fun RecyclerView.setHistoryList(history: PagingData<DomainMatches>) {
+fun RecyclerView.setHistoryList(history: PagingData<SummonerMatchRecord>) {
     coroutineScope?.launch {
-        (adapter as? RecordListAdapter)?.submitData(SummonerMatchRecord(history))
+        (adapter as? RecordListAdapter)?.submitData(history)
     }
 }
 
 @BindingAdapter("bind:recentSummonerList")
-fun RecyclerView.setRecentSummonerList(recentSummoners: List<DomainRecentSummoner>?) {
+fun RecyclerView.setRecentSummonerList(recentSummoners: List<RecentSummoners>?) {
     (adapter as? SearchSummonerListAdapter)?.submitList(
-        RecentSummoners(recentSummoners ?: emptyList())
+        recentSummoners ?: emptyList()
     )
 }
 
@@ -66,9 +65,9 @@ fun RecyclerView.setLoseParticipantsList(participantsMatches: List<SummonerMatch
 }
 
 @BindingAdapter("bind:bookmarkSummonersList")
-fun RecyclerView.setBookmarkSummonersList(bookmarkSummoners: List<DomainBookmarkSummoner>?) {
+fun RecyclerView.setBookmarkSummonersList(bookmarkSummoners: List<SummonerBookmark>?) {
     (adapter as? BookmarkListAdapter)?.submitList(
-        SummonerBookmark(bookmarkSummoners ?: emptyList())
+        bookmarkSummoners ?: emptyList()
     )
 }
 
@@ -123,3 +122,24 @@ fun ImageView.setRunes(rune: String) {
         .load("${UrlContract.RUNE_URL}${rune}")
         .into(this)
 }
+
+@BindingAdapter("bind:mostKill")
+fun TextView.setMostKill(kill: Int) {
+    setText(
+        when (kill) {
+            2 -> R.string.double_kill
+            3 -> R.string.triple_kill
+            4 -> R.string.quadra_kill
+            5 -> R.string.penta_kill
+            else -> R.string.sole_kill
+        }
+    )
+}
+
+@BindingAdapter("bind:bookmarkState")
+fun AppCompatButton.setBookmarkState(isBookmarked: Boolean?) {
+    isBookmarked?.let {
+        this.isSelected = it
+    }
+}
+

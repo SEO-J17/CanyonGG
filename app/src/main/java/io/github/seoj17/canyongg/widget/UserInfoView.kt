@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.contract.UrlContract
 import io.github.seoj17.canyongg.databinding.ViewUserInfoBinding
-import io.github.seoj17.canyongg.ui.model.MyUserInfo
+import io.github.seoj17.canyongg.ui.model.RegisterUserInfo
 
 @BindingMethods(
     value = [
@@ -29,7 +29,7 @@ class UserInfoView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attributeSet, defStyleAttr) {
     private val binding = ViewUserInfoBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var userInfo: MyUserInfo? = null
+    var userInfo: RegisterUserInfo? = null
         set(value) {
             value?.let {
                 userProfileId = it.profile

@@ -8,12 +8,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "summoner_bookmark")
 data class SummonerBookmarkEntity(
     @PrimaryKey
-    @ColumnInfo(name = "summoner_puuid")
-    var summonerPuuid: String,
+    @ColumnInfo(name = "puuid")
+    val puuid: String,
     @ColumnInfo(name = "summoner_name")
-    var summonerName: String,
+    val summonerName: String,
     @ColumnInfo(name = "summoner_level")
-    var summonerLevel: Int,
-    @ColumnInfo(name = "summoner_icon")
-    var summonerIcon: Int,
+    val level: Int,
+    @ColumnInfo(name = "icon")
+    val icon: Int,
 )

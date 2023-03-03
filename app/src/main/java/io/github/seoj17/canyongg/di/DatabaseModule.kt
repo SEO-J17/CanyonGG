@@ -9,9 +9,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.seoj17.canyongg.data.local.champions.ChampionsDao
 import io.github.seoj17.canyongg.data.local.match.MatchInfoDao
-import io.github.seoj17.canyongg.data.local.user.MyMostChampDao
-import io.github.seoj17.canyongg.data.local.user.MyUserInfoDao
-import io.github.seoj17.canyongg.data.local.perks.PerksDao
+import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampDao
+import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoDao
+import io.github.seoj17.canyongg.data.local.perks.PerkDao
 import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchDao
 import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkDao
 import io.github.seoj17.canyongg.data.local.SummonerDatabase
@@ -51,20 +51,20 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun providePerksDao(database: SummonerDatabase): PerksDao {
+    fun providePerksDao(database: SummonerDatabase): PerkDao {
         return database.perksDao()
     }
 
     @Singleton
     @Provides
-    fun provideMyUserInfoDao(database: SummonerDatabase): MyUserInfoDao {
-        return database.MyUserInfoDao()
+    fun provideRegisterUserInfoDao(database: SummonerDatabase): RegisterUserInfoDao {
+        return database.registerUserInfoDao()
     }
 
     @Singleton
     @Provides
-    fun provideMyMostChampDao(database: SummonerDatabase): MyMostChampDao {
-        return database.myMostChampDao()
+    fun provideRegisterUserMostChampDao(database: SummonerDatabase): RegisterUserMostChampDao {
+        return database.registerUserMostChampDao()
     }
 
     @Singleton

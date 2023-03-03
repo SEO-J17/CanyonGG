@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.ui.model
 
-import io.github.seoj17.canyongg.domain.model.DomainSummonerInfo
+import io.github.seoj17.canyongg.domain.model.SummonerInfoDomainModel
 
 data class SummonerInfo(
     val puuid: String,
@@ -16,7 +16,7 @@ data class SummonerInfo(
     val largestKill: Int,
 ) {
     companion object {
-        operator fun invoke(domain: DomainSummonerInfo): SummonerInfo {
+        operator fun invoke(domain: SummonerInfoDomainModel): SummonerInfo {
             return SummonerInfo(
                 puuid = domain.puuid,
                 profile = domain.profile,
@@ -29,6 +29,26 @@ data class SummonerInfo(
                 winRate = domain.winRate,
                 kda = domain.kda,
                 largestKill = domain.largestKill,
+            )
+        }
+
+        fun toDomainModel(
+            summoner: Summoner,
+            record: UserRecord,
+            tier: String,
+        ): SummonerInfoDomainModel {
+            return SummonerInfoDomainModel(
+                puuid = summoner.puuid,
+                profile = summoner.profileIconId,
+                level = summoner.summonerLevel,
+                name = summoner.name,
+                tier = tier,
+                wholeMatch = record.wholeMatch,
+                win = record.winCount,
+                lose = record.loseCount,
+                winRate = record.winRate,
+                kda = record.kda,
+                largestKill = record.largestKill,
             )
         }
     }

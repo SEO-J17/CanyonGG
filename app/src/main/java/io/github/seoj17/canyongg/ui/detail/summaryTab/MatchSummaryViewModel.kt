@@ -2,8 +2,8 @@ package io.github.seoj17.canyongg.ui.detail.summaryTab
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.domain.usecase.match.GetParticipantsMatchesUseCase
@@ -17,53 +17,34 @@ class MatchSummaryViewModel @Inject constructor(
     private val getParticipantsMatches: GetParticipantsMatchesUseCase,
 ) : ViewModel() {
 
-    private val _winTeamKdaInfo = MutableLiveData<TeamKdaInfo>()
-    val winTeamKdaInfo: LiveData<TeamKdaInfo> = _winTeamKdaInfo
-
-    private val _loseTeamKdaInfo = MutableLiveData<TeamKdaInfo>()
-    val loseTeamKdaInfo: LiveData<TeamKdaInfo> = _loseTeamKdaInfo
-
-    private val _winTeam = MutableLiveData<List<SummonerMatchRecord>>()
-    val winTeam: LiveData<List<SummonerMatchRecord>> = _winTeam
-
-    private val _loseTeam = MutableLiveData<List<SummonerMatchRecord>>()
-    val loseTeam: LiveData<List<SummonerMatchRecord>> = _loseTeam
-
     private val _matchId = MutableLiveData<String>()
     val matchId: LiveData<String> = _matchId
+
+    private val _participantsMatches = MutableLiveData<List<SummonerMatchRecord>>(emptyList())
+    val participantsMatches: LiveData<List<SummonerMatchRecord>> = _participantsMatches
+
+    val winTeam: LiveData<List<SummonerMatchRecord>> = _participantsMatches.map { matches ->
+        matches.filter { it.win }
+    }
+
+    val loseTeam: LiveData<List<SummonerMatchRecord>> = _participantsMatches.map { matches ->
+        matches.filter { !it.win }
+    }
+
+    val winTeamKdaInfo = winTeam.map { matchList ->
+        TeamKdaInfo.toKdaInfo(matchList, true)
+    }
+
+    val loseTeamKdaInfo = loseTeam.map { matchList ->
+        TeamKdaInfo.toKdaInfo(matchList, false)
+    }
 
     fun fetch() {
         _matchId.value?.let { matchId ->
             viewModelScope.launch {
-                val data = getParticipantsMatches(matchId)
-
-                val winTeam = data.filter { it.win }.map {
+                _participantsMatches.value = getParticipantsMatches(matchId).map {
                     SummonerMatchRecord(it)
                 }
-
-                val loseTeam = data.filter { !it.win }.map {
-                    SummonerMatchRecord(it)
-                }
-
-                _winTeam.value = winTeam
-
-                _loseTeam.value = loseTeam
-
-                _winTeamKdaInfo.value = TeamKdaInfo(
-                    winTeam.sumOf { it.kill },
-                    winTeam.sumOf { it.death },
-                    winTeam.sumOf { it.assist },
-                    true,
-                    winTeam[0].playedTime
-                )
-
-                _loseTeamKdaInfo.value = TeamKdaInfo(
-                    loseTeam.sumOf { it.kill },
-                    loseTeam.sumOf { it.death },
-                    loseTeam.sumOf { it.assist },
-                    false,
-                    loseTeam[0].playedTime
-                )
             }
         }
     }

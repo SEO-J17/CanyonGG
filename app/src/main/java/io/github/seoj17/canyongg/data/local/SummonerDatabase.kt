@@ -1,5 +1,6 @@
 package io.github.seoj17.canyongg.data.local
 
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkDao
@@ -8,37 +9,41 @@ import io.github.seoj17.canyongg.data.local.champions.ChampionsDao
 import io.github.seoj17.canyongg.data.local.champions.ChampionsEntity
 import io.github.seoj17.canyongg.data.local.match.MatchInfoDao
 import io.github.seoj17.canyongg.data.local.match.MatchInfoEntity
-import io.github.seoj17.canyongg.data.local.perks.PerksDao
-import io.github.seoj17.canyongg.data.local.perks.PerksEntity
+import io.github.seoj17.canyongg.data.local.perks.PerkDao
+import io.github.seoj17.canyongg.data.local.perks.PerkEntity
 import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchDao
 import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchNameEntity
 import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoDao
 import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoEntity
-import io.github.seoj17.canyongg.data.local.user.MyMostChampDao
-import io.github.seoj17.canyongg.data.local.user.MyMostChampEntity
-import io.github.seoj17.canyongg.data.local.user.MyUserInfoDao
-import io.github.seoj17.canyongg.data.local.user.MyUserInfoEntity
+import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampDao
+import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampEntity
+import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoDao
+import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoEntity
 
 @Database(
     entities = [
         RecentSearchNameEntity::class,
         SummonerBookmarkEntity::class,
         ChampionsEntity::class,
-        PerksEntity::class,
-        MyUserInfoEntity::class,
-        MyMostChampEntity::class,
+        PerkEntity::class,
+        RegisterUserInfoEntity::class,
+        RegisterUserMostChampEntity::class,
         MatchInfoEntity::class,
         SummonerInfoEntity::class,
     ],
-    version = 1
+    version = 2,
+    autoMigrations = [
+        AutoMigration(from = 1, to = 2)
+    ],
+    exportSchema = true,
 )
 abstract class SummonerDatabase : RoomDatabase() {
     abstract fun recentSearchDao(): RecentSearchDao
     abstract fun summonerBookmarkDao(): SummonerBookmarkDao
     abstract fun championsDao(): ChampionsDao
-    abstract fun perksDao(): PerksDao
-    abstract fun MyUserInfoDao(): MyUserInfoDao
-    abstract fun myMostChampDao(): MyMostChampDao
+    abstract fun perksDao(): PerkDao
+    abstract fun registerUserInfoDao(): RegisterUserInfoDao
+    abstract fun registerUserMostChampDao(): RegisterUserMostChampDao
     abstract fun matchInfoDao(): MatchInfoDao
     abstract fun summonerInfoDao(): SummonerInfoDao
 }

@@ -8,22 +8,22 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.seoj17.canyongg.data.model.Summoner
 import io.github.seoj17.canyongg.domain.usecase.bookmark.AddBookmarkSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.bookmark.CheckBookmarkedSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.bookmark.DeleteBookmarkSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.summoner.GetSummonerHistoryUseCase
 import io.github.seoj17.canyongg.domain.usecase.summoner.GetSummonerInfoUseCase
-import io.github.seoj17.canyongg.domain.usecase.summoner.GetSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.user.GetUserInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.user.GetUserTierUseCase
-import io.github.seoj17.canyongg.domain.model.DomainBookmarkSummoner
-import io.github.seoj17.canyongg.domain.model.DomainSummonerInfo
-import io.github.seoj17.canyongg.ui.model.ParticipantsMatches
+import io.github.seoj17.canyongg.domain.usecase.user.GetUserRecordUseCase
+import io.github.seoj17.canyongg.ui.model.Summoner
+import io.github.seoj17.canyongg.ui.model.SummonerBookmark
 import io.github.seoj17.canyongg.ui.model.SummonerInfo
-import io.github.seoj17.canyongg.utils.Event
+import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
+import io.github.seoj17.canyongg.ui.model.UserRecord
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,13 +32,13 @@ class SummonerRecordViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserTierUseCase: GetUserTierUseCase,
-    private val getSummonerUseCase: GetSummonerUseCase,
     private val getSummonerHistoryUseCase: GetSummonerHistoryUseCase,
     private val addBookmarkSummoner: AddBookmarkSummonerUseCase,
     private val deleteBookmarkSummoner: DeleteBookmarkSummonerUseCase,
     private val checkBookmarkedSummoner: CheckBookmarkedSummonerUseCase,
     private val getSummonerInfoUseCase: GetSummonerInfoUseCase,
     private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
+    private val getUserRecordUseCase: GetUserRecordUseCase,
 ) : ViewModel() {
 
     private val summonerName =
@@ -47,109 +47,69 @@ class SummonerRecordViewModel @Inject constructor(
     private val summonerPuuid =
         SummonerRecordFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerPuuid
 
-    val summonerInfo =
-        getSummonerInfoUseCase(summonerPuuid)
-            .asLiveData()
-            .map { domain ->
-                domain?.let { it -> SummonerInfo(it) }
+    val summonerInfo = getSummonerInfoUseCase(summonerPuuid)
+        .asLiveData()
+        .map { domain ->
+            domain?.let { it -> SummonerInfo(it) }
+        }
+
+    private val _summonerMostKill = MutableLiveData<Int>()
+    val summonerMostKill: LiveData<Int> = _summonerMostKill
+
+    val summonerRecordHistory = getSummonerHistoryUseCase(summonerPuuid)
+        .asLiveData()
+        .map { paging ->
+            paging.map {
+                SummonerMatchRecord(it)
             }
-
-    private val _summonerMostKill = MutableLiveData<String>()
-    val summonerMostKill: LiveData<String> = _summonerMostKill
-
-    val summonerRecordHistory =
-        getSummonerHistoryUseCase(summonerPuuid).asLiveData().cachedIn(viewModelScope)
+        }
+        .cachedIn(viewModelScope)
 
     private val _bookmarkedSummoner = MutableLiveData<Boolean?>()
     val bookmarkedSummoner: LiveData<Boolean?> = _bookmarkedSummoner
 
-    private val _addBookmarkEvent = MutableLiveData<Event<Boolean>>()
-    val addBookmarkEvent: LiveData<Event<Boolean>> = _addBookmarkEvent
-
-    private val _deleteBookmarkEvent = MutableLiveData<Event<Boolean>>()
-    val deleteBookmarkEvent: LiveData<Event<Boolean>> = _deleteBookmarkEvent
-
     init {
         viewModelScope.launch {
             _bookmarkedSummoner.value = checkBookmarkedSummoner(summonerPuuid)
-            getUserInfoUseCase(summonerName)?.let { summonerInfo ->
-                val tier = getUserTierUseCase(summonerInfo.id)?.let { summonerTier ->
+            getUserInfoUseCase(summonerName)?.let { summonerDomain ->
+
+                val summoner = Summoner(summonerDomain)
+
+                val tier = getUserTierUseCase(summoner.id)?.let { summonerTier ->
                     "${summonerTier.tier} ${summonerTier.rank}"
                 } ?: "UNRANKED"
 
-                val matches = ParticipantsMatches(getSummonerUseCase(summonerInfo.puuid))
-                if (matches.isNotEmpty()) {
-                    calcSummonerInfo(matches, summonerInfo, tier)
-                }
+                val userRecord = UserRecord(getUserRecordUseCase(summoner.puuid))
+                _summonerMostKill.value = userRecord.largestKill
+
+                insertSummonerInfoLocal(userRecord, summoner, tier)
             }
         }
     }
 
-    private fun calcSummonerInfo(
-        myMatches: List<ParticipantsMatches>,
-        summonerInfo: Summoner,
+    private suspend fun insertSummonerInfoLocal(
+        record: UserRecord,
+        summoner: Summoner,
         tier: String,
     ) {
-        val wholeMatch = myMatches.size
-        val realMatch = wholeMatch - myMatches.count { it.gameEndedInEarlySurrender }
-        val kills = myMatches.sumOf { it.kills } + myMatches.sumOf { it.assists }
-
-        val win = myMatches.count { it.win && !it.gameEndedInEarlySurrender }
-        val lose = realMatch - win
-        val winRate = (win * 100) / realMatch
-        val kda = kills / myMatches.sumOf { it.deaths }.toDouble()
-        val mostKill = myMatches.maxOf { it.largestMultiKill }
-
-        _summonerMostKill.value = mostKillToName(mostKill)
-        viewModelScope.launch {
-            addSummonerInfoUseCase(
-                DomainSummonerInfo(
-                    puuid = summonerPuuid,
-                    profile = summonerInfo.profileIconId,
-                    level = summonerInfo.summonerLevel,
-                    name = summonerInfo.name,
-                    tier = tier,
-                    wholeMatch = wholeMatch,
-                    win = win,
-                    lose = lose,
-                    winRate = winRate,
-                    kda = kda,
-                    largestKill = mostKill,
-                )
-            )
-        }
-    }
-
-    private fun mostKillToName(mostKill: Int): String {
-        return when (mostKill) {
-            2 -> "더블 킬"
-            3 -> "트리플 킬"
-            4 -> "쿼드라 킬"
-            5 -> "펜타 킬"
-            else -> "단일 킬"
-        }
+        addSummonerInfoUseCase(
+            SummonerInfo.toDomainModel(summoner, record, tier)
+        )
     }
 
     fun addBookmark() {
         val summonerInfo = summonerInfo.value!!
         viewModelScope.launch {
             addBookmarkSummoner(
-                DomainBookmarkSummoner(
-                    summonerPuuid = summonerInfo.puuid,
-                    summonerName = summonerInfo.name,
-                    summonerLevel = summonerInfo.level,
-                    summonerIcon = summonerInfo.profile,
-                )
+                SummonerBookmark.toDomainModel(summonerInfo)
             )
         }
-        _addBookmarkEvent.value = Event(true)
     }
 
     fun deleteBookmark() {
         viewModelScope.launch {
             deleteBookmarkSummoner(summonerName)
         }
-        _deleteBookmarkEvent.value = Event(true)
     }
 }
 
