@@ -235,6 +235,7 @@
             app:layout_constraintEnd_toEndOf="@id/damage_bar"
             app:layout_constraintStart_toStartOf="@id/damage_bar"
             app:layout_constraintTop_toTopOf="@id/damage_bar"
+            bind:analysisValue="@{data.totalDealt}"
             tools:text="20,251" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

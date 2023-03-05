@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:paddingVertical="5dp"
             android:paddingStart="10dp"
-            android:text="@{data.win ? `승리` : `패배`}"
+            android:text="@{data.win ? @string/victory_label : @string/lose_label}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -106,7 +106,7 @@
             android:id="@+id/kill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(data.kill)}"
+            android:text="@{@string/summoner_kill(data.kill)}"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@id/match_kda"
             app:layout_constraintStart_toEndOf="@id/main_rune"
@@ -117,23 +117,24 @@
             android:id="@+id/death"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(data.death)}"
+            android:text="@{@string/summoner_death(data.death)}"
+            android:textColor="@color/death_color"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@id/kill"
             app:layout_constraintStart_toEndOf="@id/kill"
             app:layout_constraintTop_toTopOf="@id/kill"
-            tools:text=" 12 /" />
+            tools:text=" 12" />
 
         <TextView
             android:id="@+id/assist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(data.assist)}"
+            android:text="@{@string/summoner_assist(data.assist)}"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@id/death"
             app:layout_constraintStart_toEndOf="@id/death"
             app:layout_constraintTop_toTopOf="@id/death"
-            tools:text=" 17" />
+            tools:text=" / 17" />
 
         <TextView
             android:id="@+id/match_kda"
@@ -220,10 +221,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:text="@{data.gameMode}"
             app:layout_constraintBottom_toTopOf="@+id/match_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/match_win"
+            bind:gameMode="@{data.gameMode}"
             tools:text="칼바람 나락" />
 
         <TextView

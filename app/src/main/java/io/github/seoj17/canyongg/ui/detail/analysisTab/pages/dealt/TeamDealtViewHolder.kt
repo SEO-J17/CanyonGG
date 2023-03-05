@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import io.github.seoj17.canyongg.databinding.ItemTeamAnalysisBinding
 import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.AnalysisPagerListViewHolder
 import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
+import io.github.seoj17.canyongg.utils.NumberFormatter
 
 class TeamDealtViewHolder(
     private val binding: ItemTeamAnalysisBinding,
@@ -13,7 +14,7 @@ class TeamDealtViewHolder(
     override fun bind(dataSet: SummonerMatchRecord, wholeData: List<SummonerMatchRecord>) {
         with(binding) {
             data = dataSet
-            itemValue.text = dataSet.totalDealt.toString()
+            itemValue.text = NumberFormatter.formatNumber(dataSet.totalDealt)
             valueGraph.progress = dataSet.totalDealt
             valueGraph.max = wholeData.maxOf { it.totalDealt }
         }

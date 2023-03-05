@@ -9,6 +9,7 @@ import androidx.databinding.BindingMethods
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.ViewMyRankBinding
 import io.github.seoj17.canyongg.ui.model.MyRank
+import io.github.seoj17.canyongg.utils.NumberFormatter
 
 @BindingMethods(
     value = [
@@ -44,21 +45,25 @@ class MyRankView @JvmOverloads constructor(
                 graphMaxValue = it.maxValue
                 myGraphValue = it.myValue
                 myRankLabel = it.rank.toString()
-                myValueLabel = it.myValue.toString()
-                maxValueLabel = it.maxValue.toString()
+                myValueLabel = it.myValue
+                maxValueLabel = it.maxValue
             }
             field = value
         }
 
-    var myValueLabel: CharSequence? = null
+    var myValueLabel: Int? = null
         set(value) {
-            binding.myValue.text = context.getString(R.string.rank_view_value, value)
+            binding.myValue.text =
+                context.getString(
+                    R.string.rank_view_value,
+                    value?.let { NumberFormatter.formatNumber(it) },
+                )
             field = value
         }
 
-    var maxValueLabel: CharSequence? = null
+    var maxValueLabel: Int? = null
         set(value) {
-            binding.maxValue.text = value
+            binding.maxValue.text = value?.let { NumberFormatter.formatNumber(it) }
             field = value
         }
 

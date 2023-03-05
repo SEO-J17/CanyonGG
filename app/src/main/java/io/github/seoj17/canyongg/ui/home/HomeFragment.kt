@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.FragmentHomeBinding
@@ -17,7 +16,6 @@ import io.github.seoj17.canyongg.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var navigator: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,18 +29,17 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigator = Navigation.findNavController(view)
 
         with(binding) {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
 
             registerUserTab.setClickListener {
-                navigator.navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
+                findNavController().navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
             }
 
             searchSummonerTab.setClickListener {
-                navigator.navigate(HomeFragmentDirections.actionGlobalSearchNavigation())
+                findNavController().navigate(HomeFragmentDirections.actionHomeToSearchGraph())
             }
 
             summonerTab.setClickListener {
@@ -64,8 +61,8 @@ class HomeFragment : Fragment() {
             }
 
             detailMyInfo.setOnClickListener {
-                navigator.navigate(
-                    HomeFragmentDirections.actionGlobalSearchNavigation(
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeToSearchGraph(
                         summonerName = viewModel.userInfo.value?.name,
                         summonerPuuid = viewModel.userInfo.value?.puuid,
                     )
@@ -77,8 +74,8 @@ class HomeFragment : Fragment() {
                     viewModel.removeBookmark(deleteName)
                 }
             ) { name, puuid ->
-                navigator.navigate(
-                    HomeFragmentDirections.actionGlobalSearchNavigation(
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeToSearchGraph(
                         summonerName = name,
                         summonerPuuid = puuid,
                     )

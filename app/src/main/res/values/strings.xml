@@ -77,4 +77,9 @@
     <string name="triple_kill">트리플 킬</string>
     <string name="quadra_kill">쿼드라 킬</string>
     <string name="penta_kill">펜타 킬</string>
+    <string name="classic_mode">소환사 협곡</string>
+    <string name="aram_mode">칼바람 나락</string>
+    <string name="tutorial_mode">튜토리얼</string>
+    <string name="urf_mode">우르프</string>
+    <string name="ultimate_mode">궁극기 주문서</string>
 </resources>

@@ -19,6 +19,7 @@ import io.github.seoj17.canyongg.ui.model.SummonerBookmark
 import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
 import io.github.seoj17.canyongg.ui.record.RecordListAdapter
 import io.github.seoj17.canyongg.ui.search.SearchSummonerListAdapter
+import io.github.seoj17.canyongg.utils.NumberFormatter
 import io.github.seoj17.canyongg.utils.TimeFormatter
 import io.github.seoj17.canyongg.utils.coroutineScope
 import io.github.seoj17.canyongg.utils.rankEmblemResId
@@ -142,4 +143,23 @@ fun AppCompatButton.setBookmarkState(isBookmarked: Boolean?) {
         this.isSelected = it
     }
 }
+
+@BindingAdapter("bind:analysisValue")
+fun TextView.setAnalysisValue(value: Int) {
+    this.text = NumberFormatter.formatNumber(value)
+}
+
+@BindingAdapter("bind:gameMode")
+fun TextView.setGameMode(mode: String) {
+    this.text =
+        when (mode) {
+            "CLASSIC" -> context.getString(R.string.classic_mode)
+            "ARAM" -> context.getString(R.string.aram_mode)
+            "TUTORIAL" -> context.getString(R.string.tutorial_mode)
+            "URF" -> context.getString(R.string.urf_mode)
+            "ULTBOOK" -> context.getString(R.string.ultimate_mode)
+            else -> mode
+        }
+}
+
 

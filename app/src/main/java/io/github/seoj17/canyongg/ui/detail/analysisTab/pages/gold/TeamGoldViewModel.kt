@@ -21,18 +21,16 @@ class TeamGoldViewModel @Inject constructor(
     private val _participantsMatches = MutableLiveData<List<SummonerMatchRecord>>(emptyList())
     val participantsMatches: LiveData<List<SummonerMatchRecord>> = _participantsMatches
 
-    val winTeamScore: LiveData<String> = _participantsMatches.map { matchList ->
+    val winTeamScore: LiveData<Int> = _participantsMatches.map { matchList ->
         matchList
             .filter { it.win }
             .sumOf { it.spentGold }
-            .toString()
     }
 
-    val loseTeamScore: LiveData<String> = _participantsMatches.map { matchList ->
+    val loseTeamScore: LiveData<Int> = _participantsMatches.map { matchList ->
         matchList
             .filter { !it.win }
             .sumOf { it.spentGold }
-            .toString()
 
     }
 

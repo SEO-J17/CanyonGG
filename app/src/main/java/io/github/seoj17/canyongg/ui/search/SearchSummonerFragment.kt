@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.databinding.FragmentSearchSummonerBinding
 import io.github.seoj17.canyongg.ui.dialog.NotFoundUserDialogFragment
@@ -18,7 +17,6 @@ import io.github.seoj17.canyongg.utils.observeEvent
 class SearchSummonerFragment : Fragment() {
     private lateinit var binding: FragmentSearchSummonerBinding
     private val viewModel: SearchSummonerViewModel by viewModels()
-    private lateinit var navigator: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +30,6 @@ class SearchSummonerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigator = Navigation.findNavController(view)
 
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
@@ -41,7 +38,7 @@ class SearchSummonerFragment : Fragment() {
                 SearchSummonerListAdapter(
                     { viewModel.deleteRecentSummoner(it) }
                 ) { name, puuid ->
-                    navigator.navigate(
+                    findNavController().navigate(
                         SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                             name,
                             puuid,
@@ -65,7 +62,7 @@ class SearchSummonerFragment : Fragment() {
 
             viewModel.searchResult.observe(viewLifecycleOwner) { summoner ->
                 summoner?.let {
-                    navigator.navigate(
+                    findNavController().navigate(
                         SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                             summoner.name,
                             summoner.puuid,
@@ -75,7 +72,7 @@ class SearchSummonerFragment : Fragment() {
             }
             //홈 화면에서 자세히 보기 버튼을 눌렀을 때 바로 검색 결과 화면이 보이도록 하는 함수
             if (viewModel.isClickDetailInfo()) {
-                navigator.navigate(
+                findNavController().navigate(
                     SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                         viewModel.summonerName,
                         viewModel.summonerPuuid,
@@ -88,7 +85,7 @@ class SearchSummonerFragment : Fragment() {
             }
             //임시버튼. 화면 이동하게함
             temp.setOnClickListener {
-                navigator.navigate(
+                findNavController().navigate(
                     SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                         "", ""
                     )
