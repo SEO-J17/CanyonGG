@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+  <entry>
+    <key>api_version</key>
+    <value>13.4.1</value>
+  </entry>
+</defaults>
