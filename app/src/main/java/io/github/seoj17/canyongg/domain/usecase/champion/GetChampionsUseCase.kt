@@ -13,7 +13,7 @@ class GetChampionsUseCase @Inject constructor(
         return repository
             .getChampionList()
             .map {
-                ChampionsDomainModel(it.key, it.name)
+                ChampionsDomainModel(it)
             }
     }
 }
