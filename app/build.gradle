@@ -22,16 +22,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += ["room.schemaLocation":
-                                      "$projectDir/schemas".toString()]
-            }
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas".toString())
         }
-    }
-
-    sourceSets {
-        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 
     buildTypes {
@@ -47,17 +40,11 @@ android {
         dev {
             dimension "version"
             applicationIdSuffix = ".dev"
-            versionCode 1
-            versionName "1.0"
-            versionNameSuffix "-dev"
         }
         //실제 배포용
         prod {
             dimension "version"
             applicationIdSuffix = ".prod"
-            versionCode 2
-            versionName "1.0.1"
-            versionNameSuffix "-prod"
         }
     }
     compileOptions {
