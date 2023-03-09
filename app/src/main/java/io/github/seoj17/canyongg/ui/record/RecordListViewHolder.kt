@@ -17,9 +17,13 @@ class RecordListViewHolder(
 
     companion object {
         operator fun invoke(parent: ViewGroup): RecordListViewHolder {
-            return RecordListViewHolder(ItemSummonerRecordBinding.inflate(LayoutInflater.from(parent.context),
-                parent,
-                false))
+            return RecordListViewHolder(
+                ItemSummonerRecordBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
+                )
+            )
         }
     }
 }

@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 fun ImageView.setSummonerProfile(id: Int) {
     Glide
         .with(this.context)
-        .load(String.format(UrlContract.PROFILE_ICON_URL, id))
+        .load(UrlContract.profileIconUrl(id))
         .into(this)
 }
 
@@ -96,7 +96,7 @@ fun TextView.setMatchDate(date: Long) {
 fun ImageView.setChampionImage(champion: String) {
     Glide
         .with(this.context)
-        .load(String.format(UrlContract.CHAMPION_URL, champion))
+        .load(UrlContract.championUrl(champion))
         .into(this)
 }
 
@@ -104,7 +104,7 @@ fun ImageView.setChampionImage(champion: String) {
 fun ImageView.setSpell(spell: String) {
     Glide
         .with(this.context)
-        .load(String.format(UrlContract.SPELL_URL, spell))
+        .load(UrlContract.spellUrl(spell))
         .into(this)
 }
 
@@ -112,7 +112,7 @@ fun ImageView.setSpell(spell: String) {
 fun ImageView.setItems(item: Int) {
     Glide
         .with(this.context)
-        .load(String.format(UrlContract.ITEM_URL, item))
+        .load(UrlContract.itemUrl(item))
         .into(this)
 }
 

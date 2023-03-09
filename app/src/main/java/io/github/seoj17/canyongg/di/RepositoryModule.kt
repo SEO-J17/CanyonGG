@@ -12,6 +12,8 @@ import io.github.seoj17.canyongg.data.repository.MatchRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.SummonerRepository
 import io.github.seoj17.canyongg.data.repository.SummonerRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.DataCenterRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.FirebaseRepository
+import io.github.seoj17.canyongg.data.repository.FirebaseRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.RegisterUserRepository
 import io.github.seoj17.canyongg.data.repository.RegisterUserRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.PerkRepository
@@ -47,4 +49,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindSummonerInfoRepository(summonerInfoRepositoryImpl: SummonerInfoRepositoryImpl): SummonerInfoRepository
+
+    @Binds
+    abstract fun bindFirebaseRepository(firebaseRepositoryImpl: FirebaseRepositoryImpl): FirebaseRepository
 }

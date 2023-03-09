@@ -7,13 +7,13 @@ import io.github.seoj17.canyongg.contract.UrlContract
 fun ImageView.setChampion(champ: String) {
     Glide
         .with(this.context)
-        .load(String.format(UrlContract.CHAMPION_URL, champ))
+        .load(UrlContract.championUrl(champ))
         .into(this)
 }
 
 fun ImageView.setRotationChampion(champ: String) {
     Glide
         .with(this.context)
-        .load(String.format(UrlContract.ROTATION_CHAMPION_URL, champ))
+        .load(UrlContract.rotationChampionUrl(champ))
         .into(this)
 }

@@ -1,13 +1,32 @@
 package io.github.seoj17.canyongg.contract
 
-object UrlContract {
-    const val CDN_VERSION = "13.3.1"
-    const val DATA_CENTER_URL = "https://ddragon.leagueoflegends.com"
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
 
-    const val PROFILE_ICON_URL = "$DATA_CENTER_URL/cdn/$CDN_VERSION/img/profileicon/%d.png"
-    const val SPELL_URL = "$DATA_CENTER_URL/cdn/$CDN_VERSION/img/spell/%s.png"
-    const val ITEM_URL = "$DATA_CENTER_URL/cdn/$CDN_VERSION/img/item/%d.png"
+object UrlContract {
+    private const val DATA_CENTER_URL = "https://ddragon.leagueoflegends.com"
+    private val cdnVersion = Firebase.remoteConfig.getString(RemoteConfigContract.REMOTE_CONFIG_KEY)
+
     const val RUNE_URL = "$DATA_CENTER_URL/cdn/img/"
-    const val CHAMPION_URL = "$DATA_CENTER_URL/cdn/$CDN_VERSION/img/champion/%s.png"
-    const val ROTATION_CHAMPION_URL = "$DATA_CENTER_URL/cdn/img/champion/loading/%s_0.jpg"
+
+    fun profileIconUrl(id: Int): String {
+        return "$DATA_CENTER_URL/cdn/$cdnVersion/img/profileicon/$id.png"
+    }
+
+    fun spellUrl(spell: String): String {
+        return "$DATA_CENTER_URL/cdn/$cdnVersion/img/spell/$spell.png"
+    }
+
+    fun itemUrl(item: Int): String {
+        return "$DATA_CENTER_URL/cdn/$cdnVersion/img/item/$item.png"
+    }
+
+    fun championUrl(name: String): String {
+        return "$DATA_CENTER_URL/cdn/$cdnVersion/img/champion/$name.png"
+    }
+
+    fun rotationChampionUrl(name: String): String {
+        return "$DATA_CENTER_URL/cdn/img/champion/loading/${name}_0.jpg"
+    }
+
 }

@@ -53,7 +53,7 @@ class UserInfoView @JvmOverloads constructor(
 
     private fun setUserThumbnail(imgId: Int?) {
         Glide.with(binding.mainUserThumbNail.context)
-            .load(String.format(UrlContract.PROFILE_ICON_URL, imgId))
+            .load(UrlContract.profileIconUrl(imgId ?: 0))
             .into(binding.mainUserThumbNail)
     }
 
