@@ -168,10 +168,11 @@ object NetworkModule {
         okHttpClient: OkHttpClient,
         moshi: Moshi,
         @DataCenterUrl url: String,
+        cdnVersion: String,
     ): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl(url)
+            .baseUrl("${url}/cdn/${cdnVersion}/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()
