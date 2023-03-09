@@ -1,6 +1,5 @@
 package io.github.seoj17.canyongg.data.local
 
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkDao
@@ -31,10 +30,7 @@ import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoEntity
         MatchInfoEntity::class,
         SummonerInfoEntity::class,
     ],
-    version = 2,
-    autoMigrations = [
-        AutoMigration(from = 1, to = 2)
-    ],
+    version = 1,
     exportSchema = true,
 )
 abstract class SummonerDatabase : RoomDatabase() {
