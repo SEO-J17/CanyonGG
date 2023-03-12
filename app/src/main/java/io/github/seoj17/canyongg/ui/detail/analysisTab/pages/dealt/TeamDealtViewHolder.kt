@@ -15,16 +15,18 @@ class TeamDealtViewHolder(
         with(binding) {
             data = dataSet
             itemValue.text = NumberFormatter.formatNumber(dataSet.totalDealt)
-            valueGraph.progress = dataSet.totalDealt
             valueGraph.max = wholeData.maxOf { it.totalDealt }
+            valueGraph.progress = dataSet.totalDealt
         }
     }
 
-    companion object {
-        operator fun invoke(parent: ViewGroup): TeamDealtViewHolder {
+    companion object : CreateViewHolder {
+        override operator fun invoke(parent: ViewGroup): TeamDealtViewHolder {
             return TeamDealtViewHolder(
                 ItemTeamAnalysisBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
                 )
             )
         }

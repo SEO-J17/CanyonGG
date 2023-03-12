@@ -15,16 +15,18 @@ class TeamVisionScoreViewHolder(
         with(binding) {
             data = dataSet
             itemValue.text = NumberFormatter.formatNumber(dataSet.visionScore)
-            valueGraph.progress = dataSet.visionScore
             valueGraph.max = wholeData.maxOf { it.visionScore }
+            valueGraph.progress = dataSet.visionScore
         }
     }
 
-    companion object {
-        operator fun invoke(parent: ViewGroup): TeamVisionScoreViewHolder {
+    companion object : CreateViewHolder {
+        override operator fun invoke(parent: ViewGroup): TeamVisionScoreViewHolder {
             return TeamVisionScoreViewHolder(
                 ItemTeamAnalysisBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
                 )
             )
         }

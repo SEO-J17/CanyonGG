@@ -15,16 +15,18 @@ class TeamDamagedViewHolder(
         with(binding) {
             data = dataSet
             itemValue.text = NumberFormatter.formatNumber(dataSet.totalDamaged)
-            valueGraph.progress = dataSet.totalDamaged
             valueGraph.max = wholeData.maxOf { it.totalDamaged }
+            valueGraph.progress = dataSet.totalDamaged
         }
     }
 
-    companion object {
-        operator fun invoke(parent: ViewGroup): TeamDamagedViewHolder {
+    companion object : CreateViewHolder {
+        override operator fun invoke(parent: ViewGroup): TeamDamagedViewHolder {
             return TeamDamagedViewHolder(
                 ItemTeamAnalysisBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
                 )
             )
         }

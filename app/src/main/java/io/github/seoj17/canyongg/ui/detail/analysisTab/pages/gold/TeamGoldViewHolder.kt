@@ -15,16 +15,18 @@ class TeamGoldViewHolder(
         with(binding) {
             data = dataSet
             itemValue.text = NumberFormatter.formatNumber(dataSet.spentGold)
-            valueGraph.progress = dataSet.spentGold
             valueGraph.max = wholeData.maxOf { it.spentGold }
+            valueGraph.progress = dataSet.spentGold
         }
     }
 
-    companion object {
-        operator fun invoke(parent: ViewGroup): TeamGoldViewHolder {
+    companion object : CreateViewHolder {
+        override operator fun invoke(parent: ViewGroup): TeamGoldViewHolder {
             return TeamGoldViewHolder(
                 ItemTeamAnalysisBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
                 )
             )
         }

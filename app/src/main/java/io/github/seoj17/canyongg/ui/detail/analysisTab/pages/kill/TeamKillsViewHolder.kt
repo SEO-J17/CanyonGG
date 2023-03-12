@@ -15,16 +15,18 @@ class TeamKillsViewHolder(
         with(binding) {
             data = dataSet
             itemValue.text = NumberFormatter.formatNumber(dataSet.kill)
-            valueGraph.progress = dataSet.kill
             valueGraph.max = wholeData.maxOf { it.kill }
+            valueGraph.progress = dataSet.kill
         }
     }
 
-    companion object {
-        operator fun invoke(parent: ViewGroup): TeamKillsViewHolder {
+    companion object : CreateViewHolder {
+        override operator fun invoke(parent: ViewGroup): TeamKillsViewHolder {
             return TeamKillsViewHolder(
                 ItemTeamAnalysisBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
                 )
             )
         }
