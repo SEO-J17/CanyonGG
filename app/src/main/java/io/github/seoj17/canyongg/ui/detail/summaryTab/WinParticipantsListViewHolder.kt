@@ -12,8 +12,8 @@ class WinParticipantsListViewHolder(
     fun bind(participant: SummonerMatchRecord, wholeData: MutableList<SummonerMatchRecord>) {
         with(binding) {
             data = participant
-            damageBar.progress = participant.totalDealt
             damageBar.max = wholeData.maxOf { it.totalDealt }
+            damageBar.progress = participant.totalDealt
         }
     }
 
@@ -21,7 +21,9 @@ class WinParticipantsListViewHolder(
         operator fun invoke(parent: ViewGroup): WinParticipantsListViewHolder {
             return WinParticipantsListViewHolder(
                 ItemParticipantBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
                 )
             )
         }

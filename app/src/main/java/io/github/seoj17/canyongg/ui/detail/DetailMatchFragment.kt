@@ -28,7 +28,7 @@ class DetailMatchFragment : Fragment() {
         with(binding) {
             tabPager.adapter = DetailMatchViewPagerAdapter(this@DetailMatchFragment)
             TabLayoutMediator(tabLayout, tabPager) { tab, position ->
-                tab.setText(DetailMatchTabs.values()[position].title)
+                tab.setText(DetailMatchTabs.getMatchTab(position).title)
             }.attach()
         }
     }

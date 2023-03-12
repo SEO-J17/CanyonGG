@@ -33,10 +33,9 @@ class TeamKillsFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-            teamKillsList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.KILLS.type)
+            teamKillsList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.Kills)
 
             parentViewModel.matchId.value?.let { viewModel.setMatchId(it) }
-            viewModel.fetch()
         }
     }
 

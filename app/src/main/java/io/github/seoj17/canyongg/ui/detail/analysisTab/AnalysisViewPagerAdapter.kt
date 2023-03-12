@@ -12,6 +12,6 @@ class AnalysisViewPagerAdapter(
 
     override fun getItemCount(): Int = tabs.size
 
-    override fun createFragment(position: Int): Fragment = tabs[position].newInstance
+    override fun createFragment(position: Int): Fragment = tabs[position].newInstance()
 
 }

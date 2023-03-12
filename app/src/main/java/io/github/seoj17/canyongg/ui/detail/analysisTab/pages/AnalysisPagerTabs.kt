@@ -1,29 +1,25 @@
 package io.github.seoj17.canyongg.ui.detail.analysisTab.pages
 
-enum class AnalysisPagerTabs(
-    val type: Int,
+import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.damaged.TeamDamagedViewHolder
+import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.dealt.TeamDealtViewHolder
+import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.gold.TeamGoldViewHolder
+import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.kill.TeamKillsViewHolder
+import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.minion.TeamMinionsViewHolder
+import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.vision.TeamVisionScoreViewHolder
+
+sealed class AnalysisPagerTabs(
+    val viewHolder: AnalysisPagerListViewHolder.CreateViewHolder,
 ) {
-    KILLS(
-        type = 0,
-    ),
+    object Kills : AnalysisPagerTabs(TeamKillsViewHolder)
 
-    DEALT(
-        type = 1,
-    ),
+    object Dealt : AnalysisPagerTabs(TeamDealtViewHolder)
 
-    DAMAGED(
-        type = 2,
-    ),
+    object Damaged : AnalysisPagerTabs(TeamDamagedViewHolder)
 
-    SPENT_GOLD(
-        type = 3,
-    ),
+    object SpentGold : AnalysisPagerTabs(TeamGoldViewHolder)
 
-    MINIONS(
-        type = 4,
-    ),
+    object Minions : AnalysisPagerTabs(TeamMinionsViewHolder)
 
-    VISION_SCORE(
-        type = 5,
-    ),
+    object VisionScore : AnalysisPagerTabs(TeamVisionScoreViewHolder)
+
 }

@@ -9,24 +9,24 @@ import io.github.seoj17.canyongg.ui.detail.summaryTab.MatchSummaryFragment
 
 enum class DetailMatchTabs(
     @StringRes val title: Int,
-    val newInstance: Fragment,
-    val position: Int,
+    val newInstance: () -> Fragment,
 ) {
     SUMMARY(
         title = R.string.match_summary,
-        newInstance = MatchSummaryFragment.newInstance(),
-        position = 0,
+        newInstance = MatchSummaryFragment::newInstance,
     ),
 
     ANALYSIS(
         title = R.string.team_analysis,
-        newInstance = TeamAnalysisFragment.newInstance(),
-        position = 1,
+        newInstance = TeamAnalysisFragment::newInstance,
     ),
 
     RANK(
         title = R.string.my_rank,
-        newInstance = MyRankFragment.newInstance(),
-        position = 2,
-    ),
+        newInstance = MyRankFragment::newInstance,
+    );
+
+    companion object {
+        fun getMatchTab(position: Int) = values()[position]
+    }
 }

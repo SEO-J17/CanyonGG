@@ -15,16 +15,18 @@ class TeamMinionsViewHolder(
         with(binding) {
             data = dataSet
             itemValue.text = NumberFormatter.formatNumber(dataSet.minions)
-            valueGraph.progress = dataSet.minions
             valueGraph.max = wholeData.maxOf { it.minions }
+            valueGraph.progress = dataSet.minions
         }
     }
 
-    companion object {
-        operator fun invoke(parent: ViewGroup): TeamMinionsViewHolder {
+    companion object : CreateViewHolder {
+        override operator fun invoke(parent: ViewGroup): TeamMinionsViewHolder {
             return TeamMinionsViewHolder(
                 ItemTeamAnalysisBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
                 )
             )
         }

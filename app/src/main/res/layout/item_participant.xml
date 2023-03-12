@@ -219,7 +219,6 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:max="50000"
             app:layout_constraintBottom_toBottomOf="@id/cs_count"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cs_count"
