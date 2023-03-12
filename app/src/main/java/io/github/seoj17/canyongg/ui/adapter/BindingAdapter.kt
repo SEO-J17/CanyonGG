@@ -126,15 +126,7 @@ fun ImageView.setRunes(rune: String) {
 
 @BindingAdapter("bind:mostKill")
 fun TextView.setMostKill(kill: Int) {
-    setText(
-        when (kill) {
-            2 -> R.string.double_kill
-            3 -> R.string.triple_kill
-            4 -> R.string.quadra_kill
-            5 -> R.string.penta_kill
-            else -> R.string.sole_kill
-        }
-    )
+    this.setText(MostKillState.getMostKill(kill))
 }
 
 @BindingAdapter("bind:bookmarkState")
@@ -151,15 +143,7 @@ fun TextView.setAnalysisValue(value: Int) {
 
 @BindingAdapter("bind:gameMode")
 fun TextView.setGameMode(mode: String) {
-    this.text =
-        when (mode) {
-            "CLASSIC" -> context.getString(R.string.classic_mode)
-            "ARAM" -> context.getString(R.string.aram_mode)
-            "TUTORIAL" -> context.getString(R.string.tutorial_mode)
-            "URF" -> context.getString(R.string.urf_mode)
-            "ULTBOOK" -> context.getString(R.string.ultimate_mode)
-            else -> mode
-        }
+    this.setText(GameModeState.getGameMode(mode))
 }
 
 
