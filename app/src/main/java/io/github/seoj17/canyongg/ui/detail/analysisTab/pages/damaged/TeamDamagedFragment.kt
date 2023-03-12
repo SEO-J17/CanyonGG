@@ -33,10 +33,9 @@ class TeamDamagedFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-            teamDamagedList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.DAMAGED.type)
+            teamDamagedList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.Damaged)
         }
         parentViewModel.matchId.value?.let { viewModel.setMatchId(it) }
-        viewModel.fetch()
     }
 
     companion object {
