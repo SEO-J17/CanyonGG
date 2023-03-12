@@ -33,10 +33,9 @@ class TeamVisionScoreFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-            teamVisionScoreList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.VISION_SCORE.type)
+            teamVisionScoreList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.VisionScore)
 
             parentViewModel.matchId.value?.let { viewModel.setMatchId(it) }
-            viewModel.fetch()
         }
     }
 

@@ -33,10 +33,9 @@ class TeamGoldFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-            teamGoldList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.SPENT_GOLD.type)
+            teamGoldList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.SpentGold)
 
             parentViewModel.matchId.value?.let { viewModel.setMatchId(it) }
-            viewModel.fetch()
         }
     }
 

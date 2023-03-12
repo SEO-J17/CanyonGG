@@ -33,10 +33,9 @@ class TeamDealtFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-            teamDealtList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.DEALT.type)
+            teamDealtList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.Dealt)
 
             parentViewModel.matchId.value?.let { viewModel.setMatchId(it) }
-            viewModel.fetch()
         }
     }
 

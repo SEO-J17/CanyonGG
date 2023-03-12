@@ -33,10 +33,9 @@ class TeamMinionFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-            teamMinionsList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.MINIONS.type)
+            teamMinionsList.adapter = AnalysisPageListAdapter(AnalysisPagerTabs.Minions)
 
             parentViewModel.matchId.value?.let { viewModel.setMatchId(it) }
-            viewModel.fetch()
         }
     }
 
