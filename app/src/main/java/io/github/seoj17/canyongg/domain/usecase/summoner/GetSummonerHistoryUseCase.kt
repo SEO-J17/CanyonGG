@@ -7,11 +7,10 @@ import io.github.seoj17.canyongg.data.repository.DataCenterRepository
 import io.github.seoj17.canyongg.data.repository.MatchRepository
 import io.github.seoj17.canyongg.data.repository.PerkRepository
 import io.github.seoj17.canyongg.domain.model.MatchInfoDomainModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @Reusable
@@ -29,18 +28,18 @@ class GetSummonerHistoryUseCase @Inject constructor(
                     coroutineScope {
                         MatchInfoDomainModel(
                             data,
-                            withContext(Dispatchers.Default) {
+                            async {
                                 dataCenterRepository.getSpell(data.firstSpell)
-                            },
-                            withContext(Dispatchers.Default) {
+                            }.await(),
+                            async {
                                 dataCenterRepository.getSpell(data.secondSpell)
-                            },
-                            withContext(Dispatchers.Default) {
+                            }.await(),
+                            async{
                                 perksRepository.getPerk(data.mainRune)
-                            }.imgUrl,
-                            withContext(Dispatchers.Default) {
+                            }.await().imgUrl,
+                            async{
                                 perksRepository.getPerk(data.subRune)
-                            }.imgUrl
+                            }.await().imgUrl
                         )
                     }
                 }

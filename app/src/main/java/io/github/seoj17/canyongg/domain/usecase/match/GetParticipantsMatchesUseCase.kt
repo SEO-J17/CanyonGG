@@ -5,9 +5,8 @@ import io.github.seoj17.canyongg.data.repository.DataCenterRepository
 import io.github.seoj17.canyongg.data.repository.MatchRepository
 import io.github.seoj17.canyongg.data.repository.PerkRepository
 import io.github.seoj17.canyongg.domain.model.MatchInfoDomainModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @Reusable
@@ -23,18 +22,18 @@ class GetParticipantsMatchesUseCase @Inject constructor(
                 coroutineScope {
                     MatchInfoDomainModel(
                         entity,
-                        withContext(Dispatchers.Default) {
+                        async {
                             dataCenterRepository.getSpell(entity.firstSpell)
-                        },
-                        withContext(Dispatchers.Default) {
+                        }.await(),
+                        async {
                             dataCenterRepository.getSpell(entity.secondSpell)
-                        },
-                        withContext(Dispatchers.Default) {
+                        }.await(),
+                        async {
                             perksRepository.getPerk(entity.mainRune)
-                        }.imgUrl,
-                        withContext(Dispatchers.Default) {
+                        }.await().imgUrl,
+                        async {
                             perksRepository.getPerk(entity.subRune)
-                        }.imgUrl,
+                        }.await().imgUrl,
                     )
                 }
             }
