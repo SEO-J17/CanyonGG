@@ -12,42 +12,39 @@ import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.vision.TeamVisionSc
 
 enum class TeamAnalysisTabs(
     @StringRes val title: Int,
-    val newInstance: Fragment,
-    val position: Int,
+    val newInstance: () -> Fragment,
 ) {
     KILLS(
         title = R.string.sub_pager_kill,
-        newInstance = TeamKillsFragment.newInstance(),
-        position = 0,
+        newInstance = TeamKillsFragment::newInstance,
     ),
 
     DEALT(
         title = R.string.sub_pager_dealt,
-        newInstance = TeamDealtFragment.newInstance(),
-        position = 1,
+        newInstance = TeamDealtFragment::newInstance,
     ),
 
     DAMAGED(
         title = R.string.sub_pager_damaged,
-        newInstance = TeamDamagedFragment.newInstance(),
-        position = 2,
+        newInstance = TeamDamagedFragment::newInstance,
     ),
 
     SPENT_GOLD(
         title = R.string.sub_pager_spent_gold,
-        newInstance = TeamGoldFragment.newInstance(),
-        position = 3,
+        newInstance = TeamGoldFragment::newInstance,
     ),
 
     MINIONS(
         title = R.string.sub_pager_minions,
-        newInstance = TeamMinionFragment.newInstance(),
-        position = 4,
+        newInstance = TeamMinionFragment::newInstance,
     ),
 
     VISION_SCORE(
         title = R.string.sub_pager_vision_score,
-        newInstance = TeamVisionScoreFragment.newInstance(),
-        position = 5,
-    ),
+        newInstance = TeamVisionScoreFragment::newInstance,
+    );
+
+    companion object {
+        fun getAnalysisTab(position: Int) = values().get(position)
+    }
 }
