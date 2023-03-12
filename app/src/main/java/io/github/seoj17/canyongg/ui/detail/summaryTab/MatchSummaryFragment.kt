@@ -52,7 +52,6 @@ class MatchSummaryFragment : Fragment() {
                 )
             }
             viewModel.setMatchId(parentViewModel.matchId)
-            viewModel.fetch()
         }
     }
 
