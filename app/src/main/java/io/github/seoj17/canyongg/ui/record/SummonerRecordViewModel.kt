@@ -65,14 +65,11 @@ class SummonerRecordViewModel @Inject constructor(
         }
         .cachedIn(viewModelScope)
 
-    private val _bookmarkedSummoner = MutableLiveData<Boolean?>()
-    val bookmarkedSummoner: LiveData<Boolean?> = _bookmarkedSummoner
+    val bookmarkedSummoner = checkBookmarkedSummoner(summonerPuuid).asLiveData()
 
     init {
         viewModelScope.launch {
-            _bookmarkedSummoner.value = checkBookmarkedSummoner(summonerPuuid)
             getUserInfoUseCase(summonerName)?.let { summonerDomain ->
-
                 val summoner = Summoner(summonerDomain)
 
                 val tier = getUserTierUseCase(summoner.id)?.let { summonerTier ->

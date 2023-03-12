@@ -26,7 +26,7 @@ class SummonerBookmarkRepositoryImpl @Inject constructor(
         localService.delete(puuid)
     }
 
-    override suspend fun checkBookmarkedSummoner(puuid: String): Boolean {
+    override fun checkBookmarkedSummoner(puuid: String): Flow<Boolean> {
         return localService.isBookmarkedSummoner(puuid)
     }
 }

@@ -8,5 +8,5 @@ interface SummonerBookmarkRepository {
     fun getBookmarkedSummoner(): Flow<List<SummonerBookmarkDataModel>>
     suspend fun addBookmarkSummoner(entity: SummonerBookmarkEntity)
     suspend fun deleteBookmarkSummoner(puuid: String)
-    suspend fun checkBookmarkedSummoner(puuid: String): Boolean
+    fun checkBookmarkedSummoner(puuid: String): Flow<Boolean>
 }
