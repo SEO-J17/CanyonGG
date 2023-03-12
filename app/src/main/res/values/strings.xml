@@ -72,11 +72,17 @@
     <string name="setting_dark_theme_value">dark_theme</string>
     <string name="victory_label">승리</string>
     <string name="lose_label">패배</string>
+    <string name="zero_kill">0 킬</string>
     <string name="sole_kill">단일 킬</string>
     <string name="double_kill">더블 킬</string>
     <string name="triple_kill">트리플 킬</string>
     <string name="quadra_kill">쿼드라 킬</string>
     <string name="penta_kill">펜타 킬</string>
+    <string name="classic_mode_label">CLASSIC</string>
+    <string name="aram_mode_label">ARAM</string>
+    <string name="tutorial_mode_label">TUTORIAL</string>
+    <string name="urf_mode_label">URF</string>
+    <string name="ultimate_mode_label">ULTBOOK</string>
     <string name="classic_mode">소환사 협곡</string>
     <string name="aram_mode">칼바람 나락</string>
     <string name="tutorial_mode">튜토리얼</string>
