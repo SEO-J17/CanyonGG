@@ -34,7 +34,6 @@ class MyRankFragment : Fragment() {
 
             viewModel.setMatchId(parentViewModel.matchId)
             viewModel.setSummonerPuuid(parentViewModel.puuId)
-            viewModel.fetch()
         }
     }
 
