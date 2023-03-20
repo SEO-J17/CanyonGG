@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/registerSummoner"
-        android:name="io.github.seoj17.canyongg.ui.register.RegisterSummonerFragment"
+        android:name="io.github.seoj17.canyongg.ui.representative.RepresentativeSummonerFragment"
         android:label="RegisterSummonerFragment">
         <action
             android:id="@+id/action_registerSummoner_to_home"
