@@ -1,6 +1,6 @@
 package io.github.seoj17.canyongg.ui.model
 
-import io.github.seoj17.canyongg.domain.model.RegisterUserInfoDomainModel
+import io.github.seoj17.canyongg.domain.model.RepresentativeUserInfoDomainModel
 
 data class RegisterUserInfo(
     val puuid: String,
@@ -15,7 +15,7 @@ data class RegisterUserInfo(
     val kda: Double,
 ) {
     companion object {
-        operator fun invoke(domain: RegisterUserInfoDomainModel): RegisterUserInfo {
+        operator fun invoke(domain: RepresentativeUserInfoDomainModel): RegisterUserInfo {
             return RegisterUserInfo(
                 puuid = domain.puuid,
                 profile = domain.profile,
@@ -34,8 +34,8 @@ data class RegisterUserInfo(
             summoner: Summoner,
             record: UserRecord,
             tier: String,
-        ): RegisterUserInfoDomainModel {
-            return RegisterUserInfoDomainModel(
+        ): RepresentativeUserInfoDomainModel {
+            return RepresentativeUserInfoDomainModel(
                 puuid = summoner.puuid,
                 profile = summoner.profileIconId,
                 level = summoner.summonerLevel,
