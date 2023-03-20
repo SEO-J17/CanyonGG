@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="death_color">#F15F5F</color>
+    <color name="non_click_color">#717070</color>
+    <color name="positive_click_color">#FF6200EE</color>
 </resources>
