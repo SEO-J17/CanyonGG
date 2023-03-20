@@ -18,7 +18,7 @@ class ChampionsRepositoryImpl @Inject constructor(
             .map {
                 ChampionsDataModel(
                     key = it.second.key.toInt(),
-                    name = it.first
+                    name = it.first,
                 )
             }
     }

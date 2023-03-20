@@ -1,7 +1,7 @@
 package io.github.seoj17.canyongg.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavBar.setupWithNavController(navController)
 
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home, R.id.search_summoner, R.id.setting)
+            setOf(R.id.home, R.id.search_summoner, R.id.setting),
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPreference = PreferenceManager.getDefaultSharedPreferences(this)
         val theme = sharedPreference.getString(
             getString(R.string.setting_theme_list_key),
-            getString(R.string.setting_light_theme_value)
+            getString(R.string.setting_light_theme_value),
         )
         when (theme) {
             getString(R.string.setting_light_theme_value) -> {

@@ -4,8 +4,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
-class RotationChampListAdapter
-    : ListAdapter<String, RotationChampViewHolder>(diffUtil) {
+class RotationChampListAdapter :
+    ListAdapter<String, RotationChampViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         RotationChampViewHolder(parent)
@@ -21,14 +21,14 @@ class RotationChampListAdapter
         private val diffUtil = object : DiffUtil.ItemCallback<String>() {
             override fun areItemsTheSame(
                 oldItem: String,
-                newItem: String
+                newItem: String,
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
                 oldItem: String,
-                newItem: String
+                newItem: String,
             ): Boolean {
                 return oldItem == newItem
             }

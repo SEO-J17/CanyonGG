@@ -31,7 +31,7 @@ class DataCenterService @Inject constructor(
             },
             onFailure = {
                 emptyList()
-            }
+            },
         )
     }
 
@@ -44,7 +44,7 @@ class DataCenterService @Inject constructor(
             },
             onFailure = {
                 throw it
-            }
+            },
         )
     }
 }

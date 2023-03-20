@@ -9,24 +9,25 @@ enum class GameModeState(
 ) {
     CLASSIC(
         gameMode = "CLASSIC",
-        modeName = R.string.classic_mode
+        modeName = R.string.classic_mode,
     ),
     ARAM(
         gameMode = "ARAM",
-        modeName = R.string.aram_mode
+        modeName = R.string.aram_mode,
     ),
     TUTORIAL(
         gameMode = "TUTORIAL",
-        modeName = R.string.tutorial_mode
+        modeName = R.string.tutorial_mode,
     ),
     URF(
         gameMode = "URF",
-        modeName = R.string.urf_mode
+        modeName = R.string.urf_mode,
     ),
     ULTBOOK(
         gameMode = "ULTBOOK",
-        modeName = R.string.ultimate_mode
-    );
+        modeName = R.string.ultimate_mode,
+        ),
+    ;
 
     companion object {
         fun getGameMode(mode: String): Int {
@@ -39,5 +40,3 @@ enum class GameModeState(
         }
     }
 }
-
-

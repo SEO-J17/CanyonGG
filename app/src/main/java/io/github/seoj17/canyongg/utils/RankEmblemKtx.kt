@@ -18,6 +18,3 @@ fun String.rankEmblemResId(): Int? {
     )
     return emblemMap.getOrDefault(this.split(" ")[0], null)
 }
-
-
-

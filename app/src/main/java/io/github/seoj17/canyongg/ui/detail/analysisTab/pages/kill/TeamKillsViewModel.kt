@@ -23,7 +23,7 @@ class TeamKillsViewModel @Inject constructor(
             emit(
                 getParticipantsMatches(matchId).map {
                     SummonerMatchRecord(it)
-                }
+                },
             )
         }
     }

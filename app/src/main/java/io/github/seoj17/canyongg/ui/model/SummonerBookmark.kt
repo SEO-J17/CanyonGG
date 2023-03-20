@@ -3,7 +3,6 @@ package io.github.seoj17.canyongg.ui.model
 import androidx.recyclerview.widget.DiffUtil
 import io.github.seoj17.canyongg.domain.model.BookmarkSummonerDomainModel
 
-
 data class SummonerBookmark(
     val summonerPuuid: String,
     val summonerName: String,

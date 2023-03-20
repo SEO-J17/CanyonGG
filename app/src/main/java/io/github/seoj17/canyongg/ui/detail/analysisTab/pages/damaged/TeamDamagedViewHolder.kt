@@ -27,7 +27,7 @@ class TeamDamagedViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,
-                )
+                ),
             )
         }
     }

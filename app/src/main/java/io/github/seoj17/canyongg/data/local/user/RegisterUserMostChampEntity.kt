@@ -13,8 +13,8 @@ import androidx.room.PrimaryKey
             parentColumns = arrayOf("puuid"),
             childColumns = arrayOf("user_puuid"),
             onDelete = ForeignKey.CASCADE,
-        )
-    ]
+        ),
+    ],
 )
 
 data class RegisterUserMostChampEntity(

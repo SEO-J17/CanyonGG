@@ -23,7 +23,7 @@ class TeamDealtViewModel @Inject constructor(
             emit(
                 getParticipantsMatches(matchId).map {
                     SummonerMatchRecord(it)
-                }
+                },
             )
         }
     }
@@ -38,7 +38,6 @@ class TeamDealtViewModel @Inject constructor(
         matchList
             .filter { !it.win }
             .sumOf { it.totalDealt }
-
     }
 
     fun setMatchId(matchId: String) {

@@ -7,7 +7,6 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.contract.UrlContract
 import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.AnalysisPageListAdapter
 import io.github.seoj17.canyongg.ui.detail.summaryTab.LoseParticipantsListAdapter
@@ -51,7 +50,7 @@ fun RecyclerView.setHistoryList(history: PagingData<SummonerMatchRecord>) {
 @BindingAdapter("bind:recentSummonerList")
 fun RecyclerView.setRecentSummonerList(recentSummoners: List<RecentSummoners>?) {
     (adapter as? SearchSummonerListAdapter)?.submitList(
-        recentSummoners ?: emptyList()
+        recentSummoners ?: emptyList(),
     )
 }
 
@@ -68,7 +67,7 @@ fun RecyclerView.setLoseParticipantsList(participantsMatches: List<SummonerMatch
 @BindingAdapter("bind:bookmarkSummonersList")
 fun RecyclerView.setBookmarkSummonersList(bookmarkSummoners: List<SummonerBookmark>?) {
     (adapter as? BookmarkListAdapter)?.submitList(
-        bookmarkSummoners ?: emptyList()
+        bookmarkSummoners ?: emptyList(),
     )
 }
 
@@ -120,7 +119,7 @@ fun ImageView.setItems(item: Int) {
 fun ImageView.setRunes(rune: String) {
     Glide
         .with(this.context)
-        .load("${UrlContract.RUNE_URL}${rune}")
+        .load("${UrlContract.RUNE_URL}$rune")
         .into(this)
 }
 
@@ -145,5 +144,3 @@ fun TextView.setAnalysisValue(value: Int) {
 fun TextView.setGameMode(mode: String) {
     this.setText(GameModeState.getGameMode(mode))
 }
-
-

@@ -25,9 +25,8 @@ import io.github.seoj17.canyongg.databinding.ViewEmptyBinding
             attribute = "buttonName",
             method = "setButtonName",
         ),
-    ]
+    ],
 )
-
 class EmptyView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,

@@ -27,7 +27,7 @@ class TeamDealtViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,
-                )
+                ),
             )
         }
     }

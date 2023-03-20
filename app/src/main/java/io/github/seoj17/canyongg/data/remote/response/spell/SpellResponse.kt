@@ -11,5 +11,4 @@ class SpellResponse(
     val type: String,
     @Json(name = "version")
     val version: String,
-) {
-}
+)

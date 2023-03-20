@@ -19,11 +19,11 @@ class MatchRepositoryImpl @Inject constructor(
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
-                enablePlaceholders = false
+                enablePlaceholders = false,
             ),
             pagingSourceFactory = {
                 MatchPagingSource(matchRemoteService, matchInfoService, puuid, NETWORK_PAGE_SIZE)
-            }
+            },
         )
     }
 

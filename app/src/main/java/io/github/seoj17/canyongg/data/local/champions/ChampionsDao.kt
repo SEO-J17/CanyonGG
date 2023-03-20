@@ -24,5 +24,4 @@ interface ChampionsDao {
 
     @Query("SELECT * FROM champions_info WHERE champion_key = :key")
     suspend fun get(key: Int): ChampionsEntity
-
 }

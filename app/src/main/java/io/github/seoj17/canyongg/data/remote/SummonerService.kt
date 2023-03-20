@@ -14,9 +14,10 @@ class SummonerService @Inject constructor(
         }.fold(
             onSuccess = { summonerInfo ->
                 summonerInfo
-            }, onFailure = {
+            },
+            onFailure = {
                 null
-            }
+            },
         )
     }
 
@@ -26,9 +27,10 @@ class SummonerService @Inject constructor(
         }.fold(
             onSuccess = { tierList ->
                 tierList
-            }, onFailure = {
+            },
+            onFailure = {
                 emptyList()
-            }
+            },
         )
     }
 
@@ -38,9 +40,10 @@ class SummonerService @Inject constructor(
         }.fold(
             onSuccess = { response ->
                 response.freeChampionIds
-            }, onFailure = {
+            },
+            onFailure = {
                 emptyList()
-            }
+            },
         )
     }
 }

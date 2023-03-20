@@ -39,7 +39,7 @@ class MatchSummaryFragment : Fragment() {
                     DetailMatchFragmentDirections.actionDetailMatchToSearchResult(
                         name,
                         puuid,
-                    )
+                    ),
                 )
             }
 
@@ -48,7 +48,7 @@ class MatchSummaryFragment : Fragment() {
                     DetailMatchFragmentDirections.actionDetailMatchToSearchResult(
                         name,
                         puuid,
-                    )
+                    ),
                 )
             }
             viewModel.setMatchId(parentViewModel.matchId)

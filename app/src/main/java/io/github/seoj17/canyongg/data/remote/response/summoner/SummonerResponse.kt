@@ -20,4 +20,3 @@ data class SummonerResponse(
     @Json(name = "summonerLevel")
     val summonerLevel: Int,
 )
-

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.seoj17.canyongg.databinding.ItemBookmarkSummonerBinding
-import io.github.seoj17.canyongg.ui.adapter.setSummonerProfile
 import io.github.seoj17.canyongg.ui.model.SummonerBookmark
 
 class BookmarkListViewHolder(
@@ -24,8 +23,10 @@ class BookmarkListViewHolder(
         operator fun invoke(parent: ViewGroup): BookmarkListViewHolder {
             return BookmarkListViewHolder(
                 ItemBookmarkSummonerBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
-                )
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
+                ),
             )
         }
     }

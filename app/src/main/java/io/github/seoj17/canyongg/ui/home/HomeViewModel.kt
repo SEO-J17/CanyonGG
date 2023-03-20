@@ -8,20 +8,20 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.seoj17.canyongg.domain.usecase.champion.AddMyMostChampsUseCase
-import io.github.seoj17.canyongg.domain.usecase.user.AddRegisterUserInfoUseCase
-import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.bookmark.DeleteBookmarkSummonerUseCase
-import io.github.seoj17.canyongg.domain.usecase.user.DeleteRegisterUserInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.bookmark.GetBookmarkSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.champion.AddMyMostChampsUseCase
 import io.github.seoj17.canyongg.domain.usecase.champion.GetChampionNameUseCase
 import io.github.seoj17.canyongg.domain.usecase.champion.GetMostChampUseCase
 import io.github.seoj17.canyongg.domain.usecase.champion.GetMostChampionListUseCase
-import io.github.seoj17.canyongg.domain.usecase.user.GetRegisterUserInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.champion.GetRotationChampUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.AddRegisterUserInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.DeleteRegisterUserInfoUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetRegisterUserInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.user.GetUserInfoUseCase
-import io.github.seoj17.canyongg.domain.usecase.user.GetUserTierUseCase
 import io.github.seoj17.canyongg.domain.usecase.user.GetUserRecordUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetUserTierUseCase
 import io.github.seoj17.canyongg.ui.model.ChampInfo
 import io.github.seoj17.canyongg.ui.model.MostChamps
 import io.github.seoj17.canyongg.ui.model.RegisterUserInfo
@@ -127,10 +127,10 @@ class HomeViewModel @Inject constructor(
         tier: String,
     ) {
         addMyUserInfo(
-            RegisterUserInfo.toDomainModel(summoner, record, tier)
+            RegisterUserInfo.toDomainModel(summoner, record, tier),
         )
         addSummonerInfoUseCase(
-            SummonerInfo.toDomainModel(summoner, record, tier)
+            SummonerInfo.toDomainModel(summoner, record, tier),
         )
     }
 
@@ -138,7 +138,7 @@ class HomeViewModel @Inject constructor(
         addMyMostChamps(
             champs.map {
                 MostChamps.toDomainModel(summoner, it)
-            }
+            },
         )
     }
 
@@ -160,6 +160,3 @@ class HomeViewModel @Inject constructor(
         }
     }
 }
-
-
-

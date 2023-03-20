@@ -22,5 +22,4 @@ interface RegisterUserInfoDao {
 
     @Query("SELECT * FROM register_user_info")
     fun get(): Flow<RegisterUserInfoEntity?>
-
 }

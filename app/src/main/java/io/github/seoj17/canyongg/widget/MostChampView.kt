@@ -18,9 +18,8 @@ import io.github.seoj17.canyongg.utils.setChampion
             attribute = "champInfo",
             method = "setChampInfo",
         ),
-    ]
+    ],
 )
-
 class MostChampView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,

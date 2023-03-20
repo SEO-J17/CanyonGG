@@ -7,15 +7,15 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import io.github.seoj17.canyongg.data.local.SummonerDatabase
+import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkDao
 import io.github.seoj17.canyongg.data.local.champions.ChampionsDao
 import io.github.seoj17.canyongg.data.local.match.MatchInfoDao
-import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampDao
-import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoDao
 import io.github.seoj17.canyongg.data.local.perks.PerkDao
 import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchDao
-import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkDao
-import io.github.seoj17.canyongg.data.local.SummonerDatabase
 import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoDao
+import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoDao
+import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampDao
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -27,7 +27,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             appContext,
             SummonerDatabase::class.java,
-            "summoner.db"
+            "summoner.db",
         ).build()
     }
 
