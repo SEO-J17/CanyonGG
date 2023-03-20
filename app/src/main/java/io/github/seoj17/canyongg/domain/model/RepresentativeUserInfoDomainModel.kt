@@ -3,7 +3,7 @@ package io.github.seoj17.canyongg.domain.model
 import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoEntity
 import io.github.seoj17.canyongg.data.model.RegisterUserDataModel
 
-data class RegisterUserInfoDomainModel(
+data class RepresentativeUserInfoDomainModel(
     val puuid: String,
     val profile: Int,
     val level: Int,
@@ -16,8 +16,8 @@ data class RegisterUserInfoDomainModel(
     val kda: Double,
 ) {
     companion object {
-        operator fun invoke(data: RegisterUserDataModel): RegisterUserInfoDomainModel {
-            return RegisterUserInfoDomainModel(
+        operator fun invoke(data: RegisterUserDataModel): RepresentativeUserInfoDomainModel {
+            return RepresentativeUserInfoDomainModel(
                 puuid = data.puuid,
                 profile = data.profile,
                 level = data.level,
@@ -31,7 +31,7 @@ data class RegisterUserInfoDomainModel(
             )
         }
 
-        fun toEntity(domain: RegisterUserInfoDomainModel): RegisterUserInfoEntity {
+        fun toEntity(domain: RepresentativeUserInfoDomainModel): RegisterUserInfoEntity {
             return RegisterUserInfoEntity(
                 puuid = domain.puuid,
                 profile = domain.profile,

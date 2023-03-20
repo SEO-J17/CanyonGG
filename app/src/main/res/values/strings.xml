@@ -88,4 +88,20 @@
     <string name="tutorial_mode">튜토리얼</string>
     <string name="urf_mode">우르프</string>
     <string name="ultimate_mode">궁극기 주문서</string>
+    <string name="login_label">로그인</string>
+    <string name="register_label">회원가입</string>
+    <string name="email_label">이메일</string>
+    <string name="password_label">비밀번호</string>
+    <string name="password_chk_label">비밀번호 확인</string>
+    <string name="error_email">이메일을 입력해주세요</string>
+    <string name="error_email_type">이메일 형식으로 입력해주세요</string>
+    <string name="error_password">비밀번호가 6글자 이상 이어야 합니다</string>
+    <string name="success_register">회원가입에 성공하셨습니다.</string>
+    <string name="fail_register">회원가입에 실패했습니다. 다시 시도해주세요.</string>
+    <string name="error_chk_password">비밀번호가 일치 하지 않습니다.</string>
+    <string name="success_login">로그인에 성공했습니다</string>
+    <string name="fail_login">이메일 또는 비밀번호를 다시 확인해 주세요</string>
+    <string name="login_password_message">비밀번호를 입력해주세요</string>
+    <string name="change_theme_label">테마 변경</string>
+    <string name="logout_label">로그아웃</string>
 </resources>

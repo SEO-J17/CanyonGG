@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.ui.register
+package io.github.seoj17.canyongg.ui.representative
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.seoj17.canyongg.databinding.FragmentRegisterSummonerBinding
+import io.github.seoj17.canyongg.databinding.FragmentRepresentativeSummonerBinding
 import io.github.seoj17.canyongg.ui.dialog.NotFoundUserDialogFragment
 import io.github.seoj17.canyongg.utils.observeEvent
 
 @AndroidEntryPoint
-class RegisterSummonerFragment : Fragment() {
-    private lateinit var binding: FragmentRegisterSummonerBinding
-    private val viewModel: RegisterSummonerViewModel by viewModels()
+class RepresentativeSummonerFragment : Fragment() {
+    private lateinit var binding: FragmentRepresentativeSummonerBinding
+    private val viewModel: RepresentativeSummonerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,7 +23,7 @@ class RegisterSummonerFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentRegisterSummonerBinding.inflate(layoutInflater, container, false)
+        binding = FragmentRepresentativeSummonerBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -37,7 +37,7 @@ class RegisterSummonerFragment : Fragment() {
             viewModel.searchResult.observe(viewLifecycleOwner) { summoner ->
                 summoner?.let {
                     findNavController().navigate(
-                        RegisterSummonerFragmentDirections.actionRegisterSummonerToHome(it.name)
+                        RepresentativeSummonerFragmentDirections.actionRegisterSummonerToHome(it.name),
                     )
                 }
             }

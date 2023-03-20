@@ -127,11 +127,20 @@ dependencies {
 
     // Firebase Bom
     implementation platform('com.google.firebase:firebase-bom:31.2.1')
+
     // Firebase - remote config
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-config-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    // FirebaseUI
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+
+    //Firebase Auth
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
+    // Google Auth
+    implementation 'com.google.android.gms:play-services-auth:20.4.1'
 }
 // Allow references to generated code
 kapt {

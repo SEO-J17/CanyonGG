@@ -2,7 +2,7 @@ package io.github.seoj17.canyongg.domain.model
 
 import io.github.seoj17.canyongg.data.remote.response.match.ParticipantResponse
 
-data class RegisterInfoDomainModel(
+data class RepresentativeInfoDomainModel(
     val assists: Int,
     val championName: String,
     val deaths: Int,
@@ -13,8 +13,8 @@ data class RegisterInfoDomainModel(
     val largestKill: Int,
 ) {
     companion object {
-        operator fun invoke(response: ParticipantResponse): RegisterInfoDomainModel {
-            return RegisterInfoDomainModel(
+        operator fun invoke(response: ParticipantResponse): RepresentativeInfoDomainModel {
+            return RepresentativeInfoDomainModel(
                 assists = response.assists,
                 championName = response.championName,
                 deaths = response.deaths,
@@ -26,7 +26,7 @@ data class RegisterInfoDomainModel(
             )
         }
 
-        operator fun invoke(list: List<ParticipantResponse>): List<RegisterInfoDomainModel> {
+        operator fun invoke(list: List<ParticipantResponse>): List<RepresentativeInfoDomainModel> {
             return list.map { response ->
                 invoke(response)
             }
