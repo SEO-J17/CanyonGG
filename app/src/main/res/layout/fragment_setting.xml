@@ -1,17 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/setting_preference_container"
-        android:name="io.github.seoj17.canyongg.ui.setting.SettingPreference"
+    <data>
+
+        <variable
+            name="vm"
+            type="io.github.seoj17.canyongg.ui.setting.SettingViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:showDividers="middle">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bot_nav_setting"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:text="@string/login_label"
+            android:visibility="@{vm.loginState ? View.GONE : View.VISIBLE}" />
+
+        <TextView
+            android:id="@+id/current_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:text="@{vm.currentEmail}"
+            android:visibility="@{vm.loginState ? View.VISIBLE : View.GONE}"
+            tools:text="qw4643987@naver.com" />
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.userLogout()}"
+            android:paddingVertical="10dp"
+            android:text="@string/logout_label"
+            android:visibility="@{vm.loginState ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:text="@string/change_theme_label" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
