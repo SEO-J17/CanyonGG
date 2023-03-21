@@ -8,6 +8,8 @@ import io.github.seoj17.canyongg.data.repository.ChampionsRepository
 import io.github.seoj17.canyongg.data.repository.ChampionsRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.DataCenterRepository
 import io.github.seoj17.canyongg.data.repository.DataCenterRepositoryImpl
+import io.github.seoj17.canyongg.data.repository.DataStoreRepository
+import io.github.seoj17.canyongg.data.repository.DataStoreRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.FirebaseRepository
 import io.github.seoj17.canyongg.data.repository.FirebaseRepositoryImpl
 import io.github.seoj17.canyongg.data.repository.MatchRepository
@@ -52,4 +54,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindFirebaseRepository(firebaseRepositoryImpl: FirebaseRepositoryImpl): FirebaseRepository
+
+    @Binds
+    abstract fun bindDataStoreRepository(dataStoreRepositoryImpl: DataStoreRepositoryImpl): DataStoreRepository
 }
