@@ -21,5 +21,4 @@ sealed class AnalysisPagerTabs(
     object Minions : AnalysisPagerTabs(TeamMinionsViewHolder)
 
     object VisionScore : AnalysisPagerTabs(TeamVisionScoreViewHolder)
-
 }

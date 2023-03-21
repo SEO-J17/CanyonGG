@@ -2,7 +2,6 @@ package io.github.seoj17.canyongg.data.model
 
 import io.github.seoj17.canyongg.data.local.bookmark.SummonerBookmarkEntity
 
-
 data class SummonerBookmarkDataModel(
     val puuid: String,
     val summonerName: String,

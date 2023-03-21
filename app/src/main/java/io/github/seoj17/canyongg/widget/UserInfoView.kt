@@ -17,11 +17,10 @@ import io.github.seoj17.canyongg.ui.model.RegisterUserInfo
         BindingMethod(
             type = UserInfoView::class,
             attribute = "userInfo",
-            method = "setUserInfo"
+            method = "setUserInfo",
         ),
-    ]
+    ],
 )
-
 class UserInfoView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
@@ -68,7 +67,6 @@ class UserInfoView @JvmOverloads constructor(
             binding.mainUserName.text = value
             field = value
         }
-
 
     var userTier: CharSequence = ""
         set(value) {

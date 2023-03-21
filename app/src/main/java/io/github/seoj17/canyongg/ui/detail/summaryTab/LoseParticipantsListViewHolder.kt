@@ -24,7 +24,7 @@ class LoseParticipantsListViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,
-                )
+                ),
             )
         }
     }

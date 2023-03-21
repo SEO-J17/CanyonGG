@@ -18,7 +18,7 @@ data class ChampionsDomainModel(
         fun toEntity(domain: ChampionsDomainModel): ChampionsEntity {
             return ChampionsEntity(
                 key = domain.key,
-                name = domain.name
+                name = domain.name,
             )
         }
 

@@ -38,7 +38,7 @@ class SummonerRecordFragment : Fragment() {
                     SummonerRecordFragmentDirections.actionSearchResultToDetailMatch(
                         matchId,
                         puuid,
-                    )
+                    ),
                 )
             }
 
@@ -56,7 +56,7 @@ class SummonerRecordFragment : Fragment() {
 
             temp.setOnClickListener {
                 findNavController().navigate(
-                    SummonerRecordFragmentDirections.actionSearchResultToDetailMatch("", "")
+                    SummonerRecordFragmentDirections.actionSearchResultToDetailMatch("", ""),
                 )
             }
         }
@@ -64,7 +64,9 @@ class SummonerRecordFragment : Fragment() {
 
     private fun bookmarkedMessage(message: Int) {
         Toast.makeText(
-            context, message, Toast.LENGTH_SHORT
+            context,
+            message,
+            Toast.LENGTH_SHORT,
         ).show()
     }
 }

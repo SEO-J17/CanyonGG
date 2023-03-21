@@ -11,7 +11,6 @@ class TeamMinionsViewHolder(
     private val binding: ItemTeamAnalysisBinding,
 ) : AnalysisPagerListViewHolder(binding.root) {
     override fun bind(dataSet: SummonerMatchRecord, wholeData: List<SummonerMatchRecord>) {
-
         with(binding) {
             data = dataSet
             itemValue.text = NumberFormatter.formatNumber(dataSet.minions)
@@ -27,7 +26,7 @@ class TeamMinionsViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,
-                )
+                ),
             )
         }
     }

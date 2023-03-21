@@ -26,7 +26,7 @@ data class RegisterUserDataModel(
                 win = entity.win,
                 lose = entity.lose,
                 winRate = entity.winRate,
-                kda = entity.kda
+                kda = entity.kda,
             )
         }
     }

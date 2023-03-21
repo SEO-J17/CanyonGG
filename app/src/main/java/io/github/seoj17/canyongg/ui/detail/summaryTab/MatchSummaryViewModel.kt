@@ -25,7 +25,7 @@ class MatchSummaryViewModel @Inject constructor(
             emit(
                 getParticipantsMatches(matchId).map {
                     SummonerMatchRecord(it)
-                }
+                },
             )
         }
     }

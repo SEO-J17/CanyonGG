@@ -16,7 +16,7 @@ class MatchesService @Inject constructor(
             },
             onFailure = {
                 emptyList()
-            }
+            },
         )
     }
 
@@ -26,9 +26,10 @@ class MatchesService @Inject constructor(
         }.fold(
             onSuccess = { matchInfo ->
                 matchInfo
-            }, onFailure = {
+            },
+            onFailure = {
                 throw it
-            }
+            },
         )
     }
 }

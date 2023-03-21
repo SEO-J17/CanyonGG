@@ -11,14 +11,14 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.domain.usecase.bookmark.AddBookmarkSummonerUseCase
-import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.bookmark.CheckBookmarkedSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.bookmark.DeleteBookmarkSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.summoner.GetSummonerHistoryUseCase
 import io.github.seoj17.canyongg.domain.usecase.summoner.GetSummonerInfoUseCase
 import io.github.seoj17.canyongg.domain.usecase.user.GetUserInfoUseCase
-import io.github.seoj17.canyongg.domain.usecase.user.GetUserTierUseCase
 import io.github.seoj17.canyongg.domain.usecase.user.GetUserRecordUseCase
+import io.github.seoj17.canyongg.domain.usecase.user.GetUserTierUseCase
 import io.github.seoj17.canyongg.ui.model.Summoner
 import io.github.seoj17.canyongg.ui.model.SummonerBookmark
 import io.github.seoj17.canyongg.ui.model.SummonerInfo
@@ -90,7 +90,7 @@ class SummonerRecordViewModel @Inject constructor(
         tier: String,
     ) {
         addSummonerInfoUseCase(
-            SummonerInfo.toDomainModel(summoner, record, tier)
+            SummonerInfo.toDomainModel(summoner, record, tier),
         )
     }
 
@@ -98,7 +98,7 @@ class SummonerRecordViewModel @Inject constructor(
         val summonerInfo = summonerInfo.value!!
         viewModelScope.launch {
             addBookmarkSummoner(
-                SummonerBookmark.toDomainModel(summonerInfo)
+                SummonerBookmark.toDomainModel(summonerInfo),
             )
         }
     }
@@ -109,4 +109,3 @@ class SummonerRecordViewModel @Inject constructor(
         }
     }
 }
-

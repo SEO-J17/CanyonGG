@@ -6,11 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.canyongg.domain.usecase.match.GetParticipantsMatchesUseCase
 import io.github.seoj17.canyongg.ui.model.SummonerMatchRecord
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,7 +24,7 @@ class TeamMinionViewModel @Inject constructor(
             emit(
                 getParticipantsMatches(matchId).map {
                     SummonerMatchRecord(it)
-                }
+                },
             )
         }
     }

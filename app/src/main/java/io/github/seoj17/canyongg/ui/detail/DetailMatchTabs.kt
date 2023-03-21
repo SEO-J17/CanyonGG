@@ -24,7 +24,8 @@ enum class DetailMatchTabs(
     RANK(
         title = R.string.my_rank,
         newInstance = MyRankFragment::newInstance,
-    );
+    ),
+    ;
 
     companion object {
         fun getMatchTab(position: Int) = values()[position]

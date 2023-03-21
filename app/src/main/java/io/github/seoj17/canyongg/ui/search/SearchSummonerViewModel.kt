@@ -8,10 +8,10 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.recent.search.DeleteAllRecentSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.recent.search.DeleteRecentSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.recent.search.GetRecentSummonerUseCase
+import io.github.seoj17.canyongg.domain.usecase.summoner.AddSummonerUseCase
 import io.github.seoj17.canyongg.domain.usecase.user.GetUserInfoUseCase
 import io.github.seoj17.canyongg.ui.model.RecentSummoners
 import io.github.seoj17.canyongg.ui.model.Summoner
@@ -55,7 +55,6 @@ class SearchSummonerViewModel @Inject constructor(
 
                 _searchResult.value = summoner
                 addSummonerUseCase(summoner.puuid, summoner.name)
-
             } ?: run {
                 _errorEvent.value = Event(true)
             }

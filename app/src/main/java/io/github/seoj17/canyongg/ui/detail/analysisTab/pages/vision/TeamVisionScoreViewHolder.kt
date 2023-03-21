@@ -27,7 +27,7 @@ class TeamVisionScoreViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,
-                )
+                ),
             )
         }
     }

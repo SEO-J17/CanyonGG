@@ -27,7 +27,7 @@ class TeamKillsViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,
-                )
+                ),
             )
         }
     }

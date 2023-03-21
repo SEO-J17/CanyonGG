@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(
                     this@HomeFragment.context,
                     getString(R.string.info_delete_toast),
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
             }
 
@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(
                     this@HomeFragment.context,
                     getString(R.string.infro_refresh_toast),
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
             }
 
@@ -65,20 +65,20 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.actionHomeToSearchGraph(
                         summonerName = viewModel.userInfo.value?.name,
                         summonerPuuid = viewModel.userInfo.value?.puuid,
-                    )
+                    ),
                 )
             }
 
             bookMarkList.adapter = BookmarkListAdapter(
                 { deleteName ->
                     viewModel.removeBookmark(deleteName)
-                }
+                },
             ) { name, puuid ->
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeToSearchGraph(
                         summonerName = name,
                         summonerPuuid = puuid,
-                    )
+                    ),
                 )
             }
             champRotationListView.adapter = RotationChampListAdapter()

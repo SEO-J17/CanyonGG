@@ -19,8 +19,10 @@ class RotationChampViewHolder(
         operator fun invoke(parent: ViewGroup): RotationChampViewHolder {
             return RotationChampViewHolder(
                 ItemRotationBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
-                )
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
+                ),
             )
         }
     }

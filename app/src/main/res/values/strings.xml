@@ -104,4 +104,7 @@
     <string name="login_password_message">비밀번호를 입력해주세요</string>
     <string name="change_theme_label">테마 변경</string>
     <string name="logout_label">로그아웃</string>
+    <string name="dark_theme_label">다크 테마</string>
+    <string name="light_theme_label">라이트 테마</string>
+    <string name="change_theme_title">테마 변경</string>
 </resources>

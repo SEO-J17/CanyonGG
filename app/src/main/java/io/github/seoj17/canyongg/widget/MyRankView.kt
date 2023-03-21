@@ -16,16 +16,15 @@ import io.github.seoj17.canyongg.utils.NumberFormatter
         BindingMethod(
             type = MyRankView::class,
             attribute = "rankTitle",
-            method = "setTitle"
+            method = "setTitle",
         ),
         BindingMethod(
             type = MyRankView::class,
             attribute = "rankInfo",
-            method = "setRankInfo"
+            method = "setRankInfo",
         ),
-    ]
+    ],
 )
-
 class MyRankView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,

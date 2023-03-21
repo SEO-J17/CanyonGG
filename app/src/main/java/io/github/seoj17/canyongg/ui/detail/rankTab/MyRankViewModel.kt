@@ -34,7 +34,7 @@ class MyRankViewModel @Inject constructor(
                         _summonerName.value = it.summonerName
                     }
                     SummonerMatchRecord(it)
-                }
+                },
             )
         }
     }

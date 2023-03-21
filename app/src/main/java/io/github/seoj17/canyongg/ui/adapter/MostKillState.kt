@@ -7,23 +7,24 @@ enum class MostKillState(
     @StringRes val killName: Int,
 ) {
     ZERO(
-        killName = R.string.zero_kill
+        killName = R.string.zero_kill,
     ),
     SINGLE(
-        killName = R.string.sole_kill
+        killName = R.string.sole_kill,
     ),
     DOUBLE(
-        killName = R.string.double_kill
+        killName = R.string.double_kill,
     ),
     TRIPLE(
-        killName = R.string.triple_kill
+        killName = R.string.triple_kill,
     ),
     QUADRA(
-        killName = R.string.quadra_kill
+        killName = R.string.quadra_kill,
     ),
     PENTA(
-        killName = R.string.penta_kill
-    );
+        killName = R.string.penta_kill,
+    ),
+    ;
 
     companion object {
         fun getMostKill(kill: Int): Int {

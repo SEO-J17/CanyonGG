@@ -24,7 +24,7 @@ class WinParticipantsListViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,
-                )
+                ),
             )
         }
     }

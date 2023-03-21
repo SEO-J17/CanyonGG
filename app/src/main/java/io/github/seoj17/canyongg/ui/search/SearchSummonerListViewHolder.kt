@@ -26,8 +26,10 @@ class SearchSummonerListViewHolder(
         operator fun invoke(parent: ViewGroup): SearchSummonerListViewHolder {
             return SearchSummonerListViewHolder(
                 ItemRecentNameBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
-                )
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false,
+                ),
             )
         }
     }

@@ -29,7 +29,7 @@ data class SummonerInfoDomainModel(
                 lose = data.lose,
                 winRate = data.winRate,
                 kda = data.kda,
-                largestKill = data.largestKill
+                largestKill = data.largestKill,
             )
         }
 
@@ -45,7 +45,7 @@ data class SummonerInfoDomainModel(
                 lose = domain.lose,
                 winRate = domain.winRate,
                 kda = domain.kda,
-                largestKill = domain.largestKill
+                largestKill = domain.largestKill,
             )
         }
     }

@@ -7,9 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class TeamAnalysisViewModel @Inject constructor(
-
-) : ViewModel() {
+class TeamAnalysisViewModel @Inject constructor() : ViewModel() {
 
     private val _matchId = MutableLiveData<String>()
     val matchId: LiveData<String> = _matchId

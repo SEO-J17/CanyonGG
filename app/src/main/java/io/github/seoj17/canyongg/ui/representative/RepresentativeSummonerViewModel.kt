@@ -33,4 +33,3 @@ class RepresentativeSummonerViewModel @Inject constructor(
         }
     }
 }
-

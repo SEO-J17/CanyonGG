@@ -16,11 +16,10 @@ import io.github.seoj17.canyongg.ui.model.TeamKdaInfo
         BindingMethod(
             type = TeamKdaView::class,
             attribute = "teamKdaInfo",
-            method = "setTeamKdaInfo"
+            method = "setTeamKdaInfo",
         ),
-    ]
+    ],
 )
-
 class TeamKdaView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
@@ -40,7 +39,6 @@ class TeamKdaView @JvmOverloads constructor(
             field = value
         }
 
-
     var teamWin: Boolean? = null
         set(value) {
             binding
@@ -50,7 +48,7 @@ class TeamKdaView @JvmOverloads constructor(
                         R.string.victory_label
                     } else {
                         R.string.lose_label
-                    }
+                    },
                 )
             field = value
         }

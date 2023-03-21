@@ -27,7 +27,7 @@ class TeamGoldViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,
-                )
+                ),
             )
         }
     }

@@ -42,7 +42,8 @@ enum class TeamAnalysisTabs(
     VISION_SCORE(
         title = R.string.sub_pager_vision_score,
         newInstance = TeamVisionScoreFragment::newInstance,
-    );
+    ),
+    ;
 
     companion object {
         fun getAnalysisTab(position: Int) = values().get(position)

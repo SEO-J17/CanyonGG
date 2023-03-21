@@ -1,9 +1,9 @@
 package io.github.seoj17.canyongg.data.repository
 
-import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampDao
-import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampEntity
 import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoDao
 import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoEntity
+import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampDao
+import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampEntity
 import io.github.seoj17.canyongg.data.model.MostChampionDataModel
 import io.github.seoj17.canyongg.data.model.RegisterUserDataModel
 import kotlinx.coroutines.flow.Flow

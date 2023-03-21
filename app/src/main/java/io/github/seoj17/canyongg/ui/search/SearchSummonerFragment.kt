@@ -36,13 +36,13 @@ class SearchSummonerFragment : Fragment() {
             vm = viewModel
             recentSummonerListView.adapter =
                 SearchSummonerListAdapter(
-                    { viewModel.deleteRecentSummoner(it) }
+                    { viewModel.deleteRecentSummoner(it) },
                 ) { name, puuid ->
                     findNavController().navigate(
                         SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                             name,
                             puuid,
-                        )
+                        ),
                     )
                 }
 
@@ -66,29 +66,30 @@ class SearchSummonerFragment : Fragment() {
                         SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                             summoner.name,
                             summoner.puuid,
-                        )
+                        ),
                     )
                 }
             }
-            //홈 화면에서 자세히 보기 버튼을 눌렀을 때 바로 검색 결과 화면이 보이도록 하는 함수
+            // 홈 화면에서 자세히 보기 버튼을 눌렀을 때 바로 검색 결과 화면이 보이도록 하는 함수
             if (viewModel.isClickDetailInfo()) {
                 findNavController().navigate(
                     SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                         viewModel.summonerName,
                         viewModel.summonerPuuid,
-                    )
+                    ),
                 )
             }
 
             viewModel.errorEvent.observeEvent(viewLifecycleOwner) {
                 NotFoundUserDialogFragment().show(childFragmentManager, null)
             }
-            //임시버튼. 화면 이동하게함
+            // 임시버튼. 화면 이동하게함
             temp.setOnClickListener {
                 findNavController().navigate(
                     SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
-                        "", ""
-                    )
+                        "",
+                        "",
+                    ),
                 )
             }
         }

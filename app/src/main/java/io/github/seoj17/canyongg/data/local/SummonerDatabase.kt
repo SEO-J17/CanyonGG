@@ -14,10 +14,10 @@ import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchDao
 import io.github.seoj17.canyongg.data.local.recent.search.RecentSearchNameEntity
 import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoDao
 import io.github.seoj17.canyongg.data.local.summoner.SummonerInfoEntity
-import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampDao
-import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampEntity
 import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoDao
 import io.github.seoj17.canyongg.data.local.user.RegisterUserInfoEntity
+import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampDao
+import io.github.seoj17.canyongg.data.local.user.RegisterUserMostChampEntity
 
 @Database(
     entities = [

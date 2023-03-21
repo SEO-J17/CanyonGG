@@ -6,9 +6,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.github.seoj17.canyongg.data.remote.SummonerApi
-import io.github.seoj17.canyongg.data.remote.MatchesApi
 import io.github.seoj17.canyongg.data.remote.DataCenterApi
+import io.github.seoj17.canyongg.data.remote.MatchesApi
+import io.github.seoj17.canyongg.data.remote.SummonerApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -81,7 +81,6 @@ object NetworkModule {
         return "https://ddragon.leagueoflegends.com"
     }
 
-
     @Singleton
     @Provides
     @AuthToken
@@ -106,7 +105,7 @@ object NetworkModule {
                 chain.request()
                     .newBuilder()
                     .addHeader("X-Riot-Token", authToken)
-                    .build()
+                    .build(),
             )
         }
     }
@@ -124,7 +123,7 @@ object NetworkModule {
             .addInterceptor(httpLoggingInterceptor)
             .connectTimeout(
                 connectTimeoutPolicy,
-                TimeUnit.MILLISECONDS
+                TimeUnit.MILLISECONDS,
             )
             .build()
     }
@@ -172,7 +171,7 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("${url}/cdn/${cdnVersion}/")
+            .baseUrl("$url/cdn/$cdnVersion/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()

@@ -23,7 +23,7 @@ class TeamGoldViewModel @Inject constructor(
             emit(
                 getParticipantsMatches(matchId).map {
                     SummonerMatchRecord(it)
-                }
+                },
             )
         }
     }
@@ -38,7 +38,6 @@ class TeamGoldViewModel @Inject constructor(
         matchList
             .filter { !it.win }
             .sumOf { it.spentGold }
-
     }
 
     fun setMatchId(matchId: String) {

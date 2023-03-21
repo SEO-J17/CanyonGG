@@ -22,7 +22,7 @@ data class RegisterInfoDataModel(
                 puuid = response.puuid,
                 gameEndedInEarlySurrender = response.gameEndedInEarlySurrender,
                 win = response.win,
-                largestKill = response.largestMultiKill
+                largestKill = response.largestMultiKill,
             )
         }
 
