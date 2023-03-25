@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -19,12 +20,15 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email_label">
+            android:hint="@string/email_label"
+            app:errorEnabled="@{vm.emailValid}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:text="@={vm.email}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -32,13 +36,15 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password_label">
+            android:hint="@string/password_label"
+            app:errorEnabled="@{vm.passwordValid}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="@={vm.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -46,9 +52,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@{vm.validInfo? @color/positive_click_color : @color/non_click_color}"
-            android:clickable="@{vm.validInfo}"
-            android:onClick="@{() -> vm.loginSubmit(email.getText().toString(), password.getText().toString())}"
+            android:backgroundTint="@color/selector_button"
+            android:enabled="@{vm.validLoginInfo}"
+            android:onClick="@{() -> vm.loginSubmit()}"
             android:text="@string/login_label" />
 
         <Button
