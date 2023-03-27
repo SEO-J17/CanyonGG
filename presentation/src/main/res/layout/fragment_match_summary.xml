@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="io.github.seoj17.presentaion.ui.detail.summaryTab.MatchSummaryViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <io.github.seoj17.presentaion.widget.TeamKdaView
+                android:id="@+id/win_team_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:teamKdaInfo="@{vm.winTeamKdaInfo}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/win_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:winParticipantsList="@{vm.winTeam}"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_participant" />
+
+            <io.github.seoj17.presentaion.widget.TeamKdaView
+                android:id="@+id/lose_team_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:teamKdaInfo="@{vm.loseTeamKdaInfo}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lose_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:loseParticipantsList="@{vm.loseTeam}"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_participant" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
