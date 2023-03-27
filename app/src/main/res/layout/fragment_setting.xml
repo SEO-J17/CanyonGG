@@ -67,6 +67,12 @@
             android:layout_height="wrap_content">
 
             <RadioButton
+                android:id="@+id/system_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/system_theme" />
+
+            <RadioButton
                 android:id="@+id/light_theme"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"

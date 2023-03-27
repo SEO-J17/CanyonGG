@@ -26,13 +26,12 @@ enum class GameModeState(
     ULTBOOK(
         gameMode = "ULTBOOK",
         modeName = R.string.ultimate_mode,
-        ),
+    ),
     ;
 
     companion object {
-        fun getGameMode(mode: String): Int {
-            return GameModeState
-                .values()
+        operator fun invoke(mode: String): Int {
+            return values()
                 .first {
                     it.gameMode == mode
                 }

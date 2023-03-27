@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.ActivityMainBinding
+import io.github.seoj17.canyongg.ui.setting.ThemeState
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.themeSetting.observe(this) {
-            AppCompatDelegate.setDefaultNightMode(it ?: AppCompatDelegate.MODE_NIGHT_NO)
+            AppCompatDelegate.setDefaultNightMode(it ?: ThemeState.SYSTEM.mode)
         }
     }
 

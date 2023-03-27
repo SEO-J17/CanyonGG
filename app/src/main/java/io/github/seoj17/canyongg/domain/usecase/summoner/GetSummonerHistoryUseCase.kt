@@ -26,20 +26,24 @@ class GetSummonerHistoryUseCase @Inject constructor(
             .map { paging ->
                 paging.map { data ->
                     coroutineScope {
+                        val firstSpell = async {
+                            dataCenterRepository.getSpell(data.firstSpell)
+                        }
+                        val secondSpell = async {
+                            dataCenterRepository.getSpell(data.secondSpell)
+                        }
+                        val mainRune = async {
+                            perksRepository.getPerk(data.mainRune)
+                        }
+                        val subRune = async {
+                            perksRepository.getPerk(data.subRune)
+                        }
                         MatchInfoDomainModel(
                             data,
-                            async {
-                                dataCenterRepository.getSpell(data.firstSpell)
-                            }.await(),
-                            async {
-                                dataCenterRepository.getSpell(data.secondSpell)
-                            }.await(),
-                            async{
-                                perksRepository.getPerk(data.mainRune)
-                            }.await().imgUrl,
-                            async{
-                                perksRepository.getPerk(data.subRune)
-                            }.await().imgUrl
+                            firstSpell.await(),
+                            secondSpell.await(),
+                            mainRune.await().imgUrl,
+                            subRune.await().imgUrl,
                         )
                     }
                 }

@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.textfield.TextInputLayout
 import io.github.seoj17.canyongg.contract.UrlContract
 import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.AnalysisPageListAdapter
 import io.github.seoj17.canyongg.ui.detail.summaryTab.LoseParticipantsListAdapter
@@ -125,7 +126,7 @@ fun ImageView.setRunes(rune: String) {
 
 @BindingAdapter("bind:mostKill")
 fun TextView.setMostKill(kill: Int) {
-    this.setText(MostKillState.getMostKill(kill))
+    this.setText(MostKillState(kill))
 }
 
 @BindingAdapter("bind:bookmarkState")
@@ -142,5 +143,24 @@ fun TextView.setAnalysisValue(value: Int) {
 
 @BindingAdapter("bind:gameMode")
 fun TextView.setGameMode(mode: String) {
-    this.setText(GameModeState.getGameMode(mode))
+    this.setText(GameModeState(mode))
 }
+
+@BindingAdapter("bind:valid", "bind:errorText")
+fun TextInputLayout.validInputText(
+    isValid: Boolean,
+    message: String,
+) {
+    if (isValid) {
+        error = null
+        isErrorEnabled = false
+    } else {
+        if (editText?.text?.isNotEmpty() == true) {
+            isErrorEnabled = true
+            error = message
+        } else {
+            isErrorEnabled = false
+        }
+    }
+}
+

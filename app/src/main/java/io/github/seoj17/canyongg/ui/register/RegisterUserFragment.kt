@@ -1,18 +1,20 @@
 package io.github.seoj17.canyongg.ui.register
 
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.FragmentRegisterUserBinding
+import io.github.seoj17.canyongg.utils.showToast
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RegisterUserFragment : Fragment() {
@@ -30,67 +32,27 @@ class RegisterUserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-
-            email.addTextChangedListener {
-                if (it.isNullOrBlank()) {
-                    emailLayout.error = getString(R.string.error_email)
-                    viewModel.fetchEmailValid(false)
-                } else {
-                    Patterns
-                        .EMAIL_ADDRESS
-                        .matcher(it.toString())
-                        .run {
-                            if (matches()) {
-                                emailLayout.error = null
-                                viewModel.fetchEmailValid(true)
-                            } else {
-                                emailLayout.error = getString(R.string.error_email_type)
-                                viewModel.fetchEmailValid(false)
-                            }
-                        }
-                }
-            }
-
-            password.addTextChangedListener {
-                if ((password.text?.length ?: 0) < 6) {
-                    passwordLayout.error = getString(R.string.error_password)
-                } else {
-                    passwordLayout.error = null
-                }
-                chkPassword()
-            }
-
-            passwordChk.addTextChangedListener {
-                chkPassword()
-            }
-
-            viewModel.registerEvent.observe(viewLifecycleOwner) {
-                if (it) {
-                    Toast.makeText(context, R.string.success_register, Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(
-                        RegisterUserFragmentDirections.actionRegisterUserFragmentToLoginFragment(),
-                    )
-                } else {
-                    Toast.makeText(context, R.string.fail_register, Toast.LENGTH_SHORT).show()
-                }
-            }
         }
-    }
 
-    private fun chkPassword() {
-        with(binding) {
-            if (
-                password.text.toString() != passwordChk.text.toString() ||
-                (passwordChk.text?.length ?: 0) < 6
-            ) {
-                passwordChkLayout.error = getString(R.string.error_chk_password)
-                viewModel.fetchPasswordValid(false)
-            } else {
-                passwordChkLayout.error = null
-                viewModel.fetchPasswordValid(true)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.registerState.collect { state ->
+                    when (state) {
+                        is RegisterState.SUCCESS -> {
+                            requireActivity().showToast(R.string.success_register)
+                            findNavController().navigate(
+                                RegisterUserFragmentDirections.actionRegisterUserFragmentToLoginFragment(),
+                            )
+                        }
+                        is RegisterState.FAIL -> {
+                            requireActivity().showToast(R.string.fail_register)
+                        }
+                    }
+                }
             }
         }
     }

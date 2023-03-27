@@ -83,15 +83,6 @@ class SearchSummonerFragment : Fragment() {
             viewModel.errorEvent.observeEvent(viewLifecycleOwner) {
                 NotFoundUserDialogFragment().show(childFragmentManager, null)
             }
-            // 임시버튼. 화면 이동하게함
-            temp.setOnClickListener {
-                findNavController().navigate(
-                    SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
-                        "",
-                        "",
-                    ),
-                )
-            }
         }
     }
 }

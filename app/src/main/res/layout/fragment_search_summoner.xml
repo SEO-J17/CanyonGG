@@ -48,16 +48,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/recent_summoner" />
 
-        <Button
-            android:id="@+id/temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="임시 버튼"
-            app:layout_constraintBottom_toBottomOf="@id/recent_summoner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/recent_summoner"
-            app:layout_constraintTop_toTopOf="@id/recent_summoner" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recent_summoner_list_view"
             android:layout_width="match_parent"

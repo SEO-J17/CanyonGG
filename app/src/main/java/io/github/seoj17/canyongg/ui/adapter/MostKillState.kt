@@ -3,36 +3,40 @@ package io.github.seoj17.canyongg.ui.adapter
 import androidx.annotation.StringRes
 import io.github.seoj17.canyongg.R
 
-enum class MostKillState(
+sealed class MostKillState(
     @StringRes val killName: Int,
 ) {
-    ZERO(
+    object ZERO : MostKillState(
         killName = R.string.zero_kill,
-    ),
-    SINGLE(
+    )
+
+    object SINGLE : MostKillState(
         killName = R.string.sole_kill,
-    ),
-    DOUBLE(
+    )
+
+    object DOUBLE : MostKillState(
         killName = R.string.double_kill,
-    ),
-    TRIPLE(
+    )
+
+    object TRIPLE : MostKillState(
         killName = R.string.triple_kill,
-    ),
-    QUADRA(
+    )
+
+    object QUADRA : MostKillState(
         killName = R.string.quadra_kill,
-    ),
-    PENTA(
+    )
+
+    object PENTA : MostKillState(
         killName = R.string.penta_kill,
-    ),
-    ;
+    )
 
     companion object {
-        fun getMostKill(kill: Int): Int {
-            return MostKillState
-                .values()
-                .getOrNull(kill)
-                ?.killName
-                ?: ZERO.killName
+        operator fun invoke(kill: Int): Int {
+            return values().getOrNull(kill)?.killName ?: ZERO.killName
+        }
+
+        private fun values(): List<MostKillState> {
+            return listOf(ZERO, SINGLE, DOUBLE, TRIPLE, QUADRA, PENTA)
         }
     }
 }

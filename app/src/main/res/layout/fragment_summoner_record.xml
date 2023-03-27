@@ -18,12 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="매치 상세" />
-
         <ImageView
             android:id="@+id/user_thumbNail"
             android:layout_width="60dp"

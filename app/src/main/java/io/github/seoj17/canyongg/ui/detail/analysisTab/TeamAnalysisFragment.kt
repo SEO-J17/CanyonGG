@@ -34,7 +34,7 @@ class TeamAnalysisFragment : Fragment() {
                 AnalysisViewPagerAdapter(this@TeamAnalysisFragment)
 
             TabLayoutMediator(analysisTabLayout, analysisTabPager) { tab, position ->
-                tab.setText(TeamAnalysisTabs.getAnalysisTab(position).title)
+                tab.setText(TeamAnalysisTabs(position).title)
             }.attach()
 
             viewModel.setMatchId(parentViewModel.matchId)
