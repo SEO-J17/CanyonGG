@@ -11,7 +11,7 @@ class AnalysisPageListAdapter(
         parent: ViewGroup,
         viewType: Int,
     ): AnalysisPagerListViewHolder {
-        return pageType.viewHolder(parent)
+        return pageType.createViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: AnalysisPagerListViewHolder, position: Int) {

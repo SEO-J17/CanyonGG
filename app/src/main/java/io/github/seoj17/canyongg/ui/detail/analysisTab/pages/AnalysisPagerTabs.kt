@@ -8,7 +8,7 @@ import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.minion.TeamMinionsV
 import io.github.seoj17.canyongg.ui.detail.analysisTab.pages.vision.TeamVisionScoreViewHolder
 
 sealed class AnalysisPagerTabs(
-    val viewHolder: AnalysisPagerListViewHolder.CreateViewHolder,
+    val createViewHolder: AnalysisPagerListViewHolder.CreateViewHolder,
 ) {
     object Kills : AnalysisPagerTabs(TeamKillsViewHolder)
 
