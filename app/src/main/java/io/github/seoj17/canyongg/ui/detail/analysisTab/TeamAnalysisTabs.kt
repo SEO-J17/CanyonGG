@@ -46,6 +46,6 @@ enum class TeamAnalysisTabs(
     ;
 
     companion object {
-        fun getAnalysisTab(position: Int) = values().get(position)
+        operator fun invoke(position: Int) = values().get(position)
     }
 }
