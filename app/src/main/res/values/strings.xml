@@ -107,4 +107,5 @@
     <string name="dark_theme_label">다크 테마</string>
     <string name="light_theme_label">라이트 테마</string>
     <string name="change_theme_title">테마 변경</string>
+    <string name="system_theme">시스템 설정 테마</string>
 </resources>
