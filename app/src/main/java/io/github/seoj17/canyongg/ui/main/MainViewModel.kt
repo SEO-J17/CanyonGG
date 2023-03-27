@@ -13,5 +13,5 @@ class MainViewModel @Inject constructor(
     private val getThemeSettingUseCase: GetThemeSettingUseCase,
 ) : ViewModel() {
     val themeSetting: LiveData<Int?> =
-        getThemeSettingUseCase(ThemeState.THEME.key).asLiveData()
+        getThemeSettingUseCase(ThemeState.getKey()).asLiveData()
 }
