@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -21,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_label"
-            app:errorEnabled="@{vm.emailValid}">
+            bind:errorText="@{@string/error_email_type}"
+            bind:valid="@{vm.emailValid}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
@@ -37,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_label"
-            app:errorEnabled="@{vm.passwordValid}">
+            bind:errorText="@{@string/error_password}"
+            bind:valid="@{vm.passwordValid}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
