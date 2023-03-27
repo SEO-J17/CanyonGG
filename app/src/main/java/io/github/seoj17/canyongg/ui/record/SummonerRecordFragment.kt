@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.canyongg.R
 import io.github.seoj17.canyongg.databinding.FragmentSummonerRecordBinding
+import io.github.seoj17.canyongg.utils.showToast
 
 @AndroidEntryPoint
 class SummonerRecordFragment : Fragment() {
@@ -46,27 +46,13 @@ class SummonerRecordFragment : Fragment() {
                 if (it.isSelected) {
                     it.isSelected = false
                     viewModel.deleteBookmark()
-                    bookmarkedMessage(R.string.delete_bookmark_message)
+                    requireActivity().showToast(R.string.delete_bookmark_message)
                 } else {
                     it.isSelected = true
                     viewModel.addBookmark()
-                    bookmarkedMessage(R.string.add_bookmark_message)
+                    requireActivity().showToast(R.string.add_bookmark_message)
                 }
             }
-
-            temp.setOnClickListener {
-                findNavController().navigate(
-                    SummonerRecordFragmentDirections.actionSearchResultToDetailMatch("", ""),
-                )
-            }
         }
-    }
-
-    private fun bookmarkedMessage(message: Int) {
-        Toast.makeText(
-            context,
-            message,
-            Toast.LENGTH_SHORT,
-        ).show()
     }
 }
