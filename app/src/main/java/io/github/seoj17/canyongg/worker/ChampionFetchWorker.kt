@@ -6,8 +6,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import io.github.seoj17.canyongg.domain.usecase.champion.AddChampionListUseCase
-import io.github.seoj17.canyongg.domain.usecase.champion.GetChampionsUseCase
+import io.github.seoj17.domain.usecase.champion.AddChampionListUseCase
+import io.github.seoj17.domain.usecase.champion.GetChampionsUseCase
 
 @HiltWorker
 class ChampionFetchWorker @AssistedInject constructor(
