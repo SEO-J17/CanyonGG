@@ -25,7 +25,7 @@ class SettingViewModel @Inject constructor(
     private val _currentEmail = MutableLiveData<String>()
     val currentEmail: LiveData<String> = _currentEmail
 
-    val themeSetting: LiveData<Int?> = getThemeSettingUseCase(ThemeState.THEME.key).asLiveData()
+    val themeSetting: LiveData<Int?> = getThemeSettingUseCase(ThemeState.getKey()).asLiveData()
 
     init {
         Firebase
@@ -45,9 +45,9 @@ class SettingViewModel @Inject constructor(
         _loginState.value = false
     }
 
-    fun fetchThemeSetting(id: Int) {
+    fun fetchThemeSetting(index: Int) {
         viewModelScope.launch {
-            addThemeSettingUseCase(ThemeState.THEME.key, id)
+            addThemeSettingUseCase(ThemeState.getKey(), ThemeState.getMode(index))
         }
     }
 }
