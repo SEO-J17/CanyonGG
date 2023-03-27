@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -38,20 +37,23 @@ class SettingFragment : Fragment() {
             }
 
             viewModel.themeSetting.observe(viewLifecycleOwner) {
-                if (it == AppCompatDelegate.MODE_NIGHT_YES) {
-                    darkTheme.isChecked = true
-                } else {
-                    lightTheme.isChecked = true
+                when (it) {
+                    ThemeState.LIGHT.mode -> lightTheme.isChecked = true
+                    ThemeState.DARK.mode -> darkTheme.isChecked = true
+                    else -> systemTheme.isChecked = true
                 }
             }
 
             themeGroup.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
+                    lightTheme.id -> {
+                        viewModel.fetchThemeSetting(index = 1)
+                    }
                     darkTheme.id -> {
-                        viewModel.fetchThemeSetting(AppCompatDelegate.MODE_NIGHT_YES)
+                        viewModel.fetchThemeSetting(index = 2)
                     }
                     else -> {
-                        viewModel.fetchThemeSetting(AppCompatDelegate.MODE_NIGHT_NO)
+                        viewModel.fetchThemeSetting(index = 0)
                     }
                 }
             }
