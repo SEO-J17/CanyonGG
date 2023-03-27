@@ -20,20 +20,24 @@ class GetParticipantsMatchesUseCase @Inject constructor(
             .getParticipantsMatchInfo(matchId)
             .map { entity ->
                 coroutineScope {
+                    val firstSpell = async {
+                        dataCenterRepository.getSpell(entity.firstSpell)
+                    }
+                    val secondSpell = async {
+                        dataCenterRepository.getSpell(entity.secondSpell)
+                    }
+                    val mainRune = async {
+                        perksRepository.getPerk(entity.mainRune)
+                    }
+                    val subRune = async {
+                        perksRepository.getPerk(entity.subRune)
+                    }
                     MatchInfoDomainModel(
                         entity,
-                        async {
-                            dataCenterRepository.getSpell(entity.firstSpell)
-                        }.await(),
-                        async {
-                            dataCenterRepository.getSpell(entity.secondSpell)
-                        }.await(),
-                        async {
-                            perksRepository.getPerk(entity.mainRune)
-                        }.await().imgUrl,
-                        async {
-                            perksRepository.getPerk(entity.subRune)
-                        }.await().imgUrl,
+                        firstSpell.await(),
+                        secondSpell.await(),
+                        mainRune.await().imgUrl,
+                        subRune.await().imgUrl,
                     )
                 }
             }
