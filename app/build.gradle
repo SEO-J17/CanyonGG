@@ -13,9 +13,6 @@ android {
         applicationId "io.github.seoj17.canyongg"
         minSdk 26
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -59,9 +56,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation(project(":presentation"))
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(project(":presentation"))
 
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
