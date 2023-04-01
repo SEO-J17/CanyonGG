@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="io.github.seoj17.presentaion.model.SummonerBookmark" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp">
+
+        <ImageView
+            android:id="@+id/summoner_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@id/summoner_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:summonerProfile="@{data.summonerIcon}"
+            tools:src="@drawable/temp_user" />
+
+        <TextView
+            android:id="@+id/summoner_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:text="@{String.valueOf(data.summonerLevel)}"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@id/summoner_name"
+            app:layout_constraintEnd_toEndOf="@id/summoner_profile"
+            app:layout_constraintStart_toStartOf="@id/summoner_profile"
+            tools:text="120" />
+
+        <TextView
+            android:id="@+id/summoner_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:maxLength="15"
+            android:text="@{data.summonerName}"
+            app:layout_constraintEnd_toEndOf="@id/summoner_profile"
+            app:layout_constraintStart_toStartOf="@id/summoner_profile"
+            app:layout_constraintTop_toBottomOf="@id/summoner_profile"
+            tools:text="Hide on bush" />
+
+        <ImageView
+            android:id="@+id/delete_bookmark"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/cross"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

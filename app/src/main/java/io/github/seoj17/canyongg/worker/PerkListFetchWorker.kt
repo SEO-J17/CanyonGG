@@ -6,8 +6,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import io.github.seoj17.canyongg.domain.usecase.perks.AddPerksListUseCase
-import io.github.seoj17.canyongg.domain.usecase.perks.GetPerksListUseCase
+import io.github.seoj17.domain.usecase.perks.AddPerksListUseCase
+import io.github.seoj17.domain.usecase.perks.GetPerksListUseCase
 
 @HiltWorker
 class PerkListFetchWorker @AssistedInject constructor(

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_graph"
+    app:startDestination="@id/home">
+
+    <include app:graph="@navigation/search_graph" />
+
+    <fragment
+        android:id="@+id/home"
+        android:name="io.github.seoj17.presentaion.ui.home.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_home_to_registerSummoner"
+            app:destination="@id/registerSummoner" />
+        <argument
+            android:name="summonerName"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_home_to_search_graph"
+            app:destination="@id/search_graph"
+            app:popUpTo="@id/home"
+            app:popUpToSaveState="true"
+            app:restoreState="true">
+            <argument
+                android:name="summonerName"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+
+            <argument
+                android:name="summonerPuuid"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerSummoner"
+        android:name="io.github.seoj17.presentaion.ui.representative.RepresentativeSummonerFragment"
+        android:label="RegisterSummonerFragment">
+        <action
+            android:id="@+id/action_registerSummoner_to_home"
+            app:destination="@id/home">
+            <argument
+                android:name="summonerName"
+                app:argType="string" />
+        </action>
+    </fragment>
+</navigation>

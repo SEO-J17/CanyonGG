@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="io.github.seoj17.presentaion.model.SummonerMatchRecord" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/champion"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toStartOf="@id/summoner_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:championImage="@{data.championName}"
+            tools:src="@drawable/temp_user" />
+
+        <TextView
+            android:id="@+id/summoner_name"
+            android:text="@{data.summonerName}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/item_value"
+            app:layout_constraintStart_toEndOf="@id/champion"
+            app:layout_constraintTop_toTopOf="@id/champion"
+            tools:text="Hide on bush" />
+
+        <TextView
+            android:id="@+id/item_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/summoner_name"
+            app:layout_constraintStart_toEndOf="@id/summoner_name"
+            app:layout_constraintTop_toTopOf="@id/summoner_name"
+            tools:text="30" />
+
+        <ProgressBar
+            android:id="@+id/value_graph"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/champion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/champion"
+            app:layout_constraintTop_toBottomOf="@id/summoner_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
