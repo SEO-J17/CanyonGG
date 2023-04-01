@@ -1,4 +1,4 @@
-package io.github.seoj17.canyongg.di
+package io.github.seoj17.data.di
 
 import dagger.Module
 import dagger.Provides
