@@ -13,17 +13,21 @@ class DataStoreRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>,
 ) : DataStoreRepository {
 
-    override suspend fun addThemeSetting(key: String, settingValue: Int) {
+    override suspend fun addThemeSetting(settingValue: Int) {
         dataStore.edit {
-            it[intPreferencesKey(key)] = settingValue
+            it[intPreferencesKey(THEME_KEY)] = settingValue
         }
     }
 
-    override fun getThemeSetting(key: String): Flow<Int?> {
+    override fun getThemeSetting(): Flow<Int?> {
         return dataStore
             .data
             .map {
-                it[intPreferencesKey(key)]
+                it[intPreferencesKey(THEME_KEY)]
             }
+    }
+
+    companion object {
+        private const val THEME_KEY = "theme_mode"
     }
 }
