@@ -17,12 +17,8 @@ enum class ThemeState(
     ;
 
     companion object {
-        fun getMode(mode: Int): Int {
-            return values().getOrNull(mode)?.mode ?: SYSTEM.mode
-        }
-
-        fun getKey(): String {
-            return "theme_mode"
+        operator fun invoke(index: Int?): ThemeState {
+            return values().getOrNull(index ?: 0) ?: SYSTEM
         }
     }
 }
