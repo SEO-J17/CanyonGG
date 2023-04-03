@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetThemeSettingUseCase @Inject constructor(
     private val repository: DataStoreRepository,
 ) {
-    operator fun invoke(key: String): Flow<Int?> {
-        return repository.getThemeSetting(key)
+    operator fun invoke(): Flow<Int?> {
+        return repository.getThemeSetting()
     }
 }

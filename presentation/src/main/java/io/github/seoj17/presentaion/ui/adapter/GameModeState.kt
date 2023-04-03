@@ -30,12 +30,11 @@ enum class GameModeState(
     ;
 
     companion object {
-        operator fun invoke(mode: String): Int {
+        operator fun invoke(mode: String): GameModeState {
             return values()
                 .first {
                     it.gameMode == mode
                 }
-                .modeName
         }
     }
 }

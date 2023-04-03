@@ -5,6 +5,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -15,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.ActivityMainBinding
 import io.github.seoj17.presentaion.ui.setting.ThemeState
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,8 +46,12 @@ class MainActivity : AppCompatActivity() {
                 arguments?.getBoolean("showBottomNavView", true) == true
         }
 
-        viewModel.themeSetting.observe(this) {
-            AppCompatDelegate.setDefaultNightMode(it ?: ThemeState.SYSTEM.mode)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.themeSetting.collect {
+                    AppCompatDelegate.setDefaultNightMode(ThemeState(it).mode)
+                }
+            }
         }
     }
 

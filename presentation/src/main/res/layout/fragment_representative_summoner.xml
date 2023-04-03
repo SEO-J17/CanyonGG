@@ -19,7 +19,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
-            android:src="@drawable/instagram"
+            android:src="@drawable/logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,6 +53,7 @@
             android:hint="@string/search_edit_hint"
             android:imeOptions="actionSearch"
             android:singleLine="true"
+            android:text="@={vm.summonerName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_sub_title" />
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="5dp"
-            android:onClick="@{() -> vm.getSummonerName(summonerName.getText().toString())}"
+            android:onClick="@{() -> vm.searchSummoner()}"
             android:text="@string/book_mark_tab_btn_text"
             app:layout_constraintEnd_toEndOf="@id/summoner_name"
             app:layout_constraintStart_toStartOf="@id/summoner_name"

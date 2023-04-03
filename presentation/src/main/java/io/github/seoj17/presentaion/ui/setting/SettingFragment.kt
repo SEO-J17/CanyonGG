@@ -36,14 +36,6 @@ class SettingFragment : Fragment() {
                 )
             }
 
-            viewModel.themeSetting.observe(viewLifecycleOwner) {
-                when (it) {
-                    ThemeState.LIGHT.mode -> lightTheme.isChecked = true
-                    ThemeState.DARK.mode -> darkTheme.isChecked = true
-                    else -> systemTheme.isChecked = true
-                }
-            }
-
             themeGroup.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     lightTheme.id -> {

@@ -8,7 +8,7 @@ import javax.inject.Inject
 class AddThemeSettingUseCase @Inject constructor(
     private val repository: DataStoreRepository,
 ) {
-    suspend operator fun invoke(key: String, settingValue: Int) {
-        repository.addThemeSetting(key, settingValue)
+    suspend operator fun invoke(settingValue: Int) {
+        repository.addThemeSetting(settingValue)
     }
 }
