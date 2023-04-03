@@ -1,6 +1,7 @@
 package io.github.seoj17.presentaion.ui.adapter
 
 import android.widget.ImageView
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter
@@ -126,7 +127,7 @@ fun ImageView.setRunes(rune: String) {
 
 @BindingAdapter("bind:mostKill")
 fun TextView.setMostKill(kill: Int) {
-    this.setText(MostKillState(kill))
+    this.setText(MostKillState(kill).killName)
 }
 
 @BindingAdapter("bind:bookmarkState")
@@ -143,10 +144,10 @@ fun TextView.setAnalysisValue(value: Int) {
 
 @BindingAdapter("bind:gameMode")
 fun TextView.setGameMode(mode: String) {
-    this.setText(GameModeState(mode))
+    this.setText(GameModeState(mode).modeName)
 }
 
-@BindingAdapter("bind:valid", "bind:errorText")
+@BindingAdapter("bind:valid", "bind:errorText", requireAll = true)
 fun TextInputLayout.validInputText(
     isValid: Boolean,
     message: String,
@@ -162,4 +163,9 @@ fun TextInputLayout.validInputText(
             isErrorEnabled = false
         }
     }
+}
+
+@BindingAdapter("bind:check")
+fun RadioGroup.setCheckedTheme(index: Int) {
+    this.check(getChildAt(index).id)
 }
