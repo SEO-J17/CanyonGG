@@ -4,22 +4,21 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.seoj17.domain.usecase.firebase.RegisterUserUseCase
+import io.github.seoj17.presentaion.utils.combineWith
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterUserViewModel @Inject constructor() : ViewModel() {
+class RegisterUserViewModel @Inject constructor(
+    private val registerUserUseCase: RegisterUserUseCase,
+) : ViewModel() {
 
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
@@ -43,30 +42,26 @@ class RegisterUserViewModel @Inject constructor() : ViewModel() {
     }
 
     val validLoginInfo =
-        combine(
-            emailValid.asFlow(),
-            passwordValid.asFlow(),
-            passwordChkValid.asFlow(),
+        combineWith(
+            emailValid,
+            passwordValid,
+            passwordChkValid,
         ) { emailValid, passwordValid, passwordChkValid ->
-            (emailValid && passwordValid && passwordChkValid)
+            (emailValid == true && passwordValid == true && passwordChkValid == true)
         }
-            .asLiveData()
 
     private val _registerState = MutableSharedFlow<RegisterState>()
-    val registerState: SharedFlow<RegisterState> = _registerState.asSharedFlow()
+    val registerState: Flow<RegisterState> = _registerState.asSharedFlow()
 
     fun registerSubmit() {
-        Firebase
-            .auth
-            .createUserWithEmailAndPassword(email.value!!, password.value!!)
-            .addOnCompleteListener { task ->
-                viewModelScope.launch {
-                    if (task.isSuccessful) {
-                        _registerState.emit(RegisterState.SUCCESS)
-                    } else {
-                        _registerState.emit(RegisterState.FAIL)
-                    }
+        registerUserUseCase(email.value!!, password.value!!).run {
+            viewModelScope.launch {
+                if (isSuccessful) {
+                    _registerState.emit(RegisterState.SUCCESS)
+                } else {
+                    _registerState.emit(RegisterState.FAIL)
                 }
             }
+        }
     }
 }
