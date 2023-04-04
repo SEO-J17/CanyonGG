@@ -14,7 +14,7 @@ import io.github.seoj17.domain.usecase.champion.AddMyMostChampsUseCase
 import io.github.seoj17.domain.usecase.champion.GetChampionNameUseCase
 import io.github.seoj17.domain.usecase.champion.GetMostChampUseCase
 import io.github.seoj17.domain.usecase.champion.GetMostChampionListUseCase
-import io.github.seoj17.domain.usecase.champion.GetRotationChampUseCase
+import io.github.seoj17.domain.usecase.champion.GetRotationChampIdListUseCase
 import io.github.seoj17.domain.usecase.summoner.AddSummonerInfoUseCase
 import io.github.seoj17.domain.usecase.user.AddRegisterUserInfoUseCase
 import io.github.seoj17.domain.usecase.user.DeleteRegisterUserInfoUseCase
@@ -29,7 +29,6 @@ import io.github.seoj17.presentaion.model.Summoner
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerInfo
 import io.github.seoj17.presentaion.model.UserRecord
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -46,7 +45,7 @@ class HomeViewModel @Inject constructor(
     private val addMyMostChamps: AddMyMostChampsUseCase,
     private val deleteMyUserInfo: DeleteRegisterUserInfoUseCase,
     private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
-    private val getRotationChamp: GetRotationChampUseCase,
+    private val getRotationChamp: GetRotationChampIdListUseCase,
     private val getChampionName: GetChampionNameUseCase,
     private val getUserRecordUseCase: GetUserRecordUseCase,
     private val getMostChampionListUseCase: GetMostChampionListUseCase,
@@ -87,9 +86,9 @@ class HomeViewModel @Inject constructor(
             fetchData()
         }
         viewModelScope.launch {
-            delay(10)
-            val champIds = getRotationChamp()
-            _rotationChamp.value = getChampionName(champIds)
+            getRotationChamp().also {
+                _rotationChamp.value = getChampionName(it)
+            }
         }
     }
 
