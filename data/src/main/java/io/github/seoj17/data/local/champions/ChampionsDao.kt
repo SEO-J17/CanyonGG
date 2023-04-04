@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ChampionsDao {
@@ -20,8 +21,8 @@ interface ChampionsDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM champions_info WHERE champion_name = :name")
-    suspend fun get(name: String): ChampionsEntity
+    suspend fun get(name: String): ChampionsEntity?
 
     @Query("SELECT * FROM champions_info WHERE champion_key = :key")
-    suspend fun get(key: Int): ChampionsEntity
+    suspend fun get(key: Int): ChampionsEntity?
 }
