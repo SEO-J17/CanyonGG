@@ -10,7 +10,10 @@ class GetChampionNameUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(ids: List<Int>): List<String> {
         return ids.map { id ->
-            repository.getChampion(id)
-        }
+            repository
+                .getChampion(id)
+                ?.name
+                ?: ""
+        }.filter { it != "" }
     }
 }
