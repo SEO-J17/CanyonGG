@@ -12,20 +12,20 @@ class ChampionsRepositoryImpl @Inject constructor(
     private val championsLocal: ChampionsDao,
 ) : ChampionsRepository {
     override suspend fun getChampionList(): List<ChampionsDataModel> {
-        return dataCenterService
-            .getChamps()
-            .data
-            .toList()
-            .map {
-                ChampionsDataModel(
-                    key = it.second.key.toInt(),
-                    name = it.first,
-                )
-            }
+        return dataCenterService.getChamps().data.toList().map {
+            ChampionsDataModel(
+                key = it.second.key.toInt(),
+                name = it.first,
+            )
+        }
     }
 
-    override suspend fun getChampion(id: Int): String {
-        return championsLocal.get(id).name
+    override suspend fun getChampion(id: Int): ChampionsDataModel? {
+        return championsLocal
+            .get(id)
+            ?.let {
+                ChampionsDataModel(it)
+            }
     }
 
     override suspend fun addChampionList(entities: List<ChampionsEntity>) {
