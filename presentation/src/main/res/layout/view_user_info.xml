@@ -60,7 +60,8 @@
         android:src="@drawable/reload"
         app:layout_constraintBottom_toBottomOf="@id/main_user_tier"
         app:layout_constraintStart_toEndOf="@id/main_user_name"
-        app:layout_constraintTop_toTopOf="@+id/main_user_name" />
+        app:layout_constraintTop_toTopOf="@+id/main_user_name"
+        app:tint="@color/img_btn_color" />
 
     <ImageView
         android:id="@+id/user_info_delete"
@@ -68,7 +69,8 @@
         android:layout_height="30dp"
         android:src="@drawable/cross"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/img_btn_color" />
 
     <TextView
         android:id="@+id/user_matches"
