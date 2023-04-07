@@ -108,4 +108,12 @@
     <string name="light_theme_label">라이트 테마</string>
     <string name="change_theme_title">테마 변경</string>
     <string name="system_theme">시스템 설정 테마</string>
+    <string name="toolbar_detail_label">상세 전적</string>
+    <string name="toolbar_search_result_label">전적</string>
+    <string name="toolbar_search_label">검색</string>
+    <string name="toolbar_setting_label">설정</string>
+    <string name="toolbar_login_label">로그인</string>
+    <string name="toolbar_register_label">회원가입</string>
+    <string name="toolbar_home_label">홈</string>
+    <string name="toolbar_home_representative_label">소환사 등록</string>
 </resources>
