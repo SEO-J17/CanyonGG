@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/setting"
         android:name="io.github.seoj17.presentaion.ui.setting.SettingFragment"
-        android:label="SettingFragment">
+        android:label="@string/toolbar_setting_label">
         <action
             android:id="@+id/action_setting_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="io.github.seoj17.presentaion.ui.login.LoginFragment"
-        android:label="LoginFragment">
+        android:label="@string/toolbar_login_label">
         <action
             android:id="@+id/action_loginFragment_to_registerUserFragment"
             app:destination="@id/registerUserFragment" />
@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/registerUserFragment"
         android:name="io.github.seoj17.presentaion.ui.register.RegisterUserFragment"
-        android:label="RegisterUserFragment">
+        android:label="@string/toolbar_register_label">
         <action
             android:id="@+id/action_registerUserFragment_to_loginFragment"
             app:destination="@id/loginFragment"
