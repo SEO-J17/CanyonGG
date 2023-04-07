@@ -10,4 +10,5 @@
     <color name="death_color">#F15F5F</color>
     <color name="non_click_color">#717070</color>
     <color name="positive_click_color">#FF6200EE</color>
+    <color name="img_btn_color">#FF000000</color>
 </resources>
