@@ -42,14 +42,15 @@ class LoginViewModel @Inject constructor(
     val loginState: Flow<LoginState> = _loginState.asSharedFlow()
 
     fun loginSubmit() {
-        getLoginStateUseCase(email.value!!, password.value!!).run {
-            viewModelScope.launch {
-                if (isSuccessful) {
-                    _loginState.emit(LoginState.SUCCESS)
-                } else {
-                    _loginState.emit(LoginState.FAIL)
+        getLoginStateUseCase(email.value!!, password.value!!)
+            .addOnCompleteListener {
+                viewModelScope.launch {
+                    if (it.isSuccessful) {
+                        _loginState.emit(LoginState.SUCCESS)
+                    } else {
+                        _loginState.emit(LoginState.FAIL)
+                    }
                 }
             }
-        }
     }
 }

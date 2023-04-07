@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @HiltViewModel
@@ -54,14 +55,15 @@ class RegisterUserViewModel @Inject constructor(
     val registerState: Flow<RegisterState> = _registerState.asSharedFlow()
 
     fun registerSubmit() {
-        registerUserUseCase(email.value!!, password.value!!).run {
-            viewModelScope.launch {
-                if (isSuccessful) {
-                    _registerState.emit(RegisterState.SUCCESS)
-                } else {
-                    _registerState.emit(RegisterState.FAIL)
+        viewModelScope.launch {
+            registerUserUseCase(email.value!!, password.value!!)
+                .await()
+                .run {
+                    user?.let {
+                        _registerState.emit(RegisterState.SUCCESS)
+                    }
+                        ?: _registerState.emit(RegisterState.FAIL)
                 }
-            }
         }
     }
 }

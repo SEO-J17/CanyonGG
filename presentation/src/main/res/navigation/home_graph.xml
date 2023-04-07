@@ -12,7 +12,7 @@
         android:label="@string/toolbar_home_label">
         <action
             android:id="@+id/action_home_to_registerSummoner"
-            app:destination="@id/representavieSummoner" />
+            app:destination="@id/representativeSummoner" />
         <argument
             android:name="summonerName"
             android:defaultValue=""
