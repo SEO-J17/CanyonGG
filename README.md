@@ -120,13 +120,13 @@
 
 # 🎨Structure
 
-+ MVVM 디자인 패턴 + Clean Architecture 그리고 Repository 패턴을 이용했습니다.
++ MVVM 디자인 패턴 + Google Recomanded Architecture를 이용해 앱을 구성했습니다.
 
 > **MVVM**
 
   <img src=https://user-images.githubusercontent.com/59912150/229727957-6ba9efc6-032c-433e-b4df-e1c9dbcc7595.png>
 
-> **Clean Architecture**
+> **Google Recomanded Architecture**
 
   <img src=https://user-images.githubusercontent.com/59912150/229728641-b0bd8794-a484-4c2f-9d7d-3f7c94160278.png>
 
