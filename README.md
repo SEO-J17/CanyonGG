@@ -128,7 +128,7 @@
 
 > **Google Recomanded Architecture**
 
-  <img src=https://user-images.githubusercontent.com/59912150/229728641-b0bd8794-a484-4c2f-9d7d-3f7c94160278.png>
+  <img src=https://user-images.githubusercontent.com/59912150/231258327-b9545768-9f07-4777-ae88-29f9192108e6.png>
 
 + [google에 권장 가이드](https://developer.android.com/jetpack/guide?hl=ko)에 따라 Presenter -> Doamin ->
   Data 모듈 순으로 아키텍처를 구성했습니다. 각 화살표는 의존성을 나타냅니다.
