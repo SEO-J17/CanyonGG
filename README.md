@@ -1,6 +1,6 @@
 # 📱CanyonGG
 
-<img src=https://user-images.githubusercontent.com/59912150/231259073-07daa970-eacb-48b8-917c-6a58b689ff17.png>
+<img src=https://user-images.githubusercontent.com/59912150/231259073-07daa970-eacb-48b8-917c-6a58b689ff17.png width="120" height="120">
 
 + Riot Games에서 개발한 "리그 오브 레전드"라는 게임의 유저들을 검색해서 게임 전적,매치 정보, 티어 정보등을 알아 볼 수 있는 프로젝트 입니다.
 
