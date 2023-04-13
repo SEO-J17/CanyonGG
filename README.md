@@ -40,8 +40,6 @@
 
 # ✨Features
 
-+ 
-
 > **화면 구성**
 <table>
 <tr>
