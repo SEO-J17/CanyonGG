@@ -40,6 +40,8 @@
 
 # ✨Features
 
++ 
+
 > **화면 구성**
 <table>
 <tr>
@@ -48,9 +50,9 @@
 <td>설정 화면</td>
 </tr>
 <tr>
-<td>홈 사진</td>
-<td>검색 사진</td>
-<td>설정 사진</td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231479947-87d0caf2-e98c-40a5-adf9-a28da9d04294.gif width="300"></td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231480265-e9b91e35-b9ad-4044-b108-6cf511c9b6f2.png width="300"></td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231480631-2d174789-ab71-4b52-9f2b-93cdf3dfc8be.png width="300"></td>
 </tr>
 </table>
 
@@ -60,53 +62,55 @@
 <td>로그인</td>
 <td>회원가입</td>
 </tr>
-<tr>
-<td>홈 사진</td>
-<td>검색 사진</td>
-</tr>
+<td><img src=https://user-images.githubusercontent.com/59912150/231688077-5203bf73-a069-46ee-9ae2-186cf97e7241.gif width="300"></td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231688087-1bfd69f5-6914-4a10-910f-9eedcae3a10c.gif width="300"></td>
 </table>
 
 > **검색 기능**
 <table>
 <tr>
-<td>유저 검색</td>
 <td>검색 결과</td>
+<td>최근 검색한 유저</td>
 </tr>
 <tr>
-<td>유저 검색 사진</td>
-<td>검색 결과 사진</td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231689527-63b4ca5f-809f-4d92-aa05-20e6c4a4845f.gif width="300"></td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231689922-d25dc393-7a46-4056-81c7-05b2ad73af5b.png width="300"></td>
 </tr>
 </table>
 
 > **즐겨찾기 기능**
 <table>
 <tr>
-<td>즐겨찾기</td>
+<td>즐겨찾기 등록</td>
+<td>즐겨찾기 해제</td>
 </tr>
 <tr>
-<td>즐겨 찾기 결과 사진</td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231691987-f35cb567-8c30-448b-893a-381f3a8bf1d9.gif width="300"></td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231692488-465c6d94-d112-4eca-b59c-60ac7eac8c22.gif width="300"></td>
 </tr>
 </table>
 
-> **정보 등록 기능**
+> **메인 정보 등록 기능**
 <table>
 <tr>
-<td>정보</td>
+<td>메인 정보 등록</td>
+<td>메인 정보 삭제</td>
 </tr>
 <tr>
-<td>정보 등록 결과 사진</td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231694928-80b6e0c1-2d75-4067-ba0b-40346f637b6d.gif width="300"></td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231694936-9494e3e5-505e-4ac0-9b5a-a01d580f7b43.gif width="300"></td>
 </tr>
 </table>
 
 > **전적 상세 화면**
 <table>
 <tr>
-<td>유저 검색</td>
-<td>검색 결과</td>
+<td>전적 상세 화면</td>
+<td>상세 화면 유저 검색</td>
 </tr>
 <tr>
-<td>유저 검색 사진</td>
-<td>검색 결과 사진</td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231696355-14c847c9-c9ab-4345-9401-01f5dbaac2a2.gif width="300"></td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231697824-24c7fa4e-c4e3-4e94-9aca-bdfb97db6b04.gif width="300"></td>
 </tr>
 </table>
 
@@ -116,7 +120,7 @@
 <td>테마 설정 기능</td>
 </tr>
 <tr>
-<td>테마 설정 기능 사진</td>
+<td><img src=https://user-images.githubusercontent.com/59912150/231475444-cd8b0427-3e4e-4d21-8fd9-8b3d65767364.gif width="300"></td>
 </tr>
 </table>
 
