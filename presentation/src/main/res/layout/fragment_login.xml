@@ -55,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/selector_button"
             android:enabled="@{vm.validLoginInfo}"
             android:onClick="@{() -> vm.loginSubmit()}"
             android:text="@string/login_label" />
