@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class MatchRepositoryImpl @Inject constructor(
     private val matchRemoteService: MatchesService,
-    private val matchInfoService: MatchInfoDao,
+    private val matchInfoDao: MatchInfoDao,
 ) : MatchRepository {
 
     override fun getMatches(puuid: String): Pager<Int, MatchInfoDataModel> {
@@ -22,7 +22,7 @@ class MatchRepositoryImpl @Inject constructor(
                 enablePlaceholders = false,
             ),
             pagingSourceFactory = {
-                MatchPagingSource(matchRemoteService, matchInfoService, puuid, NETWORK_PAGE_SIZE)
+                MatchPagingSource(matchRemoteService, matchInfoDao, puuid, NETWORK_PAGE_SIZE)
             },
         )
     }
@@ -36,7 +36,7 @@ class MatchRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getRegisterUserMatchInfo(puuid: String): List<MatchInfoDataModel> {
-        return matchInfoService
+        return matchInfoDao
             .getMatchInfo(puuid)
             .map {
                 MatchInfoDataModel(it)
@@ -44,7 +44,7 @@ class MatchRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getParticipantsMatchInfo(matchId: String): List<MatchInfoDataModel> {
-        return matchInfoService
+        return matchInfoDao
             .getParticipantsMatchInfo(matchId)
             .map {
                 MatchInfoDataModel(it)
@@ -52,11 +52,11 @@ class MatchRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addMatchInfo(entity: MatchInfoEntity) {
-        matchInfoService.insert(entity)
+        matchInfoDao.insert(entity)
     }
 
     override suspend fun addMatchInfo(entities: List<MatchInfoEntity>) {
-        matchInfoService.insert(entities)
+        matchInfoDao.insert(entities)
     }
 
     companion object {

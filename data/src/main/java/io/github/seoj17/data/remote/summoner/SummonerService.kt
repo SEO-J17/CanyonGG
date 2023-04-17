@@ -6,11 +6,11 @@ import retrofit2.await
 import javax.inject.Inject
 
 class SummonerService @Inject constructor(
-    private val responseSummoner: SummonerApi,
+    private val summonerApi: SummonerApi,
 ) {
     suspend fun getSummoner(name: String): SummonerResponse? {
         return runCatching {
-            responseSummoner.getSummoner(name).await()
+            summonerApi.getSummoner(name).await()
         }.fold(
             onSuccess = { summonerInfo ->
                 summonerInfo
@@ -23,7 +23,7 @@ class SummonerService @Inject constructor(
 
     suspend fun getUserTier(id: String): List<TierResponse> {
         return runCatching {
-            responseSummoner.getSummonerTier(id).await()
+            summonerApi.getSummonerTier(id).await()
         }.fold(
             onSuccess = { tierList ->
                 tierList
@@ -36,7 +36,7 @@ class SummonerService @Inject constructor(
 
     suspend fun getRotationChamps(): List<Int> {
         return runCatching {
-            responseSummoner.getRotationChampIds().await()
+            summonerApi.getRotationChampIds().await()
         }.fold(
             onSuccess = { response ->
                 response.freeChampionIds

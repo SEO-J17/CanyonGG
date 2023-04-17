@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MostChampRepositoryImpl @Inject constructor(
-    private val mostChampLocalService: RegisterUserMostChampDao,
+    private val mostChampDao: RegisterUserMostChampDao,
 ) : MostChampRepository {
     override fun getMyMostChamps(): Flow<List<MostChampionDataModel>> {
-        return mostChampLocalService
+        return mostChampDao
             .get()
             .map {
                 MostChampionDataModel(it)
@@ -19,10 +19,10 @@ class MostChampRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addMostChamps(entity: List<RegisterUserMostChampEntity>) {
-        mostChampLocalService.insert(entity)
+        mostChampDao.insert(entity)
     }
 
     override suspend fun deleteMostChamps() {
-        mostChampLocalService.deleteAll()
+        mostChampDao.deleteAll()
     }
 }

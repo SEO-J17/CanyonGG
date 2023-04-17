@@ -7,11 +7,11 @@ import retrofit2.await
 import javax.inject.Inject
 
 class DataCenterService @Inject constructor(
-    private val dataCenterResponse: DataCenterApi,
+    private val dataCenterApi: DataCenterApi,
 ) {
     suspend fun getSpells(): SpellResponse {
         return runCatching {
-            dataCenterResponse.getSpellInfo().await()
+            dataCenterApi.getSpellInfo().await()
         }.fold(
             onSuccess = { spellInfo ->
                 spellInfo
@@ -24,7 +24,7 @@ class DataCenterService @Inject constructor(
 
     suspend fun getPerks(): List<PerksResponse> {
         return runCatching {
-            dataCenterResponse.getPerksInfo().await()
+            dataCenterApi.getPerksInfo().await()
         }.fold(
             onSuccess = { perks ->
                 perks
@@ -37,7 +37,7 @@ class DataCenterService @Inject constructor(
 
     suspend fun getChamps(): ChampResponse {
         return runCatching {
-            dataCenterResponse.getChampInfo().await()
+            dataCenterApi.getChampInfo().await()
         }.fold(
             onSuccess = { champs ->
                 champs

@@ -5,11 +5,11 @@ import retrofit2.await
 import javax.inject.Inject
 
 class MatchesService @Inject constructor(
-    private val responseMatch: MatchesApi,
+    private val matchesApi: MatchesApi,
 ) {
     suspend fun getMatchId(puuid: String, start: Int): List<String> {
         return runCatching {
-            responseMatch.getMatchId(puuid, start).await()
+            matchesApi.getMatchId(puuid, start).await()
         }.fold(
             onSuccess = { matchesId ->
                 matchesId
@@ -22,7 +22,7 @@ class MatchesService @Inject constructor(
 
     suspend fun getMatchInfo(matchId: String): MatchInfoResponse {
         return runCatching {
-            responseMatch.getMatchInfo(matchId).await()
+            matchesApi.getMatchInfo(matchId).await()
         }.fold(
             onSuccess = { matchInfo ->
                 matchInfo
