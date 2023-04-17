@@ -15,15 +15,14 @@ import io.github.seoj17.domain.usecase.summoner.AddSummonerUseCase
 import io.github.seoj17.domain.usecase.user.GetUserInfoUseCase
 import io.github.seoj17.presentaion.model.RecentSummoners
 import io.github.seoj17.presentaion.model.Summoner
-import io.github.seoj17.presentaion.utils.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchSummonerViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
     private val getUserInfoUseCase: GetUserInfoUseCase,
-    private val getRecentSummonerUseCase: GetRecentSummonerUseCase,
+    getRecentSummonerUseCase: GetRecentSummonerUseCase,
     private val addSummonerUseCase: AddSummonerUseCase,
     private val deleteRecentSummonerUseCase: DeleteRecentSummonerUseCase,
     private val deleteAllRecentSummonerUseCase: DeleteAllRecentSummonerUseCase,
@@ -45,9 +44,6 @@ class SearchSummonerViewModel @Inject constructor(
                 RecentSummoners(it)
             }
 
-    private val _errorEvent = MutableLiveData<Event<Boolean>>()
-    val errorEvent: LiveData<Event<Boolean>> = _errorEvent
-
     fun validSearch(name: String) {
         viewModelScope.launch {
             getUserInfoUseCase(name)?.let { summonerDomain ->
@@ -55,8 +51,6 @@ class SearchSummonerViewModel @Inject constructor(
 
                 _searchResult.value = summoner
                 addSummonerUseCase(summoner.puuid, summoner.name)
-            } ?: run {
-                _errorEvent.value = Event(true)
             }
         }
     }
