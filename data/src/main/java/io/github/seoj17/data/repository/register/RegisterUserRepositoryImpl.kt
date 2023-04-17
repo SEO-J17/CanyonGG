@@ -1,18 +1,17 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.register
 
 import io.github.seoj17.data.local.user.RegisterUserInfoDao
 import io.github.seoj17.data.local.user.RegisterUserInfoEntity
 import io.github.seoj17.data.model.RegisterUserDataModel
-import io.github.seoj17.data.repository.RegisterUserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class RegisterUserRepositoryImpl @Inject constructor(
-    private val registerUserLocalService: RegisterUserInfoDao,
+    private val registerUserInfoDao: RegisterUserInfoDao,
 ) : RegisterUserRepository {
     override fun getMyUserInfo(): Flow<RegisterUserDataModel?> {
-        return registerUserLocalService
+        return registerUserInfoDao
             .get()
             .map {
                 it?.let { entity -> RegisterUserDataModel(entity) }
@@ -20,10 +19,10 @@ class RegisterUserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addMyUserInfo(entity: RegisterUserInfoEntity) {
-        registerUserLocalService.insert(entity)
+        registerUserInfoDao.insert(entity)
     }
 
     override suspend fun deleteMyUserChamps() {
-        registerUserLocalService.deleteAll()
+        registerUserInfoDao.deleteAll()
     }
 }

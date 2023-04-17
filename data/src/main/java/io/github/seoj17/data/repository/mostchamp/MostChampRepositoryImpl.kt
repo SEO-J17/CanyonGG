@@ -1,18 +1,17 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.mostchamp
 
 import io.github.seoj17.data.local.user.RegisterUserMostChampDao
 import io.github.seoj17.data.local.user.RegisterUserMostChampEntity
 import io.github.seoj17.data.model.MostChampionDataModel
-import io.github.seoj17.data.repository.MostChampRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MostChampRepositoryImpl @Inject constructor(
-    private val mostChampLocalService: RegisterUserMostChampDao,
+    private val mostChampDao: RegisterUserMostChampDao,
 ) : MostChampRepository {
     override fun getMyMostChamps(): Flow<List<MostChampionDataModel>> {
-        return mostChampLocalService
+        return mostChampDao
             .get()
             .map {
                 MostChampionDataModel(it)
@@ -20,10 +19,10 @@ class MostChampRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addMostChamps(entity: List<RegisterUserMostChampEntity>) {
-        mostChampLocalService.insert(entity)
+        mostChampDao.insert(entity)
     }
 
     override suspend fun deleteMostChamps() {
-        mostChampLocalService.deleteAll()
+        mostChampDao.deleteAll()
     }
 }

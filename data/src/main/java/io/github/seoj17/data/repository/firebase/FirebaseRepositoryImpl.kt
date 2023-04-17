@@ -1,10 +1,9 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.firebase
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import io.github.seoj17.data.R
 import io.github.seoj17.data.contract.RemoteConfigContract
-import io.github.seoj17.data.repository.FirebaseRepository
 import javax.inject.Inject
 
 class FirebaseRepositoryImpl @Inject constructor(

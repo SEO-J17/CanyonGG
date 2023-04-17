@@ -1,7 +1,7 @@
 package io.github.seoj17.domain.usecase.firebase
 
 import io.github.seoj17.data.contract.RemoteConfigContract
-import io.github.seoj17.data.repository.FirebaseRepository
+import io.github.seoj17.data.repository.firebase.FirebaseRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 

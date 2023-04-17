@@ -1,7 +1,7 @@
 package io.github.seoj17.domain.usecase.champion
 
 import dagger.Reusable
-import io.github.seoj17.data.repository.ChampionsRepository
+import io.github.seoj17.data.repository.champion.ChampionsRepository
 import javax.inject.Inject
 
 @Reusable

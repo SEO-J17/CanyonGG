@@ -1,4 +1,4 @@
-package io.github.seoj17.data.repository
+package io.github.seoj17.data.repository.match
 
 import androidx.paging.Pager
 import io.github.seoj17.data.local.match.MatchInfoEntity

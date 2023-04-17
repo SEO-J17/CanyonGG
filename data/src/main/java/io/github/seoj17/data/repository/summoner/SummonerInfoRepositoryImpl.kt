@@ -1,18 +1,17 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.summoner
 
 import io.github.seoj17.data.local.summoner.SummonerInfoDao
 import io.github.seoj17.data.local.summoner.SummonerInfoEntity
 import io.github.seoj17.data.model.SummonerInfoDataModel
-import io.github.seoj17.data.repository.SummonerInfoRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SummonerInfoRepositoryImpl @Inject constructor(
-    private val localService: SummonerInfoDao,
+    private val summonerInfoDao: SummonerInfoDao,
 ) : SummonerInfoRepository {
     override fun getSummonerInfo(puuid: String): Flow<SummonerInfoDataModel?> {
-        return localService
+        return summonerInfoDao
             .get(puuid)
             .map {
                 it?.let { entity ->
@@ -22,10 +21,10 @@ class SummonerInfoRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addSummonerInfo(entity: SummonerInfoEntity) {
-        localService.insert(entity)
+        summonerInfoDao.insert(entity)
     }
 
     override suspend fun deleteSummonerInfo(puuid: String) {
-        localService.delete(puuid)
+        summonerInfoDao.delete(puuid)
     }
 }

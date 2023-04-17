@@ -1,7 +1,7 @@
 package io.github.seoj17.domain.usecase.user
 
 import dagger.Reusable
-import io.github.seoj17.data.repository.SummonerRepository
+import io.github.seoj17.data.repository.summoner.SummonerRepository
 import io.github.seoj17.domain.model.SummonerDomainModel
 import javax.inject.Inject
 

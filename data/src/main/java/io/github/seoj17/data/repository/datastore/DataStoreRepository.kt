@@ -1,4 +1,4 @@
-package io.github.seoj17.data.repository
+package io.github.seoj17.data.repository.datastore
 
 import kotlinx.coroutines.flow.Flow
 
