@@ -9,9 +9,9 @@ import javax.inject.Inject
 class GetUserInfoUseCase @Inject constructor(
     private val repository: SummonerRepository,
 ) {
-    suspend operator fun invoke(userName: String): SummonerDomainModel? {
+    suspend operator fun invoke(userName: String?): SummonerDomainModel? {
         return repository
-            .getSummonerInfo(userName)
+            .getSummonerInfo(userName ?: "")
             ?.let {
                 SummonerDomainModel(it)
             }
