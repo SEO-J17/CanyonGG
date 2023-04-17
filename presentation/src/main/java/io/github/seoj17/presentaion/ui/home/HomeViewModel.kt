@@ -25,6 +25,7 @@ import io.github.seoj17.domain.usecase.user.GetUserTierUseCase
 import io.github.seoj17.presentaion.model.ChampInfo
 import io.github.seoj17.presentaion.model.MostChamps
 import io.github.seoj17.presentaion.model.RegisterUserInfo
+import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.model.Summoner
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerInfo
@@ -34,13 +35,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserTierUseCase: GetUserTierUseCase,
-    private val getBookmarkSummoner: GetBookmarkSummonerUseCase,
+    getBookmarkSummoner: GetBookmarkSummonerUseCase,
     private val deleteBookmarkSummoner: DeleteBookmarkSummonerUseCase,
-    private val getRegisterUserInfoUseCase: GetRegisterUserInfoUseCase,
-    private val getMostChampUseCase: GetMostChampUseCase,
+    getRegisterUserInfoUseCase: GetRegisterUserInfoUseCase,
+    getMostChampUseCase: GetMostChampUseCase,
     private val addMyUserInfo: AddRegisterUserInfoUseCase,
     private val addMyMostChamps: AddMyMostChampsUseCase,
     private val deleteMyUserInfo: DeleteRegisterUserInfoUseCase,
@@ -78,17 +79,16 @@ class HomeViewModel @Inject constructor(
             SummonerBookmark(it)
         }
 
-    private val _rotationChamp = MutableLiveData<List<String>?>()
-    val rotationChamp: LiveData<List<String>?> = _rotationChamp
+    private val _rotationChamp = MutableLiveData<List<RotationChamp>>()
+    val rotationChamp: LiveData<List<RotationChamp>> = _rotationChamp
 
     init {
         if (summonerName.isNotBlank()) {
             fetchData()
         }
         viewModelScope.launch {
-            getRotationChamp().also {
-                _rotationChamp.value = getChampionName(it)
-            }
+            val list = getRotationChamp()
+            _rotationChamp.value = getChampionName(list).map { RotationChamp(it) }
         }
     }
 
