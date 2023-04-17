@@ -1,4 +1,4 @@
-package io.github.seoj17.data.local.recent.search
+package io.github.seoj17.data.local.recent
 
 import androidx.room.Dao
 import androidx.room.Insert
