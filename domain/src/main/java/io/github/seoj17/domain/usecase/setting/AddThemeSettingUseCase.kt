@@ -1,7 +1,7 @@
 package io.github.seoj17.domain.usecase.setting
 
 import dagger.Reusable
-import io.github.seoj17.data.repository.DataStoreRepository
+import io.github.seoj17.data.repository.datastore.DataStoreRepository
 import javax.inject.Inject
 
 @Reusable

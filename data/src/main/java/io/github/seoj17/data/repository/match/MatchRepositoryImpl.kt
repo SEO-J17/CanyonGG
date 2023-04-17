@@ -1,4 +1,4 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.match
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -8,7 +8,6 @@ import io.github.seoj17.data.local.match.MatchInfoEntity
 import io.github.seoj17.data.model.MatchDataModel
 import io.github.seoj17.data.model.MatchInfoDataModel
 import io.github.seoj17.data.remote.match.MatchesService
-import io.github.seoj17.data.repository.MatchRepository
 import javax.inject.Inject
 
 class MatchRepositoryImpl @Inject constructor(

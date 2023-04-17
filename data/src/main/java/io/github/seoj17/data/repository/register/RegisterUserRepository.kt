@@ -1,4 +1,4 @@
-package io.github.seoj17.data.repository
+package io.github.seoj17.data.repository.register
 
 import io.github.seoj17.data.local.user.RegisterUserInfoEntity
 import io.github.seoj17.data.model.RegisterUserDataModel

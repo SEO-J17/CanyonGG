@@ -1,9 +1,9 @@
 package io.github.seoj17.domain.usecase.match
 
 import dagger.Reusable
-import io.github.seoj17.data.repository.DataCenterRepository
-import io.github.seoj17.data.repository.MatchRepository
-import io.github.seoj17.data.repository.PerkRepository
+import io.github.seoj17.data.repository.datacenter.DataCenterRepository
+import io.github.seoj17.data.repository.match.MatchRepository
+import io.github.seoj17.data.repository.perk.PerkRepository
 import io.github.seoj17.domain.model.MatchInfoDomainModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope

@@ -1,4 +1,4 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.summoner
 
 import io.github.seoj17.data.local.recent.RecentSearchDao
 import io.github.seoj17.data.local.recent.RecentSearchNameEntity
@@ -6,7 +6,6 @@ import io.github.seoj17.data.model.RecentSearchNameDataModel
 import io.github.seoj17.data.model.SummonerDataModel
 import io.github.seoj17.data.model.SummonerTierDataModel
 import io.github.seoj17.data.remote.summoner.SummonerService
-import io.github.seoj17.data.repository.SummonerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

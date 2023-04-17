@@ -1,4 +1,4 @@
-package io.github.seoj17.data.repository
+package io.github.seoj17.data.repository.perk
 
 import io.github.seoj17.data.local.perks.PerkEntity
 import io.github.seoj17.data.model.PerkDataModel

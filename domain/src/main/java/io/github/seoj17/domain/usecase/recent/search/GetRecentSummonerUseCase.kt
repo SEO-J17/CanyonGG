@@ -1,7 +1,7 @@
 package io.github.seoj17.domain.usecase.recent.search
 
 import dagger.Reusable
-import io.github.seoj17.data.repository.SummonerRepository
+import io.github.seoj17.data.repository.summoner.SummonerRepository
 import io.github.seoj17.domain.model.RecentSummonerDomainModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

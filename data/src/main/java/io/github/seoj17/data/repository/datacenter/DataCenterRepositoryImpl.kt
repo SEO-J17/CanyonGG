@@ -1,7 +1,6 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.datacenter
 
 import io.github.seoj17.data.remote.dataCenter.DataCenterService
-import io.github.seoj17.data.repository.DataCenterRepository
 import javax.inject.Inject
 
 class DataCenterRepositoryImpl @Inject constructor(

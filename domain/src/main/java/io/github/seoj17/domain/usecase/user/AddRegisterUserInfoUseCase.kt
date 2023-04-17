@@ -1,7 +1,7 @@
 package io.github.seoj17.domain.usecase.user
 
 import dagger.Reusable
-import io.github.seoj17.data.repository.RegisterUserRepository
+import io.github.seoj17.data.repository.register.RegisterUserRepository
 import io.github.seoj17.domain.model.RepresentativeUserInfoDomainModel
 import javax.inject.Inject
 

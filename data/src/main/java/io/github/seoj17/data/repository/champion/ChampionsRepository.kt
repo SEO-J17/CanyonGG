@@ -1,4 +1,4 @@
-package io.github.seoj17.data.repository
+package io.github.seoj17.data.repository.champion
 
 import io.github.seoj17.data.local.champions.ChampionsEntity
 import io.github.seoj17.data.model.ChampionsDataModel

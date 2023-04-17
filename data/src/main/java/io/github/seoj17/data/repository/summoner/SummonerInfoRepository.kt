@@ -1,4 +1,4 @@
-package io.github.seoj17.data.repository
+package io.github.seoj17.data.repository.summoner
 
 import io.github.seoj17.data.local.summoner.SummonerInfoEntity
 import io.github.seoj17.data.model.SummonerInfoDataModel

@@ -1,10 +1,9 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.champion
 
 import io.github.seoj17.data.local.champions.ChampionsDao
 import io.github.seoj17.data.local.champions.ChampionsEntity
 import io.github.seoj17.data.model.ChampionsDataModel
 import io.github.seoj17.data.remote.dataCenter.DataCenterService
-import io.github.seoj17.data.repository.ChampionsRepository
 import javax.inject.Inject
 
 class ChampionsRepositoryImpl @Inject constructor(

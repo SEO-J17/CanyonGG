@@ -1,10 +1,9 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.perk
 
 import io.github.seoj17.data.local.perks.PerkDao
 import io.github.seoj17.data.local.perks.PerkEntity
 import io.github.seoj17.data.model.PerkDataModel
 import io.github.seoj17.data.remote.dataCenter.DataCenterService
-import io.github.seoj17.data.repository.PerkRepository
 import javax.inject.Inject
 
 class PerkRepositoryImpl @Inject constructor(

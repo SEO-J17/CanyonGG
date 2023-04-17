@@ -1,9 +1,8 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.register
 
 import io.github.seoj17.data.local.user.RegisterUserInfoDao
 import io.github.seoj17.data.local.user.RegisterUserInfoEntity
 import io.github.seoj17.data.model.RegisterUserDataModel
-import io.github.seoj17.data.repository.RegisterUserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

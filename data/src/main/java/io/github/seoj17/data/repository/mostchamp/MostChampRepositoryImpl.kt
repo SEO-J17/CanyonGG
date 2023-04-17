@@ -1,9 +1,8 @@
-package io.github.seoj17.domain.repositoryImpl
+package io.github.seoj17.data.repository.mostchamp
 
 import io.github.seoj17.data.local.user.RegisterUserMostChampDao
 import io.github.seoj17.data.local.user.RegisterUserMostChampEntity
 import io.github.seoj17.data.model.MostChampionDataModel
-import io.github.seoj17.data.repository.MostChampRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
