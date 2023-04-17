@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailMatchViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     val matchId = DetailMatchFragmentArgs.fromSavedStateHandle(savedStateHandle).matchId
     val puuId = DetailMatchFragmentArgs.fromSavedStateHandle(savedStateHandle).puuid
