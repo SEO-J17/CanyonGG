@@ -1,11 +1,11 @@
 package io.github.seoj17.presentaion.ui.home
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import io.github.seoj17.presentaion.model.RotationChamp
 
 class RotationChampListAdapter :
-    ListAdapter<String, RotationChampViewHolder>(diffUtil) {
+    ListAdapter<RotationChamp, RotationChampViewHolder>(RotationChamp.diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         RotationChampViewHolder(parent)
@@ -14,24 +14,6 @@ class RotationChampListAdapter :
         val dataSet = getItem(position)
         with(holder) {
             bind(dataSet)
-        }
-    }
-
-    companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(
-                oldItem: String,
-                newItem: String,
-            ): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(
-                oldItem: String,
-                newItem: String,
-            ): Boolean {
-                return oldItem == newItem
-            }
         }
     }
 }
