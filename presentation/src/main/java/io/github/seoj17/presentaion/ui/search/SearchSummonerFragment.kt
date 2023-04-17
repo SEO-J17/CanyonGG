@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.databinding.FragmentSearchSummonerBinding
 import io.github.seoj17.presentaion.ui.dialog.NotFoundUserDialogFragment
-import io.github.seoj17.presentaion.utils.observeEvent
 
 @AndroidEntryPoint
 class SearchSummonerFragment : Fragment() {
@@ -68,7 +67,7 @@ class SearchSummonerFragment : Fragment() {
                             summoner.puuid,
                         ),
                     )
-                }
+                } ?: NotFoundUserDialogFragment().show(childFragmentManager, null)
             }
             // 홈 화면에서 자세히 보기 버튼을 눌렀을 때 바로 검색 결과 화면이 보이도록 하는 함수
             if (viewModel.isClickDetailInfo()) {
@@ -78,10 +77,6 @@ class SearchSummonerFragment : Fragment() {
                         viewModel.summonerPuuid,
                     ),
                 )
-            }
-
-            viewModel.errorEvent.observeEvent(viewLifecycleOwner) {
-                NotFoundUserDialogFragment().show(childFragmentManager, null)
             }
         }
     }

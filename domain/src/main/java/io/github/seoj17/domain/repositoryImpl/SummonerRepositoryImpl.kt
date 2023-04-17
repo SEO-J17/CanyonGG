@@ -1,7 +1,7 @@
 package io.github.seoj17.domain.repositoryImpl
 
-import io.github.seoj17.data.local.recent.search.RecentSearchDao
-import io.github.seoj17.data.local.recent.search.RecentSearchNameEntity
+import io.github.seoj17.data.local.recent.RecentSearchDao
+import io.github.seoj17.data.local.recent.RecentSearchNameEntity
 import io.github.seoj17.data.model.RecentSearchNameDataModel
 import io.github.seoj17.data.model.SummonerDataModel
 import io.github.seoj17.data.model.SummonerTierDataModel

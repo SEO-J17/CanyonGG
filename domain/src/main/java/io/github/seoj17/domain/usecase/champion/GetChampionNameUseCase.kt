@@ -14,6 +14,7 @@ class GetChampionNameUseCase @Inject constructor(
                 .getChampion(id)
                 ?.name
                 ?: ""
-        }.filter { it != "" }
+        }
+            .filter { it != "" }
     }
 }

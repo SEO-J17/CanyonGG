@@ -9,6 +9,7 @@ import io.github.seoj17.data.repository.DataCenterRepository
 import io.github.seoj17.data.repository.DataStoreRepository
 import io.github.seoj17.data.repository.FirebaseRepository
 import io.github.seoj17.data.repository.MatchRepository
+import io.github.seoj17.data.repository.MostChampRepository
 import io.github.seoj17.data.repository.PerkRepository
 import io.github.seoj17.data.repository.RegisterUserRepository
 import io.github.seoj17.data.repository.SummonerBookmarkRepository
@@ -19,6 +20,7 @@ import io.github.seoj17.domain.repositoryImpl.DataCenterRepositoryImpl
 import io.github.seoj17.domain.repositoryImpl.DataStoreRepositoryImpl
 import io.github.seoj17.domain.repositoryImpl.FirebaseRepositoryImpl
 import io.github.seoj17.domain.repositoryImpl.MatchRepositoryImpl
+import io.github.seoj17.domain.repositoryImpl.MostChampRepositoryImpl
 import io.github.seoj17.domain.repositoryImpl.PerkRepositoryImpl
 import io.github.seoj17.domain.repositoryImpl.RegisterUserRepositoryImpl
 import io.github.seoj17.domain.repositoryImpl.SummonerBookmarkRepositoryImpl
@@ -57,4 +59,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindDataStoreRepository(dataStoreRepositoryImpl: DataStoreRepositoryImpl): DataStoreRepository
+
+    @Binds
+    abstract fun bindMostChampRepository(mostChampionsRepositoryImpl: MostChampRepositoryImpl): MostChampRepository
 }

@@ -29,14 +29,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SummonerRecordViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserTierUseCase: GetUserTierUseCase,
-    private val getSummonerHistoryUseCase: GetSummonerHistoryUseCase,
+    getSummonerHistoryUseCase: GetSummonerHistoryUseCase,
     private val addBookmarkSummoner: AddBookmarkSummonerUseCase,
     private val deleteBookmarkSummoner: DeleteBookmarkSummonerUseCase,
-    private val checkBookmarkedSummoner: CheckBookmarkedSummonerUseCase,
-    private val getSummonerInfoUseCase: GetSummonerInfoUseCase,
+    checkBookmarkedSummoner: CheckBookmarkedSummonerUseCase,
+    getSummonerInfoUseCase: GetSummonerInfoUseCase,
     private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
     private val getUserRecordUseCase: GetUserRecordUseCase,
 ) : ViewModel() {

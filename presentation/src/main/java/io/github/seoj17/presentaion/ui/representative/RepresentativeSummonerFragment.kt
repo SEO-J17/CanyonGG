@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.databinding.FragmentRepresentativeSummonerBinding
 import io.github.seoj17.presentaion.ui.dialog.NotFoundUserDialogFragment
-import io.github.seoj17.presentaion.utils.observeEvent
 
 @AndroidEntryPoint
 class RepresentativeSummonerFragment : Fragment() {
@@ -39,11 +38,7 @@ class RepresentativeSummonerFragment : Fragment() {
                     findNavController().navigate(
                         RepresentativeSummonerFragmentDirections.actionRegisterSummonerToHome(it.name),
                     )
-                }
-            }
-
-            viewModel.errorEvent.observeEvent(viewLifecycleOwner) {
-                NotFoundUserDialogFragment().show(childFragmentManager, null)
+                } ?: NotFoundUserDialogFragment().show(childFragmentManager, null)
             }
         }
     }

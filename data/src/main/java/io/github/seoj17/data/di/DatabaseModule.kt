@@ -12,7 +12,7 @@ import io.github.seoj17.data.local.bookmark.SummonerBookmarkDao
 import io.github.seoj17.data.local.champions.ChampionsDao
 import io.github.seoj17.data.local.match.MatchInfoDao
 import io.github.seoj17.data.local.perks.PerkDao
-import io.github.seoj17.data.local.recent.search.RecentSearchDao
+import io.github.seoj17.data.local.recent.RecentSearchDao
 import io.github.seoj17.data.local.summoner.SummonerInfoDao
 import io.github.seoj17.data.local.user.RegisterUserInfoDao
 import io.github.seoj17.data.local.user.RegisterUserMostChampDao

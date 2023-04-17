@@ -1,17 +1,20 @@
 package io.github.seoj17.domain.usecase.firebase
 
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.Reusable
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @Reusable
 class RegisterUserUseCase @Inject constructor() {
-    operator fun invoke(email: String, password: String): Task<AuthResult> {
-        return Firebase
-            .auth
-            .createUserWithEmailAndPassword(email, password)
+    suspend operator fun invoke(email: String?, password: String?): Result<AuthResult> {
+        return runCatching {
+            Firebase
+                .auth
+                .createUserWithEmailAndPassword(email ?: "", password ?: "")
+                .await()
+        }
     }
 }

@@ -15,40 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Qualifier
 import javax.inject.Singleton
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class SummonerUrl
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class MatchUrl
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class DataCenterUrl
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class TimeOutPolicy
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class AuthToken
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class SummonerRetrofit
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class MatchRetrofit
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class DataCenterRetrofit
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -85,7 +52,7 @@ object NetworkModule {
     @Provides
     @AuthToken
     fun provideAuthToken(): String {
-        return "RGAPI-b1c76c88-f545-49b9-91d3-fd0196d8e5c7"
+        return "RGAPI-492f738e-b428-41e1-b228-b390a6998edb"
     }
 
     @Singleton

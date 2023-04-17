@@ -17,6 +17,7 @@ import io.github.seoj17.presentaion.ui.detail.analysisTab.pages.AnalysisPageList
 import io.github.seoj17.presentaion.ui.detail.summaryTab.LoseParticipantsListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.WinParticipantsListAdapter
 import io.github.seoj17.presentaion.ui.home.BookmarkListAdapter
+import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.ui.home.RotationChampListAdapter
 import io.github.seoj17.presentaion.ui.record.RecordListAdapter
 import io.github.seoj17.presentaion.ui.search.SearchSummonerListAdapter
@@ -79,7 +80,7 @@ fun RecyclerView.setTeamAnalysisList(summonerRecord: List<SummonerMatchRecord>?)
 }
 
 @BindingAdapter("bind:rotationChampList")
-fun RecyclerView.setRotationChampList(champions: List<String>?) {
+fun RecyclerView.setRotationChampList(champions: List<RotationChamp>?) {
     (adapter as? RotationChampListAdapter)?.submitList(champions ?: emptyList())
 }
 

@@ -1,4 +1,4 @@
-package io.github.seoj17.data.local.recent.search
+package io.github.seoj17.data.local.recent
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

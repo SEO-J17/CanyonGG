@@ -10,8 +10,8 @@ import io.github.seoj17.data.local.match.MatchInfoDao
 import io.github.seoj17.data.local.match.MatchInfoEntity
 import io.github.seoj17.data.local.perks.PerkDao
 import io.github.seoj17.data.local.perks.PerkEntity
-import io.github.seoj17.data.local.recent.search.RecentSearchDao
-import io.github.seoj17.data.local.recent.search.RecentSearchNameEntity
+import io.github.seoj17.data.local.recent.RecentSearchDao
+import io.github.seoj17.data.local.recent.RecentSearchNameEntity
 import io.github.seoj17.data.local.summoner.SummonerInfoDao
 import io.github.seoj17.data.local.summoner.SummonerInfoEntity
 import io.github.seoj17.data.local.user.RegisterUserInfoDao
