@@ -7,8 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getThemeSettingUseCase: GetThemeSettingUseCase,
+    getThemeSettingUseCase: GetThemeSettingUseCase,
 ) : ViewModel() {
-    val themeSetting =
-        getThemeSettingUseCase()
+    val themeSetting = getThemeSettingUseCase()
 }
