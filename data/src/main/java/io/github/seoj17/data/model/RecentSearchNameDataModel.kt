@@ -1,6 +1,6 @@
 package io.github.seoj17.data.model
 
-import io.github.seoj17.data.local.recent.search.RecentSearchNameEntity
+import io.github.seoj17.data.local.recent.RecentSearchNameEntity
 
 data class RecentSearchNameDataModel(
     val summonerPuuid: String,
