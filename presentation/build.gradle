@@ -103,6 +103,9 @@ dependencies {
 
     //Firebase Auth
     implementation 'com.google.firebase:firebase-auth-ktx'
+
+    // loading Ui
+    implementation "com.facebook.shimmer:shimmer:0.5.0"
 }
 // Allow references to generated code
 kapt {
