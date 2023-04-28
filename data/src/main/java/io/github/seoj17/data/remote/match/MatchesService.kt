@@ -20,7 +20,7 @@ class MatchesService @Inject constructor(
         )
     }
 
-    suspend fun getMatchInfo(matchId: String): MatchInfoResponse {
+    suspend fun getMatchInfo(matchId: String): MatchInfoResponse? {
         return runCatching {
             matchesApi.getMatchInfo(matchId).await()
         }.fold(
@@ -28,7 +28,7 @@ class MatchesService @Inject constructor(
                 matchInfo
             },
             onFailure = {
-                throw it
+                null
             },
         )
     }
