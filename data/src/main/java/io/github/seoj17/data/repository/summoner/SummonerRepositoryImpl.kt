@@ -7,6 +7,7 @@ import io.github.seoj17.data.model.SummonerDataModel
 import io.github.seoj17.data.model.SummonerTierDataModel
 import io.github.seoj17.data.remote.summoner.SummonerService
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -14,12 +15,14 @@ class SummonerRepositoryImpl @Inject constructor(
     private val remoteService: SummonerService,
     private val recentSearchDao: RecentSearchDao,
 ) : SummonerRepository {
-    override suspend fun getSummonerInfo(userName: String): SummonerDataModel? {
-        return remoteService
-            .getSummoner(userName)
-            ?.let {
-                SummonerDataModel(it)
-            }
+    override suspend fun getSummonerInfo(userName: String): Flow<SummonerDataModel?> {
+        return flowOf(
+            remoteService
+                .getSummoner(userName)
+                ?.let {
+                    SummonerDataModel(it)
+                },
+        )
     }
 
     override suspend fun getTier(id: String): SummonerTierDataModel? {
