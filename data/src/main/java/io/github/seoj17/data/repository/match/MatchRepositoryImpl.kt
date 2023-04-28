@@ -31,8 +31,12 @@ class MatchRepositoryImpl @Inject constructor(
         return matchRemoteService.getMatchId(puuid, startIndex)
     }
 
-    override suspend fun getMatchInfo(matchId: String): MatchDataModel {
-        return MatchDataModel(matchRemoteService.getMatchInfo(matchId))
+    override suspend fun getMatchInfo(matchId: String): MatchDataModel? {
+        return matchRemoteService
+            .getMatchInfo(matchId)
+            ?.let {
+                MatchDataModel(it)
+            }
     }
 
     override suspend fun getRegisterUserMatchInfo(puuid: String): List<MatchInfoDataModel> {

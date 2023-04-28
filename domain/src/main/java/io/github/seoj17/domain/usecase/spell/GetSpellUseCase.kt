@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetSpellUseCase @Inject constructor(
     private val dataCenterRepository: DataCenterRepository,
 ) {
-    suspend operator fun invoke(key: Int): String {
+    suspend operator fun invoke(key: Int): String? {
         return dataCenterRepository.getSpell(key)
     }
 }

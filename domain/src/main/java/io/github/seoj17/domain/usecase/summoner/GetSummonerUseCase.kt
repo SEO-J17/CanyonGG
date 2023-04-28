@@ -15,14 +15,19 @@ class GetSummonerUseCase @Inject constructor(
         puuid: String,
         start: Int = 0,
     ): List<SummonerMatchInfoDomainModel?> {
-        return repository.getMatchId(puuid, start).map { matchId ->
-            getMatchUseCase(matchId)
-                .info
-                .participants
-                .find { it.puuid == puuid }
-                ?.let {
-                    SummonerMatchInfoDomainModel(it)
-                }
-        }
+        return repository
+            .getMatchId(puuid, start)
+            .map { matchId ->
+                getMatchUseCase(matchId)
+                    ?.let { data ->
+                        data
+                            .info
+                            .participants
+                            .find { it.puuid == puuid }
+                            ?.let {
+                                SummonerMatchInfoDomainModel(it)
+                            }
+                    }
+            }
     }
 }

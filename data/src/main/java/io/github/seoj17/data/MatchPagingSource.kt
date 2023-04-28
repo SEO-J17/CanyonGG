@@ -28,14 +28,16 @@ class MatchPagingSource(
         }
 
         matchInfo.forEach { response ->
-            localService.insert(
-                MatchInfoEntity(
-                    response.info.participants,
-                    response.info.gameCreation,
-                    response.metadata.matchId,
-                    response.info.gameMode,
-                ),
-            )
+            response?.let {
+                localService.insert(
+                    MatchInfoEntity(
+                        response.info.participants,
+                        response.info.gameCreation,
+                        response.metadata.matchId,
+                        response.info.gameMode,
+                    ),
+                )
+            }
         }
 
         return LoadResult.Page(
