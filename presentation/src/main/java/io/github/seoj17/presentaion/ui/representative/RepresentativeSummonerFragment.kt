@@ -5,16 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.databinding.FragmentRepresentativeSummonerBinding
 import io.github.seoj17.presentaion.ui.dialog.NotFoundUserDialogFragment
+import io.github.seoj17.presentaion.ui.main.SharedViewModel
 
 @AndroidEntryPoint
 class RepresentativeSummonerFragment : Fragment() {
     private lateinit var binding: FragmentRepresentativeSummonerBinding
     private val viewModel: RepresentativeSummonerViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,12 +36,16 @@ class RepresentativeSummonerFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
 
-            viewModel.searchResult.observe(viewLifecycleOwner) { summoner ->
+            viewModel.summonerInfo.observe(viewLifecycleOwner) { summoner ->
                 summoner?.let {
+                    sharedViewModel.fetchRepresentativeUser(it)
                     findNavController().navigate(
-                        RepresentativeSummonerFragmentDirections.actionRegisterSummonerToHome(it.name),
+                        RepresentativeSummonerFragmentDirections.actionRegisterSummonerToHome(
+                            "",
+                        ),
                     )
-                } ?: NotFoundUserDialogFragment().show(childFragmentManager, null)
+                }
+                    ?: NotFoundUserDialogFragment().show(childFragmentManager, null)
             }
         }
     }
