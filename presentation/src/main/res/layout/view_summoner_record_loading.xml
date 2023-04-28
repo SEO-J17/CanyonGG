@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/user_thumbNail"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/user_name"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/user_tier_label"
+            app:layout_constraintStart_toEndOf="@+id/user_thumbNail"
+            app:layout_constraintTop_toTopOf="@id/user_thumbNail"
+            tools:text="Hide on bush" />
+
+        <View
+            android:id="@+id/user_tier_label"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
+            app:layout_constraintStart_toEndOf="@id/user_thumbNail"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            tools:text="MASTER 1" />
+
+        <ImageView
+            android:id="@+id/user_tier"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/user_thumbNail" />
+
+        <View
+            android:id="@+id/latest_match_label"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_thumbNail" />
+
+        <View
+            android:id="@+id/win_rate_label"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintEnd_toStartOf="@+id/kda_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/latest_match_label" />
+
+        <View
+            android:id="@+id/win_rate"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintEnd_toEndOf="@+id/win_rate_label"
+            app:layout_constraintStart_toStartOf="@+id/win_rate_label"
+            app:layout_constraintTop_toBottomOf="@id/win_rate_label"
+            tools:text="59%" />
+
+        <View
+            android:id="@+id/win_cnt"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintEnd_toEndOf="@+id/win_rate"
+            app:layout_constraintStart_toStartOf="@+id/win_rate"
+            app:layout_constraintTop_toBottomOf="@id/win_rate"
+            tools:text="13승" />
+
+        <View
+            android:id="@+id/kda_label"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="@id/win_rate_label"
+            app:layout_constraintEnd_toStartOf="@+id/highest_kill_label"
+            app:layout_constraintStart_toEndOf="@+id/win_rate_label"
+            app:layout_constraintTop_toTopOf="@id/win_rate_label" />
+
+        <View
+            android:id="@+id/kda"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintEnd_toEndOf="@+id/kda_label"
+            app:layout_constraintStart_toStartOf="@+id/kda_label"
+            app:layout_constraintTop_toBottomOf="@id/kda_label"
+            tools:text="3.41 : 1" />
+
+        <View
+            android:id="@+id/highest_kill_label"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="@id/kda_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/kda_label"
+            app:layout_constraintTop_toTopOf="@id/kda_label" />
+
+        <View
+            android:id="@+id/highest_kill"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintEnd_toEndOf="@+id/highest_kill_label"
+            app:layout_constraintStart_toStartOf="@+id/highest_kill_label"
+            app:layout_constraintTop_toBottomOf="@id/highest_kill_label"
+            tools:text="펜타 킬" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/win_cnt"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp">
+
+            <include layout="@layout/item_summoner_record_loading" />
+
+            <include layout="@layout/item_summoner_record_loading" />
+
+            <include layout="@layout/item_summoner_record_loading" />
+
+            <include layout="@layout/item_summoner_record_loading" />
+
+            <include layout="@layout/item_summoner_record_loading" />
+
+            <include layout="@layout/item_summoner_record_loading" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

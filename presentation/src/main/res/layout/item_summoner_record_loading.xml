@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/champion"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/items_view"
+            android:layout_width="120dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintStart_toStartOf="@id/champion"
+            app:layout_constraintTop_toBottomOf="@id/champion" />
+
+        <View
+            android:id="@+id/kill_view"
+            android:layout_width="50dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toTopOf="@id/kda_view"
+            app:layout_constraintStart_toEndOf="@id/champion"
+            app:layout_constraintTop_toTopOf="@id/champion" />
+
+        <View
+            android:id="@+id/kda_view"
+            android:layout_width="50dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="@id/champion"
+            app:layout_constraintStart_toEndOf="@id/champion"
+            app:layout_constraintTop_toBottomOf="@id/kill_view" />
+
+        <View
+            android:id="@+id/match_view"
+            android:layout_width="40dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toTopOf="@id/date_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/kill_view" />
+
+        <View
+            android:id="@+id/date_view"
+            android:layout_width="40dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="@id/items_view"
+            app:layout_constraintEnd_toEndOf="@id/match_view"
+            app:layout_constraintStart_toStartOf="@id/match_view"
+            app:layout_constraintTop_toBottomOf="@id/match_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
