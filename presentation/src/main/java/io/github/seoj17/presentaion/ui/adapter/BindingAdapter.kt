@@ -1,5 +1,6 @@
 package io.github.seoj17.presentaion.ui.adapter
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -8,23 +9,26 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.textfield.TextInputLayout
 import io.github.seoj17.presentaion.contract.UrlContract
 import io.github.seoj17.presentaion.model.RecentSummoners
+import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerMatchRecord
 import io.github.seoj17.presentaion.ui.detail.analysisTab.pages.AnalysisPageListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.LoseParticipantsListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.WinParticipantsListAdapter
 import io.github.seoj17.presentaion.ui.home.BookmarkListAdapter
-import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.ui.home.RotationChampListAdapter
 import io.github.seoj17.presentaion.ui.record.RecordListAdapter
 import io.github.seoj17.presentaion.ui.search.SearchSummonerListAdapter
+import io.github.seoj17.presentaion.ui.state.UiState
 import io.github.seoj17.presentaion.utils.NumberFormatter
 import io.github.seoj17.presentaion.utils.TimeFormatter
 import io.github.seoj17.presentaion.utils.coroutineScope
 import io.github.seoj17.presentaion.utils.rankEmblemResId
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 @BindingAdapter("bind:summonerProfile")
@@ -169,4 +173,21 @@ fun TextInputLayout.validInputText(
 @BindingAdapter("bind:check")
 fun RadioGroup.setCheckedTheme(index: Int) {
     this.check(getChildAt(index).id)
+}
+
+@BindingAdapter("bind:loadingState")
+fun ShimmerFrameLayout.setLoadingState(state: StateFlow<UiState>) {
+    visibility = when (state.value) {
+        is UiState.Loading -> {
+            startShimmer()
+            View.VISIBLE
+        }
+        is UiState.Success -> {
+            stopShimmer()
+            View.GONE
+        }
+        is UiState.Empty -> {
+            View.GONE
+        }
+    }
 }
