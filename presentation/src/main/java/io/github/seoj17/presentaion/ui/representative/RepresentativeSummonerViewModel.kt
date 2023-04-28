@@ -17,14 +17,15 @@ class RepresentativeSummonerViewModel @Inject constructor(
 
     val summonerName = MutableLiveData<String>()
 
-    private val _searchResult = MutableLiveData<Summoner?>()
-    val searchResult: LiveData<Summoner?> = _searchResult
+    private val _summonerInfo = MutableLiveData<Summoner?>()
+    val summonerInfo: LiveData<Summoner?> = _summonerInfo
 
     fun searchSummoner() {
         viewModelScope.launch {
-            getUserInfoUseCase(summonerName.value)?.let { summonerDomain ->
-                val summoner = Summoner(summonerDomain)
-                _searchResult.value = summoner
+            getUserInfoUseCase(summonerName.value).collect {
+                _summonerInfo.value = it?.let { data ->
+                    Summoner(data)
+                }
             }
         }
     }
