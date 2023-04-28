@@ -9,7 +9,7 @@ import javax.inject.Inject
 class DataCenterService @Inject constructor(
     private val dataCenterApi: DataCenterApi,
 ) {
-    suspend fun getSpells(): SpellResponse {
+    suspend fun getSpells(): SpellResponse? {
         return runCatching {
             dataCenterApi.getSpellInfo().await()
         }.fold(
@@ -17,7 +17,7 @@ class DataCenterService @Inject constructor(
                 spellInfo
             },
             onFailure = {
-                throw it
+                null
             },
         )
     }
@@ -35,7 +35,7 @@ class DataCenterService @Inject constructor(
         )
     }
 
-    suspend fun getChamps(): ChampResponse {
+    suspend fun getChamps(): ChampResponse? {
         return runCatching {
             dataCenterApi.getChampInfo().await()
         }.fold(
@@ -43,7 +43,7 @@ class DataCenterService @Inject constructor(
                 champs
             },
             onFailure = {
-                throw it
+                null
             },
         )
     }
