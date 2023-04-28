@@ -5,7 +5,7 @@ import io.github.seoj17.data.repository.summoner.SummonerRepository
 import javax.inject.Inject
 
 @Reusable
-class AddSummonerUseCase @Inject constructor(
+class AddRecentSummonerUseCase @Inject constructor(
     private val repository: SummonerRepository,
 ) {
     suspend operator fun invoke(puuid: String, name: String) {
