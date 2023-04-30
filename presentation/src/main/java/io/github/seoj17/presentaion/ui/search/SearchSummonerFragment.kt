@@ -6,16 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.databinding.FragmentSearchSummonerBinding
 import io.github.seoj17.presentaion.ui.dialog.NotFoundUserDialogFragment
+import io.github.seoj17.presentaion.ui.main.SharedViewModel
 
 @AndroidEntryPoint
 class SearchSummonerFragment : Fragment() {
     private lateinit var binding: FragmentSearchSummonerBinding
     private val viewModel: SearchSummonerViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +36,7 @@ class SearchSummonerFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
+
             recentSummonerListView.adapter =
                 SearchSummonerListAdapter(
                     { viewModel.deleteRecentSummoner(it) },
@@ -59,8 +63,9 @@ class SearchSummonerFragment : Fragment() {
                 }
             })
 
-            viewModel.searchResult.observe(viewLifecycleOwner) { summoner ->
+            viewModel.summonerInfo.observe(viewLifecycleOwner) { summoner ->
                 summoner?.let {
+                    sharedViewModel.fetchSearchSummoner(it)
                     findNavController().navigate(
                         SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
                             summoner.name,
@@ -68,15 +73,6 @@ class SearchSummonerFragment : Fragment() {
                         ),
                     )
                 } ?: NotFoundUserDialogFragment().show(childFragmentManager, null)
-            }
-            // 홈 화면에서 자세히 보기 버튼을 눌렀을 때 바로 검색 결과 화면이 보이도록 하는 함수
-            if (viewModel.isClickDetailInfo()) {
-                findNavController().navigate(
-                    SearchSummonerFragmentDirections.actionSearchSummonerToSearchResult(
-                        viewModel.summonerName,
-                        viewModel.summonerPuuid,
-                    ),
-                )
             }
         }
     }

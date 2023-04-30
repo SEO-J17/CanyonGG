@@ -8,7 +8,7 @@ import io.github.seoj17.data.model.MatchInfoDataModel
 interface MatchRepository {
     fun getMatches(puuid: String): Pager<Int, MatchInfoDataModel>
     suspend fun getMatchId(puuid: String, startIndex: Int = 0): List<String>
-    suspend fun getMatchInfo(matchId: String): MatchDataModel
+    suspend fun getMatchInfo(matchId: String): MatchDataModel?
     suspend fun getRegisterUserMatchInfo(puuid: String): List<MatchInfoDataModel>
     suspend fun getParticipantsMatchInfo(matchId: String): List<MatchInfoDataModel>
     suspend fun addMatchInfo(entity: MatchInfoEntity)

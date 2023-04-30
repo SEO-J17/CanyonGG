@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/main_user_thumbNail"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/main_user_name"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toTopOf="@+id/main_user_tier"
+            app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
+            app:layout_constraintTop_toTopOf="@id/main_user_thumbNail"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="닉네임" />
+
+        <View
+            android:id="@+id/main_user_tier"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="@+id/main_user_thumbNail"
+            app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
+            app:layout_constraintTop_toBottomOf="@+id/main_user_name"
+            tools:text="Master2" />
+
+        <ImageView
+            android:id="@+id/main_user_refresh"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/reload"
+            app:layout_constraintBottom_toBottomOf="@id/main_user_tier"
+            app:layout_constraintStart_toEndOf="@id/main_user_name"
+            app:layout_constraintTop_toTopOf="@+id/main_user_name"
+            app:tint="@color/img_btn_color" />
+
+        <ImageView
+            android:id="@+id/user_info_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cross"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/img_btn_color" />
+
+        <View
+            android:id="@+id/user_matches"
+            android:layout_width="300dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_user_thumbNail"
+            tools:text="20전" />
+
+
+        <LinearLayout
+            android:id="@+id/most_champ_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/user_matches"
+            app:layout_constraintStart_toStartOf="@id/user_matches"
+            app:layout_constraintTop_toBottomOf="@id/user_matches">
+
+            <io.github.seoj17.presentaion.widget.MostChampView
+                android:id="@+id/most_champ_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/cardview_shadow_start_color" />
+
+            <io.github.seoj17.presentaion.widget.MostChampView
+                android:id="@+id/most_champ_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/cardview_shadow_start_color" />
+
+            <io.github.seoj17.presentaion.widget.MostChampView
+                android:id="@+id/most_champ_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/cardview_shadow_start_color" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

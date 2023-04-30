@@ -18,8 +18,8 @@ import io.github.seoj17.data.repository.mostchamp.MostChampRepository
 import io.github.seoj17.data.repository.mostchamp.MostChampRepositoryImpl
 import io.github.seoj17.data.repository.perk.PerkRepository
 import io.github.seoj17.data.repository.perk.PerkRepositoryImpl
-import io.github.seoj17.data.repository.register.RegisterUserRepository
-import io.github.seoj17.data.repository.register.RegisterUserRepositoryImpl
+import io.github.seoj17.data.repository.register.RepresentativeUserRepository
+import io.github.seoj17.data.repository.register.RepresentativeUserRepositoryImpl
 import io.github.seoj17.data.repository.summoner.SummonerBookmarkRepository
 import io.github.seoj17.data.repository.summoner.SummonerBookmarkRepositoryImpl
 import io.github.seoj17.data.repository.summoner.SummonerInfoRepository
@@ -49,7 +49,7 @@ abstract class RepositoryModule {
     abstract fun bindPerksRepository(perksRepositoryImpl: PerkRepositoryImpl): PerkRepository
 
     @Binds
-    abstract fun bindMyUserRepository(myUserRepositoryImpl: RegisterUserRepositoryImpl): RegisterUserRepository
+    abstract fun bindMyUserRepository(myUserRepositoryImpl: RepresentativeUserRepositoryImpl): RepresentativeUserRepository
 
     @Binds
     abstract fun bindSummonerInfoRepository(summonerInfoRepositoryImpl: SummonerInfoRepositoryImpl): SummonerInfoRepository
