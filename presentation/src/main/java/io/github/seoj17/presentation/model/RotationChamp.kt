@@ -1,0 +1,26 @@
+package io.github.seoj17.presentation.model
+
+import androidx.recyclerview.widget.DiffUtil
+
+@JvmInline
+value class RotationChamp(
+    val name: String,
+) {
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<RotationChamp>() {
+            override fun areItemsTheSame(
+                oldItem: RotationChamp,
+                newItem: RotationChamp,
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(
+                oldItem: RotationChamp,
+                newItem: RotationChamp,
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+}

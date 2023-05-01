@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentaion.ui.detail.analysisTab.pages.kill.TeamKillsViewModel" />
+            type="io.github.seoj17.presentation.ui.detail.analysisTab.pages.kill.TeamKillsViewModel" />
 
         <import type="android.view.View" />
     </data>

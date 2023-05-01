@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentaion.ui.search.SearchSummonerViewModel" />
+            type="io.github.seoj17.presentation.ui.search.SearchSummonerViewModel" />
 
         <import type="android.view.View" />
     </data>

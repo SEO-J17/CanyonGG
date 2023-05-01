@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentaion.ui.detail.rankTab.MyRankViewModel" />
+            type="io.github.seoj17.presentation.ui.detail.rankTab.MyRankViewModel" />
 
         <import type="android.view.View" />
 
@@ -33,56 +33,56 @@
                 android:textSize="20sp"
                 tools:text="Hide 님의 지표별 순위 입니다." />
 
-            <io.github.seoj17.presentaion.widget.MyRankView
+            <io.github.seoj17.presentation.widget.MyRankView
                 android:id="@+id/dealt_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 bind:rankInfo="@{vm.dealtRank}"
                 bind:rankTitle="@{@string/rank_dealt}" />
 
-            <io.github.seoj17.presentaion.widget.MyRankView
+            <io.github.seoj17.presentation.widget.MyRankView
                 android:id="@+id/damaged_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 bind:rankInfo="@{vm.damagedRank}"
                 bind:rankTitle="@{@string/rank_damaged}" />
 
-            <io.github.seoj17.presentaion.widget.MyRankView
+            <io.github.seoj17.presentation.widget.MyRankView
                 android:id="@+id/kill_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 bind:rankInfo="@{vm.killRank}"
                 bind:rankTitle="@{@string/rank_kill}" />
 
-            <io.github.seoj17.presentaion.widget.MyRankView
+            <io.github.seoj17.presentation.widget.MyRankView
                 android:id="@+id/death_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 bind:rankInfo="@{vm.deathRank}"
                 bind:rankTitle="@{@string/rank_death}" />
 
-            <io.github.seoj17.presentaion.widget.MyRankView
+            <io.github.seoj17.presentation.widget.MyRankView
                 android:id="@+id/assist_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 bind:rankInfo="@{vm.assistRank}"
                 bind:rankTitle="@{@string/rank_assist}" />
 
-            <io.github.seoj17.presentaion.widget.MyRankView
+            <io.github.seoj17.presentation.widget.MyRankView
                 android:id="@+id/minion_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 bind:rankInfo="@{vm.minionRank}"
                 bind:rankTitle="@{@string/rank_minions}" />
 
-            <io.github.seoj17.presentaion.widget.MyRankView
+            <io.github.seoj17.presentation.widget.MyRankView
                 android:id="@+id/gold_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 bind:rankInfo="@{vm.spentGoldRank}"
                 bind:rankTitle="@{@string/rank_spent_gold}" />
 
-            <io.github.seoj17.presentaion.widget.MyRankView
+            <io.github.seoj17.presentation.widget.MyRankView
                 android:id="@+id/vision_score_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
