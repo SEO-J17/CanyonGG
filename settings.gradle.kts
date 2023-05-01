@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CanyonGG"
-include ':app'
-include ':data'
-include ':domain'
-include ':presentation'
+include(":app")
+include(":data")
+include(":domain")
+include(":presentation")
