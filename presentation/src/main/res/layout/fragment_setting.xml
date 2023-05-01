@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentaion.ui.setting.SettingViewModel" />
+            type="io.github.seoj17.presentation.ui.setting.SettingViewModel" />
 
         <import type="android.view.View" />
     </data>

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="io.github.seoj17.presentaion.ui.home.HomeFragment"
+        android:name="io.github.seoj17.presentation.ui.home.HomeFragment"
         android:label="@string/toolbar_home_label">
         <action
             android:id="@+id/action_home_to_registerSummoner"
@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/representativeSummoner"
-        android:name="io.github.seoj17.presentaion.ui.representative.RepresentativeSummonerFragment"
+        android:name="io.github.seoj17.presentation.ui.representative.RepresentativeSummonerFragment"
         android:label="@string/toolbar_home_representative_label">
         <action
             android:id="@+id/action_registerSummoner_to_home"

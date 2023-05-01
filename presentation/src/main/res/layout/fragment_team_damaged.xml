@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentaion.ui.detail.analysisTab.pages.damaged.TeamDamagedViewModel" />
+            type="io.github.seoj17.presentation.ui.detail.analysisTab.pages.damaged.TeamDamagedViewModel" />
 
         <import type="android.view.View" />
     </data>

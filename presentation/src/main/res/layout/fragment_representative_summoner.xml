@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentaion.ui.representative.RepresentativeSummonerViewModel" />
+            type="io.github.seoj17.presentation.ui.representative.RepresentativeSummonerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
