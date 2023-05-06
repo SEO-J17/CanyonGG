@@ -2,12 +2,12 @@ package io.github.seoj17.domain.usecase.champion
 
 import dagger.Reusable
 import io.github.seoj17.domain.model.ChampInfoDomainModel
-import io.github.seoj17.domain.usecase.match.GetRepresentativeUserMatchListUseCase
+import io.github.seoj17.domain.usecase.match.GetRegisterUserMatchListUseCase
 import javax.inject.Inject
 
 @Reusable
 class GetMostChampionListUseCase @Inject constructor(
-    private val getRegisterUserMatchListUseCase: GetRepresentativeUserMatchListUseCase,
+    private val getRegisterUserMatchListUseCase: GetRegisterUserMatchListUseCase,
 ) {
     suspend operator fun invoke(puuid: String): List<ChampInfoDomainModel> {
         getRegisterUserMatchListUseCase(puuid)

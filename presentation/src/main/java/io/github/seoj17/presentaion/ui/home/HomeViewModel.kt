@@ -2,6 +2,7 @@ package io.github.seoj17.presentaion.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
@@ -15,9 +16,9 @@ import io.github.seoj17.domain.usecase.champion.GetMostChampUseCase
 import io.github.seoj17.domain.usecase.champion.GetMostChampionListUseCase
 import io.github.seoj17.domain.usecase.champion.GetRotationChampIdListUseCase
 import io.github.seoj17.domain.usecase.summoner.AddSummonerInfoUseCase
-import io.github.seoj17.domain.usecase.user.AddRepresentativeUserInfoUseCase
-import io.github.seoj17.domain.usecase.user.DeleteRepresentativeUserInfoUseCase
-import io.github.seoj17.domain.usecase.user.GetRepresentativeUserInfoUseCase
+import io.github.seoj17.domain.usecase.user.AddRegisterUserInfoUseCase
+import io.github.seoj17.domain.usecase.user.DeleteRegisterUserInfoUseCase
+import io.github.seoj17.domain.usecase.user.GetRegisterUserInfoUseCase
 import io.github.seoj17.domain.usecase.user.GetUserInfoUseCase
 import io.github.seoj17.domain.usecase.user.GetUserRecordUseCase
 import io.github.seoj17.domain.usecase.user.GetUserTierUseCase
@@ -29,30 +30,30 @@ import io.github.seoj17.presentaion.model.Summoner
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerInfo
 import io.github.seoj17.presentaion.model.UserRecord
-import io.github.seoj17.presentaion.ui.state.UiState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
+    private val getUserInfoUseCase: GetUserInfoUseCase,
+    private val getUserTierUseCase: GetUserTierUseCase,
     getBookmarkSummoner: GetBookmarkSummonerUseCase,
     private val deleteBookmarkSummoner: DeleteBookmarkSummonerUseCase,
-    getRegisterUserInfoUseCase: GetRepresentativeUserInfoUseCase,
+    getRegisterUserInfoUseCase: GetRegisterUserInfoUseCase,
     getMostChampUseCase: GetMostChampUseCase,
-    private val deleteMyUserInfo: DeleteRepresentativeUserInfoUseCase,
+    private val addMyUserInfo: AddRegisterUserInfoUseCase,
+    private val addMyMostChamps: AddMyMostChampsUseCase,
+    private val deleteMyUserInfo: DeleteRegisterUserInfoUseCase,
+    private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
     private val getRotationChamp: GetRotationChampIdListUseCase,
     private val getChampionName: GetChampionNameUseCase,
-    private val getUserTierUseCase: GetUserTierUseCase,
     private val getUserRecordUseCase: GetUserRecordUseCase,
     private val getMostChampionListUseCase: GetMostChampionListUseCase,
-    private val addMyUserInfo: AddRepresentativeUserInfoUseCase,
-    private val addMyMostChamps: AddMyMostChampsUseCase,
-    private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
-    private val getUserInfoUseCase: GetUserInfoUseCase,
 ) : ViewModel() {
+
+    private val summonerName =
+        HomeFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerName ?: ""
 
     val userInfo = getRegisterUserInfoUseCase()
         .asLiveData()
@@ -81,33 +82,13 @@ class HomeViewModel @Inject constructor(
     private val _rotationChamp = MutableLiveData<List<RotationChamp>>()
     val rotationChamp: LiveData<List<RotationChamp>> = _rotationChamp
 
-    private val _searchState = MutableStateFlow<UiState>(UiState.Empty)
-    val searchState: StateFlow<UiState> = _searchState.asStateFlow()
-
     init {
+        if (summonerName.isNotBlank()) {
+            fetchData()
+        }
         viewModelScope.launch {
             val list = getRotationChamp()
             _rotationChamp.value = getChampionName(list).map { RotationChamp(it) }
-        }
-    }
-
-    fun fetchInfo(summoner: Summoner) {
-        viewModelScope.launch {
-            _searchState.emit(UiState.Loading)
-
-            val tier = getUserTierUseCase(summoner.id)?.let { userTier ->
-                "${userTier.tier} ${userTier.rank}"
-            } ?: "UNRANKED"
-
-            val userRecord = UserRecord(getUserRecordUseCase(summoner.puuid))
-            val mostChampList = ChampInfo(getMostChampionListUseCase(summoner.puuid))
-
-            insertUserInfoLocal(summoner, userRecord, tier)
-            insertMostChampLocal(summoner, mostChampList)
-
-            userInfo.value?.let {
-                _searchState.emit(UiState.Success)
-            }
         }
     }
 
@@ -117,6 +98,25 @@ class HomeViewModel @Inject constructor(
                 ?.let { champ ->
                     ChampInfo(champ)
                 }
+        }
+    }
+
+    private fun fetchData() {
+        viewModelScope.launch {
+            getUserInfoUseCase(summonerName)?.let { summonerDomain ->
+
+                val summoner = Summoner(summonerDomain)
+
+                val tier = getUserTierUseCase(summoner.id)?.let { userTier ->
+                    "${userTier.tier} ${userTier.rank}"
+                } ?: "UNRANKED"
+
+                val userRecord = UserRecord(getUserRecordUseCase(summoner.puuid))
+                val mostChampList = ChampInfo(getMostChampionListUseCase(summoner.puuid))
+
+                insertUserInfoLocal(summoner, userRecord, tier)
+                insertMostChampLocal(summoner, mostChampList)
+            }
         }
     }
 
@@ -155,11 +155,7 @@ class HomeViewModel @Inject constructor(
 
     fun refreshMyInfo() {
         viewModelScope.launch {
-            getUserInfoUseCase(userInfo.value?.name).collect {
-                it?.let { data ->
-                    fetchInfo(Summoner(data))
-                }
-            }
+            fetchData()
         }
     }
 }

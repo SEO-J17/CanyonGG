@@ -2,12 +2,12 @@ package io.github.seoj17.domain.usecase.user
 
 import dagger.Reusable
 import io.github.seoj17.domain.model.UserRecordDomainModel
-import io.github.seoj17.domain.usecase.match.GetRepresentativeUserMatchListUseCase
+import io.github.seoj17.domain.usecase.match.GetRegisterUserMatchListUseCase
 import javax.inject.Inject
 
 @Reusable
 class GetUserRecordUseCase @Inject constructor(
-    private val getRegisterUserMatchListUseCase: GetRepresentativeUserMatchListUseCase,
+    private val getRegisterUserMatchListUseCase: GetRegisterUserMatchListUseCase,
 ) {
     suspend operator fun invoke(puuid: String): UserRecordDomainModel {
         getRegisterUserMatchListUseCase(puuid)
@@ -19,7 +19,7 @@ class GetUserRecordUseCase @Inject constructor(
 
                 val win = count { it.win && !it.gameEndedInEarlySurrender }
                 val lose = realMatch - win
-                val winRate = (win * 100) / if (realMatch == 0) 1 else realMatch
+                val winRate = (win * 100) / realMatch
                 val kda = kills / sumOf { it.deaths }.toDouble()
                 val mostKill = maxOf { it.largestKill }
 
