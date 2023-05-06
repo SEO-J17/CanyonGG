@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="io.github.seoj17.presentation.model.SummonerMatchRecord" />
+            type="io.github.seoj17.presentaion.model.SummonerMatchRecord" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

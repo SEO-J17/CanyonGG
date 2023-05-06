@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentation.ui.login.LoginViewModel" />
+            type="io.github.seoj17.presentaion.ui.login.LoginViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
