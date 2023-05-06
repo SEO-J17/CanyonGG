@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentation.ui.record.SummonerRecordViewModel" />
+            type="io.github.seoj17.presentaion.ui.record.SummonerRecordViewModel" />
 
         <import type="android.view.View" />
     </data>

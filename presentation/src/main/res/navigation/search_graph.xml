@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/search_summoner"
-        android:name="io.github.seoj17.presentation.ui.search.SearchSummonerFragment"
+        android:name="io.github.seoj17.presentaion.ui.search.SearchSummonerFragment"
         android:label="@string/toolbar_search_label">
         <action
             android:id="@+id/action_SearchSummoner_to_searchResult"
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/search_result"
-        android:name="io.github.seoj17.presentation.ui.record.SummonerRecordFragment"
+        android:name="io.github.seoj17.presentaion.ui.record.SummonerRecordFragment"
         android:label="@string/toolbar_detail_label">
 
         <argument
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/detail_match"
-        android:name="io.github.seoj17.presentation.ui.detail.DetailMatchFragment"
+        android:name="io.github.seoj17.presentaion.ui.detail.DetailMatchFragment"
         android:label="@string/toolbar_search_result_label">
 
         <argument

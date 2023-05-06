@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="io.github.seoj17.presentation.ui.home.HomeViewModel" />
+            type="io.github.seoj17.presentaion.ui.home.HomeViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -34,7 +34,7 @@
                 <include layout="@layout/view_representative_loading" />
             </com.facebook.shimmer.ShimmerFrameLayout>
 
-            <io.github.seoj17.presentation.widget.UserInfoView
+            <io.github.seoj17.presentaion.widget.UserInfoView
                 android:id="@+id/summoner_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
-                <io.github.seoj17.presentation.widget.MostChampView
+                <io.github.seoj17.presentaion.widget.MostChampView
                     android:id="@+id/most_champ_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     android:visibility="@{vm.firstMostChamp == null ? View.GONE : View.VISIBLE}"
                     bind:champInfo="@{vm.firstMostChamp}" />
 
-                <io.github.seoj17.presentation.widget.MostChampView
+                <io.github.seoj17.presentaion.widget.MostChampView
                     android:id="@+id/most_champ_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                     android:visibility="@{vm.secondMostChamp == null ? View.GONE : View.VISIBLE}"
                     bind:champInfo="@{vm.secondMostChamp}" />
 
-                <io.github.seoj17.presentation.widget.MostChampView
+                <io.github.seoj17.presentaion.widget.MostChampView
                     android:id="@+id/most_champ_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                 android:text="@string/detail_my_info_label"
                 android:visibility="@{vm.firstMostChamp != null ? View.VISIBLE : View.GONE}" />
 
-            <io.github.seoj17.presentation.widget.EmptyView
+            <io.github.seoj17.presentaion.widget.EmptyView
                 android:id="@+id/register_user_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                 bind:emptyContent="@{@string/hint_main_intro}"
                 bind:emptyTitle="@{@string/main_my_history_label}" />
 
-            <io.github.seoj17.presentation.widget.EmptyView
+            <io.github.seoj17.presentaion.widget.EmptyView
                 android:id="@+id/search_summoner_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
