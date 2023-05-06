@@ -1,12 +1,12 @@
 package io.github.seoj17.domain.usecase.user
 
 import dagger.Reusable
-import io.github.seoj17.data.repository.register.RepresentativeUserRepository
+import io.github.seoj17.data.repository.register.RegisterUserRepository
 import javax.inject.Inject
 
 @Reusable
-class DeleteRepresentativeUserInfoUseCase @Inject constructor(
-    private val repository: RepresentativeUserRepository,
+class DeleteRegisterUserInfoUseCase @Inject constructor(
+    private val repository: RegisterUserRepository,
 ) {
     suspend operator fun invoke() {
         return repository.deleteMyUserChamps()

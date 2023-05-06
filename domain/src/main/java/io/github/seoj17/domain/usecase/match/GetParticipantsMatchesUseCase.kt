@@ -34,8 +34,8 @@ class GetParticipantsMatchesUseCase @Inject constructor(
                     }
                     MatchInfoDomainModel(
                         entity,
-                        firstSpell.await() ?: "",
-                        secondSpell.await() ?: "",
+                        firstSpell.await(),
+                        secondSpell.await(),
                         mainRune.await().imgUrl,
                         subRune.await().imgUrl,
                     )

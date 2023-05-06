@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class RepresentativeUserRepositoryImpl @Inject constructor(
+class RegisterUserRepositoryImpl @Inject constructor(
     private val registerUserInfoDao: RegisterUserInfoDao,
-) : RepresentativeUserRepository {
+) : RegisterUserRepository {
     override fun getMyUserInfo(): Flow<RegisterUserDataModel?> {
         return registerUserInfoDao
             .get()

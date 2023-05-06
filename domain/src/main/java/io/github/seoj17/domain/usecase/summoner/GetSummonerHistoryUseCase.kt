@@ -20,33 +20,30 @@ class GetSummonerHistoryUseCase @Inject constructor(
     private val perksRepository: PerkRepository,
 ) {
     operator fun invoke(puuid: String): Flow<PagingData<MatchInfoDomainModel>> {
-        return matchRepository
-            .getMatches(puuid)
-            .flow
-            .map { paging ->
-                paging.map { data ->
-                    coroutineScope {
-                        val firstSpell = async {
-                            dataCenterRepository.getSpell(data.firstSpell)
-                        }
-                        val secondSpell = async {
-                            dataCenterRepository.getSpell(data.secondSpell)
-                        }
-                        val mainRune = async {
-                            perksRepository.getPerk(data.mainRune)
-                        }
-                        val subRune = async {
-                            perksRepository.getPerk(data.subRune)
-                        }
-                        MatchInfoDomainModel(
-                            data,
-                            firstSpell.await() ?: "",
-                            secondSpell.await() ?: "",
-                            mainRune.await().imgUrl,
-                            subRune.await().imgUrl,
-                        )
+        return matchRepository.getMatches(puuid).flow.map { paging ->
+            paging.map { data ->
+                coroutineScope {
+                    val firstSpell = async {
+                        dataCenterRepository.getSpell(data.firstSpell)
                     }
+                    val secondSpell = async {
+                        dataCenterRepository.getSpell(data.secondSpell)
+                    }
+                    val mainRune = async {
+                        perksRepository.getPerk(data.mainRune)
+                    }
+                    val subRune = async {
+                        perksRepository.getPerk(data.subRune)
+                    }
+                    MatchInfoDomainModel(
+                        data,
+                        firstSpell.await(),
+                        secondSpell.await(),
+                        mainRune.await().imgUrl,
+                        subRune.await().imgUrl,
+                    )
                 }
             }
+        }
     }
 }
