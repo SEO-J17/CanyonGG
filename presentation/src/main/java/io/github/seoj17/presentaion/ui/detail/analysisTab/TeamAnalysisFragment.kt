@@ -1,34 +1,20 @@
 package io.github.seoj17.presentaion.ui.detail.analysisTab
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.databinding.FragmentTeamAnalysisBinding
+import io.github.seoj17.presentaion.ui.base.BaseFragment
 import io.github.seoj17.presentaion.ui.detail.DetailMatchViewModel
 
 @AndroidEntryPoint
-class TeamAnalysisFragment : Fragment() {
-    private lateinit var binding: FragmentTeamAnalysisBinding
-    private val viewModel: TeamAnalysisViewModel by viewModels()
+class TeamAnalysisFragment : BaseFragment<FragmentTeamAnalysisBinding, TeamAnalysisViewModel>(
+    FragmentTeamAnalysisBinding::inflate,
+) {
+    override val viewModel: TeamAnalysisViewModel by viewModels()
     private val parentViewModel: DetailMatchViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentTeamAnalysisBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun bindLayout() {
         with(binding) {
             analysisTabPager.adapter =
                 AnalysisViewPagerAdapter(this@TeamAnalysisFragment)
@@ -40,6 +26,8 @@ class TeamAnalysisFragment : Fragment() {
             viewModel.setMatchId(parentViewModel.matchId)
         }
     }
+
+    override fun observeViewModel() = Unit
 
     companion object {
         fun newInstance() = TeamAnalysisFragment()
