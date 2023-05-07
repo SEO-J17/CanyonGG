@@ -11,13 +11,13 @@ import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import io.github.seoj17.presentaion.contract.UrlContract
 import io.github.seoj17.presentaion.model.RecentSummoners
+import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerMatchRecord
 import io.github.seoj17.presentaion.ui.detail.analysisTab.pages.AnalysisPageListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.LoseParticipantsListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.WinParticipantsListAdapter
 import io.github.seoj17.presentaion.ui.home.BookmarkListAdapter
-import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.ui.home.RotationChampListAdapter
 import io.github.seoj17.presentaion.ui.record.RecordListAdapter
 import io.github.seoj17.presentaion.ui.search.SearchSummonerListAdapter

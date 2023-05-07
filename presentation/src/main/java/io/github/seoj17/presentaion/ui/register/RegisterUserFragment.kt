@@ -1,10 +1,5 @@
 package io.github.seoj17.presentaion.ui.register
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,31 +8,23 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentRegisterUserBinding
+import io.github.seoj17.presentaion.ui.base.BaseFragment
 import io.github.seoj17.presentaion.utils.showToast
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RegisterUserFragment : Fragment() {
-    private lateinit var binding: FragmentRegisterUserBinding
-    private val viewModel: RegisterUserViewModel by viewModels()
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentRegisterUserBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
+class RegisterUserFragment : BaseFragment<FragmentRegisterUserBinding, RegisterUserViewModel>(
+    FragmentRegisterUserBinding::inflate,
+) {
+    override val viewModel: RegisterUserViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun bindLayout() {
         with(binding) {
-            lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }
+    }
 
+    override fun observeViewModel() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.registerState.collect { state ->

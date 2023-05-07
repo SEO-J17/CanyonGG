@@ -1,38 +1,22 @@
 package io.github.seoj17.presentaion.ui.record
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentSummonerRecordBinding
+import io.github.seoj17.presentaion.ui.base.BaseFragment
 import io.github.seoj17.presentaion.utils.showToast
 
 @AndroidEntryPoint
-class SummonerRecordFragment : Fragment() {
-    private lateinit var binding: FragmentSummonerRecordBinding
-    private val viewModel: SummonerRecordViewModel by viewModels()
+class SummonerRecordFragment : BaseFragment<FragmentSummonerRecordBinding, SummonerRecordViewModel>(
+    FragmentSummonerRecordBinding::inflate,
+) {
+    override val viewModel: SummonerRecordViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentSummonerRecordBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun bindLayout() {
         with(binding) {
             vm = viewModel
-            lifecycleOwner = viewLifecycleOwner
             summonerHistoryView.adapter = RecordListAdapter { matchId, puuid ->
                 findNavController().navigate(
                     SummonerRecordFragmentDirections.actionSearchResultToDetailMatch(
@@ -55,4 +39,6 @@ class SummonerRecordFragment : Fragment() {
             }
         }
     }
+
+    override fun observeViewModel() = Unit
 }
