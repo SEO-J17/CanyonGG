@@ -31,21 +31,35 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initNavigation()
+        setActionBarTitle()
+        setTheme()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        super.onSupportNavigateUp()
+        return findNavController(binding.container.id).navigateUp()
+    }
+
+    private fun initNavigation() {
         val host = supportFragmentManager.findFragmentById(binding.container.id) as NavHostFragment
         navController = host.navController
         binding.bottomNavBar.setupWithNavController(navController)
-
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home, R.id.search_summoner, R.id.setting),
-        )
-
-        setupActionBarWithNavController(navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener { _, _, arguments ->
             binding.bottomNavBar.isVisible =
                 arguments?.getBoolean("showBottomNavView", true) == true
         }
+    }
 
+    private fun setActionBarTitle() {
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.home, R.id.search_summoner, R.id.setting),
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    private fun setTheme() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.themeSetting.collect {
@@ -53,10 +67,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        super.onSupportNavigateUp()
-        return findNavController(binding.container.id).navigateUp()
     }
 }
