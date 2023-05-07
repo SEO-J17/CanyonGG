@@ -111,6 +111,15 @@
                 bind:bookmarkSummonersList="@{vm.bookmarkSummoners}"
                 tools:listitem="@layout/item_bookmark_summoner" />
 
+            <io.github.seoj17.presentaion.widget.EmptyView
+                android:id="@+id/champion_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                bind:buttonName="@{@string/champ_btn_name}"
+                bind:emptyContent="@{@string/book_mark_champ_content}"
+                bind:emptyTitle="@{@string/book_mark_champ_label}" />
+
             <TextView
                 android:id="@+id/rotation_tab_label"
                 android:layout_width="wrap_content"
