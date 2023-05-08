@@ -12,4 +12,6 @@ data class ChampData(
     val partype: String,
     val title: String,
     val version: String,
+    val stats: ChampStats,
+    val tags: List<String>,
 )
