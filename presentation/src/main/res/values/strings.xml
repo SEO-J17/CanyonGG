@@ -116,4 +116,6 @@
     <string name="toolbar_register_label">회원가입</string>
     <string name="toolbar_home_label">홈</string>
     <string name="toolbar_home_representative_label">소환사 등록</string>
+    <string name="champion_title">챔피언</string>
+    <string name="bot_champion_label">챔피언</string>
 </resources>
