@@ -48,13 +48,13 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, _, arguments ->
             binding.bottomNavBar.isVisible =
-                arguments?.getBoolean("showBottomNavView", true) == true
+                (arguments?.getBoolean("showBottomNavView", true) ?: true) == true
         }
     }
 
     private fun setActionBarTitle() {
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home, R.id.search_summoner, R.id.setting),
+            setOf(R.id.home, R.id.search_summoner, R.id.champions, R.id.setting),
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
