@@ -12,7 +12,7 @@ class GetChampionNameUseCase @Inject constructor(
         return ids.map { id ->
             repository
                 .getChampion(id)
-                ?.name
+                ?.id
                 ?: ""
         }
             .filter { it != "" }
