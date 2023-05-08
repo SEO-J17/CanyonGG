@@ -14,6 +14,6 @@ fun ImageView.setChampion(champ: String) {
 fun ImageView.setRotationChampion(champ: String) {
     Glide
         .with(this.context)
-        .load(UrlContract.rotationChampionUrl(champ))
+        .load(UrlContract.splashChampionUrl(champ))
         .into(this)
 }

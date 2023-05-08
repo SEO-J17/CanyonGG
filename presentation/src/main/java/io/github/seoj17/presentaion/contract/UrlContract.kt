@@ -27,7 +27,7 @@ object UrlContract {
         return "$DATA_CENTER_URL/cdn/$cdnVersion/img/champion/$name.png"
     }
 
-    fun rotationChampionUrl(name: String): String {
+    fun splashChampionUrl(name: String): String {
         return "$DATA_CENTER_URL/cdn/img/champion/loading/${name}_0.jpg"
     }
 }
