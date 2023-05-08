@@ -11,6 +11,11 @@
         android:icon="@drawable/magnifier"
         android:title="@string/bot_nav_search" />
     <item
+        android:id="@+id/champion_graph"
+        android:enabled="true"
+        android:icon="@drawable/champion"
+        android:title="@string/bot_champion_label" />
+    <item
         android:id="@+id/settings_graph"
         android:enabled="true"
         android:icon="@drawable/settings"

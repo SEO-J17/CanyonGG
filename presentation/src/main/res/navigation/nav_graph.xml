@@ -6,6 +6,7 @@
 
     <include app:graph="@navigation/home_graph" />
     <include app:graph="@navigation/search_graph" />
+    <include app:graph="@navigation/champion_graph" />
     <include app:graph="@navigation/settings_graph" />
 
 </navigation>
