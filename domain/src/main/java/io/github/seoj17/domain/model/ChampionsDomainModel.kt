@@ -5,20 +5,59 @@ import io.github.seoj17.data.model.ChampionsDataModel
 
 data class ChampionsDomainModel(
     val key: Int,
+    val id: String,
     val name: String,
+    val title: String,
+    val tag: String,
+    val blurb: String,
+    val hp: Int,
+    val hpPerLevel: Int,
+    val moveSpeed: Int,
+    val attackDamage: Int,
+    val attackDamagePerLevel: Double,
+    val armor: Int,
+    val armorPerLevel: Double,
+    val spellBlock: Int,
+    val spellBlockPerLevel: Double,
 ) {
     companion object {
         operator fun invoke(data: ChampionsDataModel): ChampionsDomainModel {
             return ChampionsDomainModel(
                 key = data.key,
+                id = data.id,
                 name = data.name,
+                title = data.title,
+                tag = data.tags,
+                blurb = data.blurb,
+                hp = data.hp,
+                hpPerLevel = data.hpPerLevel,
+                moveSpeed = data.moveSpeed,
+                attackDamage = data.attackDamage,
+                attackDamagePerLevel = data.attackDamagePerLevel,
+                armor = data.armor,
+                armorPerLevel = data.armorPerLevel,
+                spellBlock = data.spellBlock,
+                spellBlockPerLevel = data.spellBlockPerLevel,
             )
         }
 
         fun toEntity(domain: ChampionsDomainModel): ChampionsEntity {
             return ChampionsEntity(
                 key = domain.key,
+                id = domain.id,
                 name = domain.name,
+                title = domain.title,
+                tag = domain.tag,
+                blurb = domain.blurb,
+                hp = domain.hp,
+                hpPerLevel = domain.hpPerLevel,
+                moveSpeed = domain.moveSpeed,
+                attackDamage = domain.attackDamage,
+                attackDamagePerLevel = domain.attackDamagePerLevel,
+                armor = domain.armor,
+                armorPerLevel = domain.armorPerLevel,
+                spellBlock = domain.spellBlock,
+                spellBlockPerLevel = domain.spellBlockPerLevel,
             )
         }
 

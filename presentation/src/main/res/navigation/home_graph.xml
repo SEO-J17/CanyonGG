@@ -5,7 +5,7 @@
     app:startDestination="@id/home">
 
     <include app:graph="@navigation/search_graph" />
-
+    <include app:graph="@navigation/champion_graph" />
     <fragment
         android:id="@+id/home"
         android:name="io.github.seoj17.presentaion.ui.home.HomeFragment"
@@ -36,6 +36,9 @@
                 app:argType="string"
                 app:nullable="true" />
         </action>
+        <action
+            android:id="@+id/action_home_to_champion_graph"
+            app:destination="@id/champion_graph" />
     </fragment>
 
     <fragment

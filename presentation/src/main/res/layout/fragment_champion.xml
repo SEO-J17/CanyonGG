@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="io.github.seoj17.presentaion.ui.champion.ChampionViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -10,14 +18,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/champion_list"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
+            android:padding="10dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
             app:spanCount="4"
-            tools:layout_editor_absoluteX="0dp"
-            tools:listitem="@layout/item_chamipon" />
+            bind:champList="@{vm.champion}"
+            tools:listitem="@layout/item_champion" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

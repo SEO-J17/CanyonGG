@@ -14,6 +14,8 @@ class HomeFragment :
     override val viewModel: HomeViewModel by viewModels()
     override fun bindLayout() {
         with(binding) {
+            vm = viewModel
+
             registerUserTab.setClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
             }
@@ -40,6 +42,13 @@ class HomeFragment :
                     ),
                 )
             }
+
+            championTab.setClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeToChampionGraph(),
+                )
+            }
+
             bookMarkList.adapter = BookmarkListAdapter(
                 { deleteName ->
                     viewModel.removeBookmark(deleteName)
@@ -52,6 +61,7 @@ class HomeFragment :
                     ),
                 )
             }
+
             champRotationListView.adapter = RotationChampListAdapter()
         }
     }

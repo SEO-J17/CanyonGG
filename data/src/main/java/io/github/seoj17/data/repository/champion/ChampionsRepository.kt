@@ -6,6 +6,7 @@ import io.github.seoj17.data.model.ChampionsDataModel
 interface ChampionsRepository {
     suspend fun getChampionList(): List<ChampionsDataModel>
     suspend fun getChampion(id: Int): ChampionsDataModel?
+    suspend fun getAllChampion(): List<ChampionsDataModel>
     suspend fun addChampionList(entity: List<ChampionsEntity>)
     suspend fun addChampion(entity: ChampionsEntity)
 }

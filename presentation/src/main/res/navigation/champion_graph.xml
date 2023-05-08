@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/champion_graph"
+    app:startDestination="@id/champions">
+
+    <fragment
+        android:id="@+id/champions"
+        android:name="io.github.seoj17.presentaion.ui.champion.ChampionFragment"
+        android:label="@string/champion_title" />
+</navigation>
