@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import io.github.seoj17.presentaion.contract.UrlContract
+import io.github.seoj17.presentaion.model.Champion
 import io.github.seoj17.presentaion.model.RecentSummoners
 import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerMatchRecord
+import io.github.seoj17.presentaion.ui.champion.ChampionListAdapter
 import io.github.seoj17.presentaion.ui.detail.analysisTab.pages.AnalysisPageListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.LoseParticipantsListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.WinParticipantsListAdapter
@@ -82,6 +84,11 @@ fun RecyclerView.setTeamAnalysisList(summonerRecord: List<SummonerMatchRecord>?)
 @BindingAdapter("bind:rotationChampList")
 fun RecyclerView.setRotationChampList(champions: List<RotationChamp>?) {
     (adapter as? RotationChampListAdapter)?.submitList(champions ?: emptyList())
+}
+
+@BindingAdapter("bind:champList")
+fun RecyclerView.setChampList(champions: List<Champion>?) {
+    (adapter as? ChampionListAdapter)?.submitList(champions ?: emptyList())
 }
 
 @BindingAdapter("bind:matchPlayedTime")
@@ -169,4 +176,12 @@ fun TextInputLayout.validInputText(
 @BindingAdapter("bind:check")
 fun RadioGroup.setCheckedTheme(index: Int) {
     this.check(getChildAt(index).id)
+}
+
+@BindingAdapter("bind:splashChamp")
+fun ImageView.setSplashChamp(name: String) {
+    Glide
+        .with(this.context)
+        .load(UrlContract.splashChampionUrl(name))
+        .into(this)
 }
