@@ -9,6 +9,7 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
+import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.contract.UrlContract
 import io.github.seoj17.presentaion.model.Champion
 import io.github.seoj17.presentaion.model.RecentSummoners
@@ -102,10 +103,11 @@ fun TextView.setMatchDate(date: Long) {
 }
 
 @BindingAdapter("bind:championImage")
-fun ImageView.setChampionImage(champion: String) {
+fun ImageView.setChampionImage(champion: String?) {
     Glide
         .with(this.context)
-        .load(UrlContract.championUrl(champion))
+        .load(UrlContract.championUrl(champion ?: ""))
+        .placeholder(R.drawable.default_img)
         .into(this)
 }
 
