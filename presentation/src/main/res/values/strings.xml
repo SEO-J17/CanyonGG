@@ -120,4 +120,14 @@
     <string name="bot_champion_label">챔피언</string>
     <string name="champ_story_label">스토리</string>
     <string name="champ_stat_label">스탯</string>
+    <string name="champ_detail_title">챔피언 정보</string>
+    <string name="champ_hp">기본 체력</string>
+    <string name="champ_hp_per_level">성장 체력</string>
+    <string name="champ_attack">기본 공격력</string>
+    <string name="champ_attack_per_level">성장 공격력</string>
+    <string name="champ_armor">기본 방어력</string>
+    <string name="champ_armor_per_level">성장 방어력</string>
+    <string name="champ_spell_block">마법 저항력</string>
+    <string name="champ_spell_block_per_level">성장 마법 저항력</string>
+    <string name="champ_move_speed">이동 속도</string>
 </resources>
