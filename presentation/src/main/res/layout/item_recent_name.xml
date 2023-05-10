@@ -28,5 +28,6 @@
         app:layout_constraintBottom_toBottomOf="@id/recent_summoner_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/recent_summoner_item"
-        app:layout_constraintTop_toTopOf="@id/recent_summoner_item" />
+        app:layout_constraintTop_toTopOf="@id/recent_summoner_item"
+        app:tint="@color/img_btn_color" />
 </androidx.constraintlayout.widget.ConstraintLayout>

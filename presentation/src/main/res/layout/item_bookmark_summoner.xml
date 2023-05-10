@@ -58,6 +58,7 @@
             android:layout_height="15dp"
             android:src="@drawable/cross"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/img_btn_color" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
