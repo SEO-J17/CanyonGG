@@ -1,5 +1,7 @@
 package io.github.seoj17.presentaion.ui.champion.detail
 
+
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -17,7 +19,7 @@ class ChampionDetailViewModel @Inject constructor(
     private val championKey =
         ChampionDetailFragmentArgs.fromSavedStateHandle(savedStateHandle).champKey
 
-    val champDetail = liveData {
+    val champDetail: LiveData<Champion> = liveData {
         getChampionDetailUseCase(championKey)?.let {
             emit(Champion(it))
         }
