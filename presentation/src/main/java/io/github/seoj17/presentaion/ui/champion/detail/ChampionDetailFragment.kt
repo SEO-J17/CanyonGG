@@ -1,9 +1,11 @@
 package io.github.seoj17.presentaion.ui.champion.detail
 
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.databinding.FragmentChampionDetailBinding
 import io.github.seoj17.presentaion.ui.base.BaseFragment
 
+@AndroidEntryPoint
 class ChampionDetailFragment :
     BaseFragment<FragmentChampionDetailBinding, ChampionDetailViewModel>(
         FragmentChampionDetailBinding::inflate,
@@ -16,6 +18,5 @@ class ChampionDetailFragment :
         }
     }
 
-    override fun observeViewModel() {
-    }
+    override fun observeViewModel() = Unit
 }
