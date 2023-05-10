@@ -118,4 +118,6 @@
     <string name="toolbar_home_representative_label">소환사 등록</string>
     <string name="champion_title">챔피언</string>
     <string name="bot_champion_label">챔피언</string>
+    <string name="champ_story_label">스토리</string>
+    <string name="champ_stat_label">스탯</string>
 </resources>

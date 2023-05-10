@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="io.github.seoj17.presentaion.ui.champion.detail.ChampionDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/champ_thumbnail"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/champion" />
+
+        <TextView
+            android:id="@+id/champ_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toTopOf="@id/champ_title"
+            app:layout_constraintStart_toEndOf="@id/champ_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/champ_thumbnail"
+            tools:text="아리" />
+
+        <TextView
+            android:id="@+id/champ_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/champ_tag"
+            app:layout_constraintStart_toStartOf="@id/champ_name"
+            app:layout_constraintTop_toBottomOf="@id/champ_name"
+            tools:text="구미호" />
+
+        <TextView
+            android:id="@+id/champ_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/champ_thumbnail"
+            app:layout_constraintStart_toStartOf="@id/champ_title"
+            app:layout_constraintTop_toBottomOf="@id/champ_title"
+            tools:text="마법사" />
+
+        <TextView
+            android:id="@+id/champ_story_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/champ_story_label"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/champ_thumbnail" />
+
+        <TextView
+            android:id="@+id/champ_story"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/champ_story_label"
+            tools:text="챔피언 스토리.." />
+
+        <TextView
+            android:id="@+id/champ_stat_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/champ_stat_label"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/champ_story" />
+
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/hp_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/hp_per_level_tab"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/champ_stat_label" />
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/hp_per_level_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/hp_tab"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/hp_tab"
+            app:layout_constraintTop_toTopOf="@id/hp_tab" />
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/attack_tab"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/attack_per_level_tab"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hp_tab" />
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/attack_per_level_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/attack_tab"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/attack_tab"
+            app:layout_constraintTop_toTopOf="@id/attack_tab" />
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/armor_tab"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/armor_per_level_tab"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/attack_tab" />
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/armor_per_level_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/armor_tab"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/armor_tab"
+            app:layout_constraintTop_toTopOf="@id/armor_tab" />
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/spell_block_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/spell_block_per_level_tab"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/armor_tab" />
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/spell_block_per_level_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/spell_block_tab"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/spell_block_tab"
+            app:layout_constraintTop_toTopOf="@id/spell_block_tab" />
+
+        <io.github.seoj17.presentaion.widget.ChampionStatView
+            android:id="@+id/move_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spell_block_tab" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
