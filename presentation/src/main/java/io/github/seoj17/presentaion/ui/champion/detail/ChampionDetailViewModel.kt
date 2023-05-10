@@ -1,5 +1,6 @@
 package io.github.seoj17.presentaion.ui.champion.detail
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
