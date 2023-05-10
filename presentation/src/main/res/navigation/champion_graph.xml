@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/champions"
         android:name="io.github.seoj17.presentaion.ui.champion.ChampionFragment"
-        android:label="@string/champion_title" />
+        android:label="@string/champion_title">
+        <action
+            android:id="@+id/action_champions_to_championDetailFragment"
+            app:destination="@id/champion_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/champion_detail"
+        android:name="io.github.seoj17.presentaion.ui.champion.detail.ChampionDetailFragment"
+        android:label="@string/champ_detail_title" >
+        <argument
+            android:name="champ_key"
+            app:argType="integer" />
+    </fragment>
 </navigation>

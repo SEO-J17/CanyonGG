@@ -1,6 +1,7 @@
 package io.github.seoj17.presentaion.ui.champion
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.databinding.FragmentChampionBinding
 import io.github.seoj17.presentaion.ui.base.BaseFragment
@@ -14,7 +15,11 @@ class ChampionFragment : BaseFragment<FragmentChampionBinding, ChampionViewModel
     override fun bindLayout() {
         with(binding) {
             vm = viewModel
-            championList.adapter = ChampionListAdapter { TODO("챔피언 클릭 디테일 구현") }
+            championList.adapter = ChampionListAdapter { champKey ->
+                findNavController().navigate(
+                    ChampionFragmentDirections.actionChampionsToChampionDetailFragment(champKey),
+                )
+            }
         }
     }
 
