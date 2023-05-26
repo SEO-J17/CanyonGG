@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.seoj17.data.repository.champion.ChampionBookmarkRepository
+import io.github.seoj17.data.repository.champion.ChampionBookmarkRepositoryImpl
 import io.github.seoj17.data.repository.champion.ChampionsRepository
 import io.github.seoj17.data.repository.champion.ChampionsRepositoryImpl
 import io.github.seoj17.data.repository.datacenter.DataCenterRepository
@@ -62,4 +64,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindMostChampRepository(mostChampionsRepositoryImpl: MostChampRepositoryImpl): MostChampRepository
+
+    @Binds
+    abstract fun bindChampionBookmarkRepository(championBookmarkRepositoryImpl: ChampionBookmarkRepositoryImpl): ChampionBookmarkRepository
 }
