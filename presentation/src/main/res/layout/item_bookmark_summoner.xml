@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="5dp">
 
         <ImageView
             android:id="@+id/summoner_profile"
