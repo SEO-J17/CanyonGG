@@ -2,6 +2,8 @@ package io.github.seoj17.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import io.github.seoj17.data.local.bookmark.ChampionBookmarkDao
+import io.github.seoj17.data.local.bookmark.ChampionBookmarkEntity
 import io.github.seoj17.data.local.bookmark.SummonerBookmarkDao
 import io.github.seoj17.data.local.bookmark.SummonerBookmarkEntity
 import io.github.seoj17.data.local.champions.ChampionsDao
@@ -29,6 +31,7 @@ import io.github.seoj17.data.local.user.RegisterUserMostChampEntity
         RegisterUserMostChampEntity::class,
         MatchInfoEntity::class,
         SummonerInfoEntity::class,
+        ChampionBookmarkEntity::class,
     ],
     version = 1,
     exportSchema = true,
@@ -42,4 +45,5 @@ abstract class SummonerDatabase : RoomDatabase() {
     abstract fun registerUserMostChampDao(): RegisterUserMostChampDao
     abstract fun matchInfoDao(): MatchInfoDao
     abstract fun summonerInfoDao(): SummonerInfoDao
+    abstract fun championBookmarkDao(): ChampionBookmarkDao
 }
