@@ -130,4 +130,5 @@
     <string name="champ_spell_block">마법 저항력</string>
     <string name="champ_spell_block_per_level">성장 마법 저항력</string>
     <string name="champ_move_speed">이동 속도</string>
+    <string name="bookmar_champion_label">즐겨찾기에 등록된 챔피언</string>
 </resources>
