@@ -19,9 +19,13 @@ data class ChampionsDomainModel(
     val armorPerLevel: Double,
     val spellBlock: Int,
     val spellBlockPerLevel: Double,
+    val isBookMark: Boolean,
 ) {
     companion object {
-        operator fun invoke(data: ChampionsDataModel): ChampionsDomainModel {
+        operator fun invoke(
+            data: ChampionsDataModel,
+            isBookMark: Boolean = false,
+        ): ChampionsDomainModel {
             return ChampionsDomainModel(
                 key = data.key,
                 id = data.id,
@@ -38,7 +42,14 @@ data class ChampionsDomainModel(
                 armorPerLevel = data.armorPerLevel,
                 spellBlock = data.spellBlock,
                 spellBlockPerLevel = data.spellBlockPerLevel,
+                isBookMark = isBookMark,
             )
+        }
+
+        operator fun invoke(list: List<ChampionsDataModel>): List<ChampionsDomainModel> {
+            return list.map {
+                invoke(it)
+            }
         }
 
         fun toEntity(domain: ChampionsDomainModel): ChampionsEntity {
