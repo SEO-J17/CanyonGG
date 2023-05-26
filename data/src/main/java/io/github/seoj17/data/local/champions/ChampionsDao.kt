@@ -16,6 +16,9 @@ interface ChampionsDao {
     @Query("DELETE FROM champions_info WHERE name = :name")
     suspend fun delete(name: String)
 
+    @Query("DELETE FROM champions_info WHERE champion_key = :key")
+    suspend fun delete(key: Int)
+
     @Query("DELETE FROM champions_info")
     suspend fun deleteAll()
 
