@@ -19,6 +19,7 @@ data class Champion(
     val armorPerLevel: Double,
     val spellBlock: Int,
     val spellBlockPerLevel: Double,
+    val isBookmark: Boolean,
 ) {
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Champion>() {
@@ -54,6 +55,34 @@ data class Champion(
                 armorPerLevel = domain.armorPerLevel,
                 spellBlock = domain.spellBlock,
                 spellBlockPerLevel = domain.spellBlockPerLevel,
+                isBookmark = domain.isBookMark,
+            )
+        }
+
+        operator fun invoke(list: List<ChampionsDomainModel>): List<Champion> {
+            return list.map {
+                invoke(it)
+            }
+        }
+
+        fun toDomain(champion: Champion): ChampionsDomainModel {
+            return ChampionsDomainModel(
+                key = champion.key,
+                id = champion.id,
+                name = champion.name,
+                title = champion.title,
+                tag = champion.tag,
+                blurb = champion.blurb,
+                hp = champion.hp,
+                hpPerLevel = champion.hpPerLevel,
+                moveSpeed = champion.moveSpeed,
+                attackDamage = champion.attackDamage,
+                attackDamagePerLevel = champion.attackDamagePerLevel,
+                armor = champion.armor,
+                armorPerLevel = champion.armorPerLevel,
+                spellBlock = champion.spellBlock,
+                spellBlockPerLevel = champion.spellBlockPerLevel,
+                isBookMark = champion.isBookmark,
             )
         }
     }
