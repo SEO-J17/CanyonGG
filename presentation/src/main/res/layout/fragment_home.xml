@@ -116,9 +116,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:visibility="@{vm.bookmarkChampion.size() == 0 ? View.VISIBLE : View.GONE}"
                 bind:buttonName="@{@string/champ_btn_name}"
                 bind:emptyContent="@{@string/book_mark_champ_content}"
                 bind:emptyTitle="@{@string/book_mark_champ_label}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/bookmar_champion_label"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:visibility="@{vm.bookmarkChampion.size == 0 ? View.GONE : View.VISIBLE}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/champion_book_mark_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:visibility="@{vm.bookmarkChampion.size == 0 ? View.GONE : View.VISIBLE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:bookmarkChampionList="@{vm.bookmarkChampion}"
+                tools:listitem="@layout/item_bookmark_summoner" />
 
             <TextView
                 android:id="@+id/rotation_tab_label"

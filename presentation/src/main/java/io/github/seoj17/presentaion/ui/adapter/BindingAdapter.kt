@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.contract.UrlContract
 import io.github.seoj17.presentaion.model.Champion
+import io.github.seoj17.presentaion.model.ChampionBookmark
 import io.github.seoj17.presentaion.model.RecentSummoners
 import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.model.SummonerBookmark
@@ -20,6 +21,7 @@ import io.github.seoj17.presentaion.ui.champion.ChampionListAdapter
 import io.github.seoj17.presentaion.ui.detail.analysisTab.pages.AnalysisPageListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.LoseParticipantsListAdapter
 import io.github.seoj17.presentaion.ui.detail.summaryTab.WinParticipantsListAdapter
+import io.github.seoj17.presentaion.ui.home.BookmarkChampionListAdapter
 import io.github.seoj17.presentaion.ui.home.BookmarkListAdapter
 import io.github.seoj17.presentaion.ui.home.RotationChampListAdapter
 import io.github.seoj17.presentaion.ui.record.RecordListAdapter
@@ -75,6 +77,11 @@ fun RecyclerView.setBookmarkSummonersList(bookmarkSummoners: List<SummonerBookma
     (adapter as? BookmarkListAdapter)?.submitList(
         bookmarkSummoners ?: emptyList(),
     )
+}
+
+@BindingAdapter("bind:bookmarkChampionList")
+fun RecyclerView.setBookmarkChampionList(bookmarkChampion: List<ChampionBookmark>?) {
+    (adapter as? BookmarkChampionListAdapter)?.submitList(bookmarkChampion ?: emptyList())
 }
 
 @BindingAdapter("bind:teamAnalysisList")

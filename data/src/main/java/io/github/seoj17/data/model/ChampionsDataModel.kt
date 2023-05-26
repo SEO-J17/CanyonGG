@@ -41,6 +41,12 @@ data class ChampionsDataModel(
             )
         }
 
+        operator fun invoke(list: List<ChampionsEntity>): List<ChampionsDataModel> {
+            return list.map {
+                invoke(it)
+            }
+        }
+
         operator fun invoke(data: ChampData): ChampionsDataModel {
             return ChampionsDataModel(
                 key = data.key.toInt(),

@@ -44,7 +44,9 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/selector_bookmark"
+            android:backgroundTint="@color/img_btn_color"
             app:layout_constraintEnd_toEndOf="@id/champion"
-            app:layout_constraintTop_toTopOf="@id/champion" />
+            app:layout_constraintTop_toTopOf="@id/champion"
+            bind:bookmarkState="@{data.isBookmark}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

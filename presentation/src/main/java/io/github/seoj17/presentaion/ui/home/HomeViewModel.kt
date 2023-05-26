@@ -8,7 +8,9 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.seoj17.domain.usecase.bookmark.DeleteBookmarkChampionUseCase
 import io.github.seoj17.domain.usecase.bookmark.DeleteBookmarkSummonerUseCase
+import io.github.seoj17.domain.usecase.bookmark.GetBookmarkChampionUseCase
 import io.github.seoj17.domain.usecase.bookmark.GetBookmarkSummonerUseCase
 import io.github.seoj17.domain.usecase.champion.AddMyMostChampsUseCase
 import io.github.seoj17.domain.usecase.champion.GetChampionNameUseCase
@@ -23,6 +25,7 @@ import io.github.seoj17.domain.usecase.user.GetUserInfoUseCase
 import io.github.seoj17.domain.usecase.user.GetUserRecordUseCase
 import io.github.seoj17.domain.usecase.user.GetUserTierUseCase
 import io.github.seoj17.presentaion.model.ChampInfo
+import io.github.seoj17.presentaion.model.ChampionBookmark
 import io.github.seoj17.presentaion.model.MostChamps
 import io.github.seoj17.presentaion.model.RegisterUserInfo
 import io.github.seoj17.presentaion.model.RotationChamp
@@ -50,6 +53,8 @@ class HomeViewModel @Inject constructor(
     private val getChampionName: GetChampionNameUseCase,
     private val getUserRecordUseCase: GetUserRecordUseCase,
     private val getMostChampionListUseCase: GetMostChampionListUseCase,
+    getBookmarkChampionUseCase: GetBookmarkChampionUseCase,
+    private val deleteBookmarkChampionUseCase: DeleteBookmarkChampionUseCase,
 ) : ViewModel() {
 
     private val summonerName =
@@ -77,6 +82,12 @@ class HomeViewModel @Inject constructor(
         .asLiveData()
         .map {
             SummonerBookmark(it)
+        }
+
+    val bookmarkChampion = getBookmarkChampionUseCase()
+        .asLiveData()
+        .map {
+            ChampionBookmark(it)
         }
 
     private val _rotationChamp = MutableLiveData<List<RotationChamp>>()
@@ -156,6 +167,12 @@ class HomeViewModel @Inject constructor(
     fun refreshMyInfo() {
         viewModelScope.launch {
             fetchData()
+        }
+    }
+
+    fun removeChampionBookmark(key: Int) {
+        viewModelScope.launch {
+            deleteBookmarkChampionUseCase(key)
         }
     }
 }

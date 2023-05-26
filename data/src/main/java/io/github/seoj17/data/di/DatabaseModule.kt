@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.seoj17.data.local.SummonerDatabase
+import io.github.seoj17.data.local.bookmark.ChampionBookmarkDao
 import io.github.seoj17.data.local.bookmark.SummonerBookmarkDao
 import io.github.seoj17.data.local.champions.ChampionsDao
 import io.github.seoj17.data.local.match.MatchInfoDao
@@ -77,5 +78,11 @@ object DatabaseModule {
     @Provides
     fun provideSummonerInfoDao(database: SummonerDatabase): SummonerInfoDao {
         return database.summonerInfoDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideChampionBookmarkDao(database: SummonerDatabase): ChampionBookmarkDao {
+        return database.championBookmarkDao()
     }
 }
