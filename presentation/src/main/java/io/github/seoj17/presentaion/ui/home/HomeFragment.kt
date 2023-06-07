@@ -3,19 +3,21 @@ package io.github.seoj17.presentaion.ui.home
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.seoj17.presentaion.BR
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentHomeBinding
-import io.github.seoj17.presentaion.ui.base.BaseFragment
+import io.github.seoj17.presentaion.ui.base.BaseDataBindingFragment
 import io.github.seoj17.presentaion.utils.showToast
 
 @AndroidEntryPoint
 class HomeFragment :
-    BaseFragment<FragmentHomeBinding, HomeViewModel>(FragmentHomeBinding::inflate) {
+    BaseDataBindingFragment<FragmentHomeBinding, HomeViewModel>(FragmentHomeBinding::inflate) {
     override val viewModel: HomeViewModel by viewModels()
+
+    override fun viewModelVariableId(): Int = BR.vm
+
     override fun bindLayout() {
         with(binding) {
-            vm = viewModel
-
             registerUserTab.setClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
             }
