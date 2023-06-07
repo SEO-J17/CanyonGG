@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel>(
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     private val inflater: (LayoutInflater, ViewGroup?, Boolean) -> VB,
 ) : Fragment() {
 
@@ -30,13 +30,13 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        with(binding) {
-            lifecycleOwner = viewLifecycleOwner
-        }
-
         bindLayout()
         observeViewModel()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     abstract fun bindLayout()
