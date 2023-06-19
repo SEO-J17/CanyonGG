@@ -12,19 +12,12 @@ class ChampionViewHolder(
 
     fun bind(
         champion: Champion,
-        addBookmarkClick: (Champion) -> Unit,
-        deleteBookmarkClick: (Champion) -> Unit,
+        onBookmarkClick: (Champion) -> Unit,
     ) {
         with(binding) {
             data = champion
             championBookMark.setOnClickListener {
-                if (it.isSelected) {
-                    it.isSelected = false
-                    deleteBookmarkClick(champion)
-                } else {
-                    it.isSelected = true
-                    addBookmarkClick(champion)
-                }
+                onBookmarkClick(champion)
             }
         }
     }

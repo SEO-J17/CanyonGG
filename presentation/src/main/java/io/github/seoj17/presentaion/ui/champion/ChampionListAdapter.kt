@@ -6,15 +6,14 @@ import io.github.seoj17.presentaion.model.Champion
 
 class ChampionListAdapter(
     private val onChampionClick: (Int) -> Unit,
-    private val onAddBookmarkClick: (Champion) -> Unit,
-    private val onDeleteBookmarkClick: (Champion) -> Unit,
+    private val onBookmarkClick: (Champion) -> Unit,
 ) : ListAdapter<Champion, ChampionViewHolder>(Champion.diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ChampionViewHolder(parent)
 
     override fun onBindViewHolder(holder: ChampionViewHolder, position: Int) {
         val data = getItem(position)
         with(holder) {
-            bind(data, onAddBookmarkClick, onDeleteBookmarkClick)
+            bind(data, onBookmarkClick)
             itemView.setOnClickListener {
                 onChampionClick(data.key)
             }
