@@ -6,23 +6,23 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.seoj17.presentaion.BR
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentRegisterUserBinding
-import io.github.seoj17.presentaion.ui.base.BaseFragment
+import io.github.seoj17.presentaion.ui.base.BaseDataBindingFragment
 import io.github.seoj17.presentaion.utils.showToast
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RegisterUserFragment : BaseFragment<FragmentRegisterUserBinding, RegisterUserViewModel>(
-    FragmentRegisterUserBinding::inflate,
-) {
+class RegisterUserFragment :
+    BaseDataBindingFragment<FragmentRegisterUserBinding, RegisterUserViewModel>(
+        FragmentRegisterUserBinding::inflate,
+    ) {
     override val viewModel: RegisterUserViewModel by viewModels()
 
-    override fun bindLayout() {
-        with(binding) {
-            vm = viewModel
-        }
-    }
+    override fun viewModelVariableId(): Int = BR.vm
+
+    override fun bindLayout() = Unit
 
     override fun observeViewModel() {
         lifecycleScope.launch {
