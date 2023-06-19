@@ -4,6 +4,8 @@ import io.github.seoj17.data.local.champions.ChampionsDao
 import io.github.seoj17.data.local.champions.ChampionsEntity
 import io.github.seoj17.data.model.ChampionsDataModel
 import io.github.seoj17.data.remote.dataCenter.DataCenterService
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ChampionsRepositoryImpl @Inject constructor(
@@ -28,7 +30,7 @@ class ChampionsRepositoryImpl @Inject constructor(
             }
     }
 
-    override suspend fun getAllChampion(): List<ChampionsDataModel> {
+    override fun getAllChampion(): Flow<List<ChampionsDataModel>> {
         return championsLocal
             .getAll()
             .map {
