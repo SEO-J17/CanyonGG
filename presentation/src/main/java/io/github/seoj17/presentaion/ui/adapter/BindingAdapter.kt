@@ -90,13 +90,13 @@ fun RecyclerView.setTeamAnalysisList(summonerRecord: List<SummonerMatchRecord>?)
 }
 
 @BindingAdapter("bind:rotationChampList")
-fun RecyclerView.setRotationChampList(champions: List<RotationChamp>?) {
-    (adapter as? RotationChampListAdapter)?.submitList(champions ?: emptyList())
+fun RecyclerView.setRotationChampList(champions: List<RotationChamp>) {
+    (adapter as? RotationChampListAdapter)?.submitList(champions)
 }
 
 @BindingAdapter("bind:champList")
-fun RecyclerView.setChampList(champions: List<Champion>?) {
-    (adapter as? ChampionListAdapter)?.submitList(champions ?: emptyList())
+fun RecyclerView.setChampList(champions: List<Champion>) {
+    (adapter as? ChampionListAdapter)?.submitList(champions)
 }
 
 @BindingAdapter("bind:matchPlayedTime")
