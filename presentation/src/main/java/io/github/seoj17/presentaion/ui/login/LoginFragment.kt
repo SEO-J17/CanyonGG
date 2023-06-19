@@ -6,22 +6,23 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.seoj17.presentaion.BR
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentLoginBinding
-import io.github.seoj17.presentaion.ui.base.BaseFragment
+import io.github.seoj17.presentaion.ui.base.BaseDataBindingFragment
 import io.github.seoj17.presentaion.utils.showToast
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
+class LoginFragment : BaseDataBindingFragment<FragmentLoginBinding, LoginViewModel>(
     FragmentLoginBinding::inflate,
 ) {
     override val viewModel: LoginViewModel by viewModels()
 
+    override fun viewModelVariableId(): Int = BR.vm
+
     override fun bindLayout() {
         with(binding) {
-            vm = viewModel
-
             register.setOnClickListener {
                 findNavController().navigate(
                     LoginFragmentDirections.actionLoginFragmentToRegisterUserFragment(),

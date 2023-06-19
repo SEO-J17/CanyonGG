@@ -4,20 +4,23 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.seoj17.presentaion.BR
 import io.github.seoj17.presentaion.databinding.FragmentSearchSummonerBinding
-import io.github.seoj17.presentaion.ui.base.BaseFragment
+import io.github.seoj17.presentaion.ui.base.BaseDataBindingFragment
 import io.github.seoj17.presentaion.ui.dialog.NotFoundUserDialogFragment
 
 @AndroidEntryPoint
-class SearchSummonerFragment : BaseFragment<FragmentSearchSummonerBinding, SearchSummonerViewModel>(
-    FragmentSearchSummonerBinding::inflate,
-) {
+class SearchSummonerFragment :
+    BaseDataBindingFragment<FragmentSearchSummonerBinding, SearchSummonerViewModel>(
+        FragmentSearchSummonerBinding::inflate,
+    ) {
 
     override val viewModel: SearchSummonerViewModel by viewModels()
 
+    override fun viewModelVariableId(): Int = BR.vm
+
     override fun bindLayout() {
         with(binding) {
-            vm = viewModel
             recentSummonerListView.adapter =
                 SearchSummonerListAdapter(
                     { viewModel.deleteRecentSummoner(it) },

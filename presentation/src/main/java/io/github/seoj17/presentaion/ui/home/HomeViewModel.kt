@@ -1,7 +1,6 @@
 package io.github.seoj17.presentaion.ui.home
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -13,10 +12,9 @@ import io.github.seoj17.domain.usecase.bookmark.DeleteBookmarkSummonerUseCase
 import io.github.seoj17.domain.usecase.bookmark.GetBookmarkChampionUseCase
 import io.github.seoj17.domain.usecase.bookmark.GetBookmarkSummonerUseCase
 import io.github.seoj17.domain.usecase.champion.AddMyMostChampsUseCase
-import io.github.seoj17.domain.usecase.champion.GetChampionNameUseCase
 import io.github.seoj17.domain.usecase.champion.GetMostChampUseCase
 import io.github.seoj17.domain.usecase.champion.GetMostChampionListUseCase
-import io.github.seoj17.domain.usecase.champion.GetRotationChampIdListUseCase
+import io.github.seoj17.domain.usecase.champion.GetRotationChampion
 import io.github.seoj17.domain.usecase.summoner.AddSummonerInfoUseCase
 import io.github.seoj17.domain.usecase.user.AddRegisterUserInfoUseCase
 import io.github.seoj17.domain.usecase.user.DeleteRegisterUserInfoUseCase
@@ -33,6 +31,9 @@ import io.github.seoj17.presentaion.model.Summoner
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerInfo
 import io.github.seoj17.presentaion.model.UserRecord
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -49,8 +50,7 @@ class HomeViewModel @Inject constructor(
     private val addMyMostChamps: AddMyMostChampsUseCase,
     private val deleteMyUserInfo: DeleteRegisterUserInfoUseCase,
     private val addSummonerInfoUseCase: AddSummonerInfoUseCase,
-    private val getRotationChamp: GetRotationChampIdListUseCase,
-    private val getChampionName: GetChampionNameUseCase,
+    getRotationChampion: GetRotationChampion,
     private val getUserRecordUseCase: GetUserRecordUseCase,
     private val getMostChampionListUseCase: GetMostChampionListUseCase,
     getBookmarkChampionUseCase: GetBookmarkChampionUseCase,
@@ -90,16 +90,17 @@ class HomeViewModel @Inject constructor(
             ChampionBookmark(it)
         }
 
-    private val _rotationChamp = MutableLiveData<List<RotationChamp>>()
-    val rotationChamp: LiveData<List<RotationChamp>> = _rotationChamp
+    val rotationChamp = getRotationChampion()
+        .map { RotationChamp(it) }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            emptyList(),
+        )
 
     init {
         if (summonerName.isNotBlank()) {
             fetchData()
-        }
-        viewModelScope.launch {
-            val list = getRotationChamp()
-            _rotationChamp.value = getChampionName(list).map { RotationChamp(it) }
         }
     }
 

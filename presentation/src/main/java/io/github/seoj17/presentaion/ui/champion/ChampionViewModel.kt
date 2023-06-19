@@ -1,7 +1,6 @@
 package io.github.seoj17.presentaion.ui.champion
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.seoj17.domain.usecase.bookmark.AddBookmarkChampionUseCase
@@ -9,7 +8,11 @@ import io.github.seoj17.domain.usecase.bookmark.DeleteBookmarkChampionUseCase
 import io.github.seoj17.domain.usecase.champion.GetAllChampionUseCase
 import io.github.seoj17.presentaion.model.Champion
 import io.github.seoj17.presentaion.model.ChampionBookmark
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,19 +23,26 @@ class ChampionViewModel @Inject constructor(
     private val deleteBookmarkChampionUseCase: DeleteBookmarkChampionUseCase,
 ) : ViewModel() {
 
-    val champion = getAllChampionUseCase().map {
-        Champion(it)
-    }.asLiveData()
+    private val _bookmarkEvent = MutableSharedFlow<Boolean>()
+    val bookmarkEvent: SharedFlow<Boolean> = _bookmarkEvent
 
-    fun addBookmark(champion: Champion) {
-        viewModelScope.launch {
-            addBookmarkChampionUseCase(ChampionBookmark.toDomain(champion))
-        }
-    }
+    val champion = getAllChampionUseCase()
+        .map { Champion(it) }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            emptyList(),
+        )
 
-    fun deleteBookmark(champion: Champion) {
+    fun onBookmarkClick(champion: Champion) {
         viewModelScope.launch {
-            deleteBookmarkChampionUseCase(champion.key)
+            if (champion.isBookmark) {
+                deleteBookmarkChampionUseCase(champion.key)
+                _bookmarkEvent.emit(false)
+            } else {
+                addBookmarkChampionUseCase(ChampionBookmark.toDomain(champion))
+                _bookmarkEvent.emit(true)
+            }
         }
     }
 }

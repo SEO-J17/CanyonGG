@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ChampionsDao {
@@ -29,5 +30,5 @@ interface ChampionsDao {
     suspend fun get(key: Int): ChampionsEntity?
 
     @Query("SELECT * FROM champions_info ORDER BY name ASC")
-    suspend fun getAll(): List<ChampionsEntity>
+    fun getAll(): Flow<List<ChampionsEntity>>
 }
