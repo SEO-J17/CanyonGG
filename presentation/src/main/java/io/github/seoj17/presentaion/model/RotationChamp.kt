@@ -22,5 +22,11 @@ value class RotationChamp(
                 return oldItem == newItem
             }
         }
+
+        operator fun invoke(nameList: List<String>): List<RotationChamp> {
+            return nameList.map {
+                RotationChamp(it)
+            }
+        }
     }
 }
