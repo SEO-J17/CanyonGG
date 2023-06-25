@@ -1,6 +1,10 @@
 package io.github.seoj17.presentaion.ui.home
 
+import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.seoj17.presentaion.BR
@@ -8,6 +12,7 @@ import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentHomeBinding
 import io.github.seoj17.presentaion.ui.base.BaseDataBindingFragment
 import io.github.seoj17.presentaion.utils.showToast
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment :
@@ -77,5 +82,19 @@ class HomeFragment :
         }
     }
 
-    override fun observeViewModel() = Unit
+    override fun observeViewModel() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.userInfoState.collect {
+                    binding.userInfoLoading.visibility = if (it) {
+                        binding.registerUserTab.visibility = View.GONE
+                        View.VISIBLE
+                    } else {
+                        binding.registerUserTab.visibility = View.VISIBLE
+                        View.GONE
+                    }
+                }
+            }
+        }
+    }
 }
