@@ -1,5 +1,6 @@
 package io.github.seoj17.presentaion.ui.record
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -7,6 +8,7 @@ import io.github.seoj17.presentaion.BR
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentSummonerRecordBinding
 import io.github.seoj17.presentaion.ui.base.BaseDataBindingFragment
+import io.github.seoj17.presentaion.utils.observeEvent
 import io.github.seoj17.presentaion.utils.showToast
 
 @AndroidEntryPoint
@@ -42,5 +44,13 @@ class SummonerRecordFragment : BaseDataBindingFragment<FragmentSummonerRecordBin
         }
     }
 
-    override fun observeViewModel() = Unit
+    override fun observeViewModel() {
+        viewModel.userRecordState.observeEvent(viewLifecycleOwner) {
+            binding.championInfoLoading.root.visibility = if (it) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+        }
+    }
 }

@@ -13,193 +13,203 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/search_result_screen"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/user_thumbNail"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            bind:summonerProfile="@{vm.summonerInfo.profile}"
-            tools:src="@drawable/instagram" />
+        <include
+            android:id="@+id/champion_info_loading"
+            layout="@layout/view_record_loading" />
 
-        <TextView
-            android:id="@+id/user_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:text="@{String.valueOf(vm.summonerInfo.level)}"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
-            app:layout_constraintEnd_toEndOf="@id/user_thumbNail"
-            app:layout_constraintStart_toStartOf="@id/user_thumbNail"
-            tools:text="154" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/summoner_book_mark"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/selector_bookmark"
-            android:visibility="@{vm.summonerMostKill == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            bind:bookmarkState="@{vm.bookmarkedSummoner}" />
-
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@{vm.summonerInfo.name}"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/user_tier_label"
-            app:layout_constraintStart_toEndOf="@+id/user_thumbNail"
-            app:layout_constraintTop_toTopOf="@id/user_thumbNail"
-            tools:text="Hide on bush" />
-
-        <TextView
-            android:id="@+id/user_tier_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@{vm.summonerInfo.tier}"
-            app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
-            app:layout_constraintStart_toEndOf="@id/user_thumbNail"
-            app:layout_constraintTop_toBottomOf="@id/user_name"
-            tools:text="MASTER 1" />
-
-        <ImageView
-            android:id="@+id/user_tier"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/user_thumbNail"
-            bind:summonerRankEmblem="@{vm.summonerInfo.tier}"
-            tools:src="@drawable/emblem_platinum" />
-
-        <TextView
-            android:id="@+id/latest_match_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/summary_game_label"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_thumbNail" />
-
-        <TextView
-            android:id="@+id/win_rate_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/win_rate_text"
-            app:layout_constraintEnd_toStartOf="@+id/kda_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/latest_match_label" />
-
-        <TextView
-            android:id="@+id/win_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(vm.summonerInfo.winRate)+`%`}"
-            app:layout_constraintEnd_toEndOf="@+id/win_rate_label"
-            app:layout_constraintStart_toStartOf="@+id/win_rate_label"
-            app:layout_constraintTop_toBottomOf="@id/win_rate_label"
-            tools:text="59%" />
-
-        <TextView
-            android:id="@+id/win_cnt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(vm.summonerInfo.win) + `승 `}"
-            app:layout_constraintEnd_toStartOf="@id/lose_cnt"
-            app:layout_constraintStart_toStartOf="@+id/win_rate"
-            app:layout_constraintTop_toBottomOf="@id/win_rate"
-            tools:text="13승" />
-
-        <TextView
-            android:id="@+id/lose_cnt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(vm.summonerInfo.lose)+`패`}"
-            app:layout_constraintBottom_toBottomOf="@id/win_cnt"
-            app:layout_constraintEnd_toEndOf="@id/win_rate"
-            app:layout_constraintStart_toEndOf="@id/win_cnt"
-            app:layout_constraintTop_toTopOf="@id/win_cnt"
-            tools:text="7패" />
-
-        <TextView
-            android:id="@+id/kda_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/kda_text"
-            app:layout_constraintBottom_toBottomOf="@id/win_rate_label"
-            app:layout_constraintEnd_toStartOf="@+id/highest_kill_label"
-            app:layout_constraintStart_toEndOf="@+id/win_rate_label"
-            app:layout_constraintTop_toTopOf="@id/win_rate_label" />
-
-        <TextView
-            android:id="@+id/kda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(@string/round_kda(vm.summonerInfo.kda)) + ` : 1`}"
-            app:layout_constraintEnd_toEndOf="@+id/kda_label"
-            app:layout_constraintStart_toStartOf="@+id/kda_label"
-            app:layout_constraintTop_toBottomOf="@id/kda_label"
-            tools:text="3.41 : 1" />
-
-        <TextView
-            android:id="@+id/highest_kill_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/highest_kill_text"
-            app:layout_constraintBottom_toBottomOf="@id/kda_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/kda_label"
-            app:layout_constraintTop_toTopOf="@id/kda_label" />
-
-        <TextView
-            android:id="@+id/highest_kill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/highest_kill_label"
-            app:layout_constraintStart_toStartOf="@+id/highest_kill_label"
-            app:layout_constraintTop_toBottomOf="@id/highest_kill_label"
-            bind:mostKill="@{vm.summonerMostKill}"
-            tools:text="펜타 킬" />
-
-        <LinearLayout
-            android:id="@+id/list_container"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/search_result_screen"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/win_cnt">
+            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/summoner_history_view"
+            <ImageView
+                android:id="@+id/user_thumbNail"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:summonerProfile="@{vm.summonerInfo.profile}"
+                tools:src="@drawable/instagram" />
+
+            <TextView
+                android:id="@+id/user_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:text="@{String.valueOf(vm.summonerInfo.level)}"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
+                app:layout_constraintEnd_toEndOf="@id/user_thumbNail"
+                app:layout_constraintStart_toStartOf="@id/user_thumbNail"
+                tools:text="154" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/summoner_book_mark"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/selector_bookmark"
+                android:visibility="@{vm.summonerMostKill == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:bookmarkState="@{vm.bookmarkedSummoner}" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{vm.summonerInfo.name}"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/user_tier_label"
+                app:layout_constraintStart_toEndOf="@+id/user_thumbNail"
+                app:layout_constraintTop_toTopOf="@id/user_thumbNail"
+                tools:text="Hide on bush" />
+
+            <TextView
+                android:id="@+id/user_tier_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{vm.summonerInfo.tier}"
+                app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
+                app:layout_constraintStart_toEndOf="@id/user_thumbNail"
+                app:layout_constraintTop_toBottomOf="@id/user_name"
+                tools:text="MASTER 1" />
+
+            <ImageView
+                android:id="@+id/user_tier"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/user_thumbNail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/user_thumbNail"
+                bind:summonerRankEmblem="@{vm.summonerInfo.tier}"
+                tools:src="@drawable/emblem_platinum" />
+
+            <TextView
+                android:id="@+id/latest_match_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/summary_game_label"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_thumbNail" />
+
+            <TextView
+                android:id="@+id/win_rate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/win_rate_text"
+                app:layout_constraintEnd_toStartOf="@+id/kda_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/latest_match_label" />
+
+            <TextView
+                android:id="@+id/win_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(vm.summonerInfo.winRate)+`%`}"
+                app:layout_constraintEnd_toEndOf="@+id/win_rate_label"
+                app:layout_constraintStart_toStartOf="@+id/win_rate_label"
+                app:layout_constraintTop_toBottomOf="@id/win_rate_label"
+                tools:text="59%" />
+
+            <TextView
+                android:id="@+id/win_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(vm.summonerInfo.win) + `승 `}"
+                app:layout_constraintEnd_toStartOf="@id/lose_cnt"
+                app:layout_constraintStart_toStartOf="@+id/win_rate"
+                app:layout_constraintTop_toBottomOf="@id/win_rate"
+                tools:text="13승" />
+
+            <TextView
+                android:id="@+id/lose_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(vm.summonerInfo.lose)+`패`}"
+                app:layout_constraintBottom_toBottomOf="@id/win_cnt"
+                app:layout_constraintEnd_toEndOf="@id/win_rate"
+                app:layout_constraintStart_toEndOf="@id/win_cnt"
+                app:layout_constraintTop_toTopOf="@id/win_cnt"
+                tools:text="7패" />
+
+            <TextView
+                android:id="@+id/kda_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kda_text"
+                app:layout_constraintBottom_toBottomOf="@id/win_rate_label"
+                app:layout_constraintEnd_toStartOf="@+id/highest_kill_label"
+                app:layout_constraintStart_toEndOf="@+id/win_rate_label"
+                app:layout_constraintTop_toTopOf="@id/win_rate_label" />
+
+            <TextView
+                android:id="@+id/kda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(@string/round_kda(vm.summonerInfo.kda)) + ` : 1`}"
+                app:layout_constraintEnd_toEndOf="@+id/kda_label"
+                app:layout_constraintStart_toStartOf="@+id/kda_label"
+                app:layout_constraintTop_toBottomOf="@id/kda_label"
+                tools:text="3.41 : 1" />
+
+            <TextView
+                android:id="@+id/highest_kill_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/highest_kill_text"
+                app:layout_constraintBottom_toBottomOf="@id/kda_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/kda_label"
+                app:layout_constraintTop_toTopOf="@id/kda_label" />
+
+            <TextView
+                android:id="@+id/highest_kill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/highest_kill_label"
+                app:layout_constraintStart_toStartOf="@+id/highest_kill_label"
+                app:layout_constraintTop_toBottomOf="@id/highest_kill_label"
+                bind:mostKill="@{vm.summonerMostKill}"
+                tools:text="펜타 킬" />
+
+            <LinearLayout
+                android:id="@+id/list_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                bind:historyList="@{vm.summonerRecordHistory}"
-                tools:listitem="@layout/item_summoner_record" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/win_cnt">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/summoner_history_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    bind:historyList="@{vm.summonerRecordHistory}"
+                    tools:listitem="@layout/item_summoner_record" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

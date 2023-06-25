@@ -31,7 +31,9 @@ import io.github.seoj17.presentaion.model.Summoner
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerInfo
 import io.github.seoj17.presentaion.model.UserRecord
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -98,6 +100,9 @@ class HomeViewModel @Inject constructor(
             emptyList(),
         )
 
+    private val _userInfoState = MutableStateFlow(false)
+    val userInfoState: StateFlow<Boolean> = _userInfoState
+
     init {
         if (summonerName.isNotBlank()) {
             fetchData()
@@ -115,8 +120,8 @@ class HomeViewModel @Inject constructor(
 
     private fun fetchData() {
         viewModelScope.launch {
+            _userInfoState.value = true
             getUserInfoUseCase(summonerName)?.let { summonerDomain ->
-
                 val summoner = Summoner(summonerDomain)
 
                 val tier = getUserTierUseCase(summoner.id)?.let { userTier ->
@@ -151,6 +156,7 @@ class HomeViewModel @Inject constructor(
                 MostChamps.toDomainModel(summoner, it)
             },
         )
+        _userInfoState.value = false
     }
 
     fun removeBookmark(name: String) {

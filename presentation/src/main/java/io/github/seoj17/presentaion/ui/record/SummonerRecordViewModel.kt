@@ -24,6 +24,7 @@ import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerInfo
 import io.github.seoj17.presentaion.model.SummonerMatchRecord
 import io.github.seoj17.presentaion.model.UserRecord
+import io.github.seoj17.presentaion.utils.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -60,12 +61,16 @@ class SummonerRecordViewModel @Inject constructor(
         .asLiveData()
         .map { paging ->
             paging.map {
+                _userRecordState.value = Event(false)
                 SummonerMatchRecord(it)
             }
         }
         .cachedIn(viewModelScope)
 
     val bookmarkedSummoner = checkBookmarkedSummoner(summonerPuuid).asLiveData()
+
+    private val _userRecordState = MutableLiveData(Event(true))
+    val userRecordState: LiveData<Event<Boolean>> = _userRecordState
 
     init {
         viewModelScope.launch {
