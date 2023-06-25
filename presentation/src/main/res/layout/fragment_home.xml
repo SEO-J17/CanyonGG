@@ -24,6 +24,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/user_info_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:indeterminate="true"
+                android:visibility="gone" />
+
             <io.github.seoj17.presentaion.widget.UserInfoView
                 android:id="@+id/summoner_tab"
                 android:layout_width="match_parent"
@@ -76,7 +84,6 @@
                 android:id="@+id/register_user_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="@{vm.userInfo == null ? View.VISIBLE : View.GONE}"
                 bind:buttonName="@{@string/main_btn_text}"
                 bind:emptyContent="@{@string/hint_main_intro}"
                 bind:emptyTitle="@{@string/main_my_history_label}" />
