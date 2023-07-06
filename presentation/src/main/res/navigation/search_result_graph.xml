@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_result_graph"
+    app:startDestination="@id/search_result">
+    <fragment
+        android:id="@+id/search_result"
+        android:name="io.github.seoj17.presentaion.ui.record.SummonerRecordFragment"
+        android:label="@string/toolbar_detail_label">
+
+        <argument
+            android:name="showBottomNavView"
+            android:defaultValue="false" />
+
+        <action
+            android:id="@+id/action_searchResult_to_detailMatch"
+            app:destination="@id/detail_match" />
+        <argument
+            android:name="summonerName"
+            app:argType="string" />
+        <argument
+            android:name="summonerPuuid"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_match"
+        android:name="io.github.seoj17.presentaion.ui.detail.DetailMatchFragment"
+        android:label="@string/toolbar_search_result_label">
+
+        <argument
+            android:name="showBottomNavView"
+            android:defaultValue="false" />
+
+        <argument
+            android:name="matchId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detail_match_to_search_result"
+            app:destination="@id/search_result" />
+        <argument
+            android:name="puuid"
+            app:argType="string" />
+    </fragment>
+</navigation>
