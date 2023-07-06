@@ -1,8 +1,6 @@
 package io.github.seoj17.presentaion.ui.search
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
@@ -20,22 +18,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchSummonerViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
     private val getUserInfoUseCase: GetUserInfoUseCase,
     getRecentSummonerUseCase: GetRecentSummonerUseCase,
     private val addSummonerUseCase: AddSummonerUseCase,
     private val deleteRecentSummonerUseCase: DeleteRecentSummonerUseCase,
     private val deleteAllRecentSummonerUseCase: DeleteAllRecentSummonerUseCase,
 ) : ViewModel() {
-
-    val summonerName =
-        SearchSummonerFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerName ?: ""
-
-    val summonerPuuid =
-        SearchSummonerFragmentArgs.fromSavedStateHandle(savedStateHandle).summonerPuuid ?: ""
-
-    private val _searchResult = MutableLiveData<Summoner?>()
-    val searchResult: LiveData<Summoner?> = _searchResult
 
     val recentSearch: LiveData<List<RecentSummoners>> =
         getRecentSummonerUseCase()
@@ -44,19 +32,12 @@ class SearchSummonerViewModel @Inject constructor(
                 RecentSummoners(it)
             }
 
-    fun validSearch(name: String) {
-        viewModelScope.launch {
-            getUserInfoUseCase(name)?.let { summonerDomain ->
-                val summoner = Summoner(summonerDomain)
-
-                _searchResult.value = summoner
-                addSummonerUseCase(summoner.puuid, summoner.name)
-            }
+    suspend fun searchSummoner(name: String): Summoner? {
+        return getUserInfoUseCase(name)?.let { summonerDomain ->
+            val summoner = Summoner(summonerDomain)
+            addSummonerUseCase(summoner.puuid, summoner.name)
+            return@let summoner
         }
-    }
-
-    fun isClickDetailInfo(): Boolean {
-        return summonerName.isNotBlank() && summonerPuuid.isNotBlank()
     }
 
     fun deleteRecentSummoner(name: String) {
