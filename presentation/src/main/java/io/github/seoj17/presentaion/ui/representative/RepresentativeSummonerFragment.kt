@@ -26,7 +26,7 @@ class RepresentativeSummonerFragment :
                     RepresentativeSummonerFragmentDirections.actionRegisterSummonerToHome(it.name),
                 )
             }
-                ?: NotFoundUserDialogFragment().show(childFragmentManager, null)
+                ?: NotFoundUserDialogFragment().show(parentFragmentManager, null)
         }
     }
 }
