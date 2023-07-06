@@ -6,6 +6,8 @@
 
     <include app:graph="@navigation/search_graph" />
     <include app:graph="@navigation/champion_graph" />
+    <include app:graph="@navigation/search_result_graph" />
+
     <fragment
         android:id="@+id/home"
         android:name="io.github.seoj17.presentaion.ui.home.HomeFragment"
@@ -38,7 +40,25 @@
         </action>
         <action
             android:id="@+id/action_home_to_champion_graph"
-            app:destination="@id/champion_graph" />
+            app:destination="@id/champion_graph"
+            app:popUpTo="@id/home"
+            app:popUpToSaveState="true"
+            app:restoreState="true" />
+        <action
+            android:id="@+id/action_home_to_search_result_graph"
+            app:destination="@id/search_result_graph">
+            <argument
+                android:name="summonerName"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+
+            <argument
+                android:name="summonerPuuid"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
     </fragment>
 
     <fragment
@@ -47,7 +67,9 @@
         android:label="@string/toolbar_home_representative_label">
         <action
             android:id="@+id/action_registerSummoner_to_home"
-            app:destination="@id/home">
+            app:destination="@id/home"
+            app:popUpTo="@id/home"
+            app:popUpToInclusive="true">
             <argument
                 android:name="summonerName"
                 app:argType="string" />

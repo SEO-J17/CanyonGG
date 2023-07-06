@@ -23,6 +23,11 @@ class HomeFragment :
 
     override fun bindLayout() {
         with(binding) {
+            registerUserTab.visibility = if (viewModel.userInfo.value == null) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
             registerUserTab.setClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
             }
@@ -33,6 +38,7 @@ class HomeFragment :
 
             summonerTab.setClickListener {
                 viewModel.removeMyInfo()
+                registerUserTab.visibility = View.VISIBLE
                 requireActivity().showToast(R.string.info_delete_toast)
             }
 
@@ -43,7 +49,7 @@ class HomeFragment :
 
             detailMyInfo.setOnClickListener {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionHomeToSearchGraph(
+                    HomeFragmentDirections.actionHomeToSearchResultGraph(
                         summonerName = viewModel.userInfo.value?.name,
                         summonerPuuid = viewModel.userInfo.value?.puuid,
                     ),
@@ -62,7 +68,7 @@ class HomeFragment :
                 },
             ) { name, puuid ->
                 findNavController().navigate(
-                    HomeFragmentDirections.actionHomeToSearchGraph(
+                    HomeFragmentDirections.actionHomeToSearchResultGraph(
                         summonerName = name,
                         summonerPuuid = puuid,
                     ),
@@ -90,7 +96,6 @@ class HomeFragment :
                         binding.registerUserTab.visibility = View.GONE
                         View.VISIBLE
                     } else {
-                        binding.registerUserTab.visibility = View.VISIBLE
                         View.GONE
                     }
                 }
