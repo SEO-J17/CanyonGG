@@ -79,8 +79,12 @@ class HomeFragment :
                 { deleteChamp ->
                     viewModel.removeChampionBookmark(deleteChamp)
                 },
-                { champion ->
-                    TODO("클릭시 챔피언 디테일로 넘어가기")
+                { championKey ->
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeToChampionDetail(
+                            champKey = championKey,
+                        ),
+                    )
                 },
             )
 
