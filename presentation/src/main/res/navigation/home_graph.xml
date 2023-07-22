@@ -59,6 +59,13 @@
                 app:argType="string"
                 app:nullable="true" />
         </action>
+        <action
+            android:id="@+id/action_home_to_champion_detail"
+            app:destination="@id/champion_detail">
+            <argument
+                android:name="champ_key"
+                app:argType="integer" />
+        </action>
     </fragment>
 
     <fragment
@@ -74,5 +81,18 @@
                 android:name="summonerName"
                 app:argType="string" />
         </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/champion_detail"
+        android:name="io.github.seoj17.presentaion.ui.champion.detail.ChampionDetailFragment"
+        android:label="@string/champ_detail_title">
+        <argument
+            android:name="champ_key"
+            app:argType="integer" />
+
+        <argument
+            android:name="showBottomNavView"
+            android:defaultValue="false" />
     </fragment>
 </navigation>
