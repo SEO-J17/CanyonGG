@@ -15,9 +15,13 @@
     <fragment
         android:id="@+id/champion_detail"
         android:name="io.github.seoj17.presentaion.ui.champion.detail.ChampionDetailFragment"
-        android:label="@string/champ_detail_title" >
+        android:label="@string/champ_detail_title">
         <argument
             android:name="champ_key"
             app:argType="integer" />
+
+        <argument
+            android:name="showBottomNavView"
+            android:defaultValue="false" />
     </fragment>
 </navigation>
