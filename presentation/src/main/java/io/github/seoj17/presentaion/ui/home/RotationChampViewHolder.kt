@@ -12,7 +12,7 @@ class RotationChampViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(rotationChamp: RotationChamp) {
         with(binding) {
-            rotationChampImg.setRotationChampion(rotationChamp.name)
+            rotationChampImg.setRotationChampion(rotationChamp.id)
         }
     }
 

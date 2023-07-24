@@ -4,8 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import io.github.seoj17.presentaion.model.RotationChamp
 
-class RotationChampListAdapter :
-    ListAdapter<RotationChamp, RotationChampViewHolder>(RotationChamp.diffUtil) {
+class RotationChampListAdapter(
+    private val itemClickListener: (Int) -> Unit,
+) : ListAdapter<RotationChamp, RotationChampViewHolder>(RotationChamp.diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         RotationChampViewHolder(parent)
@@ -14,6 +15,9 @@ class RotationChampListAdapter :
         val dataSet = getItem(position)
         with(holder) {
             bind(dataSet)
+            itemView.setOnClickListener {
+                itemClickListener(dataSet.key)
+            }
         }
     }
 }
