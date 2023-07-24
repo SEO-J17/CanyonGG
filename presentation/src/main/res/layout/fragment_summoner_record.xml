@@ -20,7 +20,8 @@
 
         <include
             android:id="@+id/champion_info_loading"
-            layout="@layout/view_record_loading" />
+            layout="@layout/view_record_loading"
+            android:visibility="@{vm.userRecordState ? View.VISIBLE : View.GONE}" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/search_result_screen"

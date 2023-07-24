@@ -24,7 +24,6 @@ import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerInfo
 import io.github.seoj17.presentaion.model.SummonerMatchRecord
 import io.github.seoj17.presentaion.model.UserRecord
-import io.github.seoj17.presentaion.utils.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -61,7 +60,7 @@ class SummonerRecordViewModel @Inject constructor(
         .asLiveData()
         .map { paging ->
             paging.map {
-                _userRecordState.value = Event(false)
+                _userRecordState.value = false
                 SummonerMatchRecord(it)
             }
         }
@@ -69,11 +68,12 @@ class SummonerRecordViewModel @Inject constructor(
 
     val bookmarkedSummoner = checkBookmarkedSummoner(summonerPuuid).asLiveData()
 
-    private val _userRecordState = MutableLiveData(Event(true))
-    val userRecordState: LiveData<Event<Boolean>> = _userRecordState
+    private val _userRecordState = MutableLiveData(false)
+    val userRecordState: LiveData<Boolean> = _userRecordState
 
     init {
         viewModelScope.launch {
+            _userRecordState.value = true
             getUserInfoUseCase(summonerName)?.let { summonerDomain ->
                 val summoner = Summoner(summonerDomain)
 
@@ -86,6 +86,9 @@ class SummonerRecordViewModel @Inject constructor(
 
                 insertSummonerInfoLocal(userRecord, summoner, tier)
             }
+                ?: run {
+                    _userRecordState.value = false
+                }
         }
     }
 
