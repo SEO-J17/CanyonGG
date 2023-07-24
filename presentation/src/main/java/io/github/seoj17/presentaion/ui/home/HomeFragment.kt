@@ -88,7 +88,13 @@ class HomeFragment :
                 },
             )
 
-            champRotationListView.adapter = RotationChampListAdapter()
+            champRotationListView.adapter = RotationChampListAdapter { champKey ->
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeToChampionDetail(
+                        champKey = champKey,
+                    ),
+                )
+            }
         }
     }
 
