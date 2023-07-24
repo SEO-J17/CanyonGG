@@ -10,7 +10,7 @@ import io.github.seoj17.presentaion.model.Champion
 import io.github.seoj17.presentaion.model.ChampionBookmark
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -29,9 +29,9 @@ class ChampionViewModel @Inject constructor(
     val champion = getAllChampionUseCase()
         .map { Champion(it) }
         .stateIn(
-            viewModelScope,
-            SharingStarted.Lazily,
-            emptyList(),
+            scope = viewModelScope,
+            started = WhileSubscribed(5000),
+            initialValue = emptyList(),
         )
 
     fun onBookmarkClick(champion: Champion) {

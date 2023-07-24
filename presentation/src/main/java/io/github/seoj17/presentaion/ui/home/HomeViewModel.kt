@@ -32,7 +32,7 @@ import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerInfo
 import io.github.seoj17.presentaion.model.UserRecord
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -95,9 +95,9 @@ class HomeViewModel @Inject constructor(
     val rotationChamp = getRotationChampion()
         .map { RotationChamp(it) }
         .stateIn(
-            viewModelScope,
-            SharingStarted.Lazily,
-            emptyList(),
+            scope = viewModelScope,
+            started = WhileSubscribed(5000),
+            initialValue = emptyList(),
         )
 
     private val _userInfoState = MutableStateFlow(false)
