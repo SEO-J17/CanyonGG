@@ -14,7 +14,13 @@ class ChampionDetailFragment :
     override val viewModel: ChampionDetailViewModel by viewModels()
     override fun viewModelVariableId(): Int = BR.vm
 
-    override fun bindLayout() = Unit
+    override fun bindLayout() {
+        with(binding) {
+            toolbar.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
+        }
+    }
 
     override fun observeViewModel() = Unit
 }
