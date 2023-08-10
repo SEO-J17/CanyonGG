@@ -17,56 +17,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/win_team"
-            android:layout_width="wrap_content"
+        <io.github.seoj17.presentaion.widget.TeamScoreView
+            android:id="@+id/team_score"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/victory_team_label"
-            app:layout_constraintEnd_toStartOf="@+id/lose_team"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/win_team_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            bind:analysisValue="@{vm.winTeamScore}"
-            app:layout_constraintEnd_toEndOf="@id/win_team"
-            app:layout_constraintStart_toStartOf="@id/win_team"
-            app:layout_constraintTop_toBottomOf="@id/win_team"
-            tools:text="23" />
-
-        <TextView
-            android:id="@+id/lose_team"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lose_team_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/win_team"
-            app:layout_constraintTop_toTopOf="@+id/win_team" />
-
-        <TextView
-            android:id="@+id/lose_team_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            bind:analysisValue="@{vm.loseTeamScore}"
-            app:layout_constraintEnd_toEndOf="@id/lose_team"
-            app:layout_constraintStart_toStartOf="@id/lose_team"
-            app:layout_constraintTop_toBottomOf="@id/lose_team"
-            tools:text="23" />
+            app:layout_constraintTop_toTopOf="parent"
+            bind:loseTeamScore="@{vm.loseTeamScore}"
+            bind:winTeamScore="@{vm.winTeamScore}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/team_kills_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/win_team_value"
+            app:layout_constraintTop_toBottomOf="@id/team_score"
             bind:teamAnalysisList="@{vm.participantsMatches}"
             tools:listitem="@layout/item_team_analysis" />
     </androidx.constraintlayout.widget.ConstraintLayout>
