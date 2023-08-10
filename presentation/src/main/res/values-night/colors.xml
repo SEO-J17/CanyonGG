@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="img_btn_color">#FFFFFF</color>
+    <color name="positive_click_color">#FFBB86FC</color>
+    <color name="general_text_color">#FFFFFF</color>
+    <color name="toolbar_navigation">#FFFFFF</color>
+    <color name="cursor_control">#FFBB86FC</color>
 </resources>
