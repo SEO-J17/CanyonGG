@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="13dp">
 
     <TextView
         android:id="@+id/rank_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/general_text_color"
         app:layout_constraintEnd_toStartOf="@id/my_rank_value"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +21,7 @@
         android:id="@+id/value_graph"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="12dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="@id/rank_label"
         app:layout_constraintStart_toStartOf="@id/rank_label"
@@ -30,6 +31,7 @@
         android:id="@+id/my_rank_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/rank_label"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,9 +41,11 @@
         android:id="@+id/my_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/rank_my_text"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/value_graph"
-        tools:text="23,000 / " />
+        tools:text="23,000 " />
 
     <TextView
         android:id="@+id/max_value"
@@ -50,5 +54,5 @@
         app:layout_constraintBottom_toBottomOf="@id/my_value"
         app:layout_constraintStart_toEndOf="@id/my_value"
         app:layout_constraintTop_toTopOf="@id/my_value"
-        tools:text="50,000" />
+        tools:text="/ 50,000" />
 </androidx.constraintlayout.widget.ConstraintLayout>

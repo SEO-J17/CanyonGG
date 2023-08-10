@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,8 +19,8 @@
         android:id="@+id/main_user_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#8C8C8C"
-        android:padding="3dp"
+        android:background="@drawable/layout_img_shape"
+        android:paddingHorizontal="3dp"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -33,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:textColor="@color/general_text_color"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/main_user_tier"
@@ -46,22 +48,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:textColor="@color/general_text_color"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/main_user_thumbNail"
         app:layout_constraintStart_toEndOf="@+id/main_user_thumbNail"
         app:layout_constraintTop_toBottomOf="@+id/main_user_name"
         tools:text="Master2" />
-
-    <ImageView
-        android:id="@+id/main_user_refresh"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="15dp"
-        android:src="@drawable/reload"
-        app:layout_constraintBottom_toBottomOf="@id/main_user_tier"
-        app:layout_constraintStart_toEndOf="@id/main_user_name"
-        app:layout_constraintTop_toTopOf="@+id/main_user_name"
-        app:tint="@color/img_btn_color" />
 
     <ImageView
         android:id="@+id/user_info_delete"
@@ -70,13 +62,25 @@
         android:src="@drawable/cross"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/img_btn_color" />
+        app:tint="@color/general_text_color" />
+
+    <ImageView
+        android:id="@+id/main_user_refresh"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/reload"
+        app:layout_constraintEnd_toEndOf="@id/user_info_delete"
+        app:layout_constraintStart_toStartOf="@id/user_info_delete"
+        app:layout_constraintTop_toBottomOf="@id/user_info_delete"
+        app:tint="@color/general_text_color" />
 
     <TextView
         android:id="@+id/user_matches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textColor="@color/general_text_color"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/user_win"
@@ -90,6 +94,7 @@
         android:id="@+id/user_win"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/general_text_color"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/user_matches"
@@ -104,6 +109,7 @@
         android:id="@+id/user_lose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/general_text_color"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/user_win"
@@ -117,6 +123,7 @@
         android:id="@+id/user_win_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/general_text_color"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/user_lose"
@@ -131,7 +138,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:textColor="#47C83E"
         android:textSize="15sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="@id/user_win_score"

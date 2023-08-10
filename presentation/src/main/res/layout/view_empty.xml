@@ -13,6 +13,7 @@
 
     <TextView
         android:id="@+id/info_tab_title"
+        style="@style/grand_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -22,11 +23,12 @@
 
     <TextView
         android:id="@+id/info_tab_content"
+        style="@style/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center_horizontal"
         android:paddingTop="10dp"
-        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/main_info_tab"
