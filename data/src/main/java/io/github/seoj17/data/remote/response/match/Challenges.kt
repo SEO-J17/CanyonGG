@@ -41,7 +41,6 @@ data class Challenges(
     val teamDamagePercentage: Double,
     val teamElderDragonKills: Int,
     val teamRiftHeraldKills: Int,
-    val threeWardsOneSweeperCount: Int,
     val tookLargeDamageSurvived: Int,
     val turretPlatesTaken: Int,
     val turretTakedowns: Int,
