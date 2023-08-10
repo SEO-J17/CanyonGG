@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="grand_title">
+        <item name="android:textColor">@color/general_text_color</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="content">
+        <item name="android:textColor">@color/general_text_color</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="edit_text">
+        <item name="colorControlNormal">@color/cursor_highlight_control</item>
+        <item name="android:colorControlActivated">@color/cursor_highlight_control</item>
+        <item name="android:colorControlHighlight">@color/cursor_highlight_control</item>
+        <item name="android:textColorHighlight">@color/cursor_highlight_control</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+        <item name="backgroundTint">@color/cursor_control</item>
+    </style>
+</resources>
