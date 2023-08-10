@@ -7,6 +7,7 @@ import io.github.seoj17.presentaion.BR
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentSummonerRecordBinding
 import io.github.seoj17.presentaion.ui.base.BaseDataBindingFragment
+import io.github.seoj17.presentaion.utils.RecordItemDecoration
 import io.github.seoj17.presentaion.utils.showToast
 
 @AndroidEntryPoint
@@ -20,13 +21,20 @@ class SummonerRecordFragment :
 
     override fun bindLayout() {
         with(binding) {
-            summonerHistoryView.adapter = RecordListAdapter { matchId, puuid ->
-                findNavController().navigate(
-                    SummonerRecordFragmentDirections.actionSearchResultToDetailMatch(
-                        matchId,
-                        puuid,
-                    ),
-                )
+            toolbar.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
+
+            summonerHistoryView.apply {
+                addItemDecoration(RecordItemDecoration())
+                adapter = RecordListAdapter { matchId, puuid ->
+                    findNavController().navigate(
+                        SummonerRecordFragmentDirections.actionSearchResultToDetailMatch(
+                            matchId,
+                            puuid,
+                        ),
+                    )
+                }
             }
 
             summonerBookMark.setOnClickListener {

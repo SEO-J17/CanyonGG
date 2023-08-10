@@ -14,6 +14,10 @@ class DetailMatchFragment : BaseFragment<FragmentDetailMatchBinding, DetailMatch
 
     override fun bindLayout() {
         with(binding) {
+            toolbar.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
+
             tabPager.adapter = DetailMatchViewPagerAdapter(this@DetailMatchFragment)
             TabLayoutMediator(tabLayout, tabPager) { tab, position ->
                 tab.setText(DetailMatchTabs.getMatchTab(position).title)

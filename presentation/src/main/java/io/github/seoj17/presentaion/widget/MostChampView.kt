@@ -9,6 +9,7 @@ import androidx.databinding.BindingMethods
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.ViewMostChampBinding
 import io.github.seoj17.presentaion.model.ChampInfo
+import io.github.seoj17.presentaion.ui.adapter.setKdaTextColor
 import io.github.seoj17.presentaion.utils.setChampion
 
 @BindingMethods(
@@ -59,6 +60,7 @@ class MostChampView @JvmOverloads constructor(
     var champKda: Double = 0.0
         set(value) {
             binding.champKda.text = context.getString(R.string.empty_view_kda, value)
+            binding.champKda.setKdaTextColor(value)
             field = value
         }
 }

@@ -21,9 +21,11 @@ class TeamDealtViewModel @Inject constructor(
     val participantsMatches = matchId.switchMap { matchId ->
         liveData {
             emit(
-                getParticipantsMatches(matchId).map {
-                    SummonerMatchRecord(it)
-                },
+                getParticipantsMatches(matchId)
+                    .map {
+                        SummonerMatchRecord(it)
+                    }
+                    .sortedByDescending { it.totalDealt },
             )
         }
     }

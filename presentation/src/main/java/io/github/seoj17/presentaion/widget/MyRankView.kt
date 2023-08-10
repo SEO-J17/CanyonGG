@@ -62,13 +62,32 @@ class MyRankView @JvmOverloads constructor(
 
     var maxValueLabel: Int? = null
         set(value) {
-            binding.maxValue.text = value?.let { NumberFormatter.formatNumber(it) }
+            binding.maxValue.text = context.getString(
+                R.string.rank_max_value,
+                value?.let { NumberFormatter.formatNumber(it) },
+            )
             field = value
         }
 
     var myRankLabel: CharSequence? = null
         set(value) {
+            val color = when (value) {
+                "1" -> {
+                    R.color.first_rank
+                }
+
+                "2" -> {
+                    R.color.second_rank
+                }
+
+                "3" -> {
+                    R.color.third_rank
+                }
+
+                else -> R.color.general_text_color
+            }
             binding.myRankValue.text = context.getString(R.string.rank_view_ranking, value)
+            binding.myRankValue.setTextColor(context.getColor(color))
             field = value
         }
 
@@ -81,6 +100,7 @@ class MyRankView @JvmOverloads constructor(
     var graphMaxValue: Int? = null
         set(value) {
             binding.valueGraph.max = value ?: 0
+            binding.valueGraph.progressDrawable = context.getDrawable(R.drawable.rank_progress_bar)
             field = value
         }
 }

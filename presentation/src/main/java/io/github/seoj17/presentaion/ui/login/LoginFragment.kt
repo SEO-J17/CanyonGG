@@ -28,6 +28,10 @@ class LoginFragment : BaseDataBindingFragment<FragmentLoginBinding, LoginViewMod
                     LoginFragmentDirections.actionLoginFragmentToRegisterUserFragment(),
                 )
             }
+
+            toolbar.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
         }
     }
 

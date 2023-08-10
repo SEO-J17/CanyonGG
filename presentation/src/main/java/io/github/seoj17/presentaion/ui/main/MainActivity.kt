@@ -11,11 +11,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.ActivityMainBinding
 import io.github.seoj17.presentaion.ui.setting.ThemeState
 import kotlinx.coroutines.launch
@@ -32,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initNavigation()
-        setActionBarTitle()
         setTheme()
     }
 
@@ -50,13 +46,6 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavBar.isVisible =
                 (arguments?.getBoolean("showBottomNavView", true) ?: true) == true
         }
-    }
-
-    private fun setActionBarTitle() {
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home, R.id.search_summoner, R.id.champions, R.id.setting),
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     private fun setTheme() {

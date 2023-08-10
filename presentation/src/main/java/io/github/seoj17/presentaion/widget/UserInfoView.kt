@@ -11,6 +11,7 @@ import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.contract.UrlContract
 import io.github.seoj17.presentaion.databinding.ViewUserInfoBinding
 import io.github.seoj17.presentaion.model.RegisterUserInfo
+import io.github.seoj17.presentaion.ui.adapter.setKdaTextColor
 
 @BindingMethods(
     value = [
@@ -51,7 +52,11 @@ class UserInfoView @JvmOverloads constructor(
         }
 
     private fun setUserThumbnail(imgId: Int?) {
-        Glide.with(binding.mainUserThumbNail.context).load(UrlContract.profileIconUrl(imgId ?: 0))
+        Glide
+            .with(binding.mainUserThumbNail.context)
+            .load(UrlContract.profileIconUrl(imgId))
+            .circleCrop()
+            .placeholder(R.drawable.default_img)
             .into(binding.mainUserThumbNail)
     }
 
@@ -100,6 +105,7 @@ class UserInfoView @JvmOverloads constructor(
     var userKda: Double = 0.0
         set(value) {
             binding.userKda.text = context.getString(R.string.user_view_kda, value)
+            binding.userKda.setKdaTextColor(value)
             field = value
         }
 

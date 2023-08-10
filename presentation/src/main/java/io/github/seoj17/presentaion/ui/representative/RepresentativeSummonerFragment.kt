@@ -17,7 +17,13 @@ class RepresentativeSummonerFragment :
 
     override fun viewModelVariableId(): Int = BR.vm
 
-    override fun bindLayout() = Unit
+    override fun bindLayout() {
+        with(binding) {
+            toolbar.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
+        }
+    }
 
     override fun observeViewModel() {
         viewModel.searchResult.observe(viewLifecycleOwner) { summoner ->

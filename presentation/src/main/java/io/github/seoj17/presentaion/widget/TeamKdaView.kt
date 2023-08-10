@@ -41,15 +41,27 @@ class TeamKdaView @JvmOverloads constructor(
 
     var teamWin: Boolean? = null
         set(value) {
-            binding
-                .winResult
-                .setText(
+            with(binding) {
+                val (textLabelResId, textColorResId, textStrokeDrawable) =
                     if (value == true) {
-                        R.string.victory_label
+                        Triple(
+                            R.string.victory_label,
+                            R.color.winner_loading_text_color,
+                            R.drawable.win_text_stroke,
+                        )
                     } else {
-                        R.string.lose_label
-                    },
-                )
+                        Triple(
+                            R.string.lose_label,
+                            R.color.loser_loading_text_color,
+                            R.drawable.lose_text_stroke,
+                        )
+                    }
+
+                winResult.setText(textLabelResId)
+                matchDate.setTextColor(context.getColor(textColorResId))
+                winResult.setTextColor(context.getColor(textColorResId))
+                infoLayout.setBackgroundResource(textStrokeDrawable)
+            }
             field = value
         }
 

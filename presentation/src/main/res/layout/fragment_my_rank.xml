@@ -30,8 +30,10 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="@{@string/rank_user_name_title(vm.summonerName)}"
+                android:textColor="@color/general_text_color"
                 android:textSize="20sp"
-                tools:text="Hide 님의 지표별 순위 입니다." />
+                android:textStyle="bold"
+                tools:text="xxx 님의 지표별 순위 입니다." />
 
             <io.github.seoj17.presentaion.widget.MyRankView
                 android:id="@+id/dealt_tab"

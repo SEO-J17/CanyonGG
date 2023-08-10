@@ -11,7 +11,7 @@ object UrlContract {
 
     const val RUNE_URL = "$DATA_CENTER_URL/cdn/img/"
 
-    fun profileIconUrl(id: Int): String {
+    fun profileIconUrl(id: Int?): String {
         return "$DATA_CENTER_URL/cdn/$cdnVersion/img/profileicon/$id.png"
     }
 
