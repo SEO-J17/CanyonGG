@@ -25,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bot_nav_setting"
+            android:textColor="@color/general_text_color"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -59,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:text="@string/change_theme_title"
+            android:textColor="@color/general_text_color"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -72,18 +74,21 @@
                 android:id="@+id/system_theme"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:buttonTint="@color/positive_click_color"
                 android:text="@string/system_theme" />
 
             <RadioButton
                 android:id="@+id/light_theme"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:buttonTint="@color/positive_click_color"
                 android:text="@string/light_theme_label" />
 
             <RadioButton
                 android:id="@+id/dark_theme"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:buttonTint="@color/positive_click_color"
                 android:text="@string/dark_theme_label" />
         </RadioGroup>
     </androidx.appcompat.widget.LinearLayoutCompat>
