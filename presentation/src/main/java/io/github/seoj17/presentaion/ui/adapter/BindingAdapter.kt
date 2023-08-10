@@ -8,6 +8,8 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.android.material.textfield.TextInputLayout
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.contract.UrlContract
@@ -37,6 +39,7 @@ fun ImageView.setSummonerProfile(id: Int) {
     Glide
         .with(this.context)
         .load(UrlContract.profileIconUrl(id))
+        .circleCrop()
         .into(this)
 }
 
@@ -45,6 +48,7 @@ fun ImageView.setSummonerRankEmblem(tier: String?) {
     Glide
         .with(this.context)
         .load(tier?.rankEmblemResId())
+        .transform(CenterCrop(), RoundedCorners(16))
         .into(this)
 }
 
@@ -114,6 +118,7 @@ fun ImageView.setChampionImage(champion: String?) {
     Glide
         .with(this.context)
         .load(UrlContract.championUrl(champion ?: ""))
+        .transform(CenterCrop(), RoundedCorners(16))
         .placeholder(R.drawable.default_img)
         .into(this)
 }
@@ -123,6 +128,8 @@ fun ImageView.setSpell(spell: String) {
     Glide
         .with(this.context)
         .load(UrlContract.spellUrl(spell))
+        .transform(CenterCrop(), RoundedCorners(16))
+        .placeholder(R.drawable.default_img)
         .into(this)
 }
 
@@ -131,6 +138,8 @@ fun ImageView.setItems(item: Int) {
     Glide
         .with(this.context)
         .load(UrlContract.itemUrl(item))
+        .transform(CenterCrop(), RoundedCorners(16))
+        .placeholder(R.drawable.default_img)
         .into(this)
 }
 
@@ -139,6 +148,7 @@ fun ImageView.setRunes(rune: String) {
     Glide
         .with(this.context)
         .load("${UrlContract.RUNE_URL}$rune")
+        .transform(CenterCrop(), RoundedCorners(16))
         .into(this)
 }
 
@@ -192,5 +202,53 @@ fun ImageView.setSplashChamp(name: String) {
     Glide
         .with(this.context)
         .load(UrlContract.splashChampionUrl(name))
+        .transform(CenterCrop(), RoundedCorners(16))
+        .placeholder(R.drawable.default_img)
         .into(this)
+}
+
+@BindingAdapter("bind:kdaTextColor")
+fun TextView.setKdaTextColor(kda: Double) {
+    val color = if (kda < 3.0) {
+        R.color.low_kda_color
+    } else if (kda < 5.0) {
+        R.color.normal_kda_color
+    } else if (kda < 10.0) {
+        R.color.death_color
+    } else {
+        R.color.high_kda_color
+    }
+    setTextColor(
+        context.getColor(color),
+    )
+}
+
+@BindingAdapter("bind:winRateTextColor")
+fun TextView.setWinRateText(winRate: Int) {
+    val color = if (winRate < 30) {
+        R.color.low_win_rate_color
+    } else if (winRate < 50) {
+        R.color.normal_win_rate_color
+    } else if (winRate < 80) {
+        R.color.middle_win_rate_color
+    } else {
+        R.color.high_win_rate_color
+    }
+    setTextColor(
+        context.getColor(color),
+    )
+}
+
+@BindingAdapter("bind:highestKillTextColor")
+fun TextView.setHighestKillText(kill: Int) {
+    val color = when (MostKillState(kill)) {
+        MostKillState.ZERO -> R.color.low_kda_color
+        MostKillState.SINGLE -> R.color.low_kda_color
+        MostKillState.DOUBLE -> R.color.normal_kda_color
+        MostKillState.TRIPLE -> R.color.middle_kda_color
+        MostKillState.QUADRA -> R.color.high_kda_color
+        MostKillState.PENTA -> R.color.penta_kill_color
+    }
+
+    setTextColor(context.getColor(color))
 }
