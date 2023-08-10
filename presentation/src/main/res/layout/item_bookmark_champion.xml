@@ -34,6 +34,7 @@
             android:layout_marginTop="5dp"
             android:maxLength="15"
             android:text="@{data.name}"
+            android:textColor="@color/general_text_color"
             app:layout_constraintEnd_toEndOf="@id/champion_img"
             app:layout_constraintStart_toStartOf="@id/champion_img"
             app:layout_constraintTop_toBottomOf="@id/champion_img"
@@ -47,6 +48,6 @@
             android:src="@drawable/cross"
             app:layout_constraintStart_toEndOf="@id/champion_img"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/img_btn_color" />
+            app:tint="@color/general_text_color" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

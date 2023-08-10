@@ -31,7 +31,8 @@
             android:id="@+id/summoner_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/black"
+            android:background="@drawable/layout_img_shape"
+            android:paddingHorizontal="3dp"
             android:text="@{String.valueOf(data.summonerLevel)}"
             android:textColor="@color/white"
             android:textSize="11sp"
@@ -47,6 +48,7 @@
             android:layout_marginTop="5dp"
             android:maxLength="15"
             android:text="@{data.summonerName}"
+            android:textColor="@color/general_text_color"
             app:layout_constraintEnd_toEndOf="@id/summoner_profile"
             app:layout_constraintStart_toStartOf="@id/summoner_profile"
             app:layout_constraintTop_toBottomOf="@id/summoner_profile"
@@ -56,9 +58,10 @@
             android:id="@+id/delete_bookmark"
             android:layout_width="15dp"
             android:layout_height="15dp"
+            android:layout_marginStart="5dp"
             android:src="@drawable/cross"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/summoner_profile"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/img_btn_color" />
+            app:tint="@color/general_text_color" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
