@@ -22,9 +22,8 @@ class RepresentativeSummonerViewModel @Inject constructor(
 
     fun searchSummoner() {
         viewModelScope.launch {
-            getUserInfoUseCase(summonerName.value)?.let { summonerDomain ->
-                val summoner = Summoner(summonerDomain)
-                _searchResult.value = summoner
+            _searchResult.value = getUserInfoUseCase(summonerName.value)?.let { summonerDomain ->
+                Summoner(summonerDomain)
             }
         }
     }
