@@ -105,7 +105,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         if (summonerName.isNotBlank()) {
-            fetchData()
+            fetchData(summonerName)
         }
     }
 
@@ -118,10 +118,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun fetchData() {
+    private fun fetchData(name: String) {
         viewModelScope.launch {
             _userInfoState.value = true
-            getUserInfoUseCase(summonerName)?.let { summonerDomain ->
+            getUserInfoUseCase(name)?.let { summonerDomain ->
                 val summoner = Summoner(summonerDomain)
 
                 val tier = getUserTierUseCase(summoner.id)?.let { userTier ->
@@ -173,7 +173,14 @@ class HomeViewModel @Inject constructor(
 
     fun refreshMyInfo() {
         viewModelScope.launch {
-            fetchData()
+            userInfo
+                .value
+                ?.let {
+                    fetchData(it.name)
+                }
+                ?: run {
+                    _userInfoState.value = false
+                }
         }
     }
 
