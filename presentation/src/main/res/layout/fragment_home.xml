@@ -60,6 +60,7 @@
                     bind:userInfo="@{vm.userInfo}" />
 
                 <LinearLayout
+                    android:id="@+id/most_champ_tab"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -98,7 +99,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"
                     android:text="@string/detail_my_info_label"
-                    android:visibility="@{vm.firstMostChamp != null ? View.VISIBLE : View.GONE}" />
+                    android:visibility="@{vm.userInfo != null ? View.VISIBLE : View.GONE}" />
 
                 <io.github.seoj17.presentaion.widget.EmptyView
                     android:id="@+id/register_user_tab"
