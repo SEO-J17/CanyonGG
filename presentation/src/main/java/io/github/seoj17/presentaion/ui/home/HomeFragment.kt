@@ -23,11 +23,6 @@ class HomeFragment :
 
     override fun bindLayout() {
         with(binding) {
-            registerUserTab.visibility = if (viewModel.userInfo.value == null) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
             registerUserTab.setClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeToRegisterSummoner())
             }
@@ -102,14 +97,33 @@ class HomeFragment :
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.userInfoState.collect {
-                    binding.userInfoLoading.visibility = if (it) {
-                        binding.registerUserTab.visibility = View.GONE
-                        View.VISIBLE
-                    } else {
-                        View.GONE
-                    }
+                    tabRefreshVisibility(it)
                 }
             }
+        }
+
+        binding.registerUserTab.visibility = viewModel
+            .userInfo
+            .value
+            ?.let {
+                View.VISIBLE
+            }
+            ?: View.GONE
+    }
+
+    private fun tabRefreshVisibility(isRefresh: Boolean) {
+        with(binding) {
+            val (tabVisible, loadingVisible) = if (isRefresh) {
+                registerUserTab.visibility = View.GONE
+                View.GONE to View.VISIBLE
+            } else {
+                View.VISIBLE to View.GONE
+            }
+
+            summonerTab.visibility = tabVisible
+            mostChampTab.visibility = tabVisible
+            detailMyInfo.visibility = tabVisible
+            userInfoLoading.visibility = loadingVisible
         }
     }
 }
