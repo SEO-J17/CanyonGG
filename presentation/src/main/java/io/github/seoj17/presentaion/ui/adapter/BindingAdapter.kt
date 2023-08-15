@@ -1,9 +1,12 @@
 package io.github.seoj17.presentaion.ui.adapter
 
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +19,7 @@ import io.github.seoj17.presentaion.contract.UrlContract
 import io.github.seoj17.presentaion.model.Champion
 import io.github.seoj17.presentaion.model.ChampionBookmark
 import io.github.seoj17.presentaion.model.RecentSummoners
+import io.github.seoj17.presentaion.model.RegisterUserInfo
 import io.github.seoj17.presentaion.model.RotationChamp
 import io.github.seoj17.presentaion.model.SummonerBookmark
 import io.github.seoj17.presentaion.model.SummonerMatchRecord
@@ -251,4 +255,23 @@ fun TextView.setHighestKillText(kill: Int) {
     }
 
     setTextColor(context.getColor(color))
+}
+
+@BindingAdapter("bind:loadingVisibility")
+fun ProgressBar.setLoadingVisibility(isLoading: Boolean) {
+    isVisible = isLoading
+}
+
+@BindingAdapter("bind:loadingState", "bind:userInfoState", requireAll = true)
+fun View.setRegisterTabVisibility(
+    isLoading: Boolean,
+    userInfo: RegisterUserInfo?,
+) {
+    isVisible = if (isLoading && (userInfo == null)) {
+        false
+    } else if (!isLoading && (userInfo != null)) {
+        false
+    } else {
+        true
+    }
 }
