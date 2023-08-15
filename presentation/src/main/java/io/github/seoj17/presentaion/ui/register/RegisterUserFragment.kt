@@ -22,7 +22,11 @@ class RegisterUserFragment :
 
     override fun viewModelVariableId(): Int = BR.vm
 
-    override fun bindLayout() = Unit
+    override fun bindLayout() {
+        binding.toolbar.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+    }
 
     override fun observeViewModel() {
         lifecycleScope.launch {
@@ -35,6 +39,7 @@ class RegisterUserFragment :
                                 RegisterUserFragmentDirections.actionRegisterUserFragmentToLoginFragment(),
                             )
                         }
+
                         is RegisterState.FAIL -> {
                             requireActivity().showToast(R.string.fail_register)
                         }
