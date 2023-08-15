@@ -65,7 +65,7 @@ class HomeViewModel @Inject constructor(
     val userInfo = getRegisterUserInfoUseCase()
         .asLiveData()
         .map { domain ->
-            domain?.let { it -> RegisterUserInfo(it) }
+            domain?.let { RegisterUserInfo(it) }
         }
 
     private val mostChampsInfo = getMostChampUseCase()

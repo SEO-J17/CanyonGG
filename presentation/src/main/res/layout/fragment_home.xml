@@ -50,7 +50,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="20dp"
                     android:indeterminate="true"
-                    android:visibility="gone" />
+                    bind:loadingVisibility="@{vm.userInfoState}" />
 
                 <io.github.seoj17.presentaion.widget.UserInfoView
                     android:id="@+id/summoner_tab"
@@ -107,7 +107,9 @@
                     android:layout_height="wrap_content"
                     bind:buttonName="@{@string/main_btn_text}"
                     bind:emptyContent="@{@string/hint_main_intro}"
-                    bind:emptyTitle="@{@string/main_my_history_label}" />
+                    bind:emptyTitle="@{@string/main_my_history_label}"
+                    bind:loadingState="@{vm.userInfoState}"
+                    bind:userInfoState="@{vm.userInfo}" />
 
                 <io.github.seoj17.presentaion.widget.EmptyView
                     android:id="@+id/search_summoner_tab"
