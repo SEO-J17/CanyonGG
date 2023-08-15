@@ -1,6 +1,6 @@
 package io.github.seoj17.presentaion.ui.home
 
-import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -33,7 +33,6 @@ class HomeFragment :
 
             summonerTab.setClickListener {
                 viewModel.removeMyInfo()
-                registerUserTab.visibility = View.VISIBLE
                 requireActivity().showToast(R.string.info_delete_toast)
             }
 
@@ -101,29 +100,13 @@ class HomeFragment :
                 }
             }
         }
-
-        binding.registerUserTab.visibility = viewModel
-            .userInfo
-            .value
-            ?.let {
-                View.VISIBLE
-            }
-            ?: View.GONE
     }
 
     private fun tabRefreshVisibility(isRefresh: Boolean) {
         with(binding) {
-            val (tabVisible, loadingVisible) = if (isRefresh) {
-                registerUserTab.visibility = View.GONE
-                View.GONE to View.VISIBLE
-            } else {
-                View.VISIBLE to View.GONE
-            }
-
-            summonerTab.visibility = tabVisible
-            mostChampTab.visibility = tabVisible
-            detailMyInfo.visibility = tabVisible
-            userInfoLoading.visibility = loadingVisible
+            summonerTab.isVisible = !isRefresh
+            mostChampTab.isVisible = !isRefresh
+            detailMyInfo.isVisible = !isRefresh
         }
     }
 }
