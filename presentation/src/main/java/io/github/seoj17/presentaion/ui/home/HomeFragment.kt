@@ -12,6 +12,7 @@ import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.FragmentHomeBinding
 import io.github.seoj17.presentaion.ui.base.BaseDataBindingFragment
 import io.github.seoj17.presentaion.utils.showToast
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -95,18 +96,20 @@ class HomeFragment :
     override fun observeViewModel() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModel.userInfoState.collect {
+                viewModel.userInfoState.collectLatest {
                     tabRefreshVisibility(it)
                 }
             }
         }
     }
 
-    private fun tabRefreshVisibility(isRefresh: Boolean) {
-        with(binding) {
-            summonerTab.isVisible = !isRefresh
-            mostChampTab.isVisible = !isRefresh
-            detailMyInfo.isVisible = !isRefresh
+    private fun tabRefreshVisibility(isRefresh: Boolean?) {
+        isRefresh?.let {
+            with(binding) {
+                summonerTab.isVisible = !isRefresh
+                mostChampTab.isVisible = !isRefresh
+                detailMyInfo.isVisible = !isRefresh
+            }
         }
     }
 }

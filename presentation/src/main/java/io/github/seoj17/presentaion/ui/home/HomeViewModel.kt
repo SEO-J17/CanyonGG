@@ -100,8 +100,8 @@ class HomeViewModel @Inject constructor(
             initialValue = emptyList(),
         )
 
-    private val _userInfoState = MutableStateFlow(false)
-    val userInfoState: StateFlow<Boolean> = _userInfoState
+    private val _userInfoState: MutableStateFlow<Boolean?> = MutableStateFlow(null)
+    val userInfoState: StateFlow<Boolean?> = _userInfoState
 
     init {
         if (summonerName.isNotBlank()) {
