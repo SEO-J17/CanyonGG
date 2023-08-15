@@ -272,6 +272,6 @@ fun View.setRegisterTabVisibility(
     } else if (!isLoading && (userInfo != null)) {
         false
     } else {
-        true
+        !isLoading
     }
 }
