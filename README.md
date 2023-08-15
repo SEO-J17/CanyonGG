@@ -38,90 +38,6 @@
 + Firebase Remote Config
 + ViewPager2
 
-# ✨Features
-
-> **화면 구성**
-<table>
-<tr>
-<td>홈 화면</td>
-<td>검색 화면</td>
-<td>설정 화면</td>
-</tr>
-<tr>
-<td><img src=https://user-images.githubusercontent.com/59912150/231479947-87d0caf2-e98c-40a5-adf9-a28da9d04294.gif width="300"></td>
-<td><img src=https://user-images.githubusercontent.com/59912150/231480265-e9b91e35-b9ad-4044-b108-6cf511c9b6f2.png width="300"></td>
-<td><img src=https://user-images.githubusercontent.com/59912150/231480631-2d174789-ab71-4b52-9f2b-93cdf3dfc8be.png width="300"></td>
-</tr>
-</table>
-
-> **로그인, 회원가입 기능**
-<table>
-<tr>
-<td>로그인</td>
-<td>회원가입</td>
-</tr>
-<td><img src=https://user-images.githubusercontent.com/59912150/231688077-5203bf73-a069-46ee-9ae2-186cf97e7241.gif width="300"></td>
-<td><img src=https://user-images.githubusercontent.com/59912150/231688087-1bfd69f5-6914-4a10-910f-9eedcae3a10c.gif width="300"></td>
-</table>
-
-> **검색 기능**
-<table>
-<tr>
-<td>검색 결과</td>
-<td>최근 검색한 유저</td>
-</tr>
-<tr>
-<td><img src=https://user-images.githubusercontent.com/59912150/231689527-63b4ca5f-809f-4d92-aa05-20e6c4a4845f.gif width="300"></td>
-<td><img src=https://user-images.githubusercontent.com/59912150/231689922-d25dc393-7a46-4056-81c7-05b2ad73af5b.png width="300"></td>
-</tr>
-</table>
-
-> **즐겨찾기 기능**
-<table>
-<tr>
-<td>즐겨찾기 등록</td>
-<td>즐겨찾기 해제</td>
-</tr>
-<tr>
-<td><img src=https://user-images.githubusercontent.com/59912150/231691987-f35cb567-8c30-448b-893a-381f3a8bf1d9.gif width="300"></td>
-<td><img src=https://user-images.githubusercontent.com/59912150/231692488-465c6d94-d112-4eca-b59c-60ac7eac8c22.gif width="300"></td>
-</tr>
-</table>
-
-> **메인 정보 등록 기능**
-<table>
-<tr>
-<td>메인 정보 등록</td>
-<td>메인 정보 삭제</td>
-</tr>
-<tr>
-<td><img src=https://user-images.githubusercontent.com/59912150/231694928-80b6e0c1-2d75-4067-ba0b-40346f637b6d.gif width="300"></td>
-<td><img src=https://user-images.githubusercontent.com/59912150/231694936-9494e3e5-505e-4ac0-9b5a-a01d580f7b43.gif width="300"></td>
-</tr>
-</table>
-
-> **전적 상세 화면**
-<table>
-<tr>
-<td>전적 상세 화면</td>
-<td>상세 화면 유저 검색</td>
-</tr>
-<tr>
-<td><img src=https://user-images.githubusercontent.com/59912150/231696355-14c847c9-c9ab-4345-9401-01f5dbaac2a2.gif width="300"></td>
-<td><img src=https://user-images.githubusercontent.com/59912150/231697824-24c7fa4e-c4e3-4e94-9aca-bdfb97db6b04.gif width="300"></td>
-</tr>
-</table>
-
-> **테마 설정**
-<table>
-<tr>
-<td>테마 설정 기능</td>
-</tr>
-<tr>
-<td><img src=https://user-images.githubusercontent.com/59912150/231475444-cd8b0427-3e4e-4d21-8fd9-8b3d65767364.gif width="300"></td>
-</tr>
-</table>
-
 # 🎨Structure
 
 + MVVM 디자인 패턴 + Google Recomanded Architecture를 이용해 앱을 구성했습니다.
@@ -136,3 +52,107 @@
 
 + [google에 권장 가이드](https://developer.android.com/jetpack/guide?hl=ko)에 따라 Presenter -> Doamin ->
   Data 모듈 순으로 아키텍처를 구성했습니다. 각 화살표는 의존성을 나타냅니다.
+
+# ✨Features
+
+> **화면 구성**
+<table>
+<tr>
+<td>홈 화면</td>
+<td>검색 화면</td>
+<td>챔피언 화면</td>
+<td>설정 화면</td>
+</tr>
+<tr>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/ac7f4dc7-0876-4508-8dad-7fb4ede4b238 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/765fa8b7-4ba7-4b12-a8b9-cfca2f6711f1 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/52c8875b-b288-4fe5-badc-6d8258e72526 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/7bbf2558-022e-44fb-ada8-c17fc0c1edb8 width="300"></td>
+</tr>
+</table>
+
+> **로그인, 회원가입 기능**
+<table>
+<tr>
+<td>로그인</td>
+<td>회원가입</td>
+</tr>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/1c3fbb3e-ea35-40cc-a950-a8e296aa7f04 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/98d58654-2e4f-4710-8170-312f7d87dcf3 width="300"></td>
+</table>
+
+> **검색 기능**
+<table>
+<tr>
+<td>검색 결과</td>
+<td>최근 검색한 유저</td>
+</tr>
+<tr>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/44d97206-811a-4dda-be48-05d83533e941 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/d6dc67c7-e849-4935-b0da-c64bfbf1eba3 width="300"></td>
+</tr>
+</table>
+
+> **즐겨찾기 기능**
+<table>
+<tr>
+<td>즐겨찾기 등록</td>
+<td>즐겨찾기 해제</td>
+</tr>
+<tr>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/a64b4327-b431-4b8c-b15b-51b03742cd84 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/9733e46f-1b6c-44a5-978a-ece2177dd10a width="300"></td>
+</tr>
+</table>
+
+> **챔피언 즐겨찾기 기능**
+<table>
+<tr>
+<td>챔피언 화면</td>
+<td>챔피언 즐겨찾기 </td>
+</tr>
+<tr>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/ec9fa041-093c-42b0-b786-3bf91c361c01 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/308a5991-7a13-4441-922f-68b64fa1d062 width="300"></td>
+</tr>
+</table>
+
+> **메인 정보**
+<table>
+<tr>
+<td>메인 정보 등록</td>
+<td>메인 정보 삭제</td>
+<td>메인 정보 새로고침</td>
+</tr>
+<tr>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/a84c6d73-bcbb-4ff3-b5a9-dff1f0652bd9 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/a1effa55-1910-42d8-b87a-e6463b22464e width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/005e0fec-55dd-40a8-bb2b-29412f839571 width="300"></td>
+</tr>
+</table>
+
+> **전적 상세 화면**
+<table>
+<tr>
+<td>전적 상세 화면</td>
+<td>상세 화면 유저 검색</td>
+</tr>
+<tr>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/1a91a336-3475-48ea-baa7-4de1b8172206 width="300"></td>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/4e745a69-9a19-4c2c-8fc0-21a4d2838b67 width="300"></td>
+</tr>
+</table>
+
+> **테마 설정**
+<table>
+<tr>
+<td>테마 설정 기능</td>
+</tr>
+<tr>
+<td><img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/402798ee-1be8-4d4d-909f-f2e95fc2984d width="300"></td>
+</tr>
+</table>
+
+# 시연
+https://github.com/SEO-J17/CanyonGG/assets/59912150/cfd29350-69c9-4abc-b1da-a532be797f4e
+
