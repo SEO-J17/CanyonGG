@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.seoj17.data.BuildConfig
 import io.github.seoj17.data.remote.dataCenter.DataCenterApi
 import io.github.seoj17.data.remote.match.MatchesApi
 import io.github.seoj17.data.remote.summoner.SummonerApi
@@ -52,7 +53,7 @@ object NetworkModule {
     @Provides
     @AuthToken
     fun provideAuthToken(): String {
-        return "RGAPI-492f738e-b428-41e1-b228-b390a6998edb"
+        return BuildConfig.RIOT_API_KEY
     }
 
     @Singleton

@@ -7,6 +7,10 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+def propertiesFile = rootProject.file("local.properties")
+def properties = new Properties()
+properties.load(new FileInputStream(propertiesFile))
+
 android {
     namespace 'io.github.seoj17.data'
     compileSdk 32
@@ -17,7 +21,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
+        buildConfigField("String", "RIOT_API_KEY", properties['RIOT_API_KEY'])
         ksp {
             arg("room.schemaLocation", "$projectDir/schemas".toString())
         }
