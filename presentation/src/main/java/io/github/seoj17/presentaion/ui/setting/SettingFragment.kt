@@ -21,20 +21,6 @@ class SettingFragment :
                     SettingFragmentDirections.actionSettingToLoginFragment(),
                 )
             }
-
-            themeGroup.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    lightTheme.id -> {
-                        viewModel.fetchThemeSetting(index = 1)
-                    }
-                    darkTheme.id -> {
-                        viewModel.fetchThemeSetting(index = 2)
-                    }
-                    else -> {
-                        viewModel.fetchThemeSetting(index = 0)
-                    }
-                }
-            }
         }
     }
 
