@@ -9,7 +9,7 @@ import androidx.databinding.BindingMethods
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.ViewMostChampBinding
 import io.github.seoj17.presentaion.model.ChampInfo
-import io.github.seoj17.presentaion.ui.adapter.setKdaTextColor
+import io.github.seoj17.presentaion.ui.setKdaTextColor
 import io.github.seoj17.presentaion.utils.setChampion
 
 @BindingMethods(

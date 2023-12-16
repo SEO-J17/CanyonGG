@@ -9,7 +9,7 @@ import androidx.databinding.BindingMethods
 import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.databinding.ViewTeamKdaBinding
 import io.github.seoj17.presentaion.model.TeamKdaInfo
-import io.github.seoj17.presentaion.ui.adapter.setMatchPlayedTime
+import io.github.seoj17.presentaion.ui.setMatchPlayedTime
 
 @BindingMethods(
     value = [

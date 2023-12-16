@@ -42,9 +42,7 @@ class LoginFragment : BaseDataBindingFragment<FragmentLoginBinding, LoginViewMod
                     when (state) {
                         is LoginState.SUCCESS -> {
                             requireActivity().showToast(R.string.success_login)
-                            findNavController().navigate(
-                                LoginFragmentDirections.actionLoginFragmentToSetting(),
-                            )
+                            moveToSettingFragment()
                         }
                         is LoginState.FAIL -> {
                             requireActivity().showToast(R.string.fail_login)
@@ -53,5 +51,11 @@ class LoginFragment : BaseDataBindingFragment<FragmentLoginBinding, LoginViewMod
                 }
             }
         }
+    }
+
+    private fun moveToSettingFragment() {
+        findNavController().navigate(
+            LoginFragmentDirections.actionLoginFragmentToSetting(),
+        )
     }
 }
