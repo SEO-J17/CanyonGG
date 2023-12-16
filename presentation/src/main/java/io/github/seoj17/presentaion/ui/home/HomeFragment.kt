@@ -94,8 +94,8 @@ class HomeFragment :
     }
 
     override fun observeViewModel() {
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.userInfoState.collectLatest {
                     tabRefreshVisibility(it)
                 }
