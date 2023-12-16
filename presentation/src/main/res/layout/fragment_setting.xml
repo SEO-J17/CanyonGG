@@ -68,6 +68,7 @@
             android:id="@+id/theme_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onCheckedChanged="@{(group, checkedId) -> vm.fetchThemeSetting(checkedId)}"
             bind:check="@{vm.themeSetting}">
 
             <RadioButton
