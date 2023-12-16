@@ -21,7 +21,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        buildConfigField("String", "RIOT_API_KEY", properties['RIOT_API_KEY'])
         ksp {
             arg("room.schemaLocation", "$projectDir/schemas".toString())
         }
