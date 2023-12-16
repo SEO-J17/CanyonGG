@@ -11,7 +11,7 @@ import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.contract.UrlContract
 import io.github.seoj17.presentaion.databinding.ViewUserInfoBinding
 import io.github.seoj17.presentaion.model.RegisterUserInfo
-import io.github.seoj17.presentaion.ui.adapter.setKdaTextColor
+import io.github.seoj17.presentaion.ui.setKdaTextColor
 
 @BindingMethods(
     value = [

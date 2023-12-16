@@ -1,11 +1,14 @@
 package io.github.seoj17.data.di
 
+import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import io.github.seoj17.data.R
 import io.github.seoj17.data.remote.dataCenter.DataCenterApi
 import io.github.seoj17.data.remote.match.MatchesApi
 import io.github.seoj17.data.remote.summoner.SummonerApi
@@ -30,29 +33,37 @@ object NetworkModule {
     @Singleton
     @Provides
     @SummonerUrl
-    fun provideSummonerUrl(): String {
-        return "https://kr.api.riotgames.com"
+    fun provideSummonerUrl(
+        @ApplicationContext context: Context,
+    ): String {
+        return context.getString(R.string.summonerUrl)
     }
 
     @Singleton
     @Provides
     @MatchUrl
-    fun provideMatchUrl(): String {
-        return "https://asia.api.riotgames.com"
+    fun provideMatchUrl(
+        @ApplicationContext context: Context,
+    ): String {
+        return context.getString(R.string.matchUrl)
     }
 
     @Singleton
     @Provides
     @DataCenterUrl
-    fun provideDataCenterUrl(): String {
-        return "https://ddragon.leagueoflegends.com"
+    fun provideDataCenterUrl(
+        @ApplicationContext context: Context,
+    ): String {
+        return context.getString(R.string.dataCenterUrl)
     }
 
     @Singleton
     @Provides
     @AuthToken
-    fun provideAuthToken(): String {
-        return "RGAPI-492f738e-b428-41e1-b228-b390a6998edb"
+    fun provideAuthToken(
+        @ApplicationContext context: Context,
+    ): String {
+        return context.getString(R.string.apiKey)
     }
 
     @Singleton

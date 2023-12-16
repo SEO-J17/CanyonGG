@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summonerUrl">https://kr.api.riotgames.com</string>
+    <string name="matchUrl">https://asia.api.riotgames.com</string>
+    <string name="dataCenterUrl">https://ddragon.leagueoflegends.com</string>
+    <string name="apiKey">RGAPI-38a5973e-d1e4-42a9-849e-c0d7b33f8457</string>
+
+</resources>

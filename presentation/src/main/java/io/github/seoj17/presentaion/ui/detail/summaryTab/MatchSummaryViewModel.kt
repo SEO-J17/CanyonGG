@@ -31,7 +31,11 @@ class MatchSummaryViewModel @Inject constructor(
     }
 
     val winTeam: LiveData<List<SummonerMatchRecord>> = participantsMatches.map { matches ->
-        matches.filter { it.win }
+        matches
+            .sortedBy { it.win }
+            .map { record ->
+                record
+            }
     }
 
     val loseTeam: LiveData<List<SummonerMatchRecord>> = participantsMatches.map { matches ->

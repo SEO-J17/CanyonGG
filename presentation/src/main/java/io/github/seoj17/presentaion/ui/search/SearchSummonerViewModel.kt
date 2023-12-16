@@ -1,6 +1,7 @@
 package io.github.seoj17.presentaion.ui.search
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
@@ -24,7 +25,6 @@ class SearchSummonerViewModel @Inject constructor(
     private val deleteRecentSummonerUseCase: DeleteRecentSummonerUseCase,
     private val deleteAllRecentSummonerUseCase: DeleteAllRecentSummonerUseCase,
 ) : ViewModel() {
-
     val recentSearch: LiveData<List<RecentSummoners>> =
         getRecentSummonerUseCase()
             .asLiveData()
@@ -32,11 +32,20 @@ class SearchSummonerViewModel @Inject constructor(
                 RecentSummoners(it)
             }
 
-    suspend fun searchSummoner(name: String): Summoner? {
-        return getUserInfoUseCase(name)?.let { summonerDomain ->
-            val summoner = Summoner(summonerDomain)
-            addSummonerUseCase(summoner.puuid, summoner.name)
-            return@let summoner
+    private val _searchSummoner = MutableLiveData<Summoner?>()
+    val searchSummoner: LiveData<Summoner?> = _searchSummoner
+
+    val searchQuery: (String?) -> Unit = { query ->
+        searchSummoner(query)
+    }
+
+    private fun searchSummoner(name: String?) {
+        viewModelScope.launch {
+            _searchSummoner.value = getUserInfoUseCase(name)?.let { summonerDomain ->
+                val summoner = Summoner(summonerDomain)
+                addSummonerUseCase(summoner.puuid, summoner.name)
+                return@let summoner
+            }
         }
     }
 

@@ -10,6 +10,7 @@ import io.github.seoj17.domain.usecase.firebase.GetCurrentLoginUserUseCase
 import io.github.seoj17.domain.usecase.firebase.RequestSignOutUseCase
 import io.github.seoj17.domain.usecase.setting.AddThemeSettingUseCase
 import io.github.seoj17.domain.usecase.setting.GetThemeSettingUseCase
+import io.github.seoj17.presentaion.R
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -45,9 +46,23 @@ class SettingViewModel @Inject constructor(
         _loginState.value = false
     }
 
-    fun fetchThemeSetting(index: Int) {
+    fun fetchThemeSetting(checkedId: Int) {
+        val theme = when (checkedId) {
+            R.id.light_theme -> {
+                ThemeState.LIGHT.ordinal
+            }
+
+            R.id.dark_theme -> {
+                ThemeState.DARK.ordinal
+            }
+
+            else -> {
+                ThemeState.SYSTEM.ordinal
+            }
+        }
+
         viewModelScope.launch {
-            addThemeSettingUseCase(index)
+            addThemeSettingUseCase(theme)
         }
     }
 }

@@ -1,4 +1,4 @@
-package io.github.seoj17.presentaion.ui.adapter
+package io.github.seoj17.presentaion.ui
 
 import android.view.View
 import android.widget.ImageView
@@ -6,6 +6,7 @@ import android.widget.ProgressBar
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagingData
@@ -18,6 +19,8 @@ import io.github.seoj17.presentaion.R
 import io.github.seoj17.presentaion.contract.UrlContract
 import io.github.seoj17.presentaion.model.Champion
 import io.github.seoj17.presentaion.model.ChampionBookmark
+import io.github.seoj17.presentaion.model.GameModeState
+import io.github.seoj17.presentaion.model.MostKillState
 import io.github.seoj17.presentaion.model.RecentSummoners
 import io.github.seoj17.presentaion.model.RegisterUserInfo
 import io.github.seoj17.presentaion.model.RotationChamp
@@ -274,4 +277,18 @@ fun View.setRegisterTabVisibility(
     } else {
         !isLoading
     }
+}
+
+@BindingAdapter("bind:searchSubmit")
+fun SearchView.setSearchSubmit(searchQuery: (String?) -> Unit) {
+    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            searchQuery(query)
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            return true
+        }
+    })
 }

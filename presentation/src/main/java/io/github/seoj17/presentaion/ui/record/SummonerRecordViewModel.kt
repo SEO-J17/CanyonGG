@@ -50,7 +50,7 @@ class SummonerRecordViewModel @Inject constructor(
     val summonerInfo = getSummonerInfoUseCase(summonerPuuid)
         .asLiveData()
         .map { domain ->
-            domain?.let { it -> SummonerInfo(it) }
+            domain?.let { SummonerInfo(it) }
         }
 
     private val _summonerMostKill = MutableLiveData<Int>()

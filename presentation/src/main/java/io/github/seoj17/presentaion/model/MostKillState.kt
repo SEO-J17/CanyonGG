@@ -1,4 +1,4 @@
-package io.github.seoj17.presentaion.ui.adapter
+package io.github.seoj17.presentaion.model
 
 import androidx.annotation.StringRes
 import io.github.seoj17.presentaion.R
