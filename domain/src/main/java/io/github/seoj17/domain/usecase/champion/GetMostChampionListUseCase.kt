@@ -3,6 +3,7 @@ package io.github.seoj17.domain.usecase.champion
 import dagger.Reusable
 import io.github.seoj17.domain.model.ChampInfoDomainModel
 import io.github.seoj17.domain.usecase.match.GetRegisterUserMatchListUseCase
+import java.util.PriorityQueue
 import javax.inject.Inject
 
 @Reusable
@@ -11,6 +12,7 @@ class GetMostChampionListUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(puuid: String): List<ChampInfoDomainModel> {
         getRegisterUserMatchListUseCase(puuid)
+            .getOrThrow()
             .filterNotNull()
             .run {
                 val champWinCntMap = mutableMapOf<String, Int>()
@@ -40,16 +42,17 @@ class GetMostChampionListUseCase @Inject constructor(
                         }
                     }
                 }
-
+                
                 val infoList = mutableListOf<ChampInfoDomainModel>()
                 mostChampsMap.forEach { (champ, playCnt) ->
                     val kills = champKillMap.getOrDefault(champ, 0)
                     val deaths = champDeathMap.getOrDefault(champ, 1)
                     val kda = kills / deaths.toDouble()
                     val winRate = (champWinCntMap.getOrDefault(champ, 0) * 100) / playCnt
-
+                    
                     infoList.add(ChampInfoDomainModel(champ, winRate, kda))
                 }
+                
                 return infoList.toList()
             }
     }

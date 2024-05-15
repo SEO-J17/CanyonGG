@@ -216,15 +216,16 @@ fun ImageView.setSplashChamp(name: String) {
 
 @BindingAdapter("bind:kdaTextColor")
 fun TextView.setKdaTextColor(kda: Double) {
-    val color = if (kda < 3.0) {
-        R.color.low_kda_color
-    } else if (kda < 5.0) {
-        R.color.normal_kda_color
-    } else if (kda < 10.0) {
-        R.color.death_color
-    } else {
-        R.color.high_kda_color
-    }
+    val color =
+        if (kda < 3.0) {
+            R.color.low_kda_color
+        } else if (kda < 5.0) {
+            R.color.normal_kda_color
+        } else if (kda < 10.0) {
+            R.color.death_color
+        } else {
+            R.color.high_kda_color
+        }
     setTextColor(
         context.getColor(color),
     )
@@ -232,15 +233,16 @@ fun TextView.setKdaTextColor(kda: Double) {
 
 @BindingAdapter("bind:winRateTextColor")
 fun TextView.setWinRateText(winRate: Int) {
-    val color = if (winRate < 30) {
-        R.color.low_win_rate_color
-    } else if (winRate < 50) {
-        R.color.normal_win_rate_color
-    } else if (winRate < 80) {
-        R.color.middle_win_rate_color
-    } else {
-        R.color.high_win_rate_color
-    }
+    val color =
+        if (winRate < 30) {
+            R.color.low_win_rate_color
+        } else if (winRate < 50) {
+            R.color.normal_win_rate_color
+        } else if (winRate < 80) {
+            R.color.middle_win_rate_color
+        } else {
+            R.color.high_win_rate_color
+        }
     setTextColor(
         context.getColor(color),
     )
@@ -248,14 +250,15 @@ fun TextView.setWinRateText(winRate: Int) {
 
 @BindingAdapter("bind:highestKillTextColor")
 fun TextView.setHighestKillText(kill: Int) {
-    val color = when (MostKillState(kill)) {
-        MostKillState.ZERO -> R.color.low_kda_color
-        MostKillState.SINGLE -> R.color.low_kda_color
-        MostKillState.DOUBLE -> R.color.normal_kda_color
-        MostKillState.TRIPLE -> R.color.middle_kda_color
-        MostKillState.QUADRA -> R.color.high_kda_color
-        MostKillState.PENTA -> R.color.penta_kill_color
-    }
+    val color =
+        when (MostKillState(kill)) {
+            MostKillState.ZERO -> R.color.low_kda_color
+            MostKillState.SINGLE -> R.color.low_kda_color
+            MostKillState.DOUBLE -> R.color.normal_kda_color
+            MostKillState.TRIPLE -> R.color.middle_kda_color
+            MostKillState.QUADRA -> R.color.high_kda_color
+            MostKillState.PENTA -> R.color.penta_kill_color
+        }
 
     setTextColor(context.getColor(color))
 }
@@ -270,25 +273,28 @@ fun View.setRegisterTabVisibility(
     isLoading: Boolean,
     userInfo: RegisterUserInfo?,
 ) {
-    isVisible = if (isLoading && (userInfo == null)) {
-        false
-    } else if (!isLoading && (userInfo != null)) {
-        false
-    } else {
-        !isLoading
-    }
+    isVisible =
+        if (isLoading && (userInfo == null)) {
+            false
+        } else if (!isLoading && (userInfo != null)) {
+            false
+        } else {
+            !isLoading
+        }
 }
 
 @BindingAdapter("bind:searchSubmit")
 fun SearchView.setSearchSubmit(searchQuery: (String?) -> Unit) {
-    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(query: String?): Boolean {
-            searchQuery(query)
-            return true
-        }
+    setOnQueryTextListener(
+        object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchQuery(query)
+                return true
+            }
 
-        override fun onQueryTextChange(newText: String?): Boolean {
-            return true
-        }
-    })
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        },
+    )
 }

@@ -9,11 +9,12 @@ import javax.inject.Inject
 class GetUserInfoUseCase @Inject constructor(
     private val repository: SummonerRepository,
 ) {
-    suspend operator fun invoke(userName: String?): SummonerDomainModel? {
-        return repository
-            .getSummonerInfo(userName ?: "")
-            ?.let {
-                SummonerDomainModel(it)
-            }
+    suspend operator fun invoke(userName: String): Result<SummonerDomainModel> {
+        return runCatching {
+            SummonerDomainModel(
+                repository
+                    .getSummonerInfo(userName),
+            )
+        }
     }
 }

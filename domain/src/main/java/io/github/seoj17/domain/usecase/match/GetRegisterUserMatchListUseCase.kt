@@ -13,14 +13,19 @@ class GetRegisterUserMatchListUseCase @Inject constructor(
     suspend operator fun invoke(
         puuid: String,
         start: Int = 0,
-    ): List<RepresentativeInfoDomainModel?> {
-        return repository.getMatchId(puuid, start).map { matchId ->
-            getMatchUseCase(matchId)
-                .info
-                .participants
-                .find { it.puuid == puuid }
-                ?.let {
-                    RepresentativeInfoDomainModel(it)
+    ): Result<List<RepresentativeInfoDomainModel?>> {
+        return runCatching {
+            repository
+                .getMatchId(puuid, start)
+                .map { matchId ->
+                    getMatchUseCase(matchId)
+                        .getOrThrow()
+                        .info
+                        .participants
+                        .find { it.puuid == puuid }
+                        ?.let {
+                            RepresentativeInfoDomainModel(it)
+                        }
                 }
         }
     }

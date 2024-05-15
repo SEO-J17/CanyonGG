@@ -36,8 +36,8 @@ class LoginFragment : BaseDataBindingFragment<FragmentLoginBinding, LoginViewMod
     }
 
     override fun observeViewModel() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.loginState.collect { state ->
                     when (state) {
                         is LoginState.SUCCESS -> {

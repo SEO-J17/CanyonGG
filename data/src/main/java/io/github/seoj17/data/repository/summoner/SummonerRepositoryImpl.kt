@@ -14,21 +14,13 @@ class SummonerRepositoryImpl @Inject constructor(
     private val remoteService: SummonerService,
     private val recentSearchDao: RecentSearchDao,
 ) : SummonerRepository {
-    override suspend fun getSummonerInfo(userName: String): SummonerDataModel? {
-        return remoteService
-            .getSummoner(userName)
-            ?.let {
-                SummonerDataModel(it)
-            }
+    override suspend fun getSummonerInfo(userName: String): SummonerDataModel {
+        return SummonerDataModel(remoteService.getSummoner(userName))
     }
 
     override suspend fun getTier(id: String): SummonerTierDataModel? {
         val tierList = remoteService.getUserTier(id)
-        return if (tierList.isNotEmpty()) {
-            SummonerTierDataModel(tierList[0])
-        } else {
-            null
-        }
+        return SummonerTierDataModel(tierList[0])
     }
 
     override suspend fun addRecentSummoner(puuid: String, name: String) {
