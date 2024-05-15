@@ -45,5 +45,26 @@ data class RepresentativeUserInfoDomainModel(
                 kda = domain.kda,
             )
         }
+        
+        fun toUserSummaryModel(
+            summoner: SummonerDomainModel,
+            record: UserRecordDomainModel,
+            tier: SummonerTierDomainModel?,
+        ): RepresentativeUserInfoDomainModel {
+            return RepresentativeUserInfoDomainModel(
+                puuid = summoner.puuid,
+                profile = summoner.profileIconId,
+                level = summoner.summonerLevel,
+                name = summoner.name,
+                tier = tier?.let {
+                    "${it.tier} ${it.rank}"
+                } ?: "Unranked",
+                wholeMatch = record.wholeMatch,
+                win = record.winCount,
+                lose = record.loseCount,
+                winRate = record.winRate,
+                kda = record.kda,
+            )
+        }
     }
 }
