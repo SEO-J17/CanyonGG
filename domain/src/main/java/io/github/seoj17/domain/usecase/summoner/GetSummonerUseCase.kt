@@ -14,14 +14,18 @@ class GetSummonerUseCase @Inject constructor(
     suspend operator fun invoke(
         puuid: String,
         start: Int = 0,
-    ): List<SummonerMatchInfoDomainModel?> {
-        return repository.getMatchId(puuid, start).map { matchId ->
-            getMatchUseCase(matchId)
-                .info
-                .participants
-                .find { it.puuid == puuid }
-                ?.let {
-                    SummonerMatchInfoDomainModel(it)
+    ): Result<List<SummonerMatchInfoDomainModel>> {
+        return runCatching {
+            repository
+                .getMatchId(puuid, start)
+                .map { matchId ->
+                    val participateResponse = getMatchUseCase(matchId)
+                        .getOrThrow()
+                        .info
+                        .participants
+                        .single { it.puuid == puuid }
+                    
+                    SummonerMatchInfoDomainModel(participateResponse)
                 }
         }
     }

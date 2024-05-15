@@ -9,7 +9,11 @@ import javax.inject.Inject
 class GetMatchUseCase @Inject constructor(
     private val repository: MatchRepository,
 ) {
-    suspend operator fun invoke(matchId: String): MatchDomainModel {
-        return MatchDomainModel(repository.getMatchInfo(matchId))
+    suspend operator fun invoke(matchId: String): Result<MatchDomainModel> {
+        return runCatching {
+            MatchDomainModel(
+                repository.getMatchInfo(matchId),
+            )
+        }
     }
 }
